@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Check, X, PencilLine, Download, ScrollText, type LucideIcon } from "lucide-react";
-import { DECISION_LABEL, EMPTY_STATE, loadState, type DecisionValue, type ProoflineState } from "@/lib/local";
+import { DECISION_LABEL, type DecisionValue } from "@/lib/local";
+import { useProoflineState } from "@/lib/use-proofline";
 import { VerdictBadge } from "@/components/VerdictBadge";
 
 const DECISION_ICON: Record<DecisionValue, LucideIcon> = {
@@ -13,14 +13,7 @@ const DECISION_ICON: Record<DecisionValue, LucideIcon> = {
 };
 
 export function AuditLog() {
-  const [state, setState] = useState<ProoflineState>(EMPTY_STATE);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setState(loadState());
-    setMounted(true);
-  }, []);
-
+  const state = useProoflineState();
   const entries = [...state.audit].reverse();
 
   function download() {
@@ -31,10 +24,6 @@ export function AuditLog() {
     a.download = "proofline-audit.json";
     a.click();
     URL.revokeObjectURL(url);
-  }
-
-  if (!mounted) {
-    return <div className="mt-6 h-24 animate-pulse rounded-xl border border-line bg-card" />;
   }
 
   if (entries.length === 0) {

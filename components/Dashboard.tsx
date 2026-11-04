@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Database,
@@ -14,7 +13,8 @@ import {
   ScrollText,
 } from "lucide-react";
 import type { RegisterStats } from "@/lib/register";
-import { EMPTY_STATE, DECISION_LABEL, loadState, type DecisionValue, type ProoflineState } from "@/lib/local";
+import { DECISION_LABEL, type DecisionValue } from "@/lib/local";
+import { useProoflineState } from "@/lib/use-proofline";
 import type { Verdict } from "@/lib/types";
 import { ALL_VERDICTS } from "@/lib/types";
 
@@ -45,13 +45,7 @@ function Stat({
 }
 
 export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewDate: string }) {
-  const [state, setState] = useState<ProoflineState>(EMPTY_STATE);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setState(loadState());
-    setMounted(true);
-  }, []);
+  const state = useProoflineState();
 
   const byVerdict = new Map<Verdict, number>();
   const byDecision = new Map<DecisionValue, number>();
@@ -96,9 +90,7 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
         <h2 id="review-log" className="text-sm font-semibold text-foreground">
           Your review log <span className="font-normal text-muted">· this browser</span>
         </h2>
-        {!mounted ? (
-          <div className="mt-3 h-40 animate-pulse rounded-xl border border-line bg-card" />
-        ) : state.audit.length === 0 ? (
+        {state.audit.length === 0 ? (
           <div className="mt-3 rounded-xl border border-dashed border-line bg-card/50 p-6 text-center">
             <Inbox size={26} aria-hidden="true" className="mx-auto text-accent" />
             <p className="mt-2 font-semibold">No decisions recorded yet.</p>

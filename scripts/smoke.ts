@@ -24,7 +24,7 @@ const SmokeCaseSchema = z.object({
   review_date: z.string(),
   note: z.string().optional().default(""),
 });
-type SmokeCase = z.infer<typeof SmokeCaseSchema>;
+
 
 const GATE = 20;
 

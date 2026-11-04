@@ -22,7 +22,7 @@ export interface FindingCardProps {
   index: number;
   selected: boolean;
   decision: StoredDecision | null;
-  onRecorded: () => void;
+  onRecorded?: () => void;
 }
 
 export function FindingCard({ finding, index, selected, decision, onRecorded }: FindingCardProps) {
@@ -42,7 +42,7 @@ export function FindingCard({ finding, index, selected, decision, onRecorded }: 
     recordDecision(finding, pending, reason);
     setPending(null);
     setReason("");
-    onRecorded();
+    onRecorded?.();
   }
 
   return (

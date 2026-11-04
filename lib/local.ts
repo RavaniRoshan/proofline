@@ -80,10 +80,41 @@ export function loadState(): ProoflineState {
 
 export function saveState(state: ProoflineState): void {
   window.localStorage.setItem(STATE_KEY, JSON.stringify(state));
+  window.dispatchEvent(new Event(STATE_EVENT));
 }
+
+export const STATE_EVENT = "proofline:update";
+
+/** Cached client snapshot so useSyncExternalStore gets a stable identity. */
+let cachedSnapshot: ProoflineState | null = null;
+export function getStateSnapshot(): ProoflineState {
+  if (!cachedSnapshot) cachedSnapshot = loadState();
+  return cachedSnapshot;
+}
+export function invalidateSnapshot(): void {
+  cachedSnapshot = null;
+}
+
+export function subscribeState(callback: () => void): () => void {
+  const onUpdate = () => {
+    invalidateSnapshot();
+    callback();
+  };
+  window.addEventListener(STATE_EVENT, onUpdate);
+  window.addEventListener("storage", onUpdate);
+  return () => {
+    window.removeEventListener(STATE_EVENT, onUpdate);
+    window.removeEventListener("storage", onUpdate);
+  };
+}
+
+/** Server snapshot: always empty, always identical identity. */
+export const SERVER_SNAPSHOT: ProoflineState = EMPTY_STATE;
 
 export function resetDemo(): void {
   window.localStorage.removeItem(STATE_KEY);
+  invalidateSnapshot();
+  window.dispatchEvent(new Event(STATE_EVENT));
 }
 
 export interface FindingLike {

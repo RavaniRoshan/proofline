@@ -1,82 +1,104 @@
-# Proofline — Round 2 build harness
+# Proofline
 
-CodeNexus India 2026 · Round 2 · **closes 2026-11-07, 10:00 AM IST**
-Team SHIVAMKUMAR10958 · Roshan Ravani Singh (leader) · Nitansh Rabari
+**Claim-evidence checker for brand governance** · CodeNexus India 2026 · Round 2
+Deadline 2026-11-07 10:00 IST
 
-This folder is the engineering harness, not the app. It exists so a coding agent builds the
-scored workflow instead of boilerplate.
+A judge opens the URL, pastes a draft (or loads the seeded sample), clicks **Check**, sees
+findings — each citing the approved fact, source span, version and validity window behind it —
+and records a decision on each one. No sign-in, no walkthrough, under three minutes.
 
-```
-LAW.md                 behavioural rules for the agent (72 lines)
-SPEC.md                what to build, the verdict rules, and the scope cut
-DATA.md                the seed data contract, for any agent that opens this repo
-seed/                  a runnable fact register, a sample draft, 24 labelled cases
-scripts/validate_seed.py   standard-library validator, exits non-zero on bad data
-```
+## Run it
 
-## Verify the substrate before writing any code
-
-```
-python3 scripts/validate_seed.py seed/
+```bash
+npm install
+npm run build
+npm start          # http://localhost:3000 — the landing page IS the checker
 ```
 
-Current state: **PASS** — 41 fact rows across 40 fact ids, 4 source documents, 24 smoke cases
-covering all six verdicts (5 supported, 6 contradicted, 3 stale, 3 conflicting, 3 unverified,
-4 not checkable).
+No API key is required to try it locally: if a local [Ollama](https://ollama.com) server is
+running, the semantic path uses it (`LLM_PROVIDER=auto` finds it). Otherwise every
+deterministic check still runs, and qualitative claims are reported as UNVERIFIED with an
+explicit "semantic check unavailable" reason — never silently, never faked.
 
-## The one sentence that decides Round 2
+## Deployed configuration (Vercel)
 
-A judge opens the URL, pastes a draft, clicks Check, sees findings with sources, and makes a
-decision — **without signing in and without reading anything first**. Everything in the spec
-serves that sentence.
+Environment variables (server-side only, see `.env.example`):
 
----
+| Variable | Default | Purpose |
+|---|---|---|
+| `LLM_API_KEY` | — | Key for the OpenAI-compatible provider. Without it the six deterministic verdict paths still work; qualitative claims degrade to explicit UNVERIFIED. |
+| `LLM_BASE_URL` | `https://api.openai.com/v1` | Any OpenAI-compatible endpoint. |
+| `LLM_MODEL` | `gpt-4o-mini-2024-07-18` | Pinned model, one constant per provider in `lib/llm.ts`. |
+| `LLM_PROVIDER` | `auto` | `openai` · `ollama` · `mock` · `auto`. |
+| `LLM_OLLAMA_URL` | `http://localhost:11434` | Local Ollama, for development without a key. |
 
-## Mapping to the seven required submission items
+## Verification (all five gates, real output)
 
-The organiser requires seven things. Here is where each one comes from.
+```bash
+npm run build                          # exits 0
+npx tsc --noEmit                       # exits 0
+npm test                               # 51 unit tests — verdicts, gate, evidence, segmenter
+python3 scripts/validate_seed.py seed/ # seed integrity — PASS (41 rows, 40 fact ids, 24 cases)
+npm run test:e2e                       # draft → findings → decision → audit entry
+npm run smoke                          # Stage 2 gate — ≥20 of 24 expected verdicts (currently 23)
+```
 
-| Required item | Where it comes from |
-|---|---|
-| **Working project link** | Vercel production URL. Must open in incognito with no sign-in. Verify before submitting. |
-| **Source-code repository link** | GitHub repo containing this harness plus the app. Public. |
-| **Updated project PDF** | Regenerate from the Round 1 source with the Round 2 changes from `SPEC.md` §6 folded in. |
-| **List of completed features** | Build it from `SPEC.md` §5 "Ships", and only claim what the five verification commands prove. |
-| **Technology and implementation details** | `SPEC.md` §2 (four stages) and §3 (views and state). |
-| **Explanation of changes to the original plan** | `SPEC.md` §6 — the table of five changes with reasons. Written to be pasted almost verbatim. |
-| **Three major improvements for Round 3** | `SPEC.md` §7. Unchanged from Round 1, and they are product additions, not design changes — which is what the brief demands. |
+`scripts/verify_goal.sh` runs everything and prints a checklist.
 
----
+## How it works
 
-## Build order, if you have 2.5 days
+1. **Stage 1 — deterministic (TypeScript, no model):** segmentation with exact char offsets,
+   shape classification (numeric / temporal / entity / disclaimer / qualitative), value
+   normalisation (₹/INR, Indian thousands separators, units, string-booleans), closed-map
+   attribute resolution. ≥60% of sample-draft claims are decided here.
+2. **Stage 2 — smoke gate:** all 24 labelled cases in `seed/smoke_cases.jsonl` run through the
+   real verdict logic; `out/smoke_report.json` records expected vs actual per case. Gate: ≥20/24.
+   Currently **23/24** — the miss is S-008, unresolvable under SPEC §2 Stage 4's strict
+   `(product, attribute)` rule (SSO exists only as P-growth facts; the claim is about Starter).
+   Kept UNVERIFIED on purpose, not by lowering the bar.
+3. **Stage 3 — tiered model routing:** one route, `POST /api/verify`. Input = claim + type + ≤5
+   lexically-retrieved candidate facts. `LLM_PROVIDER` selects the backend: OpenAI-compatible
+   API in production, local Ollama in development (same code path), `mock` in unit tests.
+   Output is strict JSON parsed with Zod; a parse failure is a hard error — never a silent
+   fallback. The model returns fact ids only; it never writes citations, spans or dates.
+4. **Stage 4 — verdicts in code:** six verdicts computed from relation+confidence plus the
+   evidence lookup. An evidence gate asserts in code that no CONTRADICTED ships without a
+   complete, resolvable record (`fact_id`, `fact_version`, `source_document_id`, `source_span`,
+   `valid_from`, `valid_until`); otherwise the finding downgrades to UNVERIFIED
+   (production) or throws (development).
 
-Do these in order and stop wherever the clock stops. Each step leaves something a judge can use.
+## State
 
-**Day 1 — the spine.** Next.js app on Vercel. `seed/*.json` loaded at build. Stage 1 deterministic
-classifier in TypeScript with unit tests. `/api/verify` with Zod parsing and the evidence gate.
-The `/` draft-checker view wired end to end with a hardcoded model stub first, then the real call.
+Zero auth, zero database server, zero vector index, zero queue, zero ORM. Seed ships in
+`seed/*.json` and is read at build time. Everything the judge changes lives in
+`localStorage` under the single key `proofline.v1` (decisions + append-only audit log).
+**Reset demo** (header) clears it and reloads the seeded demo.
 
-**Day 2 — the human half.** Findings list with evidence and suggested correction. Reviewer decision
-with a required reason. Append-only audit log in `localStorage`. "Reset demo" button. Run the
-Stage 2 smoke gate; do not proceed until ≥20 of 24 pass.
+## Honest limitations
 
-**Day 3 — the rest, then the submission.** `/facts` register view with stale and conflicting filters.
-`/dashboard` counts. `/about` with the PDF link. Then: incognito test, repo link test, regenerate the
-PDF, write the seven submission items, submit.
+- "Append-only" audit is a local convention — a determined user can edit `localStorage`.
+  It is a review log for a seeded demo, not a tamper-proof system of record.
+- Verdicts are date-dependent (validity windows). F-024 (Growth seats) expires 2026-12-31;
+  after that the Growth-seats case flips CONFLICTING → CONTRADICTED.
+- The model path is non-deterministic; identical input can yield UNVERIFIED vs CONTRADICTED
+  for borderline claims (e.g. "Setup takes 30 minutes"). The evidence gate bounds the blast
+  radius of any wrong CONTRADICTED to zero.
+- `/about` links the Round 1 PDF via the team repo URL; swap in the final PDF URL when known.
+- Data provenance: every fact is fictional (Flowdesk), seeded deliberately with stale rows
+  and a conflicting pair for the demo. Not market research.
 
-## If you run out of time, cut in this order
+## Repository layout
 
-1. `/dashboard` — counts are nice, not scored.
-2. `/facts` filtering — the register list matters more than the chips.
-3. The suggested-correction field — a finding with a source and no rewrite still demonstrates the product.
-4. Candidate-fact approval — this is the strongest thing to lose last, because it is the "human approves
-   the facts" half of the thesis. If it goes, say so plainly in the submission.
-
-Never cut: the evidence gate, the six verdicts, the reviewer decision, the audit entry. Those four
-*are* the product the brief asked for.
-
-## Two failure modes that already cost teams their place
-
-- **A link that asks for sign-in.** Test every URL in a private window, including the repo.
-- **An empty dashboard as the landing page.** The brief is explicit that a login screen, settings page
-  or empty dashboard alone does not count. `/` must be the working checker, pre-populated.
+```
+app/                  the five views + /api/verify
+components/           Checker, FindingCard, FactsTable, AuditLog, Dashboard, NavLinks, ResetDemo, VerdictBadge
+lib/                  seed loading, segmentation, classification, resolution, verdicts + evidence gate,
+                      lexical retrieval, LLM providers, localStorage state (proofline.v1)
+seed/                 the fixture — never edited to make tests pass
+scripts/              validate_seed.py · smoke.ts · verify_goal.sh
+tests/                vitest unit tests
+e2e/                  Playwright end-to-end
+out/smoke_report.json the Stage 2 gate artefact
+SPEC.md DATA.md LAW.md  the build brief (unchanged)
+GOAL.md               the standing goal and cut order
+```

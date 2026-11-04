@@ -10,10 +10,10 @@ import {
   ChevronDown,
   ClipboardPaste,
 } from "lucide-react";
-import type { Finding, VerifyResult, Verdict } from "@/lib/types";
+import type { VerifyResult, Verdict } from "@/lib/types";
 import { ALL_VERDICTS } from "@/lib/types";
 import { FindingCard } from "@/components/FindingCard";
-import { EMPTY_STATE, loadState, type ProoflineState } from "@/lib/local";
+import { useProoflineState } from "@/lib/use-proofline";
 
 const COLLAPSED_VERDICTS: Verdict[] = ["SUPPORTED", "NOT_CHECKABLE"];
 
@@ -22,13 +22,9 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
   const [status, setStatus] = useState<"idle" | "checking" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<VerifyResult | null>(null);
-  const [stored, setStored] = useState<ProoflineState>(EMPTY_STATE);
   const [selected, setSelected] = useState(0);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    setStored(loadState());
-  }, []);
+  const stored = useProoflineState();
 
   const reviewDate = useMemo(() => new Date().toISOString().slice(0, 10), []);
 
@@ -86,8 +82,6 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
       .querySelector(`[data-testid="finding"][data-index="${selected}"]`)
       ?.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }, [selected]);
-
-  const refreshStored = useCallback(() => setStored(loadState()), []);
 
   const findings = result?.findings ?? [];
   const actionable = findings.filter((f) => !COLLAPSED_VERDICTS.includes(f.verdict));
@@ -233,7 +227,6 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                   index={i}
                   selected={i === selected}
                   decision={stored.decisions[f.id] ?? null}
-                  onRecorded={refreshStored}
                 />
               ))
             )}
@@ -254,7 +247,6 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                     index={actionable.length + i}
                     selected={actionable.length + i === selected}
                     decision={stored.decisions[f.id] ?? null}
-                    onRecorded={refreshStored}
                   />
                 ))}
               </div>

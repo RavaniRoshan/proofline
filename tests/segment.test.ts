@@ -8,7 +8,9 @@ const sample = readFileSync(join(process.cwd(), "seed/sample_draft.md"), "utf8")
 describe("segmentDraft", () => {
   it("keeps exact character offsets into the original text", () => {
     for (const s of segmentDraft(sample)) {
-      expect(sample.slice(s.charStart, s.charEnd)).toBe(s.text);
+      // Soft wraps are collapsed to single spaces in place (1:1), so indexes
+      // still refer to the original file exactly.
+      expect(sample.slice(s.charStart, s.charEnd).replace(/\n/g, " ")).toBe(s.text);
     }
   });
 

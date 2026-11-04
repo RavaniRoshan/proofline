@@ -4,7 +4,7 @@ const CURRENCY_OR_DIGIT = /[₹$€£]|\d/;
 const MONTHS =
   /\b(jan(uary)?|feb(ruary)?|mar(ch)?|apr(il)?|may|jun(e)?|jul(y)?|aug(ust)?|sep(tember)?|oct(ober)?|nov(ember)?|dec(ember)?)\b/i;
 const YEAR = /\b(19|20)\d{2}\b/;
-const TEMPORAL_CUES = /\b(since|as of|by|until|before|after|effective|valid (until|from|through))\b/i;
+const TEMPORAL_CUES = /\b(since|as of|until|effective|valid (until|from|through))\b/i;
 
 /** Known product/feature/value names → ENTITY. Brand name alone is NOT enough (Flowdesk is everywhere). */
 const ENTITY_KEYWORDS =

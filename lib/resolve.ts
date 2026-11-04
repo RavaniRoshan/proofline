@@ -116,8 +116,8 @@ const RULES: Rule[] = [
   },
   {
     attribute: "onboarding_days",
-    test: /\b(onboarding|onboard)\b|\bsetup takes\b|\bget(?:s|ting)?\s+(?:your\s+)?team\s+live\b/i,
-    anchor: /\b(onboarding|setup takes|live)\b/i,
+    test: /\b(onboarding|onboard)\b|\bsetup takes\b/i,
+    anchor: /\b(onboarding|onboard|setup takes)\b/i,
     unit: (c) => (/business days?/i.test(c) ? "business days" : /minutes?|mins\b/i.test(c) ? "minutes" : "days"),
     claimValue: (c) => {
       const a = anchorEnd(c, /\b(onboarding|setup takes|live)\b/i);

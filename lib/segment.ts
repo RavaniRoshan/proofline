@@ -1,4 +1,9 @@
-/** Stage 1 — split a draft into candidate claim spans with exact offsets. */
+/** Stage 1 — split a draft into candidate claim spans with exact offsets.
+ *
+ *  Paragraphs (blank-line separated) are the unit of prose; a single newline
+ *  inside a paragraph is a soft wrap and is collapsed to a space in place, so
+ *  offsets in the original draft stay exact. Markdown headings are skipped.
+ */
 
 export interface Segment {
   text: string;
@@ -8,47 +13,57 @@ export interface Segment {
 
 const DELIM = /(?<!\d),(?!\d)|[.;!?]+/g;
 const LIST_MARK = /^\s*(?:[-*•]|\d+[.)])\s+/;
+const HEADING = /^\s*#{1,6}\s/;
+const LEADING_CONJ = /^(and|but|so|or)\s+/i;
 
 export function segmentDraft(draft: string): Segment[] {
   const out: Segment[] = [];
-  let offset = 0;
-  for (const line of draft.split("\n")) {
-    const lineStart = offset;
-    offset += line.length + 1;
-    if (/^\s*#{1,6}\s/.test(line)) continue; // markdown heading — never a claim
-    let last = 0;
-    for (const m of line.matchAll(DELIM)) {
-      pushClause(out, line, lineStart, last, m.index ?? last);
-      last = (m.index ?? last) + m[0].length;
-    }
-    pushClause(out, line, lineStart, last, line.length);
+  const paragraphRe = /\n{2,}/g;
+  let pStart = 0;
+  for (const m of draft.matchAll(paragraphRe)) {
+    const pEnd = m.index ?? pStart;
+    pushParagraph(out, draft, pStart, pEnd);
+    pStart = (m.index ?? pStart) + m[0].length;
   }
+  pushParagraph(out, draft, pStart, draft.length);
   return out;
+}
+
+function pushParagraph(out: Segment[], draft: string, from: number, to: number): void {
+  const raw = draft.slice(from, to);
+  if (HEADING.test(raw)) return; // markdown heading — never a claim
+  // Collapse soft wraps 1:1 so every index is unchanged.
+  const collapsed = raw.replace(/\n/g, " ");
+  let last = 0;
+  for (const m of collapsed.matchAll(DELIM)) {
+    pushClause(out, collapsed, from, last, m.index ?? last);
+    last = (m.index ?? last) + m[0].length;
+  }
+  pushClause(out, collapsed, from, last, collapsed.length);
 }
 
 function pushClause(
   out: Segment[],
-  line: string,
-  lineStart: number,
+  text: string,
+  base: number,
   from: number,
   to: number,
 ): void {
   let start = from;
   let end = to;
-  // Skip leading whitespace.
-  while (start < end && /\s/.test(line[start]!)) start++;
-  while (end > start && /\s/.test(line[end - 1]!)) end--;
-  // Strip leading conjunction left over from a comma split (", and the best ...").
-  const lead = /^(and|but|so|or)\s+/i.exec(line.slice(start, end));
-  if (lead) start += lead[0].length;
-  // Strip list markers like "- " or "1. " without shifting the span of real content.
-  const raw = line.slice(start, end);
+  while (start < end && /\s/.test(text[start]!)) start++;
+  while (end > start && /\s/.test(text[end - 1]!)) end--;
+  // Strip list markers like "- " or "1. " without moving the span of real content.
+  const raw = text.slice(start, end);
   const mark = LIST_MARK.exec(raw);
   if (mark) start += mark[0].length;
-  const text = line.slice(start, end).trim();
-  if (text === "") return;
-  const words = text.split(/\s+/).length;
-  const hasDigit = /\d/.test(text);
+  // Strip leading conjunction left over from a clause split (", and the best …").
+  const lead = LEADING_CONJ.exec(text.slice(start, end));
+  if (lead) start += lead[0].length;
+  const trimmed = text.slice(start, end).trim();
+  if (trimmed === "") return;
+  const words = trimmed.split(/\s+/).length;
+  const hasDigit = /\d/.test(trimmed);
   if (words < 2 && !hasDigit) return; // fragment, not a claim
-  out.push({ text, charStart: lineStart + start, charEnd: lineStart + end });
+  out.push({ text: trimmed, charStart: base + start, charEnd: base + end });
 }

@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { RotateCcw } from "lucide-react";
 import { resetDemo } from "@/lib/local";
 
 export function ResetDemo() {
   const [done, setDone] = useState(false);
+  const router = useRouter();
   return (
     <button
       type="button"
@@ -13,7 +15,7 @@ export function ResetDemo() {
       onClick={() => {
         resetDemo();
         setDone(true);
-        window.location.assign("/");
+        router.push("/");
       }}
       className="inline-flex items-center gap-1.5 rounded-md border border-line bg-background px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:border-red-300 hover:text-red-800"
       title="Clear this browser's decisions and audit log, then reload the seeded demo"
