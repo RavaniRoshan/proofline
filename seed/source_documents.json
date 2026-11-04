@@ -1,0 +1,42 @@
+[
+  {
+    "document_id": "D-pricing",
+    "version_id": "D-pricing-v4",
+    "title": "Pricing sheet v4",
+    "kind": "pricing",
+    "effective_date": "2026-04-01",
+    "pages": 2,
+    "uploaded_by": "brand-owner",
+    "char_length": 1840
+  },
+  {
+    "document_id": "D-pricing",
+    "version_id": "D-pricing-v3",
+    "title": "Pricing sheet v3",
+    "kind": "pricing",
+    "effective_date": "2025-04-01",
+    "pages": 2,
+    "uploaded_by": "brand-owner",
+    "char_length": 1762
+  },
+  {
+    "document_id": "D-bench",
+    "version_id": "D-bench-q1fy27",
+    "title": "Onboarding Benchmarks Q1 FY27",
+    "kind": "research",
+    "effective_date": "2026-01-15",
+    "pages": 6,
+    "uploaded_by": "brand-owner",
+    "char_length": 9120
+  },
+  {
+    "document_id": "D-release",
+    "version_id": "D-release-2026-10",
+    "title": "Release notes, October 2026",
+    "kind": "release_notes",
+    "effective_date": "2026-10-01",
+    "pages": 1,
+    "uploaded_by": "brand-owner",
+    "char_length": 640
+  }
+]
