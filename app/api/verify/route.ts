@@ -2,8 +2,6 @@ import { z } from "zod";
 import { verifyDraft } from "@/lib/verify";
 import { LlmParseError } from "@/lib/llm";
 
-export const runtime = "nodejs";
-
 const RequestSchema = z.object({
   draft: z.string().min(1, "draft is required").max(200_000, "draft is too large"),
   review_date: z

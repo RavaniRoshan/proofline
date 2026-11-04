@@ -50,7 +50,7 @@ async function main() {
   const results: Array<Record<string, unknown>> = [];
   let matched = 0;
   for (const c of cases) {
-    let actual = "NO_FINDING" as Verdict | "NO_FINDING";
+    let actual = "NO_FINDING" as Verdict | "NO_FINDING" | "ERROR";
     let factId: string | null = null;
     let source: string | null = null;
     let reason = "";

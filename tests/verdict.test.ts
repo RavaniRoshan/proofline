@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   decideClaim,
   evidenceProblem,
@@ -142,14 +142,13 @@ describe("evidence gate", () => {
   });
 
   it("downgrades to UNVERIFIED in production when evidence is incomplete", () => {
-    const prev = process.env.NODE_ENV;
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     try {
       const f = gateContradicted({ ...baseFinding(), evidence: null });
       expect(f.verdict).toBe("UNVERIFIED");
       expect(f.reason).toMatch(/Downgraded/);
     } finally {
-      process.env.NODE_ENV = prev;
+      vi.unstubAllEnvs();
     }
   });
 });
@@ -166,7 +165,6 @@ describe("severityOf", () => {
   });
 });
 
-const prevEnv = process.env.NODE_ENV;
 afterEach(() => {
-  process.env.NODE_ENV = prevEnv;
+  vi.unstubAllEnvs();
 });
