@@ -42,3 +42,6 @@ next-env.d.ts
 
 # deliverable from the Stage 2 gate
 !/out/smoke_report.json
+
+# playwright output
+/test-results/
