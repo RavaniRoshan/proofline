@@ -1,13 +1,12 @@
 {
-  "generated_at": "2026-11-05T03:01:55.000Z",
-  "llm_provider": "openai-compatible:openai/gpt-oss-120b",
+  "generated_at": "2026-11-05T03:29:18.508Z",
+  "llm_provider": "openai-compatible:openai/gpt-oss-20b",
   "gate_threshold": 20,
   "total": 24,
-  "matched": 22,
+  "matched": 23,
   "passed": true,
   "mismatches": [
-    "S-008",
-    "S-021"
+    "S-008"
   ],
   "cases": [
     {
@@ -99,7 +98,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "Fact F-014 says onboarding takes 3 business days, not 30 minutes, contradicting the claim."
+      "reason": "Fact F-014 states onboarding takes 3 business days, not 30 minutes."
     },
     {
       "case_id": "S-007",
@@ -281,7 +280,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "None of the provided facts address trust or market ranking of Flowdesk's onboarding platform."
+      "reason": "The provided facts do not address trust or market comparison."
     },
     {
       "case_id": "S-020",
@@ -294,7 +293,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "No supplied facts address the claim."
+      "reason": "No facts provided to evaluate the claim."
     },
     {
       "case_id": "S-021",
@@ -302,12 +301,12 @@
       "claim_type": "qualitative",
       "expected_verdict": "NOT_CHECKABLE",
       "expected_fact_id": null,
-      "actual_verdict": "SUPPORTED",
-      "actual_fact_id": "F-014",
+      "actual_verdict": "NOT_CHECKABLE",
+      "actual_fact_id": null,
       "fact_id_match": true,
       "source": "model",
-      "matched": false,
-      "reason": "An approved fact entails this claim."
+      "matched": true,
+      "reason": "The claim lacks a measurable predicate, so it cannot be verified against the provided facts."
     },
     {
       "case_id": "S-022",

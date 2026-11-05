@@ -33,7 +33,7 @@ Environment variables (server-side only, see `.env.example`):
 |---|---|---|
 | `LLM_API_KEY` | — | Key for the OpenAI-compatible provider. Without it the six deterministic verdict paths still work; qualitative claims degrade to explicit UNVERIFIED. |
 | `LLM_BASE_URL` | `https://api.groq.com/openai/v1` (deployed) | Any OpenAI-compatible endpoint. |
-| `LLM_MODEL` | `openai/gpt-oss-120b` (deployed) / `gpt-4o-mini-2024-07-18` | Pinned model, one constant per provider in `lib/llm.ts`. |
+| `LLM_MODEL` | `openai/gpt-oss-20b` (deployed) / `gpt-4o-mini-2024-07-18` | Pinned model, one constant per provider in `lib/llm.ts`. |
 | `LLM_PROVIDER` | `auto` | `openai` · `ollama` · `mock` · `auto`. |
 | `LLM_OLLAMA_URL` | `http://localhost:11434` | Local Ollama, for development without a key. |
 
@@ -45,7 +45,7 @@ npx tsc --noEmit                       # exits 0
 npm test                               # 51 unit tests — verdicts, gate, evidence, segmenter
 python3 scripts/validate_seed.py seed/ # seed integrity — PASS (41 rows, 40 fact ids, 24 cases)
 npm run test:e2e                       # draft → findings → decision → audit entry
-npm run smoke                          # Stage 2 gate — ≥20 of 24 (23/24 Ollama · 22/24 Groq, see below)
+npm run smoke                          # Stage 2 gate — ≥20 of 24 (23/24 on both Ollama qwen3:4b and the deployed Groq gpt-oss-20b)
 ```
 
 `scripts/verify_goal.sh` runs everything and prints a checklist.
@@ -58,7 +58,7 @@ npm run smoke                          # Stage 2 gate — ≥20 of 24 (23/24 Oll
    attribute resolution. ≥60% of sample-draft claims are decided here.
 2. **Stage 2 — smoke gate:** all 24 labelled cases in `seed/smoke_cases.jsonl` run through the
    real verdict logic; `out/smoke_report.json` records expected vs actual per case. Gate: ≥20/24.
-   With the deployed provider (Groq `openai/gpt-oss-120b`): **22/24** — misses S-008 (unresolvable under SPEC §2 Stage 4's strict
+   With the deployed provider (Groq `openai/gpt-oss-20b`): **23/24** — misses S-008 (unresolvable under SPEC §2 Stage 4's strict
    `(product, attribute)` rule; kept UNVERIFIED on purpose) and S-021 (the model reads "live in days, feels
    different" as entailment; a borderline fixture label, not a bug we could fix without touching labels).
    Locally with Ollama `qwen3:4b`: **23/24** (only S-008). Threshold 20 never moved; labels untouched.
