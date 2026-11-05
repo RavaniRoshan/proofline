@@ -174,7 +174,7 @@ export function AuditLog() {
                       <Icon size={11} aria-hidden="true" />
                       {DECISION_LABEL[entry.decision]}
                     </span>
-                    <VerdictBadge verdict={entry.verdict} />
+                    {entry.verdict && <VerdictBadge verdict={entry.verdict} />}
                     {entry.fact_id && (
                       <span className="rounded-[4px] border border-line-strong bg-panel px-1.5 py-0.5 font-mono text-[11px]">
                         {entry.fact_id}

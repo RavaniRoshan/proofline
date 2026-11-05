@@ -60,7 +60,11 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
       const res = await fetch("/api/verify", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ draft: text, review_date: reviewDate }),
+        body: JSON.stringify({
+          draft: text,
+          review_date: reviewDate,
+          register_overrides: stored.fact_overrides,
+        }),
       });
       if (!res.ok) {
         const body = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -74,7 +78,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
       setError((e as Error).message);
       setStatus("error");
     }
-  }, [draft, reviewDate]);
+  }, [draft, reviewDate, stored.fact_overrides]);
 
   // Sync selected finding with deep-linked ?finding=<id> parameter
   useEffect(() => {

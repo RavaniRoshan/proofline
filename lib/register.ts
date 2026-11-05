@@ -21,9 +21,10 @@ function valueKey(f: Fact): string {
 /** (product, attribute) groups whose active approved facts disagree. */
 export function findConflictGroups(
   reviewDate: string,
+  source: Fact[] = facts,
 ): Array<{ productId: string; attribute: string; factIds: string[] }> {
   const groups = new Map<string, Fact[]>();
-  for (const f of facts) {
+  for (const f of source) {
     if (f.status !== "approved") continue;
     if (!isActiveAt(f, reviewDate)) continue;
     const key = `${f.product_id} ${f.attribute}`;
@@ -43,11 +44,11 @@ export function findConflictGroups(
 }
 
 /** Flat list of register rows annotated with stale/conflict flags. */
-export function registerRows(reviewDate: string): FactRow[] {
-  const conflicts = findConflictGroups(reviewDate);
+export function registerRows(reviewDate: string, source: Fact[] = facts): FactRow[] {
+  const conflicts = findConflictGroups(reviewDate, source);
   const conflictAttrs = new Set(conflicts.map((c) => `${c.productId} ${c.attribute}`));
   const productName = new Map(brand.products.map((p) => [p.product_id, p.name]));
-  return facts
+  return source
     .map((f) => ({
       ...f,
       stale: f.status === "superseded" || f.valid_until < reviewDate,
@@ -71,8 +72,8 @@ export interface RegisterStats {
   products: string[];
 }
 
-export function registerStats(reviewDate: string): RegisterStats {
-  const rows = registerRows(reviewDate);
+export function registerStats(reviewDate: string, source: Fact[] = facts): RegisterStats {
+  const rows = registerRows(reviewDate, source);
   const current = rows.filter((r) => r.status === "approved" && isActiveAt(r, reviewDate));
   const conflictingRows = rows.filter((r) => r.conflict);
   return {
@@ -80,7 +81,7 @@ export function registerStats(reviewDate: string): RegisterStats {
     factIds: new Set(rows.map((r) => r.fact_id)).size,
     approvedCurrent: current.length,
     stale: rows.filter((r) => r.stale).length,
-    conflictingGroups: findConflictGroups(reviewDate).length,
+    conflictingGroups: findConflictGroups(reviewDate, source).length,
     conflictingRows: conflictingRows.length,
     products: brand.products.map((p) => p.name),
   };

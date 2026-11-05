@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import type { FactRow } from "@/lib/register";
+import { registerRows } from "@/lib/register";
+import { mergeLocalFacts } from "@/lib/seed";
+import { useProoflineState } from "@/lib/use-proofline";
+import { ApproveFactVersion } from "@/components/ApproveFactVersion";
 import {
   AlertTriangle,
   GitCompareArrows,
@@ -27,18 +30,19 @@ function humanize(attribute: string): string {
   return attribute.replace(/_/g, " ");
 }
 
-export function FactsTable({
-  rows,
-  staleCount,
-  conflictCount,
-}: {
-  rows: FactRow[];
-  staleCount: number;
-  conflictCount: number;
-}) {
+export function FactsTable({ reviewDate }: { reviewDate: string }) {
   const [filter, setFilter] = useState<Filter>("all");
   const [query, setQuery] = useState("");
   const [expandedKey, setExpandedKey] = useState<string | null>(null);
+  const state = useProoflineState();
+
+  // Seed register with locally approved overrides applied (proofline.v1).
+  const rows = useMemo(
+    () => registerRows(reviewDate, mergeLocalFacts(state.fact_overrides)),
+    [reviewDate, state.fact_overrides],
+  );
+  const staleCount = rows.filter((r) => r.stale).length;
+  const conflictCount = rows.filter((r) => r.conflict).length;
 
   const counts: Record<Filter, number> = {
     all: rows.length,
@@ -75,6 +79,12 @@ export function FactsTable({
 
   return (
     <section className="mt-5 space-y-4">
+      <p className="max-w-2xl text-[15px] text-muted">
+        {rows.length} fact rows across {new Set(rows.map((r) => r.fact_id)).size} fact ids — every
+        row versioned, with validity windows. Only{" "}
+        <span className="font-semibold text-foreground">approved</span> facts are checkable.
+        Reviewed as of <span className="font-mono">{reviewDate}</span>.
+      </p>
       {/* Controls row: Search + Filter Pills */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative w-full sm:w-72">
@@ -317,6 +327,14 @@ export function FactsTable({
                   </div>
                 </div>
               </div>
+
+              {activeFact.status === "approved" && (
+                <ApproveFactVersion
+                  row={activeFact}
+                  reviewDate={reviewDate}
+                  onApproved={(newRowKey) => setExpandedKey(newRowKey)}
+                />
+              )}
             </div>
           );
         })()

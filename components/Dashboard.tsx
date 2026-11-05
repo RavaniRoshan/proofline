@@ -28,7 +28,7 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
   const byVerdict = new Map<Verdict, number>();
   const byDecision = new Map<DecisionValue, number>();
   for (const entry of state.audit) {
-    byVerdict.set(entry.verdict, (byVerdict.get(entry.verdict) ?? 0) + 1);
+    if (entry.verdict) byVerdict.set(entry.verdict, (byVerdict.get(entry.verdict) ?? 0) + 1);
     byDecision.set(entry.decision, (byDecision.get(entry.decision) ?? 0) + 1);
   }
 

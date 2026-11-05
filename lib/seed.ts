@@ -58,6 +58,37 @@ export function documentOf(fact: Fact): SourceDocument | undefined {
   return documentsByVersionId.get(fact.source_version_id);
 }
 
+/**
+ * The register with locally approved overrides applied: a seed row matching an
+ * override's (fact_id, version) is replaced by it, and overrides for versions
+ * that only exist locally are appended. Pure — the seed array is untouched.
+ */
+export function mergeLocalFacts(overrides: Fact[]): Fact[] {
+  if (overrides.length === 0) return facts;
+  const keyOf = (f: Fact) => `${f.fact_id}@${f.version}`;
+  const overrideByKey = new Map(overrides.map((f) => [keyOf(f), f]));
+  const seedKeys = new Set(facts.map(keyOf));
+  return [
+    ...facts.map((f) => overrideByKey.get(keyOf(f)) ?? f),
+    ...overrides.filter((f) => !seedKeys.has(keyOf(f))),
+  ];
+}
+
+/**
+ * Splice the merged register into the shared `facts` array so the verdict
+ * pipeline (which reads `facts` at module scope) sees it, and return a
+ * function that restores the seed exactly. Callers must run inside a
+ * serialised section (see app/api/verify/route.ts) and always call restore.
+ */
+export function applyFactOverrides(overrides: Fact[]): () => void {
+  if (overrides.length === 0) return () => {};
+  const snapshot = facts.slice();
+  facts.splice(0, facts.length, ...mergeLocalFacts(overrides));
+  return () => {
+    facts.splice(0, facts.length, ...snapshot);
+  };
+}
+
 /** All rows for a fact_id (every version), newest first. */
 export function factVersionsById(factId: string): Fact[] {
   return facts

@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { verifyDraft } from "@/lib/verify";
+import { applyFactOverrides } from "@/lib/seed";
+import { FactSchema } from "@/lib/schemas";
 import { LlmParseError } from "@/lib/llm";
 
 const RequestSchema = z.object({
@@ -8,7 +10,25 @@ const RequestSchema = z.object({
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "review_date must be YYYY-MM-DD")
     .optional(),
+  /**
+   * The caller's locally approved register rows (from this browser's
+   * localStorage). Applied in-process for this request only, so the verdict
+   * pipeline sees the same register the judge sees. Never persisted.
+   */
+  register_overrides: z.array(FactSchema).max(50).optional(),
 });
+
+/**
+ * Overrides are spliced into the shared register in place, so checks must not
+ * overlap — one request sees a stable register at a time. Single-tenant demo:
+ * serialising requests is the whole fix.
+ */
+let verifyQueue: Promise<unknown> = Promise.resolve();
+function enqueue<T>(task: () => Promise<T>): Promise<T> {
+  const result = verifyQueue.then(task);
+  verifyQueue = result.catch(() => undefined);
+  return result;
+}
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -25,8 +45,15 @@ export async function POST(request: Request) {
     );
   }
   try {
-    const result = await verifyDraft(parsed.data.draft, {
-      reviewDate: parsed.data.review_date,
+    const result = await enqueue(async () => {
+      const restore = applyFactOverrides(parsed.data.register_overrides ?? []);
+      try {
+        return await verifyDraft(parsed.data.draft, {
+          reviewDate: parsed.data.review_date,
+        });
+      } finally {
+        restore();
+      }
     });
     return Response.json(result);
   } catch (e) {

@@ -18,7 +18,7 @@ export function ResetDemo() {
         router.push("/");
       }}
       className="inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:border-v-contradicted-fg/40 hover:text-v-contradicted-fg"
-      title="Clear this browser's decisions and audit log, then reload the seeded demo"
+      title="Clear this browser's decisions, audit log and locally approved register edits, then reload the seeded demo"
     >
       <RotateCcw size={13} aria-hidden="true" />
       {done ? "Resetting…" : "Reset demo"}
