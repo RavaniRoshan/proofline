@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "smoke": "tsx scripts/smoke.ts",
+    "eval": "tsx scripts/smoke.ts",
     "test:e2e": "next build && playwright test"
   },
   "dependencies": {

@@ -22,7 +22,20 @@ import type { Verdict } from "@/lib/types";
 import { ALL_VERDICTS } from "@/lib/types";
 import { VERDICT_MAP } from "@/lib/verdicts";
 
-export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewDate: string }) {
+export function Dashboard({
+  stats,
+  reviewDate,
+  deterministic,
+  model,
+}: {
+  stats: RegisterStats;
+  reviewDate: string;
+  deterministic: number;
+  model: number;
+}) {
+  const totalClaims = deterministic + model;
+  const rulesPct = totalClaims > 0 ? Math.round((deterministic / totalClaims) * 100) : 100;
+  const modelPct = totalClaims > 0 ? 100 - rulesPct : 0;
   const state = useProoflineState();
 
   const byVerdict = new Map<Verdict, number>();
@@ -36,6 +49,9 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
 
   return (
     <div className="mt-6 space-y-6">
+      <p className="text-sm text-muted">
+        {rulesPct}% of claims resolved by rules at zero cost · {modelPct}% escalated to the model
+      </p>
       {/* 2 Primary Stat Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Stat 1: Active facts in register */}

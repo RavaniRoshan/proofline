@@ -1,9 +1,13 @@
 import type { Finding } from "@/lib/types";
+import { PROMPT_VERSION } from "@/lib/llm";
 
 export interface DecisionTrace {
   source: "RULE" | "MODEL";
   ruleName: string;
   summary: string;
+  modelId?: string;
+  promptVersion?: string;
+  latencyMs?: number;
 }
 
 export function getDecisionTrace(finding: Finding): DecisionTrace {
@@ -46,5 +50,8 @@ export function getDecisionTrace(finding: Finding): DecisionTrace {
     source: "MODEL",
     ruleName: "model:semantic-entailment-classifier",
     summary: "Tiered model check — qualitative relation evaluated against candidate facts with strict evidence assertion.",
+    modelId: finding.model_id ?? undefined,
+    promptVersion: finding.prompt_version ?? PROMPT_VERSION,
+    latencyMs: finding.latency_ms ?? undefined,
   };
 }

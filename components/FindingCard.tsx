@@ -149,9 +149,18 @@ export function FindingCard({
 
       {/* One-line Decision Trace */}
       <div className="mt-3 flex flex-wrap items-center justify-between gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1 text-[11px] font-mono text-muted">
-        <span className="flex items-center gap-1.5">
+        <span className="flex flex-wrap items-center gap-1.5">
           <span className="font-semibold text-slate">[{trace.source}]</span>
           <span>{trace.ruleName}</span>
+          {trace.modelId && (
+            <span className="text-muted">· {trace.modelId}</span>
+          )}
+          {trace.promptVersion && trace.source === "MODEL" && (
+            <span className="text-muted">· {trace.promptVersion}</span>
+          )}
+          {typeof trace.latencyMs === "number" && (
+            <span className="text-muted">· {trace.latencyMs}ms</span>
+          )}
         </span>
         <button
           type="button"

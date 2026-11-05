@@ -4,7 +4,7 @@
  * the verdict -> the evidence gate runs on every CONTRADICTED.
  */
 import { isDisclaimer, classifyClaim } from "@/lib/classify";
-import { getLlmClient, LlmParseError, type LlmClient } from "@/lib/llm";
+import { getLlmClient, LlmParseError, PROMPT_VERSION, type LlmClient } from "@/lib/llm";
 import { retrieveCandidates } from "@/lib/retrieve";
 import { resolveAttributes } from "@/lib/resolve";
 import { segmentDraft } from "@/lib/segment";
@@ -207,6 +207,9 @@ interface BuildInput {
   conflictWith?: string[];
   source: Finding["source"];
   idSalt: string;
+  modelId?: string | null;
+  promptVersion?: string | null;
+  latencyMs?: number | null;
 }
 
 function build(input: BuildInput): Finding {
@@ -223,6 +226,9 @@ function build(input: BuildInput): Finding {
     evidence: input.evidence,
     conflict_with: input.conflictWith,
     source: input.source,
+    model_id: input.modelId ?? null,
+    prompt_version: input.promptVersion ?? null,
+    latency_ms: input.latencyMs ?? null,
   };
   return gateContradicted(finding);
 }
@@ -243,6 +249,9 @@ async function modelFinding(
     claimType,
     source: "model" as const,
     idSalt: attributeHint ?? "model",
+    modelId: llm?.model ?? llm?.name ?? null,
+    promptVersion: PROMPT_VERSION,
+    latencyMs: null as number | null,
   };
   if (llm === null) {
     return build({
@@ -258,8 +267,11 @@ async function modelFinding(
   const candidates = retrieveCandidates(claim, attributeHint);
   let resp;
   try {
+    const started = Date.now();
     resp = await llm.reviewClaim({ claim, claimType, candidates });
+    base.latencyMs = Date.now() - started;
   } catch (e) {
+    base.latencyMs = null;
     if (e instanceof LlmParseError) throw e; // hard error, never a silent fallback
     return build({
       ...base,

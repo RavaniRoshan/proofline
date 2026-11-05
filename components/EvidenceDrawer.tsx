@@ -174,11 +174,18 @@ export function EvidenceDrawer({ finding, open, onClose }: EvidenceDrawerProps) 
 
         {/* Decision trace row */}
         <div className="rounded-[4px] border border-line-strong bg-panel p-3 text-xs">
-          <div className="flex items-center gap-1.5 font-mono text-[11px] text-foreground font-semibold">
+          <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px] text-foreground font-semibold">
             <span className={trace.source === "RULE" ? "text-slate" : "text-ink-soft"}>
               [{trace.source}]
             </span>
             <span>{trace.ruleName}</span>
+            {trace.modelId && <span className="text-muted">· {trace.modelId}</span>}
+            {trace.promptVersion && trace.source === "MODEL" && (
+              <span className="text-muted">· {trace.promptVersion}</span>
+            )}
+            {typeof trace.latencyMs === "number" && (
+              <span className="text-muted">· {trace.latencyMs}ms</span>
+            )}
           </div>
           <p className="mt-1 text-[11px] text-muted leading-tight">{trace.summary}</p>
         </div>

@@ -122,6 +122,7 @@ async function main() {
   mkdirSync(join(root, "out"), { recursive: true });
   writeFileSync(join(root, "out/smoke_report.json"), JSON.stringify(report, null, 2));
   console.log(`\nsmoke: ${matched} of ${cases.length} match the expected verdict (gate: >= ${GATE}) → ${report.passed ? "PASS" : "FAIL"}`);
+  console.log(`${matched} of ${cases.length}`);
   console.log("report: out/smoke_report.json");
   process.exit(report.passed ? 0 : 1);
 }

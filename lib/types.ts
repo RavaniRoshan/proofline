@@ -50,6 +50,12 @@ export interface Finding {
   /** Other approved fact_ids in conflict (CONFLICTING only). */
   conflict_with?: string[];
   source: "deterministic" | "model";
+  /** Model id used for this finding, when source === "model". */
+  model_id?: string | null;
+  /** Prompt version used for this finding, when source === "model". */
+  prompt_version?: string | null;
+  /** Model call latency in milliseconds, when source === "model". */
+  latency_ms?: number | null;
 }
 
 export interface VerifySummary {

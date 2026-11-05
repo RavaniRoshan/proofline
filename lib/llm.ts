@@ -23,8 +23,12 @@ export interface ReviewInput {
   candidates: Fact[];
 }
 
+export const PROMPT_VERSION = "v1";
+
 export interface LlmClient {
   name: string;
+  /** The model id this client targets, when known. */
+  model?: string;
   reviewClaim(input: ReviewInput): Promise<ModelResponse>;
 }
 
@@ -129,6 +133,7 @@ async function postJson(url: string, body: unknown, headers: Record<string, stri
 function openAiClient(apiKey: string, baseUrl: string, model: string): LlmClient {
   return {
     name: `openai-compatible:${model}`,
+    model,
     async reviewClaim(input) {
       const raw = await postJson(
         `${baseUrl.replace(/\/$/, "")}/chat/completions`,
@@ -157,6 +162,7 @@ function openAiClient(apiKey: string, baseUrl: string, model: string): LlmClient
 function ollamaClient(url: string, model: string): LlmClient {
   return {
     name: `ollama:${model}`,
+    model,
     async reviewClaim(input) {
       const raw = await postJson(
         `${url.replace(/\/$/, "")}/api/chat`,
@@ -194,6 +200,7 @@ const MOCK_DEFAULT: ModelResponse = {
 function mockClient(): LlmClient {
   return {
     name: "mock",
+    model: "mock",
     async reviewClaim(input) {
       const fromEnv = process.env.LLM_MOCK_RESPONSE;
       const parsed = fromEnv ? ModelResponseSchema.safeParse(JSON.parse(fromEnv)) : null;
