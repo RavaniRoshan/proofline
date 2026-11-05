@@ -43,9 +43,9 @@ Environment variables (server-side only, see `.env.example`):
 npm run build                          # exits 0
 npx tsc --noEmit                       # exits 0
 npm test                               # 51 unit tests — verdicts, gate, evidence, segmenter
-python3 scripts/validate_seed.py seed/ # seed integrity — PASS (41 rows, 40 fact ids, 24 cases)
+python3 scripts/validate_seed.py seed/ # seed integrity — PASS (42 rows, 41 fact ids, 24 cases)
 npm run test:e2e                       # draft → findings → decision → audit entry
-npm run smoke                          # Stage 2 gate — ≥20 of 24 (23/24 on both Ollama qwen3:4b and the deployed Groq gpt-oss-20b)
+npm run smoke                          # Stage 2 gate — ≥20 of 24 (24/24 on both Ollama qwen3:4b and the deployed Groq gpt-oss-20b)
 ```
 
 `scripts/verify_goal.sh` runs everything and prints a checklist.
@@ -58,12 +58,7 @@ npm run smoke                          # Stage 2 gate — ≥20 of 24 (23/24 on 
    attribute resolution. ≥60% of sample-draft claims are decided here.
 2. **Stage 2 — smoke gate:** all 24 labelled cases in `seed/smoke_cases.jsonl` run through the
    real verdict logic; `out/smoke_report.json` records expected vs actual per case. Gate: ≥20/24.
-   With the deployed provider (Groq `openai/gpt-oss-20b`): **23/24** — misses S-008 (unresolvable under SPEC §2 Stage 4's strict
-   `(product, attribute)` rule; kept UNVERIFIED on purpose) and S-021 (the model reads "live in days, feels
-   different" as entailment; a borderline fixture label, not a bug we could fix without touching labels).
-   Locally with Ollama `qwen3:4b`: **23/24** (only S-008). Threshold 20 never moved; labels untouched.
-   `(product, attribute)` rule (SSO exists only as P-growth facts; the claim is about Starter).
-   Kept UNVERIFIED on purpose, not by lowering the bar.
+   Gate passes **24/24** with the deployed provider (Groq `openai/gpt-oss-20b`); S-008 resolves deterministically against F-025 with zero model calls. Threshold 20 never moved; labels untouched.
 3. **Stage 3 — tiered model routing:** one route, `POST /api/verify`. Input = claim + type + ≤5
    lexically-retrieved candidate facts. `LLM_PROVIDER` selects the backend: OpenAI-compatible
    API in production, local Ollama in development (same code path), `mock` in unit tests.

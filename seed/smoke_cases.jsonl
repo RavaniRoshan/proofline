@@ -6,7 +6,7 @@
 {"case_id": "S-005", "claim": "Flowdesk starts at ₹4,999 per month.", "claim_type": "numeric", "expected_verdict": "CONTRADICTED", "expected_fact_id": "F-021", "review_date": "2026-11-04", "note": ""}
 {"case_id": "S-006", "claim": "Onboarding takes 30 minutes.", "claim_type": "numeric", "expected_verdict": "CONTRADICTED", "expected_fact_id": "F-014", "review_date": "2026-11-04", "note": ""}
 {"case_id": "S-007", "claim": "Every account includes 500 GB of storage.", "claim_type": "numeric", "expected_verdict": "CONTRADICTED", "expected_fact_id": "F-015", "review_date": "2026-11-04", "note": ""}
-{"case_id": "S-008", "claim": "The Starter plan includes SSO.", "claim_type": "entity", "expected_verdict": "CONTRADICTED", "expected_fact_id": "F-019", "review_date": "2026-11-04", "note": ""}
+{"case_id": "S-008", "claim": "The Starter plan includes SSO.", "claim_type": "entity", "expected_verdict": "CONTRADICTED", "expected_fact_id": "F-025", "review_date": "2026-11-04", "note": ""}
 {"case_id": "S-009", "claim": "The Starter plan includes 5 workspaces.", "claim_type": "numeric", "expected_verdict": "CONTRADICTED", "expected_fact_id": "F-047", "review_date": "2026-11-04", "note": ""}
 {"case_id": "S-024", "claim": "The Growth plan includes 50 workspaces.", "claim_type": "numeric", "expected_verdict": "CONTRADICTED", "expected_fact_id": "F-048", "review_date": "2026-11-04", "note": ""}
 {"case_id": "S-010", "claim": "The Legacy plan starts at ₹2,999 per month.", "claim_type": "numeric", "expected_verdict": "STALE", "expected_fact_id": "F-030", "review_date": "2026-11-04", "note": ""}

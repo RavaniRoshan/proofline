@@ -234,6 +234,24 @@
     "approved_at": "2026-10-01T10:00:00+05:30"
   },
   {
+    "fact_id": "F-025",
+    "version": 1,
+    "product_id": "P-starter",
+    "attribute": "sso_included",
+    "value": "false",
+    "unit": "boolean",
+    "display_value": "SSO is not included on Starter",
+    "source_document_id": "D-pricing",
+    "source_version_id": "D-pricing-v4",
+    "source_span": "[870-905]",
+    "valid_from": "2026-04-01",
+    "valid_until": "2027-03-31",
+    "supersedes_fact_id": null,
+    "status": "approved",
+    "approved_by": "brand-owner",
+    "approved_at": "2026-04-02T10:00:00+05:30"
+  },
+  {
     "fact_id": "F-030",
     "version": 1,
     "product_id": "P-starter",

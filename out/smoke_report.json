@@ -1,13 +1,11 @@
 {
-  "generated_at": "2026-11-05T03:29:18.508Z",
+  "generated_at": "2026-11-05T04:36:47.344Z",
   "llm_provider": "openai-compatible:openai/gpt-oss-20b",
   "gate_threshold": 20,
   "total": 24,
-  "matched": 23,
+  "matched": 24,
   "passed": true,
-  "mismatches": [
-    "S-008"
-  ],
+  "mismatches": [],
   "cases": [
     {
       "case_id": "S-001",
@@ -118,13 +116,13 @@
       "claim": "The Starter plan includes SSO.",
       "claim_type": "entity",
       "expected_verdict": "CONTRADICTED",
-      "expected_fact_id": "F-019",
-      "actual_verdict": "UNVERIFIED",
-      "actual_fact_id": null,
-      "fact_id_match": false,
+      "expected_fact_id": "F-025",
+      "actual_verdict": "CONTRADICTED",
+      "actual_fact_id": "F-025",
+      "fact_id_match": true,
       "source": "deterministic",
-      "matched": false,
-      "reason": "No approved fact in the register covers sso included for Starter."
+      "matched": true,
+      "reason": "The claim differs from the current approved value (SSO is not included on Starter)."
     },
     {
       "case_id": "S-009",
@@ -306,7 +304,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "The claim lacks a measurable predicate, so it cannot be verified against the provided facts."
+      "reason": "The claim is incomplete and not measurable."
     },
     {
       "case_id": "S-022",
