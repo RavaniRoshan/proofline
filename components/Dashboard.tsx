@@ -34,7 +34,7 @@ function Stat({
       ? "text-red-800"
       : tone === "warn"
         ? "text-amber-800"
-        : "text-accent";
+        : "text-slate";
   return (
     <div className="rounded-xl border border-line bg-card p-4">
       <Icon size={18} aria-hidden="true" className={toneClasses} />

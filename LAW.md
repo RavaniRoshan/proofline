@@ -48,6 +48,7 @@ These are correctness rules, not UI polish. Breaking one breaks the product's on
 - **Never let the model author a citation.** The model returns `fact_id` values; the UI renders the source document, span and dates by looking those ids up. If an id does not resolve, the finding is downgraded to `UNVERIFIED`.
 - **Deterministic before semantic.** Numbers, currency, dates, product names, approved terminology and required disclaimers are decided in TypeScript. The model is only called for claims those rules cannot decide.
 - **No auto-publish.** Nothing in this repo writes to any external system.
+- Oxblood is a brand mark, not a status colour. It appears on the logo brackets, primary buttons, section counters and inline links. Never on icons, active states, selection rings, or positive-action hovers.
 
 ## 6. Banned
 

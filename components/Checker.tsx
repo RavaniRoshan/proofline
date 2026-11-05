@@ -103,7 +103,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               type="button"
               onClick={() => setDraft(sampleDraft)}
               data-testid="load-sample"
-              className="inline-flex items-center gap-1.5 rounded-md border border-line bg-background px-2.5 py-1.5 text-xs font-medium text-accent transition-colors hover:border-accent"
+              className="inline-flex items-center gap-1.5 rounded-md border border-line bg-background px-2.5 py-1.5 text-xs font-medium text-ink-soft transition-colors hover:border-line-strong"
             >
               <Wand2 size={13} aria-hidden="true" />
               Load sample draft
@@ -186,7 +186,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             { step: "3", title: "Decide on each finding", body: "Approve, reject or request an edit — with a reason. Decisions land in the audit log.", icon: Wand2 },
           ].map(({ step, title, body, icon: Icon }) => (
             <div key={step} className="rounded-xl border border-dashed border-line bg-card/50 p-4">
-              <Icon size={18} aria-hidden="true" className="text-accent" />
+              <Icon size={18} aria-hidden="true" className="text-slate" />
               <p className="mt-2 text-sm font-semibold">{step}. {title}</p>
               <p className="mt-1 text-[13px] leading-snug text-muted">{body}</p>
             </div>

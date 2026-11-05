@@ -51,7 +51,7 @@ export function FindingCard({ finding, index, selected, decision, onRecorded }: 
       data-verdict={finding.verdict}
       data-index={index}
       className={`rounded-xl border bg-card p-4 shadow-sm transition-shadow sm:p-5 ${
-        selected ? "border-accent ring-2 ring-accent/30" : "border-line"
+        selected ? "border-slate ring-2 ring-slate/25" : "border-line"
       }`}
       aria-label={`Finding ${index + 1}: ${finding.verdict}`}
     >
@@ -145,7 +145,11 @@ export function FindingCard({ finding, index, selected, decision, onRecorded }: 
                   key={d}
                   type="button"
                   data-testid={`decision-${d}`}
-                  className="inline-flex items-center gap-1.5 rounded-md border border-line bg-background px-2.5 py-1.5 text-[12px] font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+                  className={`inline-flex items-center gap-1.5 rounded-md border border-line bg-background px-2.5 py-1.5 text-[12px] font-medium text-foreground transition-colors ${
+                    d === "approve"
+                      ? "hover:border-v-supported-fg hover:text-v-supported-fg"
+                      : "hover:border-accent hover:text-accent"
+                  }`}
                   onClick={() => setPending(d)}
                 >
                   <Icon size={13} aria-hidden="true" />

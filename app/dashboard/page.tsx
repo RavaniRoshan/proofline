@@ -10,7 +10,7 @@ export default function DashboardPage() {
   const stats = registerStats(reviewDate);
   return (
     <div>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
         Dashboard
       </p>
       <h1 className="mt-1 text-2xl font-bold tracking-tight">The register, at a glance.</h1>

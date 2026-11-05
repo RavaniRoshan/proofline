@@ -11,7 +11,7 @@ const ROUND1_PDF =
 export default function AboutPage() {
   return (
     <div className="max-w-3xl">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">About</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">About</p>
       <h1 className="mt-1 text-2xl font-bold tracking-tight">What Proofline is.</h1>
 
       <div className="mt-4 flex flex-col gap-3 text-[16px] leading-relaxed text-foreground/90">
@@ -45,7 +45,7 @@ export default function AboutPage() {
         </a>
         <Link
           href="/"
-          className="inline-flex h-11 items-center gap-2 rounded-lg border border-line bg-card px-5 text-[15px] font-semibold text-accent transition-colors hover:border-accent"
+          className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[15px] font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           <ShieldCheck size={17} aria-hidden="true" />
           Check a draft

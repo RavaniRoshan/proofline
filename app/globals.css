@@ -1,33 +1,65 @@
 @import "tailwindcss";
 
+/* Proofline tokens — Round 1 PDF identity.
+   White paper, slate structure, oxblood accent. Colour is information:
+   the six verdicts are the only saturated values in the system. */
 :root {
-  --background: #faf9f7;
-  --foreground: #1c1b1a;
-  --muted: #6b6660;
-  --line: #e7e4de;
-  --accent: #0f5e57;
-  --accent-hover: #0d4f49;
-  --card: #ffffff;
+  --paper:#FFFFFF; --panel:#F5F5F2;
+  --ink:#1A1A18; --ink-soft:#4A4A45; --ink-faint:#6B6B63;
+  --slate:#3B4A45; --slate-deep:#2A3632;
+  --oxide:#6E1F26; --oxide-hover:#571820;
+  --line:#DEDED8; --line-strong:#C9C9C1;
+
+  --v-supported-fg:#1F5C43;    --v-supported-bg:#DDEBE0;
+  --v-contradicted-fg:#A8261C; --v-contradicted-bg:#F7E3E0;
+  --v-stale-fg:#7E4A10;        --v-stale-bg:#F8EEDA;
+  --v-unverified-fg:#4A4A45;   --v-unverified-bg:#E8E6DF;
+  --v-conflicting-fg:#5A3461;  --v-conflicting-bg:#EDE5EF;
+  --v-notcheckable-fg:#5F5F58; --v-notcheckable-bg:#ECEAE3;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
+  /* existing utility names — repointed, never renamed */
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-muted: var(--ink-faint);
   --color-line: var(--line);
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-card: var(--card);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--oxide);
+  --color-accent-hover: var(--oxide-hover);
+  --color-card: var(--paper);
+
+  /* new utilities */
+  --color-panel: var(--panel);
+  --color-ink-soft: var(--ink-soft);
+  --color-slate: var(--slate);
+  --color-slate-deep: var(--slate-deep);
+  --color-line-strong: var(--line-strong);
+
+  --color-v-supported-fg: var(--v-supported-fg);
+  --color-v-supported-bg: var(--v-supported-bg);
+  --color-v-contradicted-fg: var(--v-contradicted-fg);
+  --color-v-contradicted-bg: var(--v-contradicted-bg);
+  --color-v-stale-fg: var(--v-stale-fg);
+  --color-v-stale-bg: var(--v-stale-bg);
+  --color-v-unverified-fg: var(--v-unverified-fg);
+  --color-v-unverified-bg: var(--v-unverified-bg);
+  --color-v-conflicting-fg: var(--v-conflicting-fg);
+  --color-v-conflicting-bg: var(--v-conflicting-bg);
+  --color-v-notcheckable-fg: var(--v-notcheckable-fg);
+  --color-v-notcheckable-bg: var(--v-notcheckable-bg);
+
+  --font-sans: var(--font-plex-sans);
+  --font-serif: var(--font-plex-serif);
+  --font-mono: var(--font-plex-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-plex-sans), system-ui, sans-serif;
 }
 
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
+/* serif is display only; sub-headings stay sans */
+h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0.01em; }
+
+:focus-visible { outline: 2px solid var(--oxide); outline-offset: 2px; }

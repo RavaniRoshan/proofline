@@ -22,8 +22,8 @@ export function NavLinks() {
             key={href}
             href={href}
             aria-current={active ? "page" : undefined}
-            className={`rounded-md px-2.5 py-1.5 font-medium transition-colors ${
-              active ? "bg-accent/10 text-accent" : "text-muted hover:bg-background hover:text-foreground"
+            className={`px-2.5 py-1.5 font-medium transition-colors ${
+              active ? "border-b-2 border-slate text-foreground" : "border-b-2 border-transparent text-muted hover:bg-background hover:text-foreground"
             }`}
           >
             {label}

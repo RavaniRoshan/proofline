@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <>
       <div className="mb-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
           Brand governance · claim checker
         </p>
         <h1 className="mt-1 max-w-2xl text-2xl font-bold leading-tight tracking-tight sm:text-3xl">

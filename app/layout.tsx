@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import { NavLinks } from "@/components/NavLinks";
 import { ResetDemo } from "@/components/ResetDemo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const plexSans  = IBM_Plex_Sans({  variable: "--font-plex-sans",  subsets: ["latin"], weight: ["400","500","600"] });
+const plexSerif = IBM_Plex_Serif({ variable: "--font-plex-serif", subsets: ["latin"], weight: ["400","600"] });
+const plexMono  = IBM_Plex_Mono({  variable: "--font-plex-mono",  subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: {
@@ -26,28 +20,21 @@ export const metadata: Metadata = {
 
 function LogoMark() {
   return (
-    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-      <rect x="1.5" y="1.5" width="23" height="23" rx="6" fill="#0f5e57" />
-      <path
-        d="M7 13.2l4.2 4.2L19.5 9"
-        stroke="#faf9f7"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <span aria-hidden="true" className="flex items-center gap-[3px] font-serif text-[19px] font-semibold leading-none text-accent">
+      <span>[</span><span>]</span>
+    </span>
   );
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="en" className={`${plexSans.variable} ${plexSerif.variable} ${plexMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
         <header className="sticky top-0 z-10 border-b border-line bg-background/90 backdrop-blur">
           <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 sm:gap-5">
             <Link href="/" className="flex items-center gap-2" aria-label="Proofline — home">
               <LogoMark />
-              <span className="text-[17px] font-bold tracking-tight">Proofline</span>
+              <span className="font-serif text-[17px] font-semibold tracking-tight">Proofline</span>
             </Link>
             <div className="hidden sm:block">
               <NavLinks />
