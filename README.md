@@ -20,6 +20,11 @@ running, the semantic path uses it (`LLM_PROVIDER=auto` finds it). Otherwise eve
 deterministic check still runs, and qualitative claims are reported as UNVERIFIED with an
 explicit "semantic check unavailable" reason — never silently, never faked.
 
+## Links
+
+- Production: https://proofline-sigma.vercel.app (public, no sign-in — verified anonymously)
+- Source (public): https://github.com/RavaniRoshan/proofline
+
 ## Deployed configuration (Vercel)
 
 Environment variables (server-side only, see `.env.example`):

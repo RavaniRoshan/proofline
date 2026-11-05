@@ -14,7 +14,11 @@
 - [x] E2E: draft → findings → decision → audit entry — `npm run test:e2e` exits 0 (3/3)
 - [x] `npx tsc --noEmit` exits 0, `npm run lint` exits 0
 - [x] Five views screenshot-verified
-- [ ] All user-blocking items deferred to the end: real `LLM_API_KEY` (OpenAI-compatible), GitHub repo + Vercel deploy, incognito check, Round 1 PDF link
+- [x] GitHub repo — public, https://github.com/RavaniRoshan/proofline (pushed, no secrets)
+- [x] Vercel production deploy — https://proofline-sigma.vercel.app (all routes 200 anonymously)
+- [x] Incognito-equivalent production flow verified from a fresh browser context (draft → findings → decision → audit)
+- [x] Round 1 PDF link — Google Drive (public) wired into /about
+- [ ] Add `LLM_API_KEY` in Vercel to switch on the semantic path (deploy currently runs deterministic checks + explicit UNVERIFIED for qualitative claims — 18 findings, 0 model calls; design working as specified)
 
 ## Cut order if time runs out
 
