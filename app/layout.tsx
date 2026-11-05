@@ -4,12 +4,14 @@ import Link from "next/link";
 import "./globals.css";
 import { NavLinks } from "@/components/NavLinks";
 import { ResetDemo } from "@/components/ResetDemo";
+import { CommandPalette } from "@/components/CommandPalette";
 
 const plexSans  = IBM_Plex_Sans({  variable: "--font-plex-sans",  subsets: ["latin"], weight: ["400","500","600"] });
 const plexSerif = IBM_Plex_Serif({ variable: "--font-plex-serif", subsets: ["latin"], weight: ["400","600"] });
 const plexMono  = IBM_Plex_Mono({  variable: "--font-plex-mono",  subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://proofline.app"),
   title: {
     default: "Proofline — check marketing claims against approved facts",
     template: "%s · Proofline",
@@ -39,7 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="hidden sm:block">
               <NavLinks />
             </div>
-            <div className="ml-auto">
+            <div className="ml-auto flex items-center gap-2">
+              <CommandPalette />
               <ResetDemo />
             </div>
           </div>

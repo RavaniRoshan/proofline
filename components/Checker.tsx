@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   ShieldCheck,
   Loader2,
@@ -30,8 +31,21 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
   const [mobileTab, setMobileTab] = useState<"findings" | "draft">("findings");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const stored = useProoflineState();
+  const searchParams = useSearchParams();
+  const findingParam = searchParams?.get("finding");
 
   const reviewDate = useMemo(() => new Date().toISOString().slice(0, 10), []);
+
+  const selectFinding = useCallback((index: number, findingsList?: Finding[]) => {
+    setSelected(index);
+    const list = findingsList ?? result?.findings;
+    if (list && list[index]) {
+      const f = list[index];
+      const url = new URL(window.location.href);
+      url.searchParams.set("finding", f.id);
+      window.history.replaceState(null, "", url.toString());
+    }
+  }, [result]);
 
   const check = useCallback(async () => {
     const text = draft.trim();
@@ -62,6 +76,19 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
     }
   }, [draft, reviewDate]);
 
+  // Sync selected finding with deep-linked ?finding=<id> parameter
+  useEffect(() => {
+    if (!findingParam || !result?.findings.length) return;
+    const targetIdx = result.findings.findIndex(
+      (f) =>
+        f.id.toLowerCase() === findingParam.toLowerCase() ||
+        f.evidence?.fact_id.toLowerCase() === findingParam.toLowerCase(),
+    );
+    if (targetIdx !== -1) {
+      setSelected(targetIdx);
+    }
+  }, [findingParam, result]);
+
   // Cmd/Ctrl+Enter runs a check; j/k move between findings.
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -74,12 +101,23 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
       if (tag === "TEXTAREA" || tag === "INPUT") return;
       const n = result?.findings.length ?? 0;
       if (n === 0) return;
-      if (e.key === "j") setSelected((s) => Math.min(n - 1, s + 1));
-      else if (e.key === "k") setSelected((s) => Math.max(0, s - 1));
+      if (e.key === "j") {
+        setSelected((s) => {
+          const next = Math.min(n - 1, s + 1);
+          selectFinding(next);
+          return next;
+        });
+      } else if (e.key === "k") {
+        setSelected((s) => {
+          const prev = Math.max(0, s - 1);
+          selectFinding(prev);
+          return prev;
+        });
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [check, result]);
+  }, [check, result, selectFinding]);
 
   // Keep the selected card in view.
   useEffect(() => {
@@ -202,7 +240,12 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
       {/* ---- results ---- */}
       {status === "done" && result && (
         <section className="mt-6" aria-live="polite">
-          <div className="flex flex-wrap items-center gap-2" data-testid="summary">
+          <div
+            className="flex flex-wrap items-center gap-2"
+            data-testid="summary"
+            role="status"
+            aria-live="polite"
+          >
             <p className="text-sm font-semibold">{result.summary.total} findings</p>
             <span className="text-muted" aria-hidden="true">·</span>
             {ALL_VERDICTS.map((v) =>
@@ -213,9 +256,14 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               ) : null,
             )}
             <span className="text-muted" aria-hidden="true">·</span>
-            <p className="text-[11px] text-muted">
-              {result.summary.deterministic} rule checks · {result.summary.model} model checks
-            </p>
+            <div className="inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2 py-0.5 text-[11px] font-mono text-ink-soft">
+              <span className="h-1.5 w-1.5 rounded-full bg-v-supported-fg" />
+              <span>
+                {result.summary.model === 0
+                  ? "Rules only (100% deterministic)"
+                  : `${result.summary.deterministic} rules (${Math.round((result.summary.deterministic / (result.summary.deterministic + result.summary.model)) * 100)}%) · ${result.summary.model} model`}
+              </span>
+            </div>
           </div>
 
           {/* Desktop & Mobile Responsive Layout */}
@@ -233,10 +281,10 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                 onSelectFinding={(f) => {
                   const actIdx = actionable.findIndex((x) => x.id === f.id);
                   if (actIdx !== -1) {
-                    setSelected(actIdx);
+                    selectFinding(actIdx);
                   } else {
                     const colIdx = collapsed.findIndex((x) => x.id === f.id);
-                    if (colIdx !== -1) setSelected(actionable.length + colIdx);
+                    if (colIdx !== -1) selectFinding(actionable.length + colIdx);
                   }
                 }}
               />
@@ -284,10 +332,10 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                     onSelectFinding={(f) => {
                       const actIdx = actionable.findIndex((x) => x.id === f.id);
                       if (actIdx !== -1) {
-                        setSelected(actIdx);
+                        selectFinding(actIdx);
                       } else {
                         const colIdx = collapsed.findIndex((x) => x.id === f.id);
-                        if (colIdx !== -1) setSelected(actionable.length + colIdx);
+                        if (colIdx !== -1) selectFinding(actionable.length + colIdx);
                       }
                       setMobileTab("findings");
                     }}
@@ -317,7 +365,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                     selected={i === selected}
                     decision={stored.decisions[f.id] ?? null}
                     onViewEvidence={(finding) => setDrawerFinding(finding)}
-                    onSelect={(idx) => setSelected(idx)}
+                    onSelect={(idx) => selectFinding(idx)}
                   />
                 ))
               )}
@@ -338,7 +386,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                         selected={actionable.length + i === selected}
                         decision={stored.decisions[f.id] ?? null}
                         onViewEvidence={(finding) => setDrawerFinding(finding)}
-                        onSelect={(idx) => setSelected(idx)}
+                        onSelect={(idx) => selectFinding(idx)}
                       />
                     ))}
                   </div>

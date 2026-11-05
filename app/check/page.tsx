@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Checker } from "@/components/Checker";
@@ -21,7 +22,9 @@ export default function CheckPage() {
           Every finding cites the approved fact, version and validity window behind it — or says honestly that it cannot judge.
         </p>
       </div>
-      <Checker sampleDraft={sampleDraft} />
+      <Suspense fallback={<div className="h-64 rounded-[6px] border border-line-strong bg-panel/30 animate-pulse" />}>
+        <Checker sampleDraft={sampleDraft} />
+      </Suspense>
     </>
   );
 }

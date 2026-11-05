@@ -110,3 +110,22 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   }
 }
 
+/* Print stylesheet */
+@media print {
+  header, footer, nav, [data-testid="reset-demo"], [data-testid="command-palette-trigger"], button:not([data-print-keep]) {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #1a1a18 !important;
+    font-size: 11pt !important;
+  }
+  .sticky {
+    position: static !important;
+  }
+  article, section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
