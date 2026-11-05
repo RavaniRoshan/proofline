@@ -107,9 +107,11 @@ export function CommandPalette() {
 
   useEffect(() => {
     if (open) {
-      setQuery("");
-      setSelectedIndex(0);
-      setTimeout(() => inputRef.current?.focus(), 50);
+      setTimeout(() => {
+        setQuery("");
+        setSelectedIndex(0);
+        inputRef.current?.focus();
+      }, 0);
     }
   }, [open]);
 

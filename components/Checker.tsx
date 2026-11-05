@@ -89,7 +89,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
         f.evidence?.fact_id.toLowerCase() === findingParam.toLowerCase(),
     );
     if (targetIdx !== -1) {
-      setSelected(targetIdx);
+      setTimeout(() => setSelected(targetIdx), 0);
     }
   }, [findingParam, result]);
 
