@@ -54,6 +54,7 @@ export function FindingCard({ finding, index, selected, decision, onRecorded, on
       data-testid="finding"
       data-verdict={finding.verdict}
       data-index={index}
+      style={{ "--index": index } as React.CSSProperties}
       onClick={() => onSelect?.(index)}
       className={`rounded-[6px] border bg-card p-4 sm:p-5 transition-colors cursor-pointer ${
         selected ? "border-slate ring-2 ring-slate/25" : "border-line-strong hover:border-slate/60"

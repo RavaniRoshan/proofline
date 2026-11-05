@@ -206,6 +206,7 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
                     return (
                       <div
                         key={v}
+                        className="bar-fill"
                         style={{ width: `${pct}%`, backgroundColor: VERDICT_MAP[v].fgColor }}
                         title={`${v}: ${count} (${pct.toFixed(0)}%)`}
                       />
@@ -227,7 +228,7 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
                         <div className="flex-1 h-1.5 rounded-[2px] bg-panel overflow-hidden border border-line/60">
                           <div
                             style={{ width: `${pct}%`, backgroundColor: VERDICT_MAP[v].fgColor }}
-                            className="h-full"
+                            className="bar-fill h-full"
                           />
                         </div>
                         <span className="w-6 text-right font-semibold tabular-nums text-foreground">
