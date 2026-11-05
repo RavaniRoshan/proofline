@@ -4,7 +4,9 @@ import { FileText, ShieldCheck, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = { title: "About" };
 
-const REPO = "https://github.com/SHIVAMKUMAR10958/proofline";
+const REPO = "https://github.com/RavaniRoshan/proofline";
+const ROUND1_PDF =
+  "https://drive.google.com/file/d/1f2UiggPpvjTz1mhgyASbu8RWp1csY9q4/view?usp=sharing";
 
 export default function AboutPage() {
   return (
@@ -32,9 +34,10 @@ export default function AboutPage() {
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <a
-          href={REPO}
+          href={ROUND1_PDF}
           target="_blank"
           rel="noreferrer"
+          data-testid="round1-pdf"
           className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[15px] font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           <FileText size={17} aria-hidden="true" />
@@ -72,6 +75,26 @@ export default function AboutPage() {
           in code from the model&apos;s relation and confidence plus the evidence lookup. An evidence
           gate in code asserts that no CONTRADICTED verdict ships without a complete, resolvable
           record; otherwise the finding downgrades to UNVERIFIED.
+        </p>
+      </section>
+
+      <section className="mt-4 rounded-xl border border-line bg-card p-5">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+          Source &amp; data
+        </h2>
+        <p className="mt-1.5 text-[14px] leading-relaxed text-foreground/80">
+          Built in the open:{" "}
+          <a
+            href={REPO}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-accent underline-offset-2 hover:underline"
+          >
+            github.com/RavaniRoshan/proofline
+          </a>
+          . The Round 1 plan and PDF are linked above. Every fact in the register is fictional
+          (Flowdesk) and seeded deliberately — three facts are stale and one pair conflicts, on
+          purpose, so the stale and conflicting paths have something to find.
         </p>
       </section>
     </div>

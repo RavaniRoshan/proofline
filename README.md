@@ -83,7 +83,8 @@ Zero auth, zero database server, zero vector index, zero queue, zero ORM. Seed s
 - The model path is non-deterministic; identical input can yield UNVERIFIED vs CONTRADICTED
   for borderline claims (e.g. "Setup takes 30 minutes"). The evidence gate bounds the blast
   radius of any wrong CONTRADICTED to zero.
-- `/about` links the Round 1 PDF via the team repo URL; swap in the final PDF URL when known.
+- `/about` links the Round 1 plan/PDF (public Google Drive link) and the public repository at
+  https://github.com/RavaniRoshan/proofline
 - Data provenance: every fact is fictional (Flowdesk), seeded deliberately with stale rows
   and a conflicting pair for the demo. Not market research.
 
