@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" width="460" height="120" fill="none">
+  <!-- Light mode logo lockup -->
+  <g transform="translate(40, 24)">
+    <!-- Brackets symbol [ ] -->
+    <text x="0" y="44" font-family="'IBM Plex Serif', Georgia, serif" font-size="44" font-weight="700" fill="#6E1F26" letter-spacing="-1">[&#8201;]</text>
+    <!-- Brand Name -->
+    <text x="64" y="44" font-family="'IBM Plex Serif', Georgia, serif" font-size="42" font-weight="600" fill="#141412" letter-spacing="-0.8">Proofline</text>
+    <!-- Tagline pill -->
+    <rect x="256" y="18" width="156" height="24" rx="12" fill="#f0ede6" stroke="#d5cebe" stroke-width="1" />
+    <text x="334" y="34" font-family="'IBM Plex Mono', monospace" font-size="9.5" font-weight="600" fill="#52524a" letter-spacing="0.8" text-anchor="middle">PREFLIGHT GOV</text>
+    <!-- Subtitle / Mission -->
+    <text x="2" y="74" font-family="'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" fill="#595954" letter-spacing="-0.1">
+      Deterministic claim-evidence preflight governance for brand operations
+    </text>
+  </g>
+</svg>

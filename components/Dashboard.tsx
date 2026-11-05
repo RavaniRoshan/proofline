@@ -72,7 +72,7 @@ export function Dashboard({
             Approved and strictly inside their validity window as of{" "}
             <span className="font-mono">{reviewDate}</span>.
           </p>
-          <div className="mt-3 flex items-center justify-between border-t border-line-strong pt-2 text-[11px] text-muted">
+          <div className="mt-3 flex items-center justify-between border-t border-line-strong pt-2 text-[12px] text-muted">
             <span>
               {stats.factIds} fact IDs · {stats.products.join(", ")}
             </span>
@@ -104,7 +104,7 @@ export function Dashboard({
               ? `${byDecision.get("approve") ?? 0} approved · ${byDecision.get("reject") ?? 0} rejected · ${byDecision.get("needs_edit") ?? 0} edit requested`
               : "No decisions recorded yet. Check a draft to log findings."}
           </p>
-          <div className="mt-3 flex items-center justify-between border-t border-line-strong pt-2 text-[11px] text-muted">
+          <div className="mt-3 flex items-center justify-between border-t border-line-strong pt-2 text-[12px] text-muted">
             <span>Append-only local storage</span>
             {totalDecisions > 0 ? (
               <Link

@@ -206,7 +206,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
           <kbd className="hidden rounded-[4px] border border-line-strong bg-panel px-2 py-1 text-[11px] text-muted sm:inline">
             ⌘↵ to check · j / k to move
           </kbd>
-          <p className="ml-auto text-[11px] text-muted">
+          <p className="ml-auto text-[12px] text-muted">
             Checked against the register as of <span className="font-mono">{reviewDate}</span>. Nothing you type is stored.
           </p>
         </div>

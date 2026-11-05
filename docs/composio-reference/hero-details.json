@@ -1,0 +1,1597 @@
+{
+  "heroDetails": {
+    "h1OuterHTML": "<h1 class=\"text-balance text-center text-display text-white leading-[1.08] max-md:text-[clamp(2rem,11vw,2.75rem)]\"><span class=\"block\">Give your AI secure access</span><span class=\"flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]\"><span>to</span><span class=\"relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none\" style=\"width: 270.609px;\"><span class=\"inline-block shrink-0 whitespace-nowrap\" style=\"opacity: 1; transform: none;\">a browser</span><span aria-hidden=\"true\" class=\"pointer-events-none invisible absolute top-0 left-0 flex w-max\"><span class=\"shrink-0 whitespace-nowrap\">1,500+ apps</span><span class=\"shrink-0 whitespace-nowrap\">a browser</span><span class=\"shrink-0 whitespace-nowrap\">a sandbox</span><span class=\"shrink-0 whitespace-nowrap\">skills</span></span></span><span aria-hidden=\"true\" class=\"basis-full md:hidden\"></span><span class=\"inline-block bg-brand px-[0.2em] text-white leading-none\">in minutes</span></span></h1>",
+    "h1Classes": "text-balance text-center text-display text-white leading-[1.08] max-md:text-[clamp(2rem,11vw,2.75rem)]",
+    "h1Styles": {
+      "fontSize": "64px",
+      "lineHeight": "69.12px",
+      "letterSpacing": "-1.6px",
+      "fontWeight": "400",
+      "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "color": "rgb(255, 255, 255)"
+    },
+    "h1Children": [
+      {
+        "tagName": "SPAN",
+        "className": "block",
+        "style": null,
+        "text": "Give your AI secure access",
+        "outerHTML": "<span class=\"block\">Give your AI secure access</span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+        "style": null,
+        "text": "to\na browser\nin minutes",
+        "outerHTML": "<span class=\"flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]\"><span>to</span><span class=\"relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none\" style=\"width: 270.609px;\"><span class=\"inline-block shrink-0 whitespace-nowrap\" style=\"opacity: 1; transform: none;\">a browser</span><span aria-hidden=\"true\" class=\"pointer-events-none invisible absolute top-0 left-0 flex w-max\"><span class=\"shrink-0 whitespace-nowrap\">1,500+ apps</span><span class=\"shrink-0 whitespace-nowrap\">a browser</span><span class=\"shrink-0 whitespace-nowrap\">a sandbox</span><span class=\"shrink-0 whitespace-nowrap\">skills</span></span></span><span aria-hidden=\"true\" class=\"basis-full md:hidden\"></span><span class=\"inline-block bg-brand px-[0.2em] text-white leading-none\">in minutes</span></span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "",
+        "style": null,
+        "text": "to",
+        "outerHTML": "<span>to</span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+        "style": "width: 270.609px;",
+        "text": "a browser",
+        "outerHTML": "<span class=\"relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none\" style=\"width: 270.609px;\"><span class=\"inline-block shrink-0 whitespace-nowrap\" style=\"opacity: 1; transform: none;\">a browser</span><span aria-hidden=\"true\" class=\"pointer-events-none invisible absolute top-0 left-0 flex w-max\"><span class=\"shrink-0 whitespace-nowrap\">1,500+ apps</span><span class=\"shrink-0 whitespace-nowrap\">a browser</span><span class=\"shrink-0 whitespace-nowrap\">a sandbox</span><span class=\"shrink-0 whitespace-nowrap\">skills</span></span></span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "inline-block shrink-0 whitespace-nowrap",
+        "style": "opacity: 1; transform: none;",
+        "text": "a browser",
+        "outerHTML": "<span class=\"inline-block shrink-0 whitespace-nowrap\" style=\"opacity: 1; transform: none;\">a browser</span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+        "style": null,
+        "text": "",
+        "outerHTML": "<span aria-hidden=\"true\" class=\"pointer-events-none invisible absolute top-0 left-0 flex w-max\"><span class=\"shrink-0 whitespace-nowrap\">1,500+ apps</span><span class=\"shrink-0 whitespace-nowrap\">a browser</span><span class=\"shrink-0 whitespace-nowrap\">a sandbox</span><span class=\"shrink-0 whitespace-nowrap\">skills</span></span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "shrink-0 whitespace-nowrap",
+        "style": null,
+        "text": "",
+        "outerHTML": "<span class=\"shrink-0 whitespace-nowrap\">1,500+ apps</span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "shrink-0 whitespace-nowrap",
+        "style": null,
+        "text": "",
+        "outerHTML": "<span class=\"shrink-0 whitespace-nowrap\">a browser</span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "shrink-0 whitespace-nowrap",
+        "style": null,
+        "text": "",
+        "outerHTML": "<span class=\"shrink-0 whitespace-nowrap\">a sandbox</span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "shrink-0 whitespace-nowrap",
+        "style": null,
+        "text": "",
+        "outerHTML": "<span class=\"shrink-0 whitespace-nowrap\">skills</span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "basis-full md:hidden",
+        "style": null,
+        "text": "",
+        "outerHTML": "<span aria-hidden=\"true\" class=\"basis-full md:hidden\"></span>"
+      },
+      {
+        "tagName": "SPAN",
+        "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+        "style": null,
+        "text": "in minutes",
+        "outerHTML": "<span class=\"inline-block bg-brand px-[0.2em] text-white leading-none\">in minutes</span>"
+      }
+    ],
+    "canvases": [
+      {
+        "width": 1440,
+        "height": 864,
+        "className": "",
+        "style": "display: block; width: 1440px; height: 864px;",
+        "isWebGL": true,
+        "is2D": false,
+        "rect": {
+          "x": 0,
+          "y": 36,
+          "width": 1440,
+          "height": 864,
+          "top": 36,
+          "right": 1440,
+          "bottom": 900,
+          "left": 0
+        }
+      }
+    ],
+    "bgElements": [
+      {
+        "tag": "DIV",
+        "className": "absolute inset-x-0 top-0 h-1/2 bg-[length:100%_auto] bg-[url(/images/hero-tunnel-mobile.webp)] bg-top bg-no-repeat",
+        "style": null,
+        "backgroundImage": "url(\"https://composio.dev/images/hero-tunnel-mobile.webp\")",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "maskImage": "none",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute inset-x-0 bottom-0 h-1/2 bg-[length:100%_auto] bg-[url(/images/hero-tunnel-mobile.webp)] bg-bottom bg-no-repeat",
+        "style": null,
+        "backgroundImage": "url(\"https://composio.dev/images/hero-tunnel-mobile.webp\")",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "maskImage": "none",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "ctas": [
+      {
+        "text": "GET STARTED FOR FREE",
+        "tagName": "A",
+        "href": "https://dashboard.composio.dev/login?cta_placement=hero-cta",
+        "className": "relative z-10 bg-white px-4 py-3 text-center font-mono text-black text-sm leading-normal tracking-default md:px-6",
+        "rect": {
+          "x": 486.6875,
+          "y": 452.609375,
+          "width": 204.921875,
+          "height": 45,
+          "top": 452.609375,
+          "right": 691.609375,
+          "bottom": 497.609375,
+          "left": 486.6875
+        },
+        "styles": {
+          "display": "block",
+          "padding": "12px 24px 12px 24px",
+          "border": "0px solid rgb(44, 44, 44)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "color": "rgb(0, 0, 0)",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Fallback\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "letterSpacing": "-0.154px",
+          "boxShadow": "none",
+          "transition": "all"
+        },
+        "parentOuterHTML": "<div class=\"flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center\">",
+        "parentClasses": "flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center",
+        "parentDisplay": "flex",
+        "parentGridCols": "none",
+        "parentWidth": "466.625px"
+      },
+      {
+        "text": "GET A DEMO",
+        "tagName": "A",
+        "href": "/contact",
+        "className": "relative z-10 inline-grid border border-white/30 bg-transparent px-4 py-3 font-mono text-sm text-white/60 leading-normal tracking-default transition-colors hover:bg-white/10 hover:text-white md:px-6",
+        "rect": {
+          "x": 703.609375,
+          "y": 451.609375,
+          "width": 249.703125,
+          "height": 47,
+          "top": 451.609375,
+          "right": 953.3125,
+          "bottom": 498.609375,
+          "left": 703.609375
+        },
+        "styles": {
+          "display": "grid",
+          "padding": "12px 24px 12px 24px",
+          "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.3)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.6)",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Fallback\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "letterSpacing": "-0.154px",
+          "boxShadow": "none",
+          "transition": "color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), outline-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), fill 0.15s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1), --tw-gradient-from 0.15s cubic-bezier(0.4, 0, 0.2, 1), --tw-gradient-via 0.15s cubic-bezier(0.4, 0, 0.2, 1), --tw-gradient-to 0.15s cubic-bezier(0.4, 0, 0.2, 1)"
+        },
+        "parentOuterHTML": "<div class=\"flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center\">",
+        "parentClasses": "flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center",
+        "parentDisplay": "flex",
+        "parentGridCols": "none",
+        "parentWidth": "466.625px"
+      }
+    ]
+  },
+  "wordSamples": [
+    {
+      "h1Text": "Give your AI secure access\nto\na browser\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na browser\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a browser",
+          "style": "width: 270.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a browser",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na browser\na sandbox\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na browser\na sandbox\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a browser\na sandbox",
+          "style": "width: 285.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a browser",
+          "style": "opacity: 1; transform: translateX(-8.85515%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, -23.9975, 0)",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 0; transform: translateX(110%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, 314.17, 0)",
+          "opacity": "0"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na sandbox\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na sandbox\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "width: 285.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 0; transform: translateX(1.17081%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, 3.34394, 0)",
+          "opacity": "0.984625"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na sandbox\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na sandbox\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "width: 285.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na sandbox\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na sandbox\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "width: 285.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na sandbox\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na sandbox\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "width: 285.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na sandbox\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na sandbox\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "width: 285.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na sandbox\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na sandbox\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "width: 285.609px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\na sandbox\nskills\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\na sandbox\nskills\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox\nskills",
+          "style": "width: 138.406px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "a sandbox",
+          "style": "opacity: 1; transform: translateX(-7.93821%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, -22.7033, 0)",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "opacity: 0; transform: translateX(110%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, 152.247, 0)",
+          "opacity": "0"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\nskills\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\nskills\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "width: 138.406px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "opacity: 0; transform: translateX(2.70426%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, 3.74287, 0)",
+          "opacity": "0.970735"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\nskills\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\nskills\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "width: 138.406px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\nskills\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\nskills\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "width: 138.406px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\nskills\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\nskills\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "width: 138.406px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\nskills\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\nskills\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "width: 138.406px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "opacity: 1; transform: none;",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "h1Text": "Give your AI secure access\nto\nskills\n1,500+ apps\nin minutes",
+      "spans": [
+        {
+          "text": "Give your AI secure access",
+          "style": null,
+          "className": "block",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to\nskills\n1,500+ apps\nin minutes",
+          "style": null,
+          "className": "flex flex-wrap items-baseline justify-center gap-x-[0.25em] gap-y-[0.12em]",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "to",
+          "style": null,
+          "className": "",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills\n1,500+ apps",
+          "style": "width: 338.406px;",
+          "className": "relative -my-[0.12em] inline-flex justify-center overflow-hidden py-[0.12em] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "skills",
+          "style": "opacity: 1; transform: translateX(-7.93821%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, -10.9547, 0)",
+          "opacity": "1"
+        },
+        {
+          "text": "1,500+ apps",
+          "style": "opacity: 0; transform: translateX(110%);",
+          "className": "inline-block shrink-0 whitespace-nowrap",
+          "transform": "matrix(1, 0, 0, 1, 372.247, 0)",
+          "opacity": "0"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "pointer-events-none invisible absolute top-0 left-0 flex w-max",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "shrink-0 whitespace-nowrap",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "",
+          "style": null,
+          "className": "basis-full md:hidden",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "in minutes",
+          "style": null,
+          "className": "inline-block bg-brand px-[0.2em] text-white leading-none",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ]
+    }
+  ],
+  "ctaHoverState": {
+    "beforeBg": "rgb(255, 255, 255)",
+    "afterHover": {
+      "bg": "rgb(255, 255, 255)",
+      "border": "1px solid rgb(255, 255, 255)",
+      "transform": "none",
+      "boxShadow": "none"
+    }
+  }
+}

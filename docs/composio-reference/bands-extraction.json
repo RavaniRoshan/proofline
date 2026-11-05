@@ -1,0 +1,599 @@
+{
+  "band2": {
+    "heading": "Make your AI finish what you ask",
+    "card": {
+      "tag": "A",
+      "className": "group mt-2 inline-flex items-center justify-center gap-2 border border-foreground/20 bg-card px-5 py-3 font-mono text-foreground text-sm uppercase tracking-default transition-[background-color,border-color,scale] hover:border-foreground/35 hover:bg-popover active:scale-[0.98]",
+      "width": "197.391px",
+      "height": "46px",
+      "padding": "12px 20px 12px 20px",
+      "border": "1px solid oklab(0.168415 0.000007689 0.00000336766 / 0.2)",
+      "borderRadius": "0px",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "color": "rgb(15, 15, 15)",
+      "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Fallback\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "boxShadow": "none",
+      "display": "flex",
+      "gap": "8px"
+    },
+    "buttons": [
+      {
+        "text": "",
+        "className": "absolute right-0 -bottom-12 z-20 flex size-8 cursor-pointer items-center justify-center rounded-full border border-foreground/10 bg-card text-foreground/45 transition-colors hover:text-foreground focus-visible:text-foreground",
+        "styles": {
+          "tag": "BUTTON",
+          "className": "absolute right-0 -bottom-12 z-20 flex size-8 cursor-pointer items-center justify-center rounded-full border border-foreground/10 bg-card text-foreground/45 transition-colors hover:text-foreground focus-visible:text-foreground",
+          "width": "32px",
+          "height": "32px",
+          "padding": "0px 0px 0px 0px",
+          "border": "1px solid oklab(0.168415 0.000007689 0.00000336766 / 0.1)",
+          "borderRadius": "3.35544e+07px",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "color": "oklab(0.168415 0.000007689 0.00000336766 / 0.45)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "normal"
+        }
+      }
+    ],
+    "fullOuterHTML": "<a class=\"group mt-2 inline-flex items-center justify-center gap-2 border border-foreground/20 bg-card px-5 py-3 font-mono text-foreground text-sm uppercase tracking-default transition-[background-color,border-color,scale] hover:border-foreground/35 hover:bg-popover active:scale-[0.98]\" data-utm-placement=\"home-use-cases-try\" href=\"https://dashboard.composio.dev/login?cta_placement=home-use-cases-try\">Try it in your AI<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" class=\"size-3.5 transition-transform group-hover:translate-x-0.5\"><path d=\"M21 12L21 12.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M19 14L19 14.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M17 16L17 16.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M15 18L15 18.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M19 10L19 10.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M17 8L17 8.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M15 6L15 6.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M19 12L3 12\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" data-color=\"color-2\" fill=\"none\"></path></svg></a>"
+  },
+  "band3": {
+    "heading": "Works with any AI",
+    "gridStyles": {
+      "tag": "UL",
+      "className": "grid grid-cols-2 gap-3 md:grid-cols-4",
+      "width": "1158px",
+      "height": "272px",
+      "padding": "0px 0px 0px 0px",
+      "border": "0px solid oklch(0.922 0 0)",
+      "borderRadius": "0px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 15)",
+      "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "boxShadow": "none",
+      "display": "grid",
+      "gap": "12px"
+    },
+    "cards": [
+      {
+        "title": "Claude",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      },
+      {
+        "title": "ChatGPT",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      },
+      {
+        "title": "Codex",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      },
+      {
+        "title": "Cursor",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      },
+      {
+        "title": "Grok Bot",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      },
+      {
+        "title": "Hermes",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      },
+      {
+        "title": "OpenClaw",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      },
+      {
+        "title": "Any MCP client",
+        "card": {
+          "tag": "DIV",
+          "className": "flex items-center justify-center gap-2.5 pt-1",
+          "width": "238.5px",
+          "height": "32px",
+          "padding": "4px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "10px"
+        },
+        "icon": {
+          "tag": "IMG",
+          "width": "28px",
+          "height": "28px",
+          "className": "size-7 shrink-0 object-contain"
+        }
+      }
+    ]
+  },
+  "band4": {
+    "heading": "Don’t settle for AI that stops halfway",
+    "sticky": {
+      "tag": "DIV",
+      "className": "sticky top-[5.5rem] flex items-center",
+      "width": "1158px",
+      "height": "788px",
+      "padding": "0px 0px 0px 0px",
+      "border": "0px solid oklch(0.922 0 0)",
+      "borderRadius": "0px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 15)",
+      "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "boxShadow": "none",
+      "display": "flex",
+      "gap": "normal"
+    },
+    "steps": [
+      {
+        "title": "Tested skills for recurring work",
+        "parent": {
+          "tag": "DIV",
+          "className": "flex flex-col gap-2 transition-opacity duration-500 opacity-100",
+          "width": "auto",
+          "height": "auto",
+          "padding": "0px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "8px"
+        }
+      },
+      {
+        "title": "A computer for the heavy work",
+        "parent": {
+          "tag": "DIV",
+          "className": "flex flex-col gap-2 transition-opacity duration-500 opacity-100",
+          "width": "auto",
+          "height": "auto",
+          "padding": "0px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "8px"
+        }
+      },
+      {
+        "title": "Instant tools, no sign-ups",
+        "parent": {
+          "tag": "DIV",
+          "className": "flex flex-col gap-2 transition-opacity duration-500 opacity-100",
+          "width": "auto",
+          "height": "auto",
+          "padding": "0px 0px 0px 0px",
+          "border": "0px solid oklch(0.922 0 0)",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "8px"
+        }
+      }
+    ],
+    "auditCard": {
+      "tag": "DIV",
+      "className": "relative isolate flex items-center justify-center overflow-hidden rounded-[32px] border border-foreground/10 p-8 md:p-12 h-auto min-h-0",
+      "width": "547px",
+      "height": "680px",
+      "padding": "48px 48px 48px 48px",
+      "border": "1px solid oklab(0.168415 0.000007689 0.00000336766 / 0.1)",
+      "borderRadius": "32px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 15)",
+      "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "boxShadow": "none",
+      "display": "flex",
+      "gap": "normal"
+    },
+    "auditCardHTML": "<div class=\"relative isolate flex items-center justify-center overflow-hidden rounded-[32px] border border-foreground/10 p-8 md:p-12 h-auto min-h-0\"><div aria-hidden=\"true\" class=\"absolute inset-0 -z-10 size-full\"><div class=\"absolute inset-0 bg-center bg-cover transition-opacity duration-700 ease-out\" style=\"background-image:url(/images/instant-gradient-fallback.jpg);opacity:1\"></div><canvas class=\"absolute inset-0 h-full w-full transition-opacity duration-700 ease-out\" style=\"opacity:0\"></canvas></div><div class=\"w-full max-w-md\" style=\"opacity:1;transform:none\"><div class=\"mx-auto flex w-[88%] flex-col items-center gap-3\"><span class=\"flex items-center gap-2 rounded-full border border-foreground/10 bg-card px-4 py-2 text-body-sm text-foreground shadow-sm\"><img alt=\"\" loading=\"lazy\" width=\"16\" height=\"16\" decoding=\"async\" data-nimg=\"1\" class=\"size-4\" style=\"color:transparent\" srcset=\"/_next/image?url=%2Fimages%2Fclients%2Fclaude.svg&amp;w=16&amp;q=75 1x, /_next/image?url=%2Fimages%2Fclients%2Fclaude.svg&amp;w=32&amp;q=75 2x\" src=\"/_next/image?url=%2Fimages%2Fclients%2Fclaude.svg&amp;w=32&amp;q=75\">Prep me for my 10am with Acme</span><span class=\"flex items-center gap-2 rounded-full border border-foreground/10 bg-card px-4 py-2 text-body-sm text-foreground shadow-sm\"><img alt=\"\" loading=\"lazy\" width=\"16\" height=\"16\" decoding=\"async\" data-nimg=\"1\" class=\"size-4 dark:invert\" style=\"color:transparent\" srcset=\"/_next/image?url=%2Flogos%2Fcomposio-black.svg&amp;w=16&amp;q=75 1x, /_next/image?url=%2Flogos%2Fcomposio-black.svg&amp;w=32&amp;q=75 2x\" src=\"/_next/image?url=%2Flogos%2Fcomposio-black.svg&amp;w=32&amp;q=75\">Skill loaded</span><div class=\"rounded-[22px] bg-white/40 p-1.5 shadow-lg backdrop-blur-sm w-full\"><div class=\"rounded-2xl bg-card p-5 text-foreground\"><div class=\"flex flex-col gap-4\"><span class=\"flex items-center gap-2 font-mono text-[12px] text-foreground/50\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" height=\"18px\" viewBox=\"0 0 18 18\" aria-hidden=\"true\" class=\"size-4 text-brand-readable\"><path d=\"M9,15.051c.17,0,.339-.045,.494-.134,.643-.371,1.732-.847,3.141-.845,.899,.001,1.667,.197,2.27,.435,.648,.255,1.344-.24,1.344-.937V4.487c0-.354-.181-.68-.486-.86-.637-.376-1.726-.863-3.14-.863-1.89,0-3.198,.872-3.624,1.182\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" data-color=\"color-2\"></path><path d=\"M9,15.051c-.17,0-.339-.045-.494-.134-.643-.371-1.732-.847-3.141-.845-.899,.001-1.667,.197-2.27,.435-.648,.255-1.344-.237-1.344-.933,0-2.593,0-7.472,0-9.09,0-.354,.181-.676,.486-.856,.637-.376,1.726-.863,3.14-.863,1.89,0,3.198,.872,3.624,1.182h0s0,11.104,0,11.104Z\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></path></svg>prep-for-a-meeting / SKILL.md</span><span class=\"flex flex-col gap-1 border-foreground/[0.06] border-b pb-3\"><span class=\"text-foreground text-h3\">Prep for a Meeting</span><span class=\"text-caption text-foreg"
+  },
+  "band5": {
+    "heading": "One setup for your whole team",
+    "cards": [
+      {
+        "h3": "Shared Accounts",
+        "styles": {
+          "tag": "SECTION",
+          "className": "overflow-hidden rounded-3xl border border-foreground/10 bg-card flex flex-col pb-5",
+          "width": "375.328px",
+          "height": "368.594px",
+          "padding": "0px 0px 20px 0px",
+          "border": "1px solid oklab(0.168415 0.000007689 0.00000336766 / 0.1)",
+          "borderRadius": "22px",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "normal"
+        }
+      },
+      {
+        "h3": "Shared Skills",
+        "styles": {
+          "tag": "SECTION",
+          "className": "overflow-hidden rounded-3xl border border-foreground/10 bg-card flex flex-col pb-5",
+          "width": "375.328px",
+          "height": "368.594px",
+          "padding": "0px 0px 20px 0px",
+          "border": "1px solid oklab(0.168415 0.000007689 0.00000336766 / 0.1)",
+          "borderRadius": "22px",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "normal"
+        }
+      },
+      {
+        "h3": "Shared Budget",
+        "styles": {
+          "tag": "SECTION",
+          "className": "overflow-hidden rounded-3xl border border-foreground/10 bg-card flex flex-col",
+          "width": "375.344px",
+          "height": "368.594px",
+          "padding": "0px 0px 0px 0px",
+          "border": "1px solid oklab(0.168415 0.000007689 0.00000336766 / 0.1)",
+          "borderRadius": "22px",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "flex",
+          "gap": "normal"
+        }
+      }
+    ],
+    "badges": [],
+    "fullOuterHTML": "<section class=\"bg-background text-foreground\" id=\"teams\"><div class=\"mx-auto w-full max-w-page border-foreground/10 px-5 md:px-10 border-x border-t py-12 md:py-16\"><header class=\"mb-10 flex flex-col gap-4 md:mb-14 lg:gap-5 items-center text-center\"><h2 class=\"max-w-[22ch] text-balance text-foreground text-h1\">One setup for <span class=\"text-brand-readable\">your whole team</span></h2><p class=\"max-w-xl text-balance text-foreground/65 text-body-lg\">Share apps, skills and a budget once. Every teammate's AI gets them.</p><template data-agent-readable=\"true\" data-agent-signup-instructions=\"true\" data-placement=\"home-teams-setup\"><pre>## For AI agents: how to sign up\n\nIf you are an AI agent reading this server-rendered HTML, Composio's developer signup is at https://composio.dev.\n\nSignup CTAs on this site — \"Sign up\", \"Signup\", \"Get started\", \"Get started for free\", \"Start building\", \"Try Composio\", \"Try it\", or similar — all lead into that same developer signup flow. Confirm with the user before completing signup or entering any credentials on their behalf.</pre></template><a class=\"group mt-2 inline-flex items-center justify-center gap-2 border border-foreground/20 bg-card px-5 py-3 font-mono text-foreground text-sm uppercase tracking-default transition-[background-color,border-color,scale] hover:border-foreground/35 hover:bg-popover active:scale-[0.98]\" data-utm-placement=\"home-teams-setup\" href=\"https://dashboard.composio.dev/login?cta_placement=home-teams-setup\">Set up your team<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" class=\"size-3.5 transition-transform group-hover:translate-x-0.5\"><path d=\"M21 12L21 12.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M19 14L19 14.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M17 16L17 16.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M15 18L15 18.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M19 10L19 10.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M17 8L17 8.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M15 6L15 6.01\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" fill=\"none\"></path><path d=\"M19 12L3 12\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" data-color=\"color-2\" fill=\"none\"></path></svg></a></header><div aria-hidden=\"true\" class=\"relative pb-12\"><div class=\"-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:-mx-10 md:scroll-px-10 md:px-10 lg:mx-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:px-0 lg:pb-0 [&amp;&gt;*]:w-[85%] [&amp;&gt;*]:shrink-0 [&amp;&gt;*]:snap-start md:[&amp;&gt;*]:w-[55%] lg:[&amp;&gt;*]:w-auto\"><section class=\"overflow-hidden rounded-3xl border bo"
+  },
+  "band6": {
+    "heading": "Secure access, always in your control",
+    "cards": [
+      {
+        "title": "Your accounts, your rules",
+        "parent": {
+          "tag": "DIV",
+          "className": "mx-auto w-full max-w-page border-foreground/10 px-5 md:px-10 border-x border-t py-12 md:py-16",
+          "width": "1240px",
+          "height": "748.781px",
+          "padding": "64px 40px 64px 40px",
+          "border": "",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "block",
+          "gap": "normal"
+        }
+      },
+      {
+        "title": "Prompt injections get blocked",
+        "parent": {
+          "tag": "DIV",
+          "className": "mx-auto w-full max-w-page border-foreground/10 px-5 md:px-10 border-x border-t py-12 md:py-16",
+          "width": "1240px",
+          "height": "748.781px",
+          "padding": "64px 40px 64px 40px",
+          "border": "",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "block",
+          "gap": "normal"
+        }
+      },
+      {
+        "title": "Every action on record",
+        "parent": {
+          "tag": "DIV",
+          "className": "mx-auto w-full max-w-page border-foreground/10 px-5 md:px-10 border-x border-t py-12 md:py-16",
+          "width": "1240px",
+          "height": "748.781px",
+          "padding": "64px 40px 64px 40px",
+          "border": "",
+          "borderRadius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(15, 15, 15)",
+          "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "boxShadow": "none",
+          "display": "block",
+          "gap": "normal"
+        }
+      }
+    ]
+  },
+  "band7": {
+    "heading": "Build it into your agent",
+    "terminal": {
+      "tag": "DIV",
+      "className": "terminal-theme flex min-h-0 w-full flex-col overflow-hidden border font-mono text-xs leading-relaxed terminal-theme-grok terminal-developers h-full shadow-none",
+      "width": "376.109px",
+      "height": "458px",
+      "padding": "0px 0px 0px 0px",
+      "border": "1px solid rgba(255, 255, 255, 0.08)",
+      "borderRadius": "8px",
+      "backgroundColor": "rgb(30, 30, 30)",
+      "color": "rgb(215, 209, 201)",
+      "fontFamily": "\"Geist Mono\", \"Geist Mono Fallback\", ui-monospace, SFMono-Regular, \"Roboto Mono\", Menlo, Monaco, \"Liberation Mono\", \"Courier New\", monospace",
+      "fontSize": "12px",
+      "lineHeight": "19.5px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "display": "flex",
+      "gap": "normal"
+    },
+    "code": {
+      "tag": "PRE",
+      "className": "pt-1 pb-2 font-bold text-[8px] text-brand-readable leading-[1.2] xl:text-[9px]",
+      "width": "350.109px",
+      "height": "55.1875px",
+      "padding": "4px 0px 8px 0px",
+      "border": "0px solid rgb(44, 44, 44)",
+      "borderRadius": "0px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(81, 162, 255)",
+      "fontFamily": "\"Geist Mono\", \"Geist Mono Fallback\", ui-monospace, SFMono-Regular, \"Roboto Mono\", Menlo, Monaco, \"Liberation Mono\", \"Courier New\", monospace",
+      "fontSize": "9px",
+      "lineHeight": "10.8px",
+      "boxShadow": "none",
+      "display": "block",
+      "gap": "normal"
+    },
+    "windowDots": [
+      {
+        "tag": "DIV",
+        "className": "size-[9px] rounded-full",
+        "width": "9px",
+        "height": "9px",
+        "padding": "0px 0px 0px 0px",
+        "border": "0px solid rgb(44, 44, 44)",
+        "borderRadius": "3.35544e+07px",
+        "backgroundColor": "rgb(255, 95, 87)",
+        "color": "rgb(215, 209, 201)",
+        "fontFamily": "\"Geist Mono\", \"Geist Mono Fallback\", ui-monospace, SFMono-Regular, \"Roboto Mono\", Menlo, Monaco, \"Liberation Mono\", \"Courier New\", monospace",
+        "fontSize": "12px",
+        "lineHeight": "19.5px",
+        "boxShadow": "none",
+        "display": "block",
+        "gap": "normal"
+      },
+      {
+        "tag": "DIV",
+        "className": "size-[9px] rounded-full",
+        "width": "9px",
+        "height": "9px",
+        "padding": "0px 0px 0px 0px",
+        "border": "0px solid rgb(44, 44, 44)",
+        "borderRadius": "3.35544e+07px",
+        "backgroundColor": "rgb(254, 188, 46)",
+        "color": "rgb(215, 209, 201)",
+        "fontFamily": "\"Geist Mono\", \"Geist Mono Fallback\", ui-monospace, SFMono-Regular, \"Roboto Mono\", Menlo, Monaco, \"Liberation Mono\", \"Courier New\", monospace",
+        "fontSize": "12px",
+        "lineHeight": "19.5px",
+        "boxShadow": "none",
+        "display": "block",
+        "gap": "normal"
+      },
+      {
+        "tag": "DIV",
+        "className": "size-[9px] rounded-full",
+        "width": "9px",
+        "height": "9px",
+        "padding": "0px 0px 0px 0px",
+        "border": "0px solid rgb(44, 44, 44)",
+        "borderRadius": "3.35544e+07px",
+        "backgroundColor": "rgb(40, 200, 64)",
+        "color": "rgb(215, 209, 201)",
+        "fontFamily": "\"Geist Mono\", \"Geist Mono Fallback\", ui-monospace, SFMono-Regular, \"Roboto Mono\", Menlo, Monaco, \"Liberation Mono\", \"Courier New\", monospace",
+        "fontSize": "12px",
+        "lineHeight": "19.5px",
+        "boxShadow": "none",
+        "display": "block",
+        "gap": "normal"
+      }
+    ],
+    "fullOuterHTML": "<div class=\"terminal-theme flex min-h-0 w-full flex-col overflow-hidden border font-mono text-xs leading-relaxed terminal-theme-grok terminal-developers h-full shadow-none\" style=\"background-color:var(--terminal-editor-bg);border-color:var(--terminal-border);border-radius:var(--terminal-radius-window);color:var(--terminal-fg)\"><div class=\"flex items-center gap-3 px-3 py-2\" style=\"border-bottom:1px solid var(--terminal-border)\"><div class=\"terminal-traffic-lights flex shrink-0 gap-1.5\"><div class=\"size-[9px] rounded-full\" style=\"background-color:var(--terminal-traffic-red)\"></div><div class=\"size-[9px] rounded-full\" style=\"background-color:var(--terminal-traffic-yellow)\"></div><div class=\"size-[9px] rounded-full\" style=\"background-color:var(--terminal-traffic-green)\"></div></div><div class=\"ml-1.5 min-w-0 flex-1 truncate text-[13px]\" style=\"color:var(--terminal-dim)\">~/your-agent</div></div><div class=\"flex w-full flex-col justify-start overflow-hidden min-h-0 flex-1\"><div class=\"terminal-body-scroll-host min-h-0 flex-1 overflow-hidden\"><div class=\"terminal-body-scroll min-h-0 flex-1 terminal-body-scroll-pin-bottom\"><div class=\"terminal-body-content w-full min-h-0\"><div class=\"flex flex-col gap-3\"><pre aria-label=\"Your agent\" class=\"pt-1 pb-2 font-bold text-[8px] text-brand-readable leading-[1.2] xl:text-[9px]\" role=\"img\">          __   _____  _   _ ___     _   ___ ___ _  _ _____\n   /|\\    \\ \\ / / _ \\| | | | _ \\   /_\\ / __| __| \\| |_   _|\n  / | \\    \\ V / (_) | |_| |   /  / _ \\ (_ | _|| .` | | |\n /__|__\\    |_| \\___/ \\___/|_|_\\ /_/ \\_\\___|___|_|\\_| |_|</pre></div></div></div></div><div class=\"terminal-body-footer w-full shrink-0 pb-[var(--terminal-session-pad-y)]\"><div><div aria-hidden=\"true\" class=\"terminal-session-sent flex w-full items-center border py-2 text-[13px]\" style=\"border-color:var(--terminal-border)\"><span class=\"terminal-cursor inline-block h-[15px] w-[7px] shrink-0 bg-[var(--terminal-fg)]/70 motion-reduce:animate-none\"></span><span class=\"truncate text-[var(--terminal-dimmer)]\">Ask your agent to do something</span></div></div></div></div></div>"
+  }
+}

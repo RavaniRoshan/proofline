@@ -1,0 +1,2632 @@
+{
+  "title": "Composio",
+  "htmlClasses": "__variable_d57af7 __variable_4dc837 __variable_a06275",
+  "bodyClasses": "overflow-x-hidden",
+  "themeColors": {
+    "bodyBg": "rgb(246, 246, 246)",
+    "bodyColor": "rgb(15, 15, 15)",
+    "fontFamily": "geistSans, \"geistSans Fallback\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+  },
+  "navLinks": [
+    {
+      "text": "",
+      "tagName": "A",
+      "className": "flex shrink-0 items-center",
+      "href": "/",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 109,
+        "y": 66.5,
+        "width": 124.640625,
+        "height": 24,
+        "top": 66.5,
+        "right": 233.640625,
+        "bottom": 90.5,
+        "left": 109
+      }
+    },
+    {
+      "text": "PRODUCTS",
+      "tagName": "BUTTON",
+      "className": "flex items-center gap-1 px-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 text-white",
+      "href": null,
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 516.28125,
+        "y": 68,
+        "width": 94.78125,
+        "height": 21,
+        "top": 68,
+        "right": 611.0625,
+        "bottom": 89,
+        "left": 516.28125
+      }
+    },
+    {
+      "text": "SOLUTIONS",
+      "tagName": "BUTTON",
+      "className": "flex items-center gap-1 px-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 text-white",
+      "href": null,
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 631.0625,
+        "y": 68,
+        "width": 102.625,
+        "height": 21,
+        "top": 68,
+        "right": 733.6875,
+        "bottom": 89,
+        "left": 631.0625
+      }
+    },
+    {
+      "text": "RESOURCES",
+      "tagName": "BUTTON",
+      "className": "flex items-center gap-1 px-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 text-white",
+      "href": null,
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 753.6875,
+        "y": 68,
+        "width": 102.625,
+        "height": 21,
+        "top": 68,
+        "right": 856.3125,
+        "bottom": 89,
+        "left": 753.6875
+      }
+    },
+    {
+      "text": "COMPOSIO\nFOR YOU\nGive Claude, Codex, or any harness secure access to 1500+ tools",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/for-you",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 119.5,
+        "width": 288,
+        "height": 103,
+        "top": 119.5,
+        "right": -9196.71875,
+        "bottom": 222.5,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "CLI\nOne command to add tools and auth to your coding agent",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/cli",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 223.5,
+        "width": 288,
+        "height": 103,
+        "top": 223.5,
+        "right": -9196.71875,
+        "bottom": 326.5,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "DEVELOPER PLATFORM\nSDKs, tools, and auth for agents and backend apps",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/developers",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9195.71875,
+        "y": 119.5,
+        "width": 288,
+        "height": 103,
+        "top": 119.5,
+        "right": -8907.71875,
+        "bottom": 222.5,
+        "left": -9195.71875
+      }
+    },
+    {
+      "text": "MCP GATEWAY\nOne managed MCP endpoint for all your tools and agents",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/mcp-gateway",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9195.71875,
+        "y": 223.5,
+        "width": 288,
+        "height": 103,
+        "top": 223.5,
+        "right": -8907.71875,
+        "bottom": 326.5,
+        "left": -9195.71875
+      }
+    },
+    {
+      "text": "ENTERPRISE\nSSO, governance, and audit controls for deploying agents org-wide",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/enterprise",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9195.71875,
+        "y": 327.5,
+        "width": 288,
+        "height": 103,
+        "top": 327.5,
+        "right": -8907.71875,
+        "bottom": 430.5,
+        "left": -9195.71875
+      }
+    },
+    {
+      "text": "TRIGGERS\nStart background agents from events across your connected apps",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/triggers",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8906.71875,
+        "y": 119.5,
+        "width": 288,
+        "height": 103,
+        "top": 119.5,
+        "right": -8618.71875,
+        "bottom": 222.5,
+        "left": -8906.71875
+      }
+    },
+    {
+      "text": "FIREWALL\nNEW\nBlocks instructions hidden in tool results before your agent reads them",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/firewall",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8906.71875,
+        "y": 223.5,
+        "width": 288,
+        "height": 103,
+        "top": 223.5,
+        "right": -8618.71875,
+        "bottom": 326.5,
+        "left": -8906.71875
+      }
+    },
+    {
+      "text": "INSTANT\nNEW\nAudio, video, search, browser and data tools, with no keys to manage",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/instant",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8906.71875,
+        "y": 327.5,
+        "width": 288,
+        "height": 103,
+        "top": 327.5,
+        "right": -8618.71875,
+        "bottom": 430.5,
+        "left": -8906.71875
+      }
+    },
+    {
+      "text": "OPTIMIZATION\nLower cost per completed task with optimised tools and skills",
+      "tagName": "A",
+      "className": "group flex w-full gap-3 px-5 py-4 transition-colors hover:bg-white/5",
+      "href": "/optimization",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8906.71875,
+        "y": 431.5,
+        "width": 288,
+        "height": 103,
+        "top": 431.5,
+        "right": -8618.71875,
+        "bottom": 534.5,
+        "left": -8906.71875
+      }
+    },
+    {
+      "text": "CLAUDE",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex items-center px-4 min-h-[52px] gap-3 py-3 text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/claude",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 569,
+        "width": 260,
+        "height": 52,
+        "top": 569,
+        "right": -9224.71875,
+        "bottom": 621,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "CODEX",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex items-center px-4 min-h-[52px] gap-3 py-3 text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/codex",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 622,
+        "width": 260,
+        "height": 52,
+        "top": 622,
+        "right": -9224.71875,
+        "bottom": 674,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "OPENCLAW",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex items-center px-4 min-h-[52px] gap-3 py-3 text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/claw",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 675,
+        "width": 260,
+        "height": 52,
+        "top": 675,
+        "right": -9224.71875,
+        "bottom": 727,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "CURSOR",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex items-center px-4 min-h-[52px] gap-3 py-3 text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/cursor",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 728,
+        "width": 260,
+        "height": 52,
+        "top": 728,
+        "right": -9224.71875,
+        "bottom": 780,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "HERMES",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex items-center px-4 min-h-[52px] gap-3 py-3 text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/hermes",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 781,
+        "width": 260,
+        "height": 52,
+        "top": 781,
+        "right": -9224.71875,
+        "bottom": 833,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "OFFICE WORK\nConnect Claude or ChatGPT to the apps you already use — Gmail, Slack, Notion, Calendar, and 1,500+ more. One prompt, real work, done.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-everyday-ai-users",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9223.71875,
+        "y": 569,
+        "width": 260,
+        "height": 103,
+        "top": 569,
+        "right": -8963.71875,
+        "bottom": 672,
+        "left": -9223.71875
+      }
+    },
+    {
+      "text": "SALES\nEnrich a lead, draft the follow-up, book the meeting, brief yourself for the call — across Salesforce, HubSpot, Gmail, LinkedIn, and 1,500+ more tools. One prompt, deal momentum.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-sales-revenue",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9223.71875,
+        "y": 673,
+        "width": 260,
+        "height": 103,
+        "top": 673,
+        "right": -8963.71875,
+        "bottom": 776,
+        "left": -9223.71875
+      }
+    },
+    {
+      "text": "MARKETING\nLaunch campaigns, publish social, monitor SEO, pull funnel metrics, and nurture leads — across HubSpot, Mailchimp, Google Analytics, LinkedIn, and 1,500+ more tools. One prompt, growth compounding.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-marketing-growth",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9223.71875,
+        "y": 777,
+        "width": 260,
+        "height": 103,
+        "top": 777,
+        "right": -8963.71875,
+        "bottom": 880,
+        "left": -9223.71875
+      }
+    },
+    {
+      "text": "PRODUCT & DESIGN\nSynthesize research, iterate designs, write specs, plan sprints, and track metrics — across Figma, Linear, Notion, PostHog, and 1,500+ more tools. One prompt, less context-switching, more shipping.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-product-design",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9223.71875,
+        "y": 881,
+        "width": 260,
+        "height": 103,
+        "top": 881,
+        "right": -8963.71875,
+        "bottom": 984,
+        "left": -9223.71875
+      }
+    },
+    {
+      "text": "CUSTOMER SUPPORT\nTriage the queue, draft the reply, escalate to engineering, and keep the CSM synced — across Zendesk, Intercom, Salesforce, Slack, and 1,500+ more tools. One prompt, every ticket moving.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-customer-support",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8963.71875,
+        "y": 565,
+        "width": 260,
+        "height": 103,
+        "top": 565,
+        "right": -8703.71875,
+        "bottom": 668,
+        "left": -8963.71875
+      }
+    },
+    {
+      "text": "ENGINEERING\nTriage, review, deploy, respond, and retro — across GitHub, Linear, Sentry, Datadog, PagerDuty, and 1,500+ more tools. One prompt, less busywork, more shipping.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-engineering-devops",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8963.71875,
+        "y": 669,
+        "width": 260,
+        "height": 103,
+        "top": 669,
+        "right": -8703.71875,
+        "bottom": 772,
+        "left": -8963.71875
+      }
+    },
+    {
+      "text": "HR & RECRUITING\nScreen candidates, schedule interviews, send offers, and run onboarding — across Ashby, Lever, BambooHR, Deel, and 1,500+ more tools. One prompt, less admin, more hires.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-hr-recruiting",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8963.71875,
+        "y": 773,
+        "width": 260,
+        "height": 103,
+        "top": 773,
+        "right": -8703.71875,
+        "bottom": 876,
+        "left": -8963.71875
+      }
+    },
+    {
+      "text": "FINANCE & OPS\nCategorize expenses, reconcile payouts, approve POs, and run the close — across Stripe, NetSuite, Brex, Xero, and 1,500+ more tools. One prompt, numbers that tie out.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-finance-operations",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8963.71875,
+        "y": 877,
+        "width": 260,
+        "height": 103,
+        "top": 877,
+        "right": -8703.71875,
+        "bottom": 980,
+        "left": -8963.71875
+      }
+    },
+    {
+      "text": "E-COMMERCE\nManage inventory, triage support, run nurture flows, and tune your ads — across Shopify, Klaviyo, Gorgias, Google Ads, and 1,500+ more tools. One prompt, every order moving.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-ecommerce",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8703.71875,
+        "y": 565,
+        "width": 260,
+        "height": 103,
+        "top": 565,
+        "right": -8443.71875,
+        "bottom": 668,
+        "left": -8703.71875
+      }
+    },
+    {
+      "text": "CONTENT & MEDIA\nResearch, generate, schedule, publish, and measure — across YouTube, LinkedIn, Typefully, ElevenLabs, Canva, and 1,500+ more tools. One prompt, the content calendar runs itself.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-content-media",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8703.71875,
+        "y": 669,
+        "width": 260,
+        "height": 103,
+        "top": 669,
+        "right": -8443.71875,
+        "bottom": 772,
+        "left": -8703.71875
+      }
+    },
+    {
+      "text": "IT & SECURITY\nTriage alerts, provision access, investigate incidents, and prep audits — across PagerDuty, Datadog, Auth0, Cloudflare, and 1,500+ more tools. One prompt, systems stay up, evidence stays ready.",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex w-full flex-col gap-2.5 py-4 px-4 hover:bg-white/5",
+      "href": "/product/composio-for-it-security",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -8703.71875,
+        "y": 773,
+        "width": 260,
+        "height": 103,
+        "top": 773,
+        "right": -8443.71875,
+        "bottom": 876,
+        "left": -8703.71875
+      }
+    },
+    {
+      "text": "ALL USE CASES",
+      "tagName": "A",
+      "className": "group font-mono text-sm leading-normal tracking-default transition-colors flex items-center px-4 gap-1.5 py-2 text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/use-cases",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9223.71875,
+        "y": 1001,
+        "width": 780,
+        "height": 37,
+        "top": 1001,
+        "right": -8443.71875,
+        "bottom": 1038,
+        "left": -9223.71875
+      }
+    },
+    {
+      "text": "TOOLKITS",
+      "tagName": "A",
+      "className": "group flex w-full items-center gap-3 px-5 py-3.5 font-mono text-sm leading-normal tracking-default transition-colors text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/toolkits",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 1038,
+        "width": 240,
+        "height": 49,
+        "top": 1038,
+        "right": -9244.71875,
+        "bottom": 1087,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "BLOG",
+      "tagName": "A",
+      "className": "group flex w-full items-center gap-3 px-5 py-3.5 font-mono text-sm leading-normal tracking-default transition-colors text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/blog",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 1088,
+        "width": 240,
+        "height": 49,
+        "top": 1088,
+        "right": -9244.71875,
+        "bottom": 1137,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "BUILT WITH COMPOSIO",
+      "tagName": "A",
+      "className": "group flex w-full items-center gap-3 px-5 py-3.5 font-mono text-sm leading-normal tracking-default transition-colors text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/built-with",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 1138,
+        "width": 240,
+        "height": 49,
+        "top": 1138,
+        "right": -9244.71875,
+        "bottom": 1187,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "DOCS",
+      "tagName": "A",
+      "className": "group flex w-full items-center gap-3 px-5 py-3.5 font-mono text-sm leading-normal tracking-default transition-colors text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "https://docs.composio.dev/?cta_placement=navbar-docs",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 1188,
+        "width": 240,
+        "height": 49,
+        "top": 1188,
+        "right": -9244.71875,
+        "bottom": 1237,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "AGENTS @ WORK",
+      "tagName": "A",
+      "className": "group flex w-full items-center gap-3 px-5 py-3.5 font-mono text-sm leading-normal tracking-default transition-colors text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/agents-at-work",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 1238,
+        "width": 240,
+        "height": 49,
+        "top": 1238,
+        "right": -9244.71875,
+        "bottom": 1287,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "BENCH",
+      "tagName": "A",
+      "className": "group flex w-full items-center gap-3 px-5 py-3.5 font-mono text-sm leading-normal tracking-default transition-colors text-white/80 hover:bg-white/5 hover:text-white",
+      "href": "/bench",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": -9484.71875,
+        "y": 1288,
+        "width": 240,
+        "height": 49,
+        "top": 1288,
+        "right": -9244.71875,
+        "bottom": 1337,
+        "left": -9484.71875
+      }
+    },
+    {
+      "text": "DOCS",
+      "tagName": "A",
+      "className": "flex items-center px-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 text-white",
+      "href": "https://docs.composio.dev/?cta_placement=navbar-docs",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 876.3125,
+        "y": 68,
+        "width": 47.390625,
+        "height": 21,
+        "top": 68,
+        "right": 923.703125,
+        "bottom": 89,
+        "left": 876.3125
+      }
+    },
+    {
+      "text": "LOG IN",
+      "tagName": "A",
+      "className": "hidden items-center whitespace-nowrap border px-2 py-1.5 font-mono text-sm leading-normal tracking-default transition-colors duration-300 md:flex border-white/30 text-white hover:bg-white/10",
+      "href": "https://dashboard.composio.dev/login?cta_placement=navbar-login",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 1098.6875,
+        "y": 61,
+        "width": 65.078125,
+        "height": 35,
+        "top": 61,
+        "right": 1163.765625,
+        "bottom": 96,
+        "left": 1098.6875
+      }
+    },
+    {
+      "text": "GET STARTED – FREE",
+      "tagName": "A",
+      "className": "whitespace-nowrap border px-2 py-1.5 font-mono text-sm leading-normal tracking-default transition-[color,background-color,border-color,opacity,visibility] duration-300 border-white bg-white text-black invisible opacity-0 lg:visible lg:opacity-100",
+      "href": "https://dashboard.composio.dev/login?cta_placement=navbar-get-started",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 1171.765625,
+        "y": 61,
+        "width": 159.234375,
+        "height": 35,
+        "top": 61,
+        "right": 1331,
+        "bottom": 96,
+        "left": 1171.765625
+      }
+    },
+    {
+      "text": "",
+      "tagName": "BUTTON",
+      "className": "flex size-8 flex-col items-center justify-center gap-[5px] lg:hidden",
+      "href": null,
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "PRODUCTS",
+      "tagName": "BUTTON",
+      "className": "flex w-full items-center justify-between py-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white",
+      "href": null,
+      "ariaExpanded": "false",
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "COMPOSIOFOR YOUGive Claude, Codex, or any harness secure access to 1500+ tools",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/for-you",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "CLIOne command to add tools and auth to your coding agent",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/cli",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "DEVELOPER PLATFORMSDKs, tools, and auth for agents and backend apps",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/developers",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "MCP GATEWAYOne managed MCP endpoint for all your tools and agents",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/mcp-gateway",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "ENTERPRISESSO, governance, and audit controls for deploying agents org-wide",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/enterprise",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "TRIGGERSStart background agents from events across your connected apps",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/triggers",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "FIREWALLNEWBlocks instructions hidden in tool results before your agent reads them",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/firewall",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "INSTANTNEWAudio, video, search, browser and data tools, with no keys to manage",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/instant",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "OPTIMIZATIONLower cost per completed task with optimised tools and skills",
+      "tagName": "A",
+      "className": "flex flex-col gap-2.5 py-3 transition-colors duration-300 px-4 text-white/70",
+      "href": "/optimization",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "SOLUTIONS",
+      "tagName": "BUTTON",
+      "className": "flex w-full items-center justify-between py-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white",
+      "href": null,
+      "ariaExpanded": "false",
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "CLAUDE",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 min-h-[44px] gap-2.5 py-3 text-sm text-white/70",
+      "href": "/claude",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "CODEX",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 min-h-[44px] gap-2.5 py-3 text-sm text-white/70",
+      "href": "/codex",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "OPENCLAW",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 min-h-[44px] gap-2.5 py-3 text-sm text-white/70",
+      "href": "/claw",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "CURSOR",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 min-h-[44px] gap-2.5 py-3 text-sm text-white/70",
+      "href": "/cursor",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "HERMES",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 min-h-[44px] gap-2.5 py-3 text-sm text-white/70",
+      "href": "/hermes",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "OFFICE WORK",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-everyday-ai-users",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "SALES",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-sales-revenue",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "MARKETING",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-marketing-growth",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "PRODUCT & DESIGN",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-product-design",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "CUSTOMER SUPPORT",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-customer-support",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "ENGINEERING",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-engineering-devops",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "HR & RECRUITING",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-hr-recruiting",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "FINANCE & OPS",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-finance-operations",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "E-COMMERCE",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-ecommerce",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "CONTENT & MEDIA",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-content-media",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "IT & SECURITY",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-2.5 text-[14px] text-white/70",
+      "href": "/product/composio-for-it-security",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "ALL USE CASES",
+      "tagName": "A",
+      "className": "font-mono tracking-default transition-colors duration-300 flex items-center px-4 gap-2 py-3.5 text-base text-white/70",
+      "href": "/use-cases",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "RESOURCES",
+      "tagName": "BUTTON",
+      "className": "flex w-full items-center justify-between py-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white",
+      "href": null,
+      "ariaExpanded": "false",
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "TOOLKITS",
+      "tagName": "A",
+      "className": "flex items-center gap-2.5 py-3 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white/70",
+      "href": "/toolkits",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "BLOG",
+      "tagName": "A",
+      "className": "flex items-center gap-2.5 py-3 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white/70",
+      "href": "/blog",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "BUILT WITH COMPOSIO",
+      "tagName": "A",
+      "className": "flex items-center gap-2.5 py-3 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white/70",
+      "href": "/built-with",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "DOCS",
+      "tagName": "A",
+      "className": "flex items-center gap-2.5 py-3 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white/70",
+      "href": "https://docs.composio.dev/?cta_placement=navbar-docs",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "AGENTS @ WORK",
+      "tagName": "A",
+      "className": "flex items-center gap-2.5 py-3 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white/70",
+      "href": "/agents-at-work",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "BENCH",
+      "tagName": "A",
+      "className": "flex items-center gap-2.5 py-3 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white/70",
+      "href": "/bench",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "DOCS",
+      "tagName": "A",
+      "className": "flex items-center gap-1.5 py-2 font-mono text-sm leading-normal tracking-default transition-colors duration-300 px-4 text-white",
+      "href": "https://docs.composio.dev/?cta_placement=navbar-docs",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "SIGN UP",
+      "tagName": "A",
+      "className": "flex items-center justify-center whitespace-nowrap border px-2 py-2.5 font-mono text-sm leading-normal tracking-default transition-colors duration-300 border-white bg-white text-black",
+      "href": "https://dashboard.composio.dev/login?cta_placement=navbar-mobile-sign-up",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "LOG IN",
+      "tagName": "A",
+      "className": "flex items-center justify-center whitespace-nowrap border px-2 py-2.5 font-mono text-sm leading-normal tracking-default transition-colors duration-300 border-white/30 text-white hover:bg-white/10",
+      "href": "https://dashboard.composio.dev/login?cta_placement=navbar-login",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "X (Twitter)",
+      "tagName": "A",
+      "className": "transition-colors hover:text-white",
+      "href": "https://x.com/composio",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "LinkedIn",
+      "tagName": "A",
+      "className": "transition-colors hover:text-white",
+      "href": "https://www.linkedin.com/company/composiohq/",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "GitHub",
+      "tagName": "A",
+      "className": "transition-colors hover:text-white",
+      "href": "https://github.com/composiohq/composio/",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "Discord",
+      "tagName": "A",
+      "className": "transition-colors hover:text-white",
+      "href": "https://dub.composio.dev/discord",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "YouTube",
+      "tagName": "A",
+      "className": "transition-colors hover:text-white",
+      "href": "https://www.youtube.com/@Composio",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "text": "TRY IT IN YOUR AI",
+      "tagName": "A",
+      "className": "group mt-2 inline-flex items-center justify-center gap-2 border border-foreground/20 bg-card px-5 py-3 font-mono text-foreground text-sm uppercase tracking-default transition-[background-color,border-color,scale] hover:border-foreground/35 hover:bg-popover active:scale-[0.98]",
+      "href": "https://dashboard.composio.dev/login?cta_placement=home-use-cases-try",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 621.296875,
+        "y": 1162.390625,
+        "width": 197.390625,
+        "height": 46,
+        "top": 1162.390625,
+        "right": 818.6875,
+        "bottom": 1208.390625,
+        "left": 621.296875
+      }
+    },
+    {
+      "text": "See the guide for each",
+      "tagName": "A",
+      "className": "text-foreground underline decoration-foreground/30 underline-offset-4 transition-[text-decoration-color] hover:decoration-foreground",
+      "href": "/works-with",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 757.515625,
+        "y": 1969.78125,
+        "width": 183.65625,
+        "height": 23,
+        "top": 1969.78125,
+        "right": 941.171875,
+        "bottom": 1992.78125,
+        "left": 757.515625
+      }
+    },
+    {
+      "text": "SET UP YOUR TEAM",
+      "tagName": "A",
+      "className": "group mt-2 inline-flex items-center justify-center gap-2 border border-foreground/20 bg-card px-5 py-3 font-mono text-foreground text-sm uppercase tracking-default transition-[background-color,border-color,scale] hover:border-foreground/35 hover:bg-popover active:scale-[0.98]",
+      "href": "https://dashboard.composio.dev/login?cta_placement=home-teams-setup",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 625.21875,
+        "y": 5382.171875,
+        "width": 189.546875,
+        "height": 46,
+        "top": 5382.171875,
+        "right": 814.765625,
+        "bottom": 5428.171875,
+        "left": 625.21875
+      }
+    },
+    {
+      "text": "EXPLORE THE PLATFORM",
+      "tagName": "A",
+      "className": "group mt-2 inline-flex items-center justify-center gap-2 border border-foreground/20 bg-card px-5 py-3 font-mono text-foreground text-sm uppercase tracking-default transition-[background-color,border-color,scale] hover:border-foreground/35 hover:bg-popover active:scale-[0.98]",
+      "href": "/developers",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 609.53125,
+        "y": 6975.9375,
+        "width": 220.921875,
+        "height": 46,
+        "top": 6975.9375,
+        "right": 830.453125,
+        "bottom": 7021.9375,
+        "left": 609.53125
+      }
+    },
+    {
+      "text": "EXPLORE ENTERPRISE",
+      "tagName": "A",
+      "className": "inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 font-mono text-background text-sm uppercase tracking-default transition-[background-color,scale] hover:bg-foreground/85 active:scale-[0.98]",
+      "href": "/enterprise",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 539.375,
+        "y": 8549.71875,
+        "width": 205.234375,
+        "height": 46,
+        "top": 8549.71875,
+        "right": 744.609375,
+        "bottom": 8595.71875,
+        "left": 539.375
+      }
+    },
+    {
+      "text": "TALK TO SALES",
+      "tagName": "A",
+      "className": "inline-flex items-center justify-center gap-2 border border-foreground/20 bg-card px-5 py-3 font-mono text-foreground text-sm uppercase tracking-default transition-[background-color,border-color,scale] hover:border-foreground/35 hover:bg-popover active:scale-[0.98]",
+      "href": "/contact",
+      "ariaExpanded": null,
+      "ariaHasPopup": null,
+      "rect": {
+        "x": 756.609375,
+        "y": 8549.71875,
+        "width": 144,
+        "height": 46,
+        "top": 8549.71875,
+        "right": 900.609375,
+        "bottom": 8595.71875,
+        "left": 756.609375
+      }
+    }
+  ],
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "Give your AI secure access to a browser in minutes",
+      "className": "text-balance text-center text-display text-white leading-[1.08] max-md:text-[clamp(2rem,11vw,2.75rem)]",
+      "rect": {
+        "x": 351.796875,
+        "y": 273.390625,
+        "width": 736.40625,
+        "height": 138.21875,
+        "top": 273.390625,
+        "right": 1088.203125,
+        "bottom": 411.609375,
+        "left": 351.796875
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Make your AI finish what you ask",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 404.09375,
+        "y": 1012,
+        "width": 631.8125,
+        "height": 48.390625,
+        "top": 1012,
+        "right": 1035.90625,
+        "bottom": 1060.390625,
+        "left": 404.09375
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Works with any AI",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 548.84375,
+        "y": 1899.390625,
+        "width": 342.3125,
+        "height": 48.390625,
+        "top": 1899.390625,
+        "right": 891.15625,
+        "bottom": 1947.78125,
+        "left": 548.84375
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Claude",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 274.765625,
+        "y": 2080.984375,
+        "width": 50.953125,
+        "height": 17.59375,
+        "top": 2080.984375,
+        "right": 325.71875,
+        "bottom": 2098.578125,
+        "left": 274.765625
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "ChatGPT",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 561.359375,
+        "y": 2080.984375,
+        "width": 62.78125,
+        "height": 17.59375,
+        "top": 2080.984375,
+        "right": 624.140625,
+        "bottom": 2098.578125,
+        "left": 561.359375
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Codex",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 862.1875,
+        "y": 2080.984375,
+        "width": 46.125,
+        "height": 17.59375,
+        "top": 2080.984375,
+        "right": 908.3125,
+        "bottom": 2098.578125,
+        "left": 862.1875
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Cursor",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 1154.265625,
+        "y": 2080.984375,
+        "width": 46.953125,
+        "height": 17.59375,
+        "top": 2080.984375,
+        "right": 1201.21875,
+        "bottom": 2098.578125,
+        "left": 1154.265625
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Grok Bot",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 268.953125,
+        "y": 2222.984375,
+        "width": 62.59375,
+        "height": 17.59375,
+        "top": 2222.984375,
+        "right": 331.546875,
+        "bottom": 2240.578125,
+        "left": 268.953125
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Hermes",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 565.265625,
+        "y": 2222.984375,
+        "width": 54.953125,
+        "height": 17.59375,
+        "top": 2222.984375,
+        "right": 620.21875,
+        "bottom": 2240.578125,
+        "left": 565.265625
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "OpenClaw",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 847.453125,
+        "y": 2222.984375,
+        "width": 75.59375,
+        "height": 17.59375,
+        "top": 2222.984375,
+        "right": 923.046875,
+        "bottom": 2240.578125,
+        "left": 847.453125
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Any MCP client",
+      "className": "text-center text-body text-foreground leading-tight",
+      "rect": {
+        "x": 1123.46875,
+        "y": 2222.984375,
+        "width": 108.546875,
+        "height": 17.59375,
+        "top": 2222.984375,
+        "right": 1232.015625,
+        "bottom": 2240.578125,
+        "left": 1123.46875
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Don’t settle for AI that stops halfway",
+      "className": "max-w-[18ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 141,
+        "y": 2541.890625,
+        "width": 522,
+        "height": 96.78125,
+        "top": 2541.890625,
+        "right": 663,
+        "bottom": 2638.671875,
+        "left": 141
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Don’t settle for AI that stops halfway",
+      "className": "max-w-[18ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Don’t settle for AI that stops halfway",
+      "className": "max-w-[18ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Tested skills for recurring work",
+      "className": "flex items-center gap-2.5 text-foreground text-body-lg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "A computer for the heavy work",
+      "className": "flex items-center gap-2.5 text-foreground text-body-lg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Instant tools, no sign-ups",
+      "className": "flex items-center gap-2.5 text-foreground text-body-lg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "One setup for your whole team",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 422.4375,
+        "y": 5258.78125,
+        "width": 595.125,
+        "height": 48.390625,
+        "top": 5258.78125,
+        "right": 1017.5625,
+        "bottom": 5307.171875,
+        "left": 422.4375
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Shared Accounts",
+      "className": "text-foreground text-h3",
+      "rect": {
+        "x": 166,
+        "y": 5509.171875,
+        "width": 325.328125,
+        "height": 21.59375,
+        "top": 5509.171875,
+        "right": 491.328125,
+        "bottom": 5530.765625,
+        "left": 166
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Shared Skills",
+      "className": "text-foreground text-h3",
+      "rect": {
+        "x": 557.328125,
+        "y": 5509.171875,
+        "width": 325.328125,
+        "height": 21.59375,
+        "top": 5509.171875,
+        "right": 882.65625,
+        "bottom": 5530.765625,
+        "left": 557.328125
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Shared Budget",
+      "className": "text-foreground text-h3",
+      "rect": {
+        "x": 948.65625,
+        "y": 5509.171875,
+        "width": 325.34375,
+        "height": 21.59375,
+        "top": 5509.171875,
+        "right": 1274,
+        "bottom": 5530.765625,
+        "left": 948.65625
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Secure access, always in your control",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 401,
+        "y": 6029.765625,
+        "width": 638,
+        "height": 96.78125,
+        "top": 6029.765625,
+        "right": 1039,
+        "bottom": 6126.546875,
+        "left": 401
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Your accounts, your rules",
+      "className": "text-body-lg text-foreground",
+      "rect": {
+        "x": 166,
+        "y": 6541.546875,
+        "width": 320,
+        "height": 27,
+        "top": 6541.546875,
+        "right": 486,
+        "bottom": 6568.546875,
+        "left": 166
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Prompt injections get blocked",
+      "className": "text-body-lg text-foreground",
+      "rect": {
+        "x": 560,
+        "y": 6541.546875,
+        "width": 320,
+        "height": 27,
+        "top": 6541.546875,
+        "right": 880,
+        "bottom": 6568.546875,
+        "left": 560
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Every action on record",
+      "className": "text-body-lg text-foreground",
+      "rect": {
+        "x": 954,
+        "y": 6541.546875,
+        "width": 320,
+        "height": 27,
+        "top": 6541.546875,
+        "right": 1274,
+        "bottom": 6568.546875,
+        "left": 954
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Build it into your agent",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 506.1875,
+        "y": 6825.546875,
+        "width": 427.625,
+        "height": 48.390625,
+        "top": 6825.546875,
+        "right": 933.8125,
+        "bottom": 6873.9375,
+        "left": 506.1875
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Works with any framework",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 463.1875,
+        "y": 7712.9375,
+        "width": 513.609375,
+        "height": 48.390625,
+        "top": 7712.9375,
+        "right": 976.796875,
+        "bottom": 7761.328125,
+        "left": 463.1875
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Built for enterprise deployment",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 423.53125,
+        "y": 8399.328125,
+        "width": 592.921875,
+        "height": 48.390625,
+        "top": 8399.328125,
+        "right": 1016.453125,
+        "bottom": 8447.71875,
+        "left": 423.53125
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "One place to govern every agent in your company.",
+      "className": "max-w-[22ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 401,
+        "y": 9146.71875,
+        "width": 638,
+        "height": 96.78125,
+        "top": 9146.71875,
+        "right": 1039,
+        "bottom": 9243.5,
+        "left": 401
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Works with your identity provider",
+      "className": "text-foreground text-h3",
+      "rect": {
+        "x": 174,
+        "y": 9406.5,
+        "width": 505,
+        "height": 21.59375,
+        "top": 9406.5,
+        "right": 679,
+        "bottom": 9428.09375,
+        "left": 174
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Certified security controls",
+      "className": "text-foreground text-h3",
+      "rect": {
+        "x": 761,
+        "y": 9406.5,
+        "width": 505,
+        "height": 21.59375,
+        "top": 9406.5,
+        "right": 1266,
+        "bottom": 9428.09375,
+        "left": 761
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Frequently asked questions",
+      "className": "text-foreground text-h1",
+      "rect": {
+        "x": 141,
+        "y": 10036.09375,
+        "width": 320,
+        "height": 96.78125,
+        "top": 10036.09375,
+        "right": 461,
+        "bottom": 10132.875,
+        "left": 141
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Do I have to switch to a new AI to use Composio? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10037.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10037.09375,
+        "right": 1299,
+        "bottom": 10112.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Which AI assistants does Composio work with? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10113.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10113.09375,
+        "right": 1299,
+        "bottom": 10188.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Which apps can I connect to? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10189.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10189.09375,
+        "right": 1299,
+        "bottom": 10264.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "The app I need isn't listed. Can I still use it? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10265.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10265.09375,
+        "right": 1299,
+        "bottom": 10340.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Do I need to know how to code? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10341.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10341.09375,
+        "right": 1299,
+        "bottom": 10416.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "How is Composio different from the connectors already built into my AI? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10417.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10417.09375,
+        "right": 1299,
+        "bottom": 10492.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "What access does Composio get to my accounts? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10493.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10493.09375,
+        "right": 1299,
+        "bottom": 10568.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "How long does it take to set up Composio? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10569.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10569.09375,
+        "right": 1299,
+        "bottom": 10644.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "How much does Composio cost? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10645.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10645.09375,
+        "right": 1299,
+        "bottom": 10720.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Is Composio secure? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10721.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10721.09375,
+        "right": 1299,
+        "bottom": 10796.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "I’m an AI agent. How do I sign up for Composio? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10797.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10797.09375,
+        "right": 1299,
+        "bottom": 10872.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Can I use Composio for backend apps as well as AI agents? +",
+      "className": "",
+      "rect": {
+        "x": 525,
+        "y": 10873.09375,
+        "width": 774,
+        "height": 75,
+        "top": 10873.09375,
+        "right": 1299,
+        "bottom": 10948.09375,
+        "left": 525
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Give your AI what it needs to finish the job",
+      "className": "max-w-[20ch] text-balance text-foreground text-h1",
+      "rect": {
+        "x": 430,
+        "y": 11249.703125,
+        "width": 580,
+        "height": 96.78125,
+        "top": 11249.703125,
+        "right": 1010,
+        "bottom": 11346.484375,
+        "left": 430
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Subscribe to our newsletter",
+      "className": "font-sans text-2xl text-foreground leading-tight md:text-3xl",
+      "rect": {
+        "x": 141,
+        "y": 11731.09375,
+        "width": 559,
+        "height": 33,
+        "top": 11731.09375,
+        "right": 700,
+        "bottom": 11764.09375,
+        "left": 141
+      }
+    }
+  ],
+  "sectionsCount": 19,
+  "sectionSummaries": [
+    {
+      "idx": 0,
+      "tag": "SECTION",
+      "id": "",
+      "className": "dark relative flex min-h-[calc(100lvh-var(--hero-topbar-height))] flex-col items-center overflow-hidden bg-background pt-[60px] md:min-h-[min(calc(100dvh-var(--hero-topbar-height)),900px)] md:pt-0 [--hero-topbar-height:36px] max-[311.98px]:[--hero-topbar-height:56px] max-[285.98px]:[--hero-topbar-height:72px]",
+      "textSnippet": "Give your AI secure access to a browser in minutes GET STARTED FOR FREE GET A DEMO TRUSTED BY ↗ ↗ ↗",
+      "rect": {
+        "x": 0,
+        "y": 36,
+        "width": 1440,
+        "height": 864,
+        "top": 36,
+        "right": 1440,
+        "bottom": 900,
+        "left": 0
+      }
+    },
+    {
+      "idx": 1,
+      "tag": "SECTION",
+      "id": "",
+      "className": "flex w-full items-center justify-center",
+      "textSnippet": "↗ ↗ ↗",
+      "rect": {
+        "x": 0,
+        "y": 716,
+        "width": 1440,
+        "height": 120,
+        "top": 716,
+        "right": 1440,
+        "bottom": 836,
+        "left": 0
+      }
+    },
+    {
+      "idx": 2,
+      "tag": "SECTION",
+      "id": "",
+      "className": "logoloop logoloop--horizontal logoBarLoop",
+      "textSnippet": "↗↗↗↗",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "idx": 3,
+      "tag": "SECTION",
+      "id": "",
+      "className": "logoloop logoloop--horizontal logoBarLoop",
+      "textSnippet": "↗↗",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "idx": 4,
+      "tag": "SECTION",
+      "id": "use-cases",
+      "className": "bg-background text-foreground",
+      "textSnippet": "Make your AI finish what you ask Composio gives it the right tools, access to your accounts, and skills that already work, so it gets it right the fi",
+      "rect": {
+        "x": 0,
+        "y": 900,
+        "width": 1440,
+        "height": 934.390625,
+        "top": 900,
+        "right": 1440,
+        "bottom": 1834.390625,
+        "left": 0
+      }
+    },
+    {
+      "idx": 5,
+      "tag": "SECTION",
+      "id": "agents",
+      "className": "bg-background text-foreground scroll-mt-24",
+      "textSnippet": "Works with any AI Setup takes less than a minute. See the guide for each Claude Install ChatGPT Install Codex Install Cursor Install Grok Bot Instal",
+      "rect": {
+        "x": 0,
+        "y": 1834.390625,
+        "width": 1440,
+        "height": 552.390625,
+        "top": 1834.390625,
+        "right": 1440,
+        "bottom": 2386.78125,
+        "left": 0
+      }
+    },
+    {
+      "idx": 6,
+      "tag": "SECTION",
+      "id": "harder-jobs",
+      "className": "bg-background text-foreground",
+      "textSnippet": "Don’t settle for AI that stops halfway Long jobs are where AI stalls. Composio gives it proven steps, a place to run code, and the tools to fill any ",
+      "rect": {
+        "x": 0,
+        "y": 2386.78125,
+        "width": 1440,
+        "height": 2807,
+        "top": 2386.78125,
+        "right": 1440,
+        "bottom": 5193.78125,
+        "left": 0
+      }
+    },
+    {
+      "idx": 7,
+      "tag": "SECTION",
+      "id": "teams",
+      "className": "bg-background text-foreground",
+      "textSnippet": "One setup for your whole team Share apps, skills and a budget once. Every teammate's AI gets them. SET UP YOUR TEAM Shared Accounts Ready for every",
+      "rect": {
+        "x": 0,
+        "y": 5193.78125,
+        "width": 1440,
+        "height": 770.984375,
+        "top": 5193.78125,
+        "right": 1440,
+        "bottom": 5964.765625,
+        "left": 0
+      }
+    },
+    {
+      "idx": 8,
+      "tag": "SECTION",
+      "id": "",
+      "className": "overflow-hidden rounded-3xl border border-foreground/10 bg-card flex flex-col pb-5",
+      "textSnippet": "Shared Accounts Ready for everyone sales@acme.com support@acme.com Acme Production metabase.acme.com acme.slack.com",
+      "rect": {
+        "x": 141,
+        "y": 5484.171875,
+        "width": 375.328125,
+        "height": 368.59375,
+        "top": 5484.171875,
+        "right": 516.328125,
+        "bottom": 5852.765625,
+        "left": 141
+      }
+    },
+    {
+      "idx": 9,
+      "tag": "SECTION",
+      "id": "",
+      "className": "overflow-hidden rounded-3xl border border-foreground/10 bg-card flex flex-col pb-5",
+      "textSnippet": "Shared Skills For every teammate's AI Prep for a Meeting P Answer Support Emails M Weekly Revenue Update D Triage Product Bugs S Summarize Sales Cal",
+      "rect": {
+        "x": 532.328125,
+        "y": 5484.171875,
+        "width": 375.328125,
+        "height": 368.59375,
+        "top": 5484.171875,
+        "right": 907.65625,
+        "bottom": 5852.765625,
+        "left": 532.328125
+      }
+    },
+    {
+      "idx": 10,
+      "tag": "SECTION",
+      "id": "",
+      "className": "overflow-hidden rounded-3xl border border-foreground/10 bg-card flex flex-col",
+      "textSnippet": "Shared Budget $412 used this month Apollo $180 Exa $132 Firecrawl $100 INSTANT AGENT BUDGET $2.00",
+      "rect": {
+        "x": 923.65625,
+        "y": 5484.171875,
+        "width": 375.34375,
+        "height": 368.59375,
+        "top": 5484.171875,
+        "right": 1299,
+        "bottom": 5852.765625,
+        "left": 923.65625
+      }
+    },
+    {
+      "idx": 11,
+      "tag": "SECTION",
+      "id": "trust",
+      "className": "bg-background text-foreground",
+      "textSnippet": "Secure access, always in your control Decide what your AI can reach and what it can do. Composio keeps the rest out. Continue with Google Read email",
+      "rect": {
+        "x": 0,
+        "y": 5964.765625,
+        "width": 1440,
+        "height": 748.78125,
+        "top": 5964.765625,
+        "right": 1440,
+        "bottom": 6713.546875,
+        "left": 0
+      }
+    },
+    {
+      "idx": 12,
+      "tag": "SECTION",
+      "id": "build",
+      "className": "dark bg-background text-foreground",
+      "textSnippet": "Build it into your agent Your agent gets the same layer. Your users connect their own accounts, and Composio runs every call. EXPLORE THE PLATFORM ~",
+      "rect": {
+        "x": 0,
+        "y": 6713.546875,
+        "width": 1440,
+        "height": 934.390625,
+        "top": 6713.546875,
+        "right": 1440,
+        "bottom": 7647.9375,
+        "left": 0
+      }
+    },
+    {
+      "idx": 13,
+      "tag": "SECTION",
+      "id": "frameworks",
+      "className": "dark bg-background text-foreground",
+      "textSnippet": "Works with any framework OpenAI Anthropic Vercel AI SDK Google LangChain More $ npm install @composio/core @composio/openai openai const session = awa",
+      "rect": {
+        "x": 0,
+        "y": 7647.9375,
+        "width": 1440,
+        "height": 686.390625,
+        "top": 7647.9375,
+        "right": 1440,
+        "bottom": 8334.328125,
+        "left": 0
+      }
+    },
+    {
+      "idx": 14,
+      "tag": "SECTION",
+      "id": "org",
+      "className": "bg-background text-foreground",
+      "textSnippet": "Built for enterprise deployment For enterprise teams: see who each agent acts for, what it can reach and what it's allowed to do, and change it in on",
+      "rect": {
+        "x": 0,
+        "y": 8334.328125,
+        "width": 1440,
+        "height": 747.390625,
+        "top": 8334.328125,
+        "right": 1440,
+        "bottom": 9081.71875,
+        "left": 0
+      }
+    },
+    {
+      "idx": 15,
+      "tag": "SECTION",
+      "id": "enterprise",
+      "className": "bg-background text-foreground",
+      "textSnippet": "One place to govern every agent in your company. Roll Composio out across your company within your identity, security and data rules. Works with you",
+      "rect": {
+        "x": 0,
+        "y": 9081.71875,
+        "width": 1440,
+        "height": 825.375,
+        "top": 9081.71875,
+        "right": 1440,
+        "bottom": 9907.09375,
+        "left": 0
+      }
+    },
+    {
+      "idx": 16,
+      "tag": "SECTION",
+      "id": "faq",
+      "className": "bg-background text-foreground",
+      "textSnippet": "Frequently asked questions Do I have to switch to a new AI to use Composio? + Which AI assistants does Composio work with? + Which apps can I connect ",
+      "rect": {
+        "x": 0,
+        "y": 9907.09375,
+        "width": 1440,
+        "height": 1170,
+        "top": 9907.09375,
+        "right": 1440,
+        "bottom": 11077.09375,
+        "left": 0
+      }
+    },
+    {
+      "idx": 17,
+      "tag": "SECTION",
+      "id": "start",
+      "className": "bg-background text-foreground",
+      "textSnippet": "Give your AI what it needs to finish the job Add Composio to the AI you already use. Free to start, and set up in minutes. CONNECT YOUR AI SEE IT WO",
+      "rect": {
+        "x": 0,
+        "y": 11077.09375,
+        "width": 1440,
+        "height": 590,
+        "top": 11077.09375,
+        "right": 1440,
+        "bottom": 11667.09375,
+        "left": 0
+      }
+    },
+    {
+      "idx": 18,
+      "tag": "SECTION",
+      "id": "",
+      "className": "mb-12 grid gap-6 md:mb-16 md:grid-cols-2 md:items-start md:gap-10",
+      "textSnippet": "Subscribe to our newsletter Get product updates, practical guides, and ideas for building better agents. Email address Subscribe Newsletter and pro",
+      "rect": {
+        "x": 141,
+        "y": 11731.09375,
+        "width": 1158,
+        "height": 83,
+        "top": 11731.09375,
+        "right": 1299,
+        "bottom": 11814.09375,
+        "left": 141
+      }
+    }
+  ]
+}

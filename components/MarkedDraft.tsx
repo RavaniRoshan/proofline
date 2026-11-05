@@ -103,7 +103,7 @@ export function MarkedDraft({
               onClick={() => onSelectFinding(f)}
               title={`${f.verdict}: ${f.reason}`}
               className={cn(
-                "inline cursor-pointer rounded-[3px] border-b-2 px-1 py-0.5 transition-all duration-100",
+                "inline cursor-pointer rounded-none border-b-2 px-1 py-0.5 transition-all duration-100",
                 config.badgeClasses,
                 isSelected
                   ? "ring-2 ring-slate ring-offset-1 font-semibold"

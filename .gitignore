@@ -46,3 +46,21 @@ next-env.d.ts
 
 # playwright output
 /test-results/
+
+# agent & ide workspaces
+.agent/
+.agents/
+.claude/
+.codex/
+.devin/
+.gemini/
+.grok/
+.hermes/
+.kiro/
+.opencode/
+.pi/
+.qoder/
+.rovodev/
+.superpowers/
+.vibe/
+

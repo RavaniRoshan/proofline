@@ -128,7 +128,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-between text-[11px] text-muted">
+      <div className="flex items-center justify-between text-[12px] text-muted">
         <span>
           Showing {filtered.length} of {rows.length} rows
           {query && ` matching "${query}"`}
@@ -226,7 +226,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                     </td>
                     <td className="px-3 py-2.5">
                       <span
-                        className={`inline-flex rounded-[4px] border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
+                        className={`inline-flex rounded-[4px] border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
                           f.status === "approved"
                             ? "border-v-supported-fg/30 bg-v-supported-bg text-v-supported-fg"
                             : f.status === "superseded"
@@ -289,9 +289,9 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 <div className="flex items-center gap-2">
                   <FileText size={14} className="text-slate" />
                   <div>
-                    <p className="text-[10px] uppercase tracking-wide text-muted">Source Document</p>
+                    <p className="text-[11px] uppercase tracking-wide text-muted">Source Document</p>
                     <p className="font-mono text-foreground">{activeFact.source_document_id}</p>
-                    <p className="text-[10px] text-muted">
+                    <p className="text-[11px] text-muted">
                       Span: [{activeFact.source_span[0]}, {activeFact.source_span[1]}]
                     </p>
                   </div>
@@ -300,12 +300,12 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 <div className="flex items-center gap-2">
                   <Calendar size={14} className="text-slate" />
                   <div>
-                    <p className="text-[10px] uppercase tracking-wide text-muted">Validity Window</p>
+                    <p className="text-[11px] uppercase tracking-wide text-muted">Validity Window</p>
                     <p className="font-mono text-foreground">
                       {activeFact.valid_from} to {activeFact.valid_until}
                     </p>
                     {activeFact.stale && (
-                      <p className="text-[10px] font-semibold text-v-stale-fg">
+                      <p className="text-[11px] font-semibold text-v-stale-fg">
                         Outside validity window (stale)
                       </p>
                     )}
@@ -315,12 +315,12 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 <div className="flex items-center gap-2">
                   <UserCheck size={14} className="text-slate" />
                   <div>
-                    <p className="text-[10px] uppercase tracking-wide text-muted">Approval Status</p>
+                    <p className="text-[11px] uppercase tracking-wide text-muted">Approval Status</p>
                     <p className="font-medium text-foreground">
                       {activeFact.status} by {activeFact.approved_by}
                     </p>
                     {activeFact.conflict && (
-                      <p className="text-[10px] font-semibold text-v-conflicting-fg">
+                      <p className="text-[11px] font-semibold text-v-conflicting-fg">
                         Contradicted by another approved row
                       </p>
                     )}
