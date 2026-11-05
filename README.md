@@ -92,7 +92,3 @@ Pull requests welcome. Run the gates above before submitting. MIT licensed; see 
 ## Docs
 
 [Live demo](https://proofline-sigma.vercel.app) · [Repo](https://github.com/RavaniRoshan/proofline) · [PDF](https://drive.google.com/file/d/1f2UiggPpvjTz1mhgyASbu8RWp1csY9q4/view?usp=sharing) · [About](https://proofline-sigma.vercel.app/about)
-```
-
-Need add alt text for GIF: "![Proofline demo: load sample draft, run Check, open evidence drawer, record decision]" maybe. The task says alt text describes action, not "demo gif". Let's set alt text descriptive.<|end|><|start|> assistants to=Edit<|channel|>analysis <|constrain|>xml<|message|><rfl:parameter name="path">
-/home/shiva/projects/proofline/README.md
