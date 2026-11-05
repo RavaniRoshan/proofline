@@ -8,7 +8,7 @@ import {
   type DecisionValue,
   type StoredDecision,
 } from "@/lib/local";
-import { VerdictBadge } from "@/components/VerdictBadge";
+import { VerdictBadge } from "@/components/ui/badge";
 import { FileText, Lightbulb, Check, X, PencilLine } from "lucide-react";
 
 const DECISION_ICON: Record<DecisionValue, typeof Check> = {
@@ -50,8 +50,8 @@ export function FindingCard({ finding, index, selected, decision, onRecorded }: 
       data-testid="finding"
       data-verdict={finding.verdict}
       data-index={index}
-      className={`rounded-xl border bg-card p-4 shadow-sm transition-shadow sm:p-5 ${
-        selected ? "border-slate ring-2 ring-slate/25" : "border-line"
+      className={`rounded-[6px] border bg-card p-4 sm:p-5 transition-colors ${
+        selected ? "border-slate ring-2 ring-slate/25" : "border-line-strong"
       }`}
       aria-label={`Finding ${index + 1}: ${finding.verdict}`}
     >

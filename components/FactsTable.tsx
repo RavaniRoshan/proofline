@@ -48,10 +48,10 @@ export function FactsTable({
               aria-pressed={active}
               onClick={() => setFilter(id)}
               data-testid={`filter-${id}`}
-              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-medium transition-colors ${
+              className={`inline-flex items-center gap-1.5 rounded-[4px] border px-3 py-1.5 text-[13px] font-medium transition-colors ${
                 active
-                  ? "border-accent bg-accent text-white"
-                  : "border-line bg-card text-foreground hover:border-accent hover:text-accent"
+                  ? "border-slate bg-slate text-white"
+                  : "border-line bg-panel text-foreground hover:border-line-strong hover:text-ink-soft"
               }`}
             >
               <Icon size={13} aria-hidden="true" />
@@ -61,7 +61,7 @@ export function FactsTable({
           );
         })}
         <p className="ml-auto text-[11px] text-muted">
-          Amber = outside its validity window · Orange = two approved facts disagree
+          Amber = outside validity window · Plum = two approved facts disagree
         </p>
       </div>
 
@@ -95,7 +95,7 @@ export function FactsTable({
                 <tr
                   key={`${f.fact_id}-v${f.version}`}
                   className={`border-b border-line/60 align-top last:border-0 ${
-                    f.conflict ? "bg-orange-50/60" : f.stale ? "bg-amber-50/60" : ""
+                    f.conflict ? "bg-v-conflicting-bg/50" : f.stale ? "bg-v-stale-bg/50" : ""
                   }`}
                 >
                   <td className="px-3 py-2.5 font-mono text-[12px]">
@@ -110,12 +110,12 @@ export function FactsTable({
                   </td>
                   <td className="px-3 py-2.5">
                     <span
-                      className={`inline-flex rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
+                      className={`inline-flex rounded-[4px] border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
                         f.status === "approved"
-                          ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+                          ? "border-v-supported-fg/30 bg-v-supported-bg text-v-supported-fg"
                           : f.status === "superseded"
-                            ? "border-amber-200 bg-amber-50 text-amber-900"
-                            : "border-zinc-200 bg-zinc-100 text-zinc-600"
+                            ? "border-v-stale-fg/30 bg-v-stale-bg text-v-stale-fg"
+                            : "border-line-strong bg-panel text-ink-soft"
                       }`}
                     >
                       {f.status}

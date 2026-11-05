@@ -31,12 +31,12 @@ function Stat({
 }) {
   const toneClasses =
     tone === "danger"
-      ? "text-red-800"
+      ? "text-v-contradicted-fg"
       : tone === "warn"
-        ? "text-amber-800"
+        ? "text-v-stale-fg"
         : "text-slate";
   return (
-    <div className="rounded-xl border border-line bg-card p-4">
+    <div className="rounded-[6px] border border-line-strong bg-card p-4">
       <Icon size={18} aria-hidden="true" className={toneClasses} />
       <p className="mt-2 text-3xl font-bold tabular-nums tracking-tight">{value}</p>
       <p className="mt-0.5 text-[12px] leading-snug text-muted">{label}</p>
@@ -91,8 +91,8 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
           Your review log <span className="font-normal text-muted">· this browser</span>
         </h2>
         {state.audit.length === 0 ? (
-          <div className="mt-3 rounded-xl border border-dashed border-line bg-card/50 p-6 text-center">
-            <Inbox size={26} aria-hidden="true" className="mx-auto text-accent" />
+          <div className="mt-3 rounded-[6px] border border-dashed border-line-strong bg-panel/40 p-6 text-center">
+            <Inbox size={26} aria-hidden="true" className="mx-auto text-slate" />
             <p className="mt-2 font-semibold">No decisions recorded yet.</p>
             <p className="mx-auto mt-1 max-w-xs text-[13px] text-muted">
               Check a draft, decide on its findings, and this panel fills itself — verdict counts,
@@ -100,13 +100,13 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
             </p>
             <Link
               href="/"
-              className="mt-3 inline-flex h-9 items-center rounded-md bg-accent px-4 text-[13px] font-semibold text-white hover:bg-accent-hover"
+              className="mt-3 inline-flex h-9 items-center rounded-[4px] bg-accent px-4 text-[13px] font-semibold text-white hover:bg-accent-hover"
             >
               Check a draft
             </Link>
           </div>
         ) : (
-          <div className="mt-3 rounded-xl border border-line bg-card p-4">
+          <div className="mt-3 rounded-[6px] border border-line-strong bg-card p-4">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-muted">
               Decisions by verdict
             </p>

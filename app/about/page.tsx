@@ -38,14 +38,14 @@ export default function AboutPage() {
           target="_blank"
           rel="noreferrer"
           data-testid="round1-pdf"
-          className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[15px] font-semibold text-white transition-colors hover:bg-accent-hover"
+          className="inline-flex h-11 items-center gap-2 rounded-[4px] border border-line-strong bg-panel px-5 text-[15px] font-semibold text-foreground transition-colors hover:border-slate"
         >
           <FileText size={17} aria-hidden="true" />
           Round 1 plan &amp; PDF
         </a>
         <Link
           href="/"
-          className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[15px] font-semibold text-white transition-colors hover:bg-accent-hover"
+          className="inline-flex h-11 items-center gap-2 rounded-[4px] bg-accent px-5 text-[15px] font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           <ShieldCheck size={17} aria-hidden="true" />
           Check a draft
@@ -53,7 +53,7 @@ export default function AboutPage() {
         </Link>
       </div>
 
-      <section className="mt-8 rounded-xl border border-line bg-card p-5">
+      <section className="mt-8 rounded-[6px] border border-line-strong bg-card p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
           What this does not do
         </h2>
@@ -65,7 +65,7 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      <section className="mt-4 rounded-xl border border-line bg-card p-5">
+      <section className="mt-4 rounded-[6px] border border-line-strong bg-card p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
           How it decides
         </h2>
@@ -78,7 +78,7 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <section className="mt-4 rounded-xl border border-line bg-card p-5">
+      <section className="mt-4 rounded-[6px] border border-line-strong bg-card p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
           Source &amp; data
         </h2>

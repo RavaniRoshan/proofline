@@ -92,7 +92,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
   return (
     <div>
       {/* ---- input card ---- */}
-      <section className="rounded-2xl border border-line bg-card p-4 shadow-sm sm:p-5">
+      <section className="rounded-[6px] border border-line-strong bg-card p-4 sm:p-5">
         <div className="flex items-center justify-between gap-2">
           <label htmlFor="draft" className="text-sm font-semibold text-foreground">
             Your draft
@@ -103,7 +103,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               type="button"
               onClick={() => setDraft(sampleDraft)}
               data-testid="load-sample"
-              className="inline-flex items-center gap-1.5 rounded-md border border-line bg-background px-2.5 py-1.5 text-xs font-medium text-ink-soft transition-colors hover:border-line-strong"
+              className="inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-xs font-medium text-ink-soft transition-colors hover:border-slate"
             >
               <Wand2 size={13} aria-hidden="true" />
               Load sample draft
@@ -133,7 +133,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
           onChange={(e) => setDraft(e.target.value)}
           spellCheck={false}
           placeholder="Paste your launch page, release note, pricing page…"
-          className="mt-3 h-48 w-full resize-y rounded-xl border border-line bg-background p-4 text-[15px] leading-relaxed placeholder:text-muted sm:h-56"
+          className="mt-3 h-48 w-full resize-y rounded-[4px] border border-line-strong bg-background p-4 text-[15px] leading-relaxed placeholder:text-muted focus:border-slate focus:outline-none sm:h-56"
           data-testid="draft-input"
         />
         <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -142,7 +142,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             onClick={() => void check()}
             disabled={status === "checking"}
             data-testid="check-button"
-            className="inline-flex h-11 min-w-36 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent-hover disabled:opacity-60"
+            className="inline-flex h-11 min-w-36 items-center justify-center gap-2 rounded-[4px] bg-accent px-6 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
           >
             {status === "checking" ? (
               <>
@@ -156,7 +156,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               </>
             )}
           </button>
-          <kbd className="hidden rounded border border-line bg-background px-2 py-1 text-[11px] text-muted sm:inline">
+          <kbd className="hidden rounded-[4px] border border-line-strong bg-panel px-2 py-1 text-[11px] text-muted sm:inline">
             ⌘↵ to check · j / k to move
           </kbd>
           <p className="ml-auto text-[11px] text-muted">
@@ -167,12 +167,12 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
 
       {/* ---- error ---- */}
       {status === "error" && error && (
-        <div role="alert" className="mt-4 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-900">
+        <div role="alert" className="mt-4 flex items-start gap-3 rounded-[6px] border border-v-contradicted-fg/30 bg-v-contradicted-bg p-4 text-sm text-v-contradicted-fg">
           <AlertTriangle size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
           <div>
             <p className="font-semibold">The check could not complete.</p>
             <p className="mt-0.5">{error}</p>
-            <p className="mt-1 text-xs text-red-800/80">Nothing was changed in your register. Press Check again to retry.</p>
+            <p className="mt-1 text-xs opacity-90">Nothing was changed in your register. Press Check again to retry.</p>
           </div>
         </div>
       )}
@@ -185,7 +185,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             { step: "2", title: "Press Check", body: "Rules decide numbers, dates, names and disclaimers. The model only reads what rules cannot.", icon: ShieldCheck },
             { step: "3", title: "Decide on each finding", body: "Approve, reject or request an edit — with a reason. Decisions land in the audit log.", icon: Wand2 },
           ].map(({ step, title, body, icon: Icon }) => (
-            <div key={step} className="rounded-xl border border-dashed border-line bg-card/50 p-4">
+            <div key={step} className="rounded-[6px] border border-dashed border-line-strong bg-panel/40 p-4">
               <Icon size={18} aria-hidden="true" className="text-slate" />
               <p className="mt-2 text-sm font-semibold">{step}. {title}</p>
               <p className="mt-1 text-[13px] leading-snug text-muted">{body}</p>
@@ -202,7 +202,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             <span className="text-muted" aria-hidden="true">·</span>
             {ALL_VERDICTS.map((v) =>
               result.summary.by_verdict[v] > 0 ? (
-                <span key={v} className="rounded-full border border-line bg-card px-2 py-0.5 text-[11px] font-medium text-foreground/80">
+                <span key={v} className="rounded-[4px] border border-line-strong bg-panel px-2 py-0.5 text-[11px] font-medium text-foreground">
                   {result.summary.by_verdict[v]} {v.replace("_", " ")}
                 </span>
               ) : null,
@@ -215,9 +215,9 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
 
           <div className="mt-4 flex flex-col gap-3" data-testid="findings-list">
             {actionable.length === 0 ? (
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-sm text-emerald-900">
+              <div className="rounded-[6px] border border-v-supported-fg/30 bg-v-supported-bg p-5 text-sm text-v-supported-fg">
                 <p className="font-semibold">Nothing blocking.</p>
-                <p className="mt-1">Every checkable claim in this draft matches the register. Review the supported items below before you ship.</p>
+                <p className="mt-1 opacity-90">Every checkable claim in this draft matches the register. Review the supported items below before you ship.</p>
               </div>
             ) : (
               actionable.map((f, i) => (
@@ -233,7 +233,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
           </div>
 
           {collapsed.length > 0 && (
-            <details className="mt-4 rounded-xl border border-line bg-card">
+            <details className="mt-4 rounded-[6px] border border-line-strong bg-card">
               <summary className="flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium text-muted hover:text-foreground">
                 <ChevronDown size={16} aria-hidden="true" className="transition-transform" />
                 Supported and not checkable ({collapsed.length})
