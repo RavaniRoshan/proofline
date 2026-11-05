@@ -32,11 +32,11 @@ export function AuditLog() {
         <ScrollText size={28} aria-hidden="true" className="mx-auto text-slate" />
         <p className="mt-3 font-semibold">Nothing logged yet.</p>
         <p className="mx-auto mt-1 max-w-md text-sm text-muted">
-          Check a draft on the home page and record a decision on a finding — every decision you make
+          Check a draft and record a decision on a finding — every decision you make
           appears here with its reason and the fact behind it.
         </p>
         <Link
-          href="/"
+          href="/check"
           className="mt-4 inline-flex h-10 items-center rounded-[4px] bg-accent px-5 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           Go check a draft

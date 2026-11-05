@@ -4,7 +4,7 @@ test.describe("Proofline core flow", () => {
   test("draft in → findings with evidence out → decision recorded → audit entry written", async ({
     page,
   }) => {
-    await page.goto("/");
+    await page.goto("/check");
     await expect(page.getByTestId("check-button")).toBeVisible();
 
     // The checker is the landing page, empty until told otherwise.
@@ -40,7 +40,7 @@ test.describe("Proofline core flow", () => {
 
   test("Reset demo clears decisions previously recorded in this browser", async ({ page }) => {
     // Seed one decision through the UI.
-    await page.goto("/");
+    await page.goto("/check");
     await page.getByTestId("load-sample").click();
     await page.getByTestId("check-button").click();
     await expect(page.getByTestId("summary")).toBeVisible({ timeout: 180_000 });
@@ -59,7 +59,7 @@ test.describe("Proofline core flow", () => {
   });
 
   test("every nav route answers 200 without sign-in", async ({ page }) => {
-    for (const path of ["/", "/facts", "/audit", "/dashboard", "/about"]) {
+    for (const path of ["/", "/check", "/facts", "/audit", "/dashboard", "/about"]) {
       const res = await page.goto(path);
       expect(res?.status(), path).toBe(200);
     }

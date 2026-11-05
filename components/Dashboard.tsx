@@ -99,7 +99,7 @@ export function Dashboard({ stats, reviewDate }: { stats: RegisterStats; reviewD
               decisions, everything.
             </p>
             <Link
-              href="/"
+              href="/check"
               className="mt-3 inline-flex h-9 items-center rounded-[4px] bg-accent px-4 text-[13px] font-semibold text-white hover:bg-accent-hover"
             >
               Check a draft

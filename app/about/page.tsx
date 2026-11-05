@@ -44,7 +44,7 @@ export default function AboutPage() {
           Round 1 plan &amp; PDF
         </a>
         <Link
-          href="/"
+          href="/check"
           className="inline-flex h-11 items-center gap-2 rounded-[4px] bg-accent px-5 text-[15px] font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           <ShieldCheck size={17} aria-hidden="true" />
