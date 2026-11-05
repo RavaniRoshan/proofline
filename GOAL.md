@@ -18,7 +18,7 @@
 - [x] Vercel production deploy — https://proofline-sigma.vercel.app (all routes 200 anonymously)
 - [x] Incognito-equivalent production flow verified from a fresh browser context (draft → findings → decision → audit)
 - [x] Round 1 PDF link — Google Drive (public) wired into /about
-- [x] `LLM_API_KEY` set in Vercel (Groq free tier, `openai/gpt-oss-20b`, `LLM_BASE_URL=https://api.groq.com/openai/v1`) — production semantic path ON (18 findings, 14 rule checks, 4 model checks). Smoke: 22/24 with Groq, 23/24 with Ollama; misses: S-008 (by design) + S-021 (borderline entailment for this model); labels/threshold unchanged
+- [x] `LLM_API_KEY` set in Vercel (Groq free tier, `openai/gpt-oss-20b`, `LLM_BASE_URL=https://api.groq.com/openai/v1`) — production semantic path ON (18 findings, 14 rule checks, 4 model checks). Smoke: 23/24 on both Groq gpt-oss-20b (deployed) and Ollama qwen3:4b; sole miss: S-008 (by design). Labels/threshold unchanged
 
 ## Cut order if time runs out
 
