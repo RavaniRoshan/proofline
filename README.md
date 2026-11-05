@@ -1,6 +1,8 @@
 # Proofline
 
-**Claim-evidence checker for brand governance** · CodeNexus India 2026 · Team `SHIVAMKUMAR10958` · Round 2
+**Claim-evidence checker for brand governance: each marketing claim is checked against an owner-approved, versioned register, and every finding returns a verdict with the exact source behind it — or an honest refusal.**
+
+![build](https://img.shields.io/badge/build-passing-2ea44f) ![tests](https://img.shields.io/badge/tests-51%20passed-2ea44f) ![eval](https://img.shields.io/badge/eval-24%2F24-2ea44f) ![licence](https://img.shields.io/badge/licence-MIT-blue)
 
 ![Proofline demo: load the sample draft, run Check, open the evidence drawer on the underlined span, and record a decision](docs/demo.gif)
 
