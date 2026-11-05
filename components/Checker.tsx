@@ -10,10 +10,13 @@ import {
   ChevronDown,
   ClipboardPaste,
 } from "lucide-react";
-import type { VerifyResult, Verdict } from "@/lib/types";
+import type { VerifyResult, Verdict, Finding } from "@/lib/types";
 import { ALL_VERDICTS } from "@/lib/types";
 import { FindingCard } from "@/components/FindingCard";
+import { MarkedDraft } from "@/components/MarkedDraft";
+import { EvidenceDrawer } from "@/components/EvidenceDrawer";
 import { useProoflineState } from "@/lib/use-proofline";
+import { cn } from "@/lib/utils";
 
 const COLLAPSED_VERDICTS: Verdict[] = ["SUPPORTED", "NOT_CHECKABLE"];
 
@@ -23,6 +26,8 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<VerifyResult | null>(null);
   const [selected, setSelected] = useState(0);
+  const [drawerFinding, setDrawerFinding] = useState<Finding | null>(null);
+  const [mobileTab, setMobileTab] = useState<"findings" | "draft">("findings");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const stored = useProoflineState();
 
@@ -213,55 +218,151 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             </p>
           </div>
 
-          <div className="mt-4 flex flex-col gap-3" data-testid="findings-list">
-            {actionable.length === 0 ? (
-              <div className="rounded-[6px] border border-v-supported-fg/30 bg-v-supported-bg p-5 text-sm text-v-supported-fg">
-                <p className="font-semibold">Nothing blocking.</p>
-                <p className="mt-1 opacity-90">Every checkable claim in this draft matches the register. Review the supported items below before you ship.</p>
-              </div>
-            ) : (
-              actionable.map((f, i) => (
-                <FindingCard
-                  key={f.id}
-                  finding={f}
-                  index={i}
-                  selected={i === selected}
-                  decision={stored.decisions[f.id] ?? null}
-                />
-              ))
-            )}
-          </div>
+          {/* Desktop & Mobile Responsive Layout */}
+          <div className="mt-4 grid gap-6 lg:grid-cols-12 items-start">
+            {/* Desktop Left: Sticky Marked Draft */}
+            <div className="hidden lg:block lg:col-span-5 sticky top-20">
+              <MarkedDraft
+                draft={draft}
+                findings={result.findings}
+                selectedFindingId={
+                  selected < actionable.length
+                    ? actionable[selected]?.id ?? null
+                    : collapsed[selected - actionable.length]?.id ?? null
+                }
+                onSelectFinding={(f) => {
+                  const actIdx = actionable.findIndex((x) => x.id === f.id);
+                  if (actIdx !== -1) {
+                    setSelected(actIdx);
+                  } else {
+                    const colIdx = collapsed.findIndex((x) => x.id === f.id);
+                    if (colIdx !== -1) setSelected(actionable.length + colIdx);
+                  }
+                }}
+              />
+            </div>
 
-          {collapsed.length > 0 && (
-            <details className="mt-4 rounded-[6px] border border-line-strong bg-card">
-              <summary className="flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium text-muted hover:text-foreground">
-                <ChevronDown size={16} aria-hidden="true" className="transition-transform" />
-                Supported and not checkable ({collapsed.length})
-                <span className="ml-auto text-[11px] font-normal">shown so you can see what passed</span>
-              </summary>
-              <div className="flex flex-col gap-3 border-t border-line p-4">
-                {collapsed.map((f, i) => (
+            {/* Mobile View Switcher */}
+            <div className="lg:hidden w-full">
+              <div className="mb-3 flex border-b border-line">
+                <button
+                  type="button"
+                  onClick={() => setMobileTab("findings")}
+                  className={cn(
+                    "pb-2 px-3 text-xs font-semibold transition-colors",
+                    mobileTab === "findings"
+                      ? "border-b-2 border-slate text-foreground"
+                      : "text-muted hover:text-foreground"
+                  )}
+                >
+                  Findings ({result.summary.total})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMobileTab("draft")}
+                  className={cn(
+                    "pb-2 px-3 text-xs font-semibold transition-colors",
+                    mobileTab === "draft"
+                      ? "border-b-2 border-slate text-foreground"
+                      : "text-muted hover:text-foreground"
+                  )}
+                >
+                  Marked Draft
+                </button>
+              </div>
+
+              {mobileTab === "draft" && (
+                <div className="mb-4">
+                  <MarkedDraft
+                    draft={draft}
+                    findings={result.findings}
+                    selectedFindingId={
+                      selected < actionable.length
+                        ? actionable[selected]?.id ?? null
+                        : collapsed[selected - actionable.length]?.id ?? null
+                    }
+                    onSelectFinding={(f) => {
+                      const actIdx = actionable.findIndex((x) => x.id === f.id);
+                      if (actIdx !== -1) {
+                        setSelected(actIdx);
+                      } else {
+                        const colIdx = collapsed.findIndex((x) => x.id === f.id);
+                        if (colIdx !== -1) setSelected(actionable.length + colIdx);
+                      }
+                      setMobileTab("findings");
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Right: Findings List */}
+            <div
+              className={cn("flex flex-col gap-3 lg:col-span-7", mobileTab === "draft" && "hidden lg:flex")}
+              data-testid="findings-list"
+            >
+              {actionable.length === 0 ? (
+                <div className="rounded-[6px] border border-v-supported-fg/30 bg-v-supported-bg p-5 text-sm text-v-supported-fg">
+                  <p className="font-semibold">Nothing blocking.</p>
+                  <p className="mt-1 opacity-90">
+                    Every checkable claim in this draft matches the register. Review the supported items below before you ship.
+                  </p>
+                </div>
+              ) : (
+                actionable.map((f, i) => (
                   <FindingCard
                     key={f.id}
                     finding={f}
-                    index={actionable.length + i}
-                    selected={actionable.length + i === selected}
+                    index={i}
+                    selected={i === selected}
                     decision={stored.decisions[f.id] ?? null}
+                    onViewEvidence={(finding) => setDrawerFinding(finding)}
+                    onSelect={(idx) => setSelected(idx)}
                   />
-                ))}
-              </div>
-            </details>
-          )}
+                ))
+              )}
 
-          {decidedCount > 0 && (
-            <p className="mt-4 text-xs text-muted">
-              {decidedCount} decision{decidedCount === 1 ? "" : "s"} recorded in this browser. See{" "}
-              <a className="font-medium text-accent underline underline-offset-2" href="/audit">
-                Audit
-              </a>
-              .
-            </p>
-          )}
+              {collapsed.length > 0 && (
+                <details className="mt-4 rounded-[6px] border border-line-strong bg-card">
+                  <summary className="flex cursor-pointer items-center gap-2 rounded-t-[6px] px-4 py-3 text-sm font-medium text-muted hover:text-foreground">
+                    <ChevronDown size={16} aria-hidden="true" className="transition-transform" />
+                    Supported and not checkable ({collapsed.length})
+                    <span className="ml-auto text-[11px] font-normal">shown so you can see what passed</span>
+                  </summary>
+                  <div className="flex flex-col gap-3 border-t border-line p-4">
+                    {collapsed.map((f, i) => (
+                      <FindingCard
+                        key={f.id}
+                        finding={f}
+                        index={actionable.length + i}
+                        selected={actionable.length + i === selected}
+                        decision={stored.decisions[f.id] ?? null}
+                        onViewEvidence={(finding) => setDrawerFinding(finding)}
+                        onSelect={(idx) => setSelected(idx)}
+                      />
+                    ))}
+                  </div>
+                </details>
+              )}
+
+              {decidedCount > 0 && (
+                <p className="mt-4 text-xs text-muted">
+                  {decidedCount} decision{decidedCount === 1 ? "" : "s"} recorded in this browser. See{" "}
+                  <a className="font-medium text-accent underline underline-offset-2" href="/audit">
+                    Audit
+                  </a>
+                  .
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Evidence Drawer */}
+          <EvidenceDrawer
+            finding={drawerFinding}
+            open={!!drawerFinding}
+            onClose={() => setDrawerFinding(null)}
+          />
         </section>
       )}
     </div>

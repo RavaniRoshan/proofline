@@ -9,7 +9,8 @@ import {
   type StoredDecision,
 } from "@/lib/local";
 import { VerdictBadge } from "@/components/ui/badge";
-import { FileText, Lightbulb, Check, X, PencilLine } from "lucide-react";
+import { getDecisionTrace } from "@/lib/trace";
+import { FileText, Lightbulb, Check, X, PencilLine, ExternalLink } from "lucide-react";
 
 const DECISION_ICON: Record<DecisionValue, typeof Check> = {
   approve: Check,
@@ -23,12 +24,15 @@ export interface FindingCardProps {
   selected: boolean;
   decision: StoredDecision | null;
   onRecorded?: () => void;
+  onViewEvidence?: (finding: Finding) => void;
+  onSelect?: (index: number) => void;
 }
 
-export function FindingCard({ finding, index, selected, decision, onRecorded }: FindingCardProps) {
+export function FindingCard({ finding, index, selected, decision, onRecorded, onViewEvidence, onSelect }: FindingCardProps) {
   const [pending, setPending] = useState<DecisionValue | null>(null);
   const [reason, setReason] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const trace = getDecisionTrace(finding);
 
   useEffect(() => {
     if (pending) inputRef.current?.focus();
@@ -50,8 +54,9 @@ export function FindingCard({ finding, index, selected, decision, onRecorded }: 
       data-testid="finding"
       data-verdict={finding.verdict}
       data-index={index}
-      className={`rounded-[6px] border bg-card p-4 sm:p-5 transition-colors ${
-        selected ? "border-slate ring-2 ring-slate/25" : "border-line-strong"
+      onClick={() => onSelect?.(index)}
+      className={`rounded-[6px] border bg-card p-4 sm:p-5 transition-colors cursor-pointer ${
+        selected ? "border-slate ring-2 ring-slate/25" : "border-line-strong hover:border-slate/60"
       }`}
       aria-label={`Finding ${index + 1}: ${finding.verdict}`}
     >
@@ -68,9 +73,34 @@ export function FindingCard({ finding, index, selected, decision, onRecorded }: 
 
       <p className="mt-2 text-sm leading-relaxed text-foreground/90">{finding.reason}</p>
 
+      {/* One-line Decision Trace */}
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-1.5 rounded-[4px] border border-line bg-panel px-2.5 py-1 text-[11px] font-mono text-muted">
+        <span className="flex items-center gap-1.5">
+          <span className="font-semibold text-slate">[{trace.source}]</span>
+          <span>{trace.ruleName}</span>
+        </span>
+        <button
+          type="button"
+          onClick={(ev) => {
+            ev.stopPropagation();
+            onViewEvidence?.(finding);
+          }}
+          className="inline-flex items-center gap-1 font-medium text-slate hover:underline underline-offset-2"
+        >
+          <span>{e ? "Inspect evidence" : "Trace detail"}</span>
+          <ExternalLink size={10} aria-hidden="true" />
+        </button>
+      </div>
+
       {e ? (
-        <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-background px-3 py-2 text-[12px] text-muted">
-          <FileText size={13} aria-hidden="true" className="shrink-0" />
+        <div
+          onClick={(ev) => {
+            ev.stopPropagation();
+            onViewEvidence?.(finding);
+          }}
+          className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-[4px] border border-line bg-panel/50 px-3 py-2 text-[12px] text-muted hover:border-slate transition-colors"
+        >
+          <FileText size={13} aria-hidden="true" className="shrink-0 text-slate" />
           <span className="font-medium text-foreground/80">{e.document_title || e.source_document_id}</span>
           <span aria-hidden="true">·</span>
           <span className="font-mono">{e.source_span}</span>
@@ -80,12 +110,12 @@ export function FindingCard({ finding, index, selected, decision, onRecorded }: 
           <span>
             valid {e.valid_from} → {e.valid_until}
           </span>
-          <span className="ml-auto rounded border border-line bg-card px-1.5 py-0.5 font-mono text-[11px] text-foreground/80">
+          <span className="ml-auto rounded-[4px] border border-line bg-card px-1.5 py-0.5 font-mono text-[11px] text-foreground/80">
             {e.fact_id}
           </span>
         </div>
       ) : (
-        <p className="mt-3 rounded-lg border border-dashed border-line px-3 py-2 text-[12px] text-muted">
+        <p className="mt-3 rounded-[4px] border border-dashed border-line bg-panel/30 px-3 py-2 text-[12px] text-muted">
           {finding.verdict === "CONFLICTING"
             ? "Conflict between approved facts — see versions below."
             : "No approved source behind this finding."}
