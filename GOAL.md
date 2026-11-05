@@ -8,7 +8,7 @@
 - [x] Next.js + TypeScript + Tailwind scaffold — `npm run build` exits 0
 - [x] Stage 1 deterministic pipeline (segmentation, type classification, normalisation, entity resolution) + unit tests — `npm test` exits 0 (51 tests)
 - [x] `POST /api/verify` to DATA.md §4 contract (Zod in/out, evidence gate, model returns fact_ids only) — verified with curl against the production server (CONTRADICTED with full F-021/F-014 evidence records)
-- [x] Stage 2 smoke gate: ≥20 of 24 verdicts match — `npm run smoke` exits 0, **23/24**, `out/smoke_report.json` committed
+- [x] Stage 2 smoke gate: ≥20 of 24 verdicts match — `npm run smoke` exits 0; 23/24 (Ollama qwen3:4b) and 22/24 (Groq gpt-oss-120b, the deployed provider); `out/smoke_report.json` committed. Misses: S-008 (strict-rules design gap) + S-021 (model judgment). Threshold 20 and all labels unchanged
 - [x] Five views: `/` (landing checker, sample pre-load, exactly one primary action — Check), `/facts`, `/audit`, `/dashboard`, `/about`; Reset demo in header
 - [x] Evidence gate enforced by runtime assertion with tests — `npm test -- verdict` exits 0
 - [x] E2E: draft → findings → decision → audit entry — `npm run test:e2e` exits 0 (3/3)
@@ -18,7 +18,7 @@
 - [x] Vercel production deploy — https://proofline-sigma.vercel.app (all routes 200 anonymously)
 - [x] Incognito-equivalent production flow verified from a fresh browser context (draft → findings → decision → audit)
 - [x] Round 1 PDF link — Google Drive (public) wired into /about
-- [ ] Add `LLM_API_KEY` in Vercel to switch on the semantic path (deploy currently runs deterministic checks + explicit UNVERIFIED for qualitative claims — 18 findings, 0 model calls; design working as specified)
+- [x] `LLM_API_KEY` set in Vercel (Groq free tier, `openai/gpt-oss-120b`, `LLM_BASE_URL=https://api.groq.com/openai/v1`) — production semantic path ON (18 findings, 14 rule checks, 4 model checks). Smoke: 22/24 with Groq, 23/24 with Ollama; misses: S-008 (by design) + S-021 (borderline entailment for this model); labels/threshold unchanged
 
 ## Cut order if time runs out
 

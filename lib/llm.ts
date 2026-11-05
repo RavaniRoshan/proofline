@@ -32,6 +32,7 @@ const SYSTEM = [
   "You are a strict claim checker for brand governance.",
   "Judge the claim ONLY against the supplied approved facts. Never invent a fact, a value, a date or a source.",
   "Relations: 'supports' = a fact entails the claim; 'contradicts' = a fact rules the claim out (seat/price/limit mismatch); 'unrelated' = no fact bears on the claim; 'insufficient' = cannot tell from the facts.",
+  "Experiential or emotional phrasing with no measurable predicate ('feels different', 'a delight', 'loved by teams') is never 'supports' — answer 'insufficient'.",
   "candidate_fact_ids must come from the supplied fact_ids, or be empty.",
   "Reply with STRICT JSON and nothing else, using EXACTLY these keys: claim_type, candidate_fact_ids, relation, confidence, reason, suggested_correction.",
   "reason: one sentence, no citation text. suggested_correction: one replacement sentence, or null.",
@@ -86,22 +87,43 @@ function keepSuppliedIds(resp: ModelResponse, candidates: Fact[]): ModelResponse
   };
 }
 
+function sleepMs(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function postJson(url: string, body: unknown, headers: Record<string, string>, timeoutMs: number): Promise<string> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "content-type": "application/json", ...headers },
-      body: JSON.stringify(body),
-      signal: controller.signal,
-    });
-    const text = await res.text();
-    if (!res.ok) throw new Error(`LLM endpoint ${res.status}: ${text.slice(0, 300)}`);
-    return text;
-  } finally {
-    clearTimeout(timer);
+  const delays = [2000, 5000]; // 429/5xx retries — free-tier rate limits are bursty
+  let lastError: Error | null = null;
+  for (let attempt = 0; attempt <= delays.length; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json", ...headers },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+      const text = await res.text();
+      if (res.ok) return text;
+      const retryable = res.status === 429 || res.status >= 500;
+      if (retryable && attempt < delays.length) {
+        const retryAfter = Number(res.headers.get("retry-after"));
+        await sleepMs(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : delays[attempt]!);
+        continue;
+      }
+      throw new Error(`LLM endpoint ${res.status}: ${text.slice(0, 300)}`);
+    } catch (e) {
+      // Timeout/network: retryable too, unless it is the last attempt.
+      const isHttpError = e instanceof Error && e.message.startsWith("LLM endpoint");
+      if (isHttpError || attempt >= delays.length) throw e;
+      lastError = e as Error;
+      await sleepMs(delays[attempt]!);
+    } finally {
+      clearTimeout(timer);
+    }
   }
+  throw lastError ?? new Error("LLM endpoint failed");
 }
 
 function openAiClient(apiKey: string, baseUrl: string, model: string): LlmClient {

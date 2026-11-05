@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-11-04T19:55:47.614Z",
-  "llm_provider": "ollama:qwen3:4b",
+  "generated_at": "2026-11-05T03:01:55.000Z",
+  "llm_provider": "openai-compatible:openai/gpt-oss-120b",
   "gate_threshold": 20,
   "total": 24,
-  "matched": 23,
+  "matched": 22,
   "passed": true,
   "mismatches": [
-    "S-008"
+    "S-008",
+    "S-021"
   ],
   "cases": [
     {
@@ -98,7 +99,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "The fact states median onboarding for mid-market accounts is 3 business days, which is less than 30 minutes."
+      "reason": "Fact F-014 says onboarding takes 3 business days, not 30 minutes, contradicting the claim."
     },
     {
       "case_id": "S-007",
@@ -280,7 +281,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "The facts provide onboarding metrics for specific products but do not address market trust or comparative trust levels across platforms."
+      "reason": "None of the provided facts address trust or market ranking of Flowdesk's onboarding platform."
     },
     {
       "case_id": "S-020",
@@ -293,7 +294,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "No facts provided to support or contradict the claim about the best choice for a growing team."
+      "reason": "No supplied facts address the claim."
     },
     {
       "case_id": "S-021",
@@ -301,12 +302,12 @@
       "claim_type": "qualitative",
       "expected_verdict": "NOT_CHECKABLE",
       "expected_fact_id": null,
-      "actual_verdict": "NOT_CHECKABLE",
-      "actual_fact_id": null,
+      "actual_verdict": "SUPPORTED",
+      "actual_fact_id": "F-014",
       "fact_id_match": true,
       "source": "model",
-      "matched": true,
-      "reason": "The claim 'Getting live in days' does not match any specific fact attributes like onboarding_days, trial_days, retention_days, or audit_log_days as they describe different timeframes for various product features."
+      "matched": false,
+      "reason": "An approved fact entails this claim."
     },
     {
       "case_id": "S-022",

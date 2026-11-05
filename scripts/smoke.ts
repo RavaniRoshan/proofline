@@ -28,11 +28,27 @@ const SmokeCaseSchema = z.object({
 
 const GATE = 20;
 
+/** Minimal .env.local loader (no dependency; existing env wins). */
+function loadEnvLocal(): void {
+  try {
+    const raw = readFileSync(join(process.cwd(), ".env.local"), "utf8");
+    for (const line of raw.split("\n")) {
+      const m = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$/);
+      if (!m || line.trim().startsWith("#")) continue;
+      const [, key, value] = m;
+      if (process.env[key!] === undefined) process.env[key!] = value;
+    }
+  } catch {
+    // No .env.local — fine, env vars rule.
+  }
+}
+
 function norm(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9%₹]+/g, " ").trim();
 }
 
 async function main() {
+  loadEnvLocal();
   const root = process.cwd();
   const lines = readFileSync(join(root, "seed/smoke_cases.jsonl"), "utf8")
     .split("\n")
@@ -50,6 +66,7 @@ async function main() {
   const results: Array<Record<string, unknown>> = [];
   let matched = 0;
   for (const c of cases) {
+    await new Promise((r) => setTimeout(r, 1200)); // smooth bursts against free-tier rate limits
     let actual = "NO_FINDING" as Verdict | "NO_FINDING" | "ERROR";
     let factId: string | null = null;
     let source: string | null = null;
