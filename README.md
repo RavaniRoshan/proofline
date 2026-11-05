@@ -86,7 +86,7 @@ Every commit in this repository verifies cleanly across all five gates:
 ```bash
 # Gate 1: Production build
 npm run build
-# Route (app): /, /about, /api/verify, /audit, /check, /dashboard, /facts, /opengraph-image
+# Route (app): /, /about, /api/verify, /audit, /check, /dashboard, /facts
 
 # Gate 2: TypeScript strict typecheck
 npx tsc --noEmit
@@ -129,7 +129,7 @@ app/
   audit/page.tsx          # Review log with action & verdict filters
   dashboard/page.tsx      # Register health & proportional CSS verdict bars
   about/page.tsx          # Architecture, invariants, and Round 1 PDF link
-  opengraph-image.tsx     # Dynamic social card with 6 verdict badges
+  opengraph-image.png     # Static social card (white paper, oxblood brackets, serif tagline)
   globals.css             # Round 1 PDF tokens & CSS-only state motion
 components/
   ui/                     # Design primitives (button, badge, card, dialog, tabs)

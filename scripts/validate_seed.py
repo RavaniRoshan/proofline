@@ -9,8 +9,11 @@ labels. Exits non-zero on the first class of failure it finds, printing the bad 
 
 import json
 import os
+import re
 import sys
 from collections import Counter, defaultdict
+
+re_span = re.compile(r"^\[(\d+)-(\d+)\]$")
 
 REQUIRED_FACT = [
     "fact_id", "version", "product_id", "attribute", "value", "unit",
@@ -62,6 +65,28 @@ def main():
     doc_ids = {d["document_id"] for d in docs}
     version_ids = {d["version_id"] for d in docs}
     version_to_doc = {d["version_id"]: d["document_id"] for d in docs}
+
+    # --- source documents ---------------------------------------------------
+    for i, d in enumerate(docs):
+        excerpt = d.get("excerpt")
+        if excerpt is None:
+            continue  # optional — the drawer falls back to the span reference
+        if not isinstance(excerpt, str) or not excerpt.strip():
+            fail(errors, f"source_documents row {i} ({d.get('version_id')}): excerpt is empty")
+            continue
+        for f in facts:
+            if f.get("source_version_id") != d.get("version_id"):
+                continue
+            span = f.get("source_span") or ""
+            m = re_span.match(span)
+            if not m:
+                continue  # span shape is reported by the fact checks above
+            end = int(m.group(2))
+            if end > len(excerpt):
+                fail(errors, f"source_documents row {i} ({d.get('version_id')}): excerpt is "
+                             f"{len(excerpt)} chars but {f.get('fact_id')} cites span end {end}")
+            if int(m.group(1)) < 0:
+                fail(errors, f"source_documents row {i} ({d.get('version_id')}): negative span start {span}")
 
     # --- facts -------------------------------------------------------------
     seen = Counter()

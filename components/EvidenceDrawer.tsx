@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { VerdictBadge } from "@/components/ui/badge";
 import { getDecisionTrace } from "@/lib/trace";
+import { documentsByVersionId } from "@/lib/seed";
 import { FileText, Calendar, Check, AlertCircle } from "lucide-react";
 
 interface EvidenceDrawerProps {
@@ -19,11 +20,29 @@ interface EvidenceDrawerProps {
   onClose: () => void;
 }
 
+/** Split the seed-authored excerpt at the cited span. Returns null when the span
+ *  cannot be located — the caller then renders the excerpt unhighlighted. */
+function splitExcerpt(excerpt: string, span: string) {
+  const m = /^\[(\d+)-(\d+)\]$/.exec(span);
+  if (!m) return null;
+  const start = Number(m[1]);
+  const end = Number(m[2]);
+  if (!(end > start) || end > excerpt.length) return null;
+  return {
+    before: excerpt.slice(0, start),
+    mark: excerpt.slice(start, end),
+    after: excerpt.slice(end),
+  };
+}
+
 export function EvidenceDrawer({ finding, open, onClose }: EvidenceDrawerProps) {
   if (!finding) return null;
 
   const e = finding.evidence;
   const trace = getDecisionTrace(finding);
+  const doc = e ? documentsByVersionId.get(e.source_version_id) : undefined;
+  const excerpt = doc?.excerpt ?? null;
+  const excerptParts = e && excerpt ? splitExcerpt(excerpt, e.source_span) : null;
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
@@ -90,16 +109,39 @@ export function EvidenceDrawer({ finding, open, onClose }: EvidenceDrawerProps) 
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-muted mb-1.5">
                   Cited Source Span in Document
                 </p>
-                <div className="font-mono text-[13px] leading-relaxed text-foreground">
-                  <span>… </span>
-                  <span className="font-semibold underline decoration-accent decoration-2 underline-offset-4 text-foreground bg-background px-1.5 py-0.5 rounded-[2px] border border-line">
-                    {e.display_value || `${e.value} ${e.unit}`}
-                  </span>
-                  <span> …</span>
-                </div>
-                <p className="mt-2 text-[11px] text-muted italic">
-                  Span cited at offset {e.source_span} in {e.document_title}. Underlined in brand oxblood.
-                </p>
+                {excerpt ? (
+                  <>
+                    <div className="text-[13px] leading-relaxed text-foreground">
+                      {excerptParts ? (
+                        <>
+                          <span>{excerptParts.before}</span>
+                          <span className="underline decoration-2 decoration-accent underline-offset-4 text-foreground">
+                            {excerptParts.mark}
+                          </span>
+                          <span>{excerptParts.after}</span>
+                        </>
+                      ) : (
+                        <span>{excerpt}</span>
+                      )}
+                    </div>
+                    <p className="mt-2 text-[11px] text-muted italic">
+                      Span cited at offset {e.source_span} in {e.document_title}. Underlined in brand oxblood.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <div className="font-mono text-[13px] leading-relaxed text-foreground">
+                      <span>… </span>
+                      <span className="font-semibold underline decoration-accent decoration-2 underline-offset-4 text-foreground bg-background px-1.5 py-0.5 rounded-[2px] border border-line">
+                        {e.display_value || `${e.value} ${e.unit}`}
+                      </span>
+                      <span> …</span>
+                    </div>
+                    <p className="mt-2 text-[11px] text-muted italic">
+                      Span cited at offset {e.source_span} in {e.document_title}. Excerpt not available — only the cited span is shown. Underlined in brand oxblood.
+                    </p>
+                  </>
+                )}
               </div>
 
               {/* Invariant 3 notice */}

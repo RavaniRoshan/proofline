@@ -32,9 +32,17 @@
 ```json
 { "document_id": "D-pricing", "version_id": "D-pricing-v4", "title": "Pricing sheet v4",
   "kind": "pricing", "effective_date": "2026-04-01", "pages": 2,
-  "uploaded_by": "brand-owner", "char_length": 1840 }
+  "uploaded_by": "brand-owner", "char_length": 1840,
+  "excerpt": "…authoritative pricing text…" }
 ```
 `document_id` is stable across versions. `version_id` changes per revision. Facts point at `version_id`.
+
+**`excerpt` (optional).** Excerpt of the document, authored once as seed data and shown in the
+Evidence Drawer with the cited `source_span` underlined. Seed invariant, checked by
+`scripts/validate_seed.py`: an excerpt, when present, must be long enough (in code points) to
+contain every fact's `source_span` that points at that document version. A document without an
+excerpt renders the drawer's span-reference fallback with the note "excerpt not available" —
+the app never fabricates source text at runtime.
 
 ### `facts.json` — one row per fact **version**
 ```json

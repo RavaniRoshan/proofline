@@ -7,7 +7,8 @@
     "effective_date": "2026-04-01",
     "pages": 2,
     "uploaded_by": "brand-owner",
-    "char_length": 1840
+    "char_length": 1840,
+    "excerpt": "Pricing sheet v4 — Flowdesk · Starter and Growth · effective 2026-04-01; supersedes Pricing sheet v3 (2025-04-01) only; single source of truth for plan pricing, seats, storage, trial terms, SSO and support across Starter and Growth; all prices are in INR, annual billing, GST extra, and volume discounts require a signed order form; promotional offers live in release notes and never change list pricing at all. ₹6,499 per month, billed annually, GST extra; All plans renew annually; GST extra on every invoice, always; ₹14,999 per month, billed annually (annual plan); 25 seats included; Both plans renew annually and GST is always extra; 5 seats included;  seats and storage rows are all versioned; 50 GB storage  on both plans, each with one annual renewal; 14-day free trial  Every plan includes storage and a trial; SSO included on Growth; Growth SAML 2.0; Starter — SSO is not included on Starter; Email and chat support;  Growth also unlocks SAML 2.0 single sign-on, advanced analytics, CSV and XLSX export, 365-day retention, 10 workspaces, 365-day audit log, viewer roles and the public API. Starter: basic analytics, CSV export, 90-day retention, 1 workspace; Growth: advanced analytics, CSV/XLSX export, 365-day retention, 10 workspaces; both plans cancel anytime; no setup fee; data stored in India."
   },
   {
     "document_id": "D-pricing",
@@ -17,7 +18,8 @@
     "effective_date": "2025-04-01",
     "pages": 2,
     "uploaded_by": "brand-owner",
-    "char_length": 1762
+    "char_length": 1762,
+    "excerpt": "Pricing sheet v3 — Flowdesk · Starter and Growth, plus the legacy tier · effective 2025-04-01, superseded by Pricing sheet v4 on 2026-04-01; single source of truth for pricing at this effective date; all prices are INR, annual billing, GST extra; promotional offers live in release notes and never change list pricing, ever; superseded rows are retained solely for citation of superseded findings. ₹4,999 per month, billed annually; All plans renew annually and GST is extra on every invoice; Starter: ₹4,999 per month, billed annually — 5 seats, 50 GB storage, 14-day free trial, support by email and chat, no SSO; Growth: ₹11,999 per month, billed annually — 25 seats, SSO, dedicated onboarding manager; Annual contracts; renewals at list price unless a new signed order form says otherwise; The legacy tier is frozen: no new features, no SSO, no audit log; closed to new accounts from 2025-04-01. Legacy plan: ₹2,999 per month, for teams that need 3 seats; Legacy plan: 3 seats, fixed; no SSO or audit log; Legacy plan: 10 GB storage, fixed; grandfathered until converted to Starter or Growth."
   },
   {
     "document_id": "D-bench",
@@ -27,7 +29,8 @@
     "effective_date": "2026-01-15",
     "pages": 6,
     "uploaded_by": "brand-owner",
-    "char_length": 9120
+    "char_length": 9120,
+    "excerpt": "Onboarding Benchmarks Q1 FY27 — Flowdesk internal research, effective 2026-01-15 · Q1 FY27 onboarding telemetry across the mid-market cohort (n = 214 accounts provisioned between 2025-10-01 and 2025-12-31); segmented by plan tier and team size; covering time-to-first-value, admin setup minutes, import success rate, time-to-first-draft and support tickets raised in the first thirty days after contract signature. Time-to-first-value held at a median of 4.2 days flat across the cohort, driven by import tooling improvements shipped in September 2025; import success rate reached 96.4% for CSV-based migrations and 91.1% for CRM integrations; failures were dominated by malformed date columns and duplicate external IDs rather than platform defects; admin setup time fell from 38 to 21 minutes for standard workspaces; p75 is 4 business days; the top detractor was legacy exports over 25 MB; the median admin workspace required 3 fields on first setup; the four slowest accounts (30+ days to first draft) were all pending contract redlines; SSO-configured deployments averaged 1.5 extra days for identity mapping review; support tickets in week one fell 34% quarter over quarter. Median onboarding for mid-market accounts: 3 business days, measured across 118 Growth accounts with 20+ seats; the p90 is 7 business days; accounts with a dedicated onboarding manager close median time-to-value in 2 business days — treat this as the reference for onboarding-length claims until the Q2 FY27 refresh."
   },
   {
     "document_id": "D-release",
@@ -37,6 +40,7 @@
     "effective_date": "2026-10-01",
     "pages": 1,
     "uploaded_by": "brand-owner",
-    "char_length": 640
+    "char_length": 640,
+    "excerpt": "Release notes October 2026 — Flowdesk · effective 2026-10-01 · availability and limits. 99.9% monthly uptime SLA — applies to all paying plans, measured monthly per the SLA policy; maintenance excluded, at all; 600 API requests per minute on Growth; Starter gets 120 per minute, enforced per workspace. 50 seats on the Growth plan (October promotion), signed in October 2026."
   }
 ]

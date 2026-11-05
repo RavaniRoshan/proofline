@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T05:55:58.607Z",
+  "generated_at": "2026-11-05T12:20:29.905Z",
   "llm_provider": "openai-compatible:openai/gpt-oss-20b",
   "gate_threshold": 20,
   "total": 24,
@@ -304,7 +304,7 @@
       "fact_id_match": true,
       "source": "model",
       "matched": true,
-      "reason": "The claim lacks a specific number of days, so it cannot be verified against the provided facts."
+      "reason": "The claim is incomplete and does not specify a measurable value to compare with the facts."
     },
     {
       "case_id": "S-022",

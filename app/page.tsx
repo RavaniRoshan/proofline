@@ -1,6 +1,19 @@
 import Link from "next/link";
 import { ArrowRight, FileText, Lightbulb, ExternalLink } from "lucide-react";
-import { VerdictBadge } from "@/components/ui/badge";
+import { Badge, VerdictBadge } from "@/components/ui/badge";
+import { VERDICT_MAP, type VerdictConfig } from "@/lib/verdicts";
+import type { Verdict } from "@/lib/types";
+
+const VERDICTS = Object.entries(VERDICT_MAP) as [Verdict, VerdictConfig][];
+
+const VERDICT_MEANINGS: Record<Verdict, string> = {
+  SUPPORTED: "Matches an approved fact",
+  CONTRADICTED: "Conflicts with approved fact",
+  STALE: "Fact past its validity window",
+  UNVERIFIED: "No approved fact matches it",
+  CONFLICTING: "Approved facts disagree",
+  NOT_CHECKABLE: "Not a verifiable claim",
+};
 
 export default function LandingPage() {
   return (
@@ -143,6 +156,35 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+
+      {/* The six verdicts legend */}
+      <section
+        aria-labelledby="verdict-legend"
+        className="mt-6 border-t border-line pt-4 sm:mt-7 sm:pt-5"
+      >
+        <h2
+          id="verdict-legend"
+          className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted"
+        >
+          The six verdicts
+        </h2>
+        <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-3 lg:grid-cols-6">
+          {VERDICTS.map(([verdict, config]) => {
+            const Icon = config.icon;
+            return (
+              <li key={verdict} className="flex flex-col items-start gap-1.5">
+                <Badge className={`${config.badgeClasses} font-semibold`}>
+                  <Icon size={12} strokeWidth={2.5} aria-hidden="true" />
+                  {config.label}
+                </Badge>
+                <span className="text-[11px] leading-snug text-muted">
+                  {VERDICT_MEANINGS[verdict]}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </div>
   );
 }

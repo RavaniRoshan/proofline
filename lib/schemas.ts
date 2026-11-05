@@ -28,6 +28,10 @@ export const SourceDocumentSchema = z.object({
   pages: z.number().int().positive(),
   uploaded_by: z.string(),
   char_length: z.number().int().nonnegative(),
+  /** Seed-authored excerpt for the evidence drawer. Must be long enough to contain
+   *  every fact's source_span that points at this document. Absent → the drawer
+   *  falls back to the span reference and never fabricates text at runtime. */
+  excerpt: z.string().min(1).optional(),
 });
 
 export const BrandSchema = z.object({
