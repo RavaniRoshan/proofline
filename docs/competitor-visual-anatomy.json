@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-11-06T11:37:42.371Z",
+  "methodology": "Competitor DOM + Shader + SVG Anatomy Extraction & Skill Synthesis",
+  "skills_synthesized": [
+    {
+      "repo": "vercel-labs/agent-skills (web-design-guidelines)",
+      "rules_enforced": [
+        "Strict WCAG AA/AAA contrast ratios (>= 4.5:1 body, >= 7:1 primary headings)",
+        "Tabular numerals (tabular-nums) on all counters, latencies, byte spans, and version numbers",
+        "Semantic ARIA roles (tablist, tab, aria-selected, aria-expanded, status) and visible focus-visible outlines",
+        "8pt spatial rhythm with hairline 1px structural borders and zero horizontal overflow"
+      ]
+    },
+    {
+      "repo": "leonxlnx/taste-skill (minimalist-ui)",
+      "rules_enforced": [
+        "Warm archival paper (#FFFFFF / #F5F5F2) and deep carbon ink (#1A1A18 / #121210), never raw #000000",
+        "Editorial IBM Plex Serif display headings paired with IBM Plex Sans body and IBM Plex Mono technical metadata",
+        "Flat architectural bento grids with crisp 1px borders (#DEDED8 / #C9C9C1) and disciplined radii (4px controls, 14px-18px panels)",
+        "Zero static pill clutter — metadata rendered as unboxed inline monospace text with middot (·) or slash (/) separators"
+      ]
+    },
+    {
+      "repo": "emilkowalski/skills & impeccable.style",
+      "rules_enforced": [
+        "Tactile active button compression: active:scale-[0.98] on all interactive controls",
+        "Spring-calibrated cubic-bezier(0.22, 1, 0.36, 1) and cubic-bezier(0.16, 1, 0.3, 1) transitions",
+        "Zero-JS smooth height CSS Grid accordions (grid-rows-[0fr] -> grid-rows-[1fr])",
+        "Ghost off-screen sizing for zero-layout-shift word rotation and button width stabilization"
+      ]
+    },
+    {
+      "repo": "tt-a1i/archify (interactive source-backed system maps)",
+      "placement_in_proofline": "Section 03 (#pipeline) — Interactive Source-Backed Codebase & Runtime Architecture Explorer",
+      "capabilities": [
+        "Maps real repository files (lib/segment.ts, lib/classify.ts, lib/normalize.ts, lib/resolve.ts, lib/retrieve.ts, lib/llm.ts, lib/verdict.ts, app/api/verify/route.ts) as interactive nodes",
+        "Upstream / Downstream reach lens (Trace All, Deterministic 78% Fast-Path, Semantic 22% Bounded Path, Evidence Gate Downgrade Path)",
+        "Click-to-inspect source card showing real TypeScript invariants, line numbers, and Zod contracts"
+      ]
+    },
+    {
+      "repo": "wheresryan22/anatomy + anime.js v4",
+      "placement_in_proofline": [
+        "Section 02 (#how-it-works) — DeterministicSplitDiagram: Anime.js choreographed claim tokens streaming across SVG bezier conduits with live 78% / 22% routing counter",
+        "Section 04 (#evidence-gate) — EvidenceGateDiagram: Mechanical 5-Pin Tumbler Lock Anatomy where each of the 5 mandatory citation pins (fact_id, fact_version, source_document_id, source_span, valid_from/until) physically drops into the shear line via animejs before unlocking CONTRADICTED, or springs back to UNVERIFIED when a fault is injected",
+        "Section 05 (#register) — RegisterLockupDiagram: Interactive version timeline scrubber (v1 -> v2 -> v3 -> v4) with Anime.js animated validity window bar and cryptographic SHA-256 stamp"
+      ]
+    }
+  ],
+  "competitor_benchmarks": {
+    "hero": {
+      "pattern": "Dark editorial scope + ghost-sized word rotator + immediate interactive product workbench above the fold",
+      "cta_mechanics": "Primary high-contrast solid button + grid-stabilized secondary action"
+    },
+    "feature_visualizations": {
+      "pattern": "Interactive mechanical SVG schematics powered by Anime.js timelines instead of static raster PNGs",
+      "frame_style": "Double-bezel architectural container (outer p-2 bg-panel/60 border-line-strong -> inner rounded SVG viewport)"
+    },
+    "developer_section": {
+      "pattern": "Dark-scope dual terminal with live API execution, cURL copy, and 4-column benchmark verification strip"
+    },
+    "faq_and_footer": {
+      "pattern": "Sticky left specification card + right CSS-Grid smooth accordion (grid-rows-[0fr] to grid-rows-[1fr])"
+    }
+  }
+}

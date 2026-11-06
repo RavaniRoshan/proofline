@@ -6,53 +6,53 @@ const WORDS = ["pricing", "features", "limits", "disclaimers"];
 
 export function HeroRotator() {
   const [index, setIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const slotRef = useRef<HTMLSpanElement>(null);
+  const [widthPx, setWidthPx] = useState<number | null>(null);
   const ghostRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setIndex((i) => (i + 1) % WORDS.length);
-        setIsTransitioning(false);
-      }, 250);
-    }, 2600);
+      setIndex((i) => (i + 1) % WORDS.length);
+    }, 2800);
     return () => clearInterval(id);
   }, []);
 
   useEffect(() => {
-    const slot = slotRef.current;
-    const ghost = ghostRef.current;
-    if (!slot || !ghost) return;
-    const word = WORDS[index];
-    const measure = Array.from(ghost.children).find(
-      (el) => el.textContent === word,
-    ) as HTMLElement | undefined;
-    if (measure) {
-      const parent = slot.parentElement;
-      if (parent) {
-        parent.style.width = `${measure.getBoundingClientRect().width}px`;
+    const measureActive = () => {
+      const ghost = ghostRef.current;
+      if (!ghost) return;
+      const target = ghost.children[index] as HTMLElement | undefined;
+      if (target) {
+        const w = target.getBoundingClientRect().width;
+        if (w > 0) setWidthPx(Math.ceil(w));
       }
-    }
+    };
+    measureActive();
+    window.addEventListener("resize", measureActive);
+    return () => window.removeEventListener("resize", measureActive);
   }, [index]);
 
   return (
-    <span className="rotator">
-      <span className="rotator__ghost" aria-hidden="true" ref={ghostRef}>
+    <span className="relative inline-flex items-baseline align-baseline">
+      {/* Off-screen ghost measurement list matching Composio's exact technique */}
+      <span
+        ref={ghostRef}
+        aria-hidden="true"
+        className="pointer-events-none invisible fixed top-0 left-0 -z-10 flex whitespace-nowrap"
+      >
         {WORDS.map((w) => (
-          <span className="rotator__word" key={w}>
+          <span key={w} className="inline-block whitespace-nowrap">
             {w}
           </span>
         ))}
       </span>
-      <span className="rotator__live" aria-live="polite">
-        <span
-          className={`rotator__slot transition-all duration-300 transform ${
-            isTransitioning ? "-translate-y-2 opacity-0" : "translate-y-0 opacity-100"
-          }`}
-          ref={slotRef}
-        >
+
+      {/* Width-morphing horizontal slide container */}
+      <span
+        aria-live="polite"
+        className="relative inline-block overflow-x-clip whitespace-nowrap align-baseline transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={widthPx ? { width: `${widthPx}px` } : undefined}
+      >
+        <span className="inline-block whitespace-nowrap transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
           {WORDS[index]}
         </span>
       </span>

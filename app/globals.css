@@ -57,10 +57,28 @@
   --font-mono: var(--font-plex-mono);
 }
 
-body {
+html, body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-plex-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.landing::-webkit-scrollbar,
+.landing *::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.landing,
+.landing * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* serif is display only; sub-headings stay sans */
@@ -134,8 +152,49 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 }
 
 
-/* ===== Landing page (composio-style) utilities ===== */
-.landing { --max-w-page: 1240px; }
+/* ===== Landing page unified font & layout system ===== */
+.landing {
+  --max-w-page: 1240px;
+  --font-sans: var(--font-figtree), 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-figtree), 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+.landing h1,
+.landing h2,
+.landing h3,
+.landing h4,
+.landing h5,
+.landing h6 {
+  font-family: var(--font-sans);
+}
+.landing h1 {
+  font-weight: 470;
+  font-variation-settings: "wght" 470;
+  letter-spacing: -0.052em;
+  line-height: 1.08;
+}
+.landing h2 {
+  font-weight: 470;
+  font-variation-settings: "wght" 470;
+  letter-spacing: -0.042em;
+  line-height: 1.1;
+}
+.landing h3,
+.landing h4 {
+  font-weight: 540;
+  font-variation-settings: "wght" 540;
+  letter-spacing: -0.024em;
+  line-height: 1.2;
+}
+.landing .font-sans {
+  font-family: var(--font-sans);
+}
+.landing .font-mono {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
 .topbar { display:block; width:100%; height:36px; background-color: var(--ink); color: var(--paper); border-bottom: 1px solid color-mix(in oklab, var(--paper) 10%, transparent); }
 .topbar__link { display: flex; align-items: center; justify-content: center; min-height: 36px; width: 100%; padding: 0 16px; gap: 20px; text-decoration: none; color: inherit; white-space: nowrap; }
 .topbar__text { font-size: 13px; line-height: 16px; text-align: center; }
