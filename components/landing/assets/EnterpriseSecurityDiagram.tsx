@@ -46,7 +46,7 @@ const PILLARS: {
       "✓ No training on user copy",
     ],
     storageKey: "POST /api/verify (ephemeral RAM)",
-    retention: "0ms retention · Discarded after response",
+    retention: "Zero retention · Discarded after response",
   },
   {
     id: "journal",
@@ -143,8 +143,8 @@ export function EnterpriseSecurityDiagram() {
           width="760"
           height="350"
           rx="16"
-          fill="#1A1A18"
-          stroke="#3A3A36"
+          fill="var(--panel)"
+          stroke="var(--line-strong)"
           strokeWidth="1.5"
         />
 
@@ -154,7 +154,7 @@ export function EnterpriseSecurityDiagram() {
           y="34"
           fontFamily="var(--font-plex-mono), monospace"
           fontSize="11"
-          fill="#FFFFFF"
+          fill="var(--ink)"
           fontWeight="600"
           letterSpacing="0.05em"
         >
@@ -166,7 +166,7 @@ export function EnterpriseSecurityDiagram() {
           textAnchor="end"
           fontFamily="var(--font-plex-mono), monospace"
           fontSize="10"
-          fill="#D4847A"
+          fill="var(--oxide)"
         >
           CLICK ANY PILLAR TO INSPECT ISOLATION
         </text>
@@ -287,7 +287,7 @@ export function EnterpriseSecurityDiagram() {
           y="317"
           fontFamily="var(--font-plex-mono), monospace"
           fontSize="11"
-          fill="#D4847A"
+          fill="var(--oxide)"
           fontWeight="600"
         >
           ACTIVE BOUNDARY: {current.storageKey}

@@ -1,12 +1,10 @@
 "use client";
 
+import { SunsetOrb } from "@/components/ui/sunset-orb";
+import { StageGridBackdrop } from "@/components/landing/StageGridBackdrop";
+
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-
-const VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260826_125119_4963ddd4-c287-4044-b014-b68943cdd8bd.mp4";
-const VIDEO_POSTER =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260826_125039_45a71f04-36dd-4620-99d8-7526316d439e.png";
 
 interface BriefTab {
   id: string;
@@ -101,10 +99,6 @@ const BRIEF_TABS: BriefTab[] = [
 
 export function ProoflineHero() {
   const viewportRef = useRef<HTMLElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-  const burgerRef = useRef<HTMLButtonElement>(null);
-
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeTabIdx, setActiveTabIdx] = useState(0);
 
   // Entrance animation lifecycle
@@ -130,41 +124,6 @@ export function ProoflineHero() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  // Close mobile/tablet menu on outside click, Escape, or desktop resize
-  useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth >= 940) {
-        setMenuOpen(false);
-      }
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const onDocClick = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-        burgerRef.current?.focus();
-      }
-    };
-
-    document.addEventListener("mousedown", onDocClick);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onDocClick);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [menuOpen]);
-
   const activeTab = BRIEF_TABS[activeTabIdx] ?? BRIEF_TABS[0];
 
   return (
@@ -172,7 +131,7 @@ export function ProoflineHero() {
       id="viewport"
       ref={viewportRef}
       aria-label="Proofline hero"
-      className="bg-paper text-ink"
+      className="relative bg-paper text-ink overflow-hidden"
     >
       <style>{`
         #viewport {
@@ -201,18 +160,18 @@ export function ProoflineHero() {
           --tr-wordmark: -0.015em;
 
           /* Proofline harmonized palette */
-          --c-ink           : #1A1A18;
-          --c-ink-soft      : #3A3A36;
-          --c-muted         : #6E6E68;
+          --c-ink           : var(--ink);
+          --c-ink-soft      : var(--ink-soft);
+          --c-muted         : var(--ink-faint);
           --c-on-dark       : #FFFFFF;
           --c-on-light      : #1A1A18;
-          --c-surface-nav   : #1A1A18;
-          --c-surface-card  : #F5F5F2;
-          --c-surface-panel : #FFFFFF;
-          --c-border-row    : #E6E6E0;
-          --c-oxide         : #6E1F26;
+          --c-surface-nav   : var(--ink);
+          --c-surface-card  : var(--panel);
+          --c-surface-panel : var(--panel-elevated);
+          --c-border-row    : var(--line);
+          --c-oxide         : var(--oxide);
           --c-coral         : #D4847A;
-          --c-slate         : #3B4A45;
+          --c-slate         : var(--slate);
 
           /* Motion tokens */
           --ease-reveal : cubic-bezier(.22, 1, .36, 1);
@@ -226,200 +185,7 @@ export function ProoflineHero() {
           text-rendering: geometricPrecision;
         }
 
-        /* Floating Pill Navbar */
-        #viewport .pl-nav {
-          position: relative;
-          width: 100%;
-          max-width: 880px;
-          height: 54px;
-          margin: 0 auto;
-          padding: 0 10px 0 14px;
-          background: var(--c-surface-nav);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 9999px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          box-shadow: 0 14px 34px -10px rgba(26, 26, 24, 0.28);
-          z-index: 40;
-        }
-
-        #viewport .pl-brand {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          text-decoration: none;
-          color: var(--c-on-dark);
-          flex-shrink: 0;
-        }
-
-        #viewport .pl-logo {
-          width: 26px;
-          height: 25px;
-          display: block;
-          flex-shrink: 0;
-        }
-
-        #viewport .pl-wordmark {
-          font-family: var(--hero-sans);
-          font-size: 17.5px;
-          font-weight: var(--fw-black);
-          font-variation-settings: "wght" 783;
-          letter-spacing: var(--tr-wordmark);
-          color: var(--c-on-dark);
-          white-space: nowrap;
-        }
-
-        #viewport .pl-nav-links {
-          display: flex;
-          align-items: center;
-          gap: 32px;
-        }
-
-        #viewport .pl-nav-link {
-          font-family: var(--hero-sans);
-          font-size: 15px;
-          font-weight: var(--fw-medium);
-          font-variation-settings: "wght" 500;
-          letter-spacing: var(--tr-ui);
-          color: rgba(255, 255, 255, 0.86);
-          text-decoration: none;
-          transition: color 0.15s ease;
-          white-space: nowrap;
-        }
-
-        #viewport .pl-nav-link:hover {
-          color: #D4847A;
-        }
-
-        #viewport .pl-btn-nav {
-          height: 36px;
-          padding: 0 18px;
-          border-radius: 9999px;
-          background: #FFFFFF;
-          color: #1A1A18;
-          font-family: var(--hero-sans);
-          font-size: 14.5px;
-          font-weight: var(--fw-bold);
-          font-variation-settings: "wght" 577;
-          letter-spacing: var(--tr-cta);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          white-space: nowrap;
-          transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-        }
-
-        #viewport .pl-btn-nav:hover {
-          background: #F5F5F2;
-          transform: translateY(-1px);
-        }
-
-        /* Burger button (visible < 940px) */
-        #viewport .pl-burger {
-          display: none;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 5px;
-          width: 38px;
-          height: 38px;
-          padding: 0 9px;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          border-radius: 9999px;
-          cursor: pointer;
-          -webkit-tap-highlight-color: transparent;
-        }
-
-        #viewport .pl-burger:hover {
-          background: rgba(255, 255, 255, 0.14);
-        }
-
-        #viewport .pl-burger-bar {
-          display: block;
-          height: 2px;
-          width: 18px;
-          background: #FFFFFF;
-          border-radius: 1px;
-          transition: transform 0.22s ease, opacity 0.22s ease;
-        }
-
-        #viewport .pl-nav.is-open .pl-burger-bar:first-child {
-          transform: translateY(3.5px) rotate(45deg);
-        }
-
-        #viewport .pl-nav.is-open .pl-burger-bar:last-child {
-          transform: translateY(-3.5px) rotate(-45deg);
-        }
-
-        /* Dropdown menu for tablet & mobile */
-        #viewport .pl-navmenu {
-          display: none;
-          flex-direction: column;
-          position: absolute;
-          top: calc(100% + 10px);
-          right: 0;
-          width: min(260px, calc(100vw - 32px));
-          padding: 12px;
-          background: #1A1A18;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          border-radius: 22px;
-          box-shadow: 0 24px 48px rgba(26, 26, 24, 0.35);
-          opacity: 0;
-          transform: translateY(-8px);
-          pointer-events: none;
-          transition: opacity 0.2s ease, transform 0.2s ease;
-          z-index: 60;
-        }
-
-        #viewport .pl-nav.is-open .pl-navmenu {
-          opacity: 1;
-          transform: translateY(0);
-          pointer-events: auto;
-        }
-
-        #viewport .pl-navmenu-link {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 11px 14px;
-          border-radius: 12px;
-          font-family: var(--hero-sans);
-          font-size: 15px;
-          font-weight: var(--fw-medium);
-          font-variation-settings: "wght" 500;
-          color: #FFFFFF;
-          text-decoration: none;
-          transition: background-color 0.15s ease;
-        }
-
-        #viewport .pl-navmenu-link:hover {
-          background: rgba(255, 255, 255, 0.1);
-          color: #D4847A;
-        }
-
-        #viewport .pl-navmenu-cta {
-          margin-top: 8px;
-          padding: 11px 14px;
-          border-radius: 9999px;
-          background: #FFFFFF;
-          color: #1A1A18;
-          font-family: var(--hero-sans);
-          font-size: 14.5px;
-          font-weight: var(--fw-bold);
-          font-variation-settings: "wght" 577;
-          text-align: center;
-          text-decoration: none;
-          transition: background-color 0.15s ease;
-        }
-
-        #viewport .pl-navmenu-cta:hover {
-          background: #D4847A;
-          color: #1A1A18;
-        }
-
+        /* Floating Pill Navbar — Composio Precision with Dual Theme Support */
         /* Hero Copy Block */
         #viewport .pl-hero-copy {
           display: flex;
@@ -537,42 +303,15 @@ export function ProoflineHero() {
           width: 100%;
         }
 
-        #viewport .pl-band {
+                #viewport .pl-band {
           position: relative;
           width: 100%;
           border-radius: 28px;
           overflow: hidden;
           padding: clamp(28px, 4.5vw, 52px) clamp(16px, 3vw, 40px) clamp(32px, 4.5vw, 52px);
-          background:
-            radial-gradient(120% 95% at 50% 0%, #6E1F26 0%, #2B1719 52%, #1A1A18 100%);
-          border: 1px solid rgba(26, 26, 24, 0.12);
-          box-shadow: 0 24px 60px -18px rgba(26, 26, 24, 0.18);
-        }
-
-        /* Video re-graded from cyan (195deg) into Proofline warm oxblood/rose/amber (~345deg) */
-        #viewport .pl-band-video {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center top;
-          filter: hue-rotate(155deg) saturate(0.72) brightness(0.78) contrast(1.12);
-          opacity: 0.78;
-          mix-blend-mode: screen;
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        /* Warm atmospheric vignette + smooth bottom integration */
-        #viewport .pl-band-overlay {
-          position: absolute;
-          inset: 0;
-          background:
-            radial-gradient(90% 75% at 50% 10%, rgba(212, 132, 122, 0.22) 0%, transparent 65%),
-            linear-gradient(180deg, rgba(26, 26, 24, 0.12) 0%, rgba(26, 26, 24, 0.45) 100%);
-          pointer-events: none;
-          z-index: 1;
+          background: var(--c-surface-card);
+          border: 1px solid var(--c-border-row);
+          box-shadow: 0 12px 36px -10px rgba(26, 26, 24, 0.06);
         }
 
         /* Product Mockup Card (Unclipped, Responsive, Interactive) */
@@ -890,6 +629,131 @@ export function ProoflineHero() {
           animation: pl-enter-rise 0.75s var(--ease-settle) 0.26s both;
         }
 
+        
+        /* High-Contrast Dark Mode Overrides — Guarantees 100% Text & CTA Visibility */
+        :where(.dark, html.dark) #viewport {
+          background-color: var(--paper) !important;
+          color: var(--ink) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-hero-h1 {
+          color: #F4F4F5 !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-hero-sub {
+          color: #A1A1AA !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-btn-hero {
+          background: #FFFFFF !important;
+          color: #09090B !important;
+          font-weight: 600 !important;
+          box-shadow: 0 4px 14px rgba(255, 255, 255, 0.16) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-btn-hero:hover {
+          background: #F4F4F5 !important;
+          transform: translateY(-1px) scale(1.02) !important;
+          box-shadow: 0 6px 20px rgba(255, 255, 255, 0.24) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-btn-secondary {
+          background: rgba(255, 255, 255, 0.08) !important;
+          color: #FFFFFF !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-btn-secondary:hover {
+          background: rgba(255, 255, 255, 0.14) !important;
+          border-color: rgba(255, 255, 255, 0.35) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-eyebrow-pill {
+          background: rgba(212, 132, 122, 0.14) !important;
+          border: 1px solid rgba(212, 132, 122, 0.35) !important;
+          color: #F2A79F !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-card {
+          background: #141418 !important;
+          border: 1px solid rgba(255, 255, 255, 0.12) !important;
+          box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-band {
+          background: #0E0E12 !important;
+          border-color: rgba(255, 255, 255, 0.08) !important;
+          box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-row {
+          background: #14141A !important;
+          border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-metatext {
+          color: #A1A1AA !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-live-badge {
+          background: rgba(34, 197, 94, 0.16) !important;
+          color: #4ADE80 !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-av {
+          border-color: #141418 !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-cardtitle {
+          color: #FFFFFF !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-eyebrow {
+          color: #A1A1AA !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-panel {
+          background: #1A1A20 !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-panel-heading {
+          color: #FFFFFF !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-rowtitle {
+          color: #E4E4E7 !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-rowowner {
+          color: #A1A1AA !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-tabs {
+          background: #1A1A20 !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-tab {
+          color: #A1A1AA !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-tab.is-active {
+          background: #272732 !important;
+          color: #FFFFFF !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-strip {
+          background: #141418 !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-stat-num {
+          color: #FFFFFF !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-stat-label {
+          color: #A1A1AA !important;
+        }
+
         @media (prefers-reduced-motion: reduce) {
           #viewport *, #viewport *::before, #viewport *::after {
             animation: none !important;
@@ -898,115 +762,16 @@ export function ProoflineHero() {
         }
       `}</style>
 
+      {/* 21st.dev Sunset Orb Background Shader */}
+      <SunsetOrb
+        className="absolute inset-0 h-full w-full pointer-events-none"
+        intensity="medium"
+        animated={true}
+        grain={true}
+      />
+
       {/* Framed inside the continuous 1240px border-x page rails so the hero flows directly into Band 2 */}
-      <div className="mx-auto w-full max-w-[1240px] border-x border-ink/10 px-4 pt-6 pb-10 sm:px-6 md:px-10 md:pt-9 md:pb-14">
-        {/* 1. Floating Dark Pill Navbar */}
-        <nav
-          ref={navRef}
-          className={`pl-nav${menuOpen ? " is-open" : ""}`}
-          aria-label="Primary navigation"
-        >
-          <Link href="/" className="pl-brand">
-            <svg
-              className="pl-logo"
-              viewBox="0 0 26 25"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.45 24.95 L7.07 24.09 L5.56 23.30 L3.33 21.03 L2.31 19.44 L0.74 16.05 L0.27 13.91 L0.29 11.25 L0.80 8.75 L1.95 6.20 L3.26 4.50 L5.15 2.67 L7.77 1.02 L9.91 0.18 L12.16 -0.20 L15.22 -0.16 L17.61 0.35 L19.30 1.06 L20.88 2.06 L22.23 3.37 L24.01 5.48 L24.76 6.58 L25.70 8.63 L26.00 10.35 L26.02 11.35 L25.54 12.12 L24.96 12.32 L22.35 12.36 L21.46 12.18 L20.78 11.85 L20.32 11.37 L19.45 9.56 L17.88 7.58 L16.59 6.60 L14.59 5.84 L13.24 5.69 L11.54 5.93 L10.47 6.44 L9.12 7.35 L7.92 8.50 L6.70 10.55 L6.26 12.65 L6.41 14.36 L7.14 15.86 L8.63 17.79 L12.57 20.70 L12.96 21.60 L13.13 22.82 L12.93 24.36 L12.65 24.86 L12.03 25.35 L11.27 25.42 L9.45 24.95 Z M24.55 25.53 L22.49 24.77 L19.56 23.18 L18.15 22.07 L16.63 20.48 L16.14 19.79 L15.63 18.71 L14.66 15.66 L14.59 14.50 L14.75 13.92 L15.12 13.45 L15.85 13.10 L16.91 12.88 L18.90 12.85 L19.49 13.04 L19.94 13.38 L20.25 13.88 L20.86 15.66 L21.97 17.30 L23.05 18.22 L25.00 19.43 L26.05 20.27 L26.34 20.66 L26.63 21.86 L26.51 23.68 L25.79 25.10 L25.35 25.42 L24.55 25.53 Z"
-                fill="#D4847A"
-              />
-            </svg>
-            <span className="pl-wordmark">Proofline</span>
-          </Link>
-
-          <div className="pl-nav-links">
-            <a href="#how-it-works" className="pl-nav-link">
-              Product
-            </a>
-            <a href="#verdicts" className="pl-nav-link">
-              Verdicts
-            </a>
-            <a href="#register" className="pl-nav-link">
-              Register
-            </a>
-            <a href="#faq" className="pl-nav-link">
-              FAQ
-            </a>
-          </div>
-
-          <Link href="/check" className="pl-btn-nav">
-            Check a Draft
-          </Link>
-
-          <button
-            ref={burgerRef}
-            type="button"
-            className="pl-burger"
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={menuOpen}
-            aria-controls="nav-menu"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <span className="pl-burger-bar" />
-            <span className="pl-burger-bar" />
-          </button>
-
-          <div
-            id="nav-menu"
-            className="pl-navmenu"
-            role="menu"
-            aria-hidden={!menuOpen}
-          >
-            <a
-              href="#how-it-works"
-              role="menuitem"
-              className="pl-navmenu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              <span>Product</span>
-              <span className="font-mono text-xs opacity-50">01</span>
-            </a>
-            <a
-              href="#verdicts"
-              role="menuitem"
-              className="pl-navmenu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              <span>Verdicts</span>
-              <span className="font-mono text-xs opacity-50">02</span>
-            </a>
-            <a
-              href="#register"
-              role="menuitem"
-              className="pl-navmenu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              <span>Register</span>
-              <span className="font-mono text-xs opacity-50">03</span>
-            </a>
-            <a
-              href="#faq"
-              role="menuitem"
-              className="pl-navmenu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              <span>FAQ</span>
-              <span className="font-mono text-xs opacity-50">04</span>
-            </a>
-            <Link
-              href="/check"
-              role="menuitem"
-              className="pl-navmenu-cta"
-              onClick={() => setMenuOpen(false)}
-            >
-              Check a Draft →
-            </Link>
-          </div>
-        </nav>
-
+      <div className="relative z-10 mx-auto w-full max-w-[1240px] border-x border-ink/10 px-4 pt-6 pb-10 sm:px-6 md:px-10 md:pt-9 md:pb-14">
         {/* 2. Hero Headline, Subcopy & CTA */}
         <div className="pl-hero-copy">
           <div className="pl-eyebrow-pill">
@@ -1037,16 +802,7 @@ export function ProoflineHero() {
         {/* 3. Harmonized Oxblood/Ink Video Band + Full Unclipped Interactive Product Card */}
         <div className="pl-stage-wrap">
           <div className="pl-band" role="presentation">
-            <video
-              className="pl-band-video"
-              src={VIDEO_SRC}
-              poster={VIDEO_POSTER}
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-            <div className="pl-band-overlay" aria-hidden="true" />
+            <StageGridBackdrop />
 
             <div className="pl-card">
               <div className="pl-card-header">
@@ -1195,7 +951,7 @@ export function ProoflineHero() {
           <div className="mt-6 grid grid-cols-2 gap-3 rounded-2xl border border-ink/10 bg-panel/65 px-4 py-3.5 font-mono text-[11px] uppercase tracking-wider text-ink-soft sm:grid-cols-4 sm:px-6">
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-accent" />
-              <span>78% 0ms TypeScript Rules</span>
+              <span>78% &lt;1ms Deterministic Rules</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-v-supported-fg" />

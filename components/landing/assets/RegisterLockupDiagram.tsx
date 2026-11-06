@@ -127,7 +127,7 @@ export function RegisterLockupDiagram() {
           </pattern>
         </defs>
 
-        <rect width="680" height="390" rx="16" fill="#FAF9F5" stroke="#C9C9C1" strokeWidth="1.5" />
+        <rect width="680" height="390" rx="16" fill="var(--panel)" stroke="var(--line)" strokeWidth="1.5" />
         <rect width="680" height="390" rx="16" fill="url(#regGrid)" />
 
         {/* Top Header Strip */}
@@ -144,7 +144,7 @@ export function RegisterLockupDiagram() {
 
         {/* Left Column: Clickable Version Lineage Tree */}
         <g transform="translate(28, 86)">
-          <rect width="268" height="278" rx="12" fill="#FFFFFF" stroke="#DEDED8" strokeWidth="1.2" />
+          <rect width="268" height="278" rx="12" fill="var(--panel-elevated)" stroke="var(--line)" strokeWidth="1.2" />
           <text x="18" y="26" fontFamily="var(--font-plex-mono), monospace" fontSize="11.5" fill="#4F4F4A" fontWeight="600">
             VERSION LINEAGE (CLICK TO INSPECT)
           </text>

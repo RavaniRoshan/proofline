@@ -43,7 +43,7 @@ export function DeterministicSplitDiagram() {
           {(
             [
               { id: "all", label: "Both Branches (100%)" },
-              { id: "deterministic", label: "78% TypeScript Rules (0ms)" },
+              { id: "deterministic", label: "78% TypeScript Rules (<1ms)" },
               { id: "semantic", label: "22% Bounded LLM (≤5 facts)" },
             ] as const
           ).map((b) => (
@@ -77,12 +77,12 @@ export function DeterministicSplitDiagram() {
           </pattern>
         </defs>
 
-        <rect width="680" height="360" rx="16" fill="#FFFFFF" stroke="#DEDED8" strokeWidth="1.5" />
+        <rect width="680" height="360" rx="16" fill="var(--panel)" stroke="var(--line)" strokeWidth="1.5" />
         <rect width="680" height="360" rx="16" fill="url(#splitGrid)" />
 
         {/* Input Claim Stream (Left) */}
         <g transform="translate(26, 98)">
-          <rect width="164" height="160" rx="12" fill="#F5F5F2" stroke="#C9C9C1" strokeWidth="1.5" />
+          <rect width="164" height="160" rx="12" fill="var(--panel-elevated)" stroke="var(--line)" strokeWidth="1.5" />
           <text x="14" y="26" fontFamily="var(--font-plex-mono), monospace" fontSize="11.5" fill="#1A1A18" fontWeight="600">
             INGESTED DRAFT (18)
           </text>

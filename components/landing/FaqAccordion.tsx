@@ -54,7 +54,7 @@ export function FaqAccordion({ items }: { items: Item[] }) {
               >
                 <span
                   className={`text-[16.5px] md:text-[18px] leading-snug font-medium transition-colors ${
-                    isOpen ? "text-accent" : "text-ink group-hover:text-accent"
+                    isOpen ? "text-accent-brand dark:text-accent-readable font-semibold" : "text-ink group-hover:text-accent-brand dark:group-hover:text-accent-readable"
                   }`}
                 >
                   {it.q}
@@ -63,7 +63,7 @@ export function FaqAccordion({ items }: { items: Item[] }) {
                   aria-hidden="true"
                   className={`inline-flex size-6 shrink-0 items-center justify-center rounded-full border font-mono text-[15px] leading-none transition-colors mt-0.5 ${
                     isOpen
-                      ? "border-accent bg-accent text-paper"
+                      ? "border-accent-brand bg-accent-brand dark:bg-accent-readable dark:border-accent-readable text-white dark:text-black"
                       : "border-ink/15 bg-panel/70 text-ink-soft group-hover:border-ink/35 group-hover:text-ink"
                   }`}
                 >

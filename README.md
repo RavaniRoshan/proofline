@@ -322,13 +322,19 @@ proofline/
 │   └── layout.tsx                 # Root layout with IBM Plex fonts
 ├── components/
 │   ├── landing/                   # Modular landing page components
-│   │   ├── LandingHeader.tsx      # Dual-mode floating navbar & solid mega menus
-│   │   ├── PipelineDemo.tsx       # 4-stage interactive inspector terminal
+│   │   ├── ProoflineHero.tsx      # Composio-precision hero with 21st.dev SunsetOrb & StageGridBackdrop
+│   │   ├── StageGridBackdrop.tsx  # Architectural blueprint SVG coordinate grid with corner registration marks
+│   │   ├── UseCasesDualPane.tsx   # 3-column interactive connected workflow stage
+│   │   ├── AgentsAndTrustBands.tsx# 8-surface verdict grid and 3-card trust permission matrix
+│   │   ├── StickyJobsBand.tsx     # 3-step timeline with silk mesh card
+│   │   ├── ArchifySystemExplorer.tsx # Interactive codebase topology & contract explorer
+│   │   ├── DeveloperTerminalBand.tsx # Studio developer console with real-time CLI stream
+│   │   ├── ApiPlayground.tsx      # Headless API playground with live POST /api/verify execution
 │   │   ├── VerdictCard.tsx        # Flat, high-contrast verdict cards
 │   │   ├── FaqAccordion.tsx       # Accessible, smooth FAQ accordion
-│   │   ├── NewsletterForm.tsx     # Island pill subscription form
-│   │   └── LandingDiagrams.tsx    # 4 in-house vector architecture diagrams
-│   └── ui/                        # Reusable atom components
+│   │   ├── ProoflineFooter.tsx    # Full-bleed aurora crossfade stage & vertical wordmark
+│   │   └── assets/                # 4 in-house vector architecture diagrams (EvidenceGate, Split, etc.)
+│   └── ui/                        # Reusable atom components (vercel-navbar, sunset-orb, avatar, etc.)
 ├── lib/
 │   ├── segment.ts                 # Claim extraction & character offset tracking
 │   ├── normalize.ts               # Currency, scalar, and date normalization

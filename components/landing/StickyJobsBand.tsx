@@ -71,9 +71,9 @@ const STEPS: JobStep[] = [
     id: "computer",
     title: "TypeScript for the heavy lifting",
     description:
-      "When a draft has 18 claims with numbers, dates, and mandatory disclaimers, Proofline resolves 78% of them in a 0ms TypeScript pass and brings back exact proof.",
+      "When a draft has 18 claims with numbers, dates, and mandatory disclaimers, Proofline resolves 78% of them in a sub-millisecond TypeScript pass and brings back exact proof.",
     topPillPrompt: "Evaluate 18 claims in seed/sample_draft.md",
-    secondPillBadge: "78% resolved in 0ms",
+    secondPillBadge: "78% resolved in <1ms",
     cardPath: "lib/normalize.ts / STAGE_01_ENGINE.ts",
     cardHeading: "Zero-LLM Scalar Engine",
     cardSubheading: "14 of 18 sample claims resolved deterministically without a model call.",
@@ -82,7 +82,7 @@ const STEPS: JobStep[] = [
         num: "1",
         title: "Exact byte spans",
         detail: "Segmenter extracts char_start: 36, char_end: 79 with zero drift",
-        badges: [{ text: "0ms", bg: "bg-v-supported-bg", fg: "text-v-supported-fg" }],
+        badges: [{ text: "0.4ms", bg: "bg-v-supported-bg", fg: "text-v-supported-fg" }],
       },
       {
         num: "2",
@@ -245,7 +245,7 @@ export function StickyJobsBand() {
           </div>
 
           {/* Frosted Glass Outer Frame -> Inner Card (Exact 05-band4-sticky-timeline.png) */}
-          <div className="relative z-10 w-full max-w-[440px] rounded-[22px] bg-white/55 p-1.5 shadow-[0_20px_50px_rgba(26,26,24,0.08)] backdrop-blur-md">
+          <div className="relative z-10 w-full max-w-[440px] rounded-[22px] bg-black/5 dark:bg-white/8 border border-ink/8 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.12)] backdrop-blur-md">
             <div className="rounded-2xl border border-ink/8 bg-paper p-6">
               {/* Top File Path */}
               <div className="flex items-center justify-between gap-2 font-mono text-[12px] text-ink-faint">
@@ -263,9 +263,9 @@ export function StickyJobsBand() {
               </div>
 
               {/* Card Heading */}
-              <h4 className="mt-3 font-sans text-[19px] font-semibold text-ink">
+              <h3 className="mt-3 font-sans text-[19px] font-semibold text-ink">
                 {current.cardHeading}
-              </h4>
+              </h3>
               <p className="mt-0.5 text-[13px] text-ink-soft">
                 {current.cardSubheading}
               </p>

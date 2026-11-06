@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { Header } from "@/components/ui/vercel-navbar";
 import { ProoflineHero } from "@/components/landing/ProoflineHero";
 import { MeshCardBackdrop } from "@/components/landing/HeroTunnelCanvas";
 import { UseCasesDualPane } from "@/components/landing/UseCasesDualPane";
 import { EightSurfaceGrid, TrustSecurityCards } from "@/components/landing/AgentsAndTrustBands";
 import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
-import { ProductFeatureMosaicBand } from "@/components/landing/ProductFeatureMosaicBand";
+import { DeveloperTerminalBand } from "@/components/landing/DeveloperTerminalBand";
+import { ApiPlayground } from "@/components/landing/ApiPlayground";
 import { FaqAccordion } from "@/components/landing/FaqAccordion";
 import { VerdictCard } from "@/components/landing/VerdictCard";
 import { ArchifySystemExplorer } from "@/components/landing/ArchifySystemExplorer";
@@ -26,7 +28,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Why resolve claims with deterministic TypeScript rules before calling a model?",
-    a: "Language models frequently hallucinate numbers, miss subtle unit conversions, and overlook expired validity windows. 78% of marketing claims contain numbers, currency, dates, or product names that TypeScript verifies with 100% precision and 0ms API latency.",
+    a: "Language models frequently hallucinate numbers, miss subtle unit conversions, and overlook expired validity windows. 78% of marketing claims contain numbers, currency, dates, or product names that TypeScript verifies with 100% precision and <1ms API latency.",
   },
   {
     q: "Can a reviewer trust a CONTRADICTED verdict without double-checking?",
@@ -52,10 +54,11 @@ const FAQ_ITEMS = [
 
 export default function LandingPage() {
   return (
-    <div className="landing min-h-screen flex flex-col bg-paper text-ink overflow-x-hidden">
+    <main id="main-content" className="landing min-h-screen flex flex-col bg-paper text-ink overflow-x-hidden">
       {/* =========================================================================
           HERO SECTION: Full-Viewport Proofline Stage
           ========================================================================= */}
+      <Header />
       <ProoflineHero />
 
       {/* =========================================================================
@@ -147,7 +150,7 @@ export default function LandingPage() {
           <div className="mt-16 rounded-[24px] border border-ink/10 bg-panel/45 p-5 md:p-7">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 pb-3.5 font-mono text-[11px] uppercase tracking-wider text-ink-faint">
               <span>STAGE 1 DETERMINISTIC RULES (78%) VS STAGE 3 BOUNDED MODEL ROUTING (22%)</span>
-              <span className="tabular-nums">0ms LATENCY · $0.00 TOKEN COST ON SCALARS</span>
+              <span className="tabular-nums">&lt;1ms LATENCY · $0.00 TOKEN COST ON SCALARS</span>
             </div>
             <DeterministicSplitDiagram />
           </div>
@@ -279,7 +282,7 @@ export default function LandingPage() {
                   <div className="mt-4 flex flex-col gap-2">
                     {[
                       { dot: "bg-accent", icon: "TS", name: "Stage 1 Scalar Rules", val: "78%" },
-                      { dot: "bg-accent/65", icon: "LX", name: "Stage 2 Lexical Top-5", val: "0ms" },
+                      { dot: "bg-accent/65", icon: "LX", name: "Stage 2 Lexical Top-5", val: "0.4ms" },
                       { dot: "bg-accent/35", icon: "GM", name: "Stage 3 Bounded Model", val: "22%" },
                     ].map((r) => (
                       <div
@@ -386,8 +389,13 @@ export default function LandingPage() {
           BAND 7 (#build): 5-Card Proofline Verification Architecture Mosaic
           ========================================================================= */}
       <section id="build" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 bg-panel px-4 py-10 md:px-7 md:py-14">
-          <ProductFeatureMosaicBand />
+        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-4 py-10 md:px-7 md:py-14">
+          <div className="rounded-[32px] bg-[#141412] border border-white/10 p-5 sm:p-8 md:p-12 text-white shadow-2xl overflow-hidden">
+            <DeveloperTerminalBand />
+            <div className="mt-12 pt-10 border-t border-white/10">
+              <ApiPlayground />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -516,27 +524,27 @@ export default function LandingPage() {
             <MeshCardBackdrop />
 
             <div className="relative z-10 flex max-w-2xl flex-col items-center gap-4">
-              <h2 className="max-w-[20ch] text-balance font-sans text-[32px] md:text-[46px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
+              <h2 className="max-w-[20ch] text-balance font-sans text-[32px] md:text-[46px] font-normal tracking-[-0.042em] leading-[1.08] text-ink dark:text-white">
                 Give your team what it needs to{" "}
-                <span className="text-accent">tell the truth</span>
+                <span className="text-accent dark:text-[#E07A70]">tell the truth</span>
               </h2>
-              <p className="max-w-[38ch] text-balance text-[16px] md:text-[17.5px] tracking-[-0.022em] leading-[1.45] text-ink-soft">
+              <p className="max-w-[38ch] text-balance text-[16px] md:text-[17.5px] tracking-[-0.022em] leading-[1.45] text-ink-soft dark:text-zinc-300">
                 Open Proofline in the browser you already use. Free to evaluate, and ready in
                 seconds.
               </p>
 
-              {/* Dual Sharp 0px Buttons (Exact 10-band12-bottom-cta.png) */}
+              {/* Dual Sharp 0px Buttons — High-contrast across both Light and Dark modes */}
               <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href="/check"
-                  className="inline-flex items-center justify-center gap-2 bg-ink px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-paper transition-colors hover:bg-ink/85 active:scale-[0.98] rounded-none"
+                  className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-md font-semibold"
                 >
                   <span>CHECK A DRAFT</span>
                   <span aria-hidden="true">→</span>
                 </Link>
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center justify-center border border-ink/15 bg-paper px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink transition-colors hover:border-ink/30 hover:bg-panel active:scale-[0.98] rounded-none"
+                  className="inline-flex items-center justify-center border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
                 >
                   SEE IT WORK
                 </a>
@@ -550,6 +558,6 @@ export default function LandingPage() {
           FOOTER: Full-Bleed Aurora & Vertical Wordmark Stage (ProoflineFooter)
           ========================================================================= */}
       <ProoflineFooter />
-    </div>
+    </main>
   );
 }

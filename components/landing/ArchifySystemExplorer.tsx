@@ -53,7 +53,7 @@ const ARCH_NODES: ArchNode[] = [
     invariants: [
       "Collapses single newlines 1:1 so byte offsets never drift",
       "Markdown headings (#, ##) are never classified as claims",
-      "Deterministic pure function — 0ms latency",
+      "Deterministic pure function — <1ms latency",
     ],
     codeExcerpt: `// lib/segment.ts
 export function segmentDraft(draft: string): SegmentedClaim[] {
@@ -229,7 +229,7 @@ const ARCH_EDGES: ArchEdge[] = [
     from: "resolve",
     to: "gate",
     path: "M 598 85 C 620 85, 618 154, 640 154",
-    label: "0ms exact lookup",
+    label: "<1ms exact lookup",
     labelX: 660,
     labelY: 88,
     routes: ["all", "deterministic", "downgrade"],
@@ -345,7 +345,7 @@ export function ArchifySystemExplorer() {
       </div>
 
       {/* Interactive SVG Canvas */}
-      <div className="p-4 sm:p-6 bg-[#FAF9F5] border-b border-line overflow-hidden">
+      <div className="p-4 sm:p-6 bg-panel border-b border-line overflow-hidden">
         <svg
           ref={svgRef}
           viewBox="0 0 1040 340"

@@ -196,11 +196,12 @@ export function MeshCardBackdrop({ className = "" }: { className?: string }) {
       aria-hidden="true"
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
     >
-      {/* Base warm paper surface */}
-      <div className="absolute inset-0 bg-[#FAF9F6]" />
-      {/* Diagonal silk ribbons using Proofline's oxide & slate tokens */}
+      {/* Base surface — light warm paper / dark graphite */}
+      <div className="absolute inset-0 bg-[#FAF9F6] dark:bg-[#111115]" />
+      
+      {/* Light mode diagonal silk ribbons */}
       <div
-        className="absolute -inset-[20%] opacity-90"
+        className="dark:hidden absolute -inset-[20%] opacity-90"
         style={{
           background: [
             "radial-gradient(ellipse 55% 32% at 18% 22%, rgba(212, 132, 122, 0.34) 0%, transparent 70%)",
@@ -212,11 +213,27 @@ export function MeshCardBackdrop({ className = "" }: { className?: string }) {
           transform: "rotate(-6deg) scale(1.08)",
         }}
       />
-      {/* Subtle 24px architectural dot-grid texture */}
+
+      {/* Dark mode high-tech luminescent mesh ribbons */}
       <div
-        className="absolute inset-0 opacity-[0.22]"
+        className="hidden dark:block absolute -inset-[20%] opacity-80"
         style={{
-          backgroundImage: "radial-gradient(rgba(26, 26, 24, 0.18) 1px, transparent 1px)",
+          background: [
+            "radial-gradient(ellipse 55% 35% at 18% 22%, rgba(212, 132, 122, 0.16) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 35% at 82% 28%, rgba(59, 74, 69, 0.22) 0%, transparent 72%)",
+            "radial-gradient(ellipse 65% 45% at 24% 78%, rgba(158, 45, 54, 0.25) 0%, transparent 70%)",
+            "radial-gradient(ellipse 55% 35% at 85% 82%, rgba(212, 132, 122, 0.14) 0%, transparent 70%)",
+            "linear-gradient(125deg, rgba(17,17,21,0.95) 0%, rgba(22,22,27,0.95) 40%, rgba(45,18,22,0.3) 55%, rgba(22,22,27,0.95) 75%, rgba(17,17,21,0.95) 100%)",
+          ].join(", "),
+          transform: "rotate(-6deg) scale(1.08)",
+        }}
+      />
+
+      {/* Architectural dot-grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.22] dark:opacity-[0.12]"
+        style={{
+          backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
           backgroundSize: "16px 16px",
         }}
       />

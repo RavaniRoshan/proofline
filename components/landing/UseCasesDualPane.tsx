@@ -166,7 +166,7 @@ export function UseCasesDualPane() {
                     setPaused(true);
                   }}
                   aria-label={`Select scenario ${sc.sourceLabel}`}
-                  className={`px-2 py-0.5 font-mono text-[10px] uppercase transition-colors cursor-pointer ${
+                  className={`min-h-[32px] min-w-[32px] px-2.5 py-1 font-mono text-[11px] rounded-[4px] uppercase transition-colors cursor-pointer inline-flex items-center justify-center ${
                     i === activeIdx
                       ? "bg-ink text-paper font-semibold"
                       : "bg-panel text-ink-faint hover:text-ink"
@@ -182,7 +182,7 @@ export function UseCasesDualPane() {
           <div className="flex flex-1 flex-col justify-center gap-3 px-5 py-4">
             <div className="ml-auto max-w-[92%] rounded-2xl bg-panel px-4 py-3.5 text-[13.5px] leading-relaxed text-ink">
               <p>{current.draftPrompt}</p>
-              <p className="mt-2 border-t border-ink/10 pt-2 font-sans font-medium text-[13.5px] text-accent">
+              <p className="mt-2 border-t border-ink/10 pt-2 font-sans font-medium text-[13.5px] text-accent-brand dark:text-accent-readable font-semibold">
                 {current.highlightedClaim}
               </p>
             </div>
@@ -219,7 +219,7 @@ export function UseCasesDualPane() {
                 type="button"
                 onClick={() => setActiveIdx((activeIdx + 1) % SCENARIOS.length)}
                 aria-label="Run next verification scenario"
-                className="inline-flex size-7 items-center justify-center rounded-full bg-accent text-paper transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex size-9 items-center justify-center rounded-full bg-accent text-paper transition-transform hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <ArrowUp size={14} />
               </button>
@@ -318,7 +318,7 @@ export function UseCasesDualPane() {
                 <span>TYPESCRIPT</span>
               </div>
               <span className="font-sans text-[12px] text-ink-faint">
-                78% 0ms rules
+                78% pure TS rules
               </span>
             </div>
 
@@ -375,7 +375,7 @@ export function UseCasesDualPane() {
             <div>
               {/* Notion-style square emblem + verdict badge */}
               <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="inline-flex size-8 items-center justify-center rounded-[6px] border-2 border-ink font-mono text-[15px] font-bold text-ink">
+                <span className="inline-flex size-9 sm:size-10 items-center justify-center rounded-[6px] border-2 border-ink font-mono text-[15px] font-bold text-ink">
                   P
                 </span>
                 <span

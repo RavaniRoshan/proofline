@@ -105,12 +105,12 @@ export function EvidenceGateDiagram() {
         </defs>
 
         {/* Background Canvas Box */}
-        <rect width="720" height="390" rx="16" fill="#F8F8F5" stroke="#DEDED8" strokeWidth="1.2" />
+        <rect width="720" height="390" rx="16" fill="var(--panel)" stroke="var(--line)" strokeWidth="1.2" />
         <rect width="720" height="390" rx="16" fill="url(#dotGrid)" />
 
         {/* --- NODE 1: Ingested Draft Claim --- */}
         <g transform="translate(26, 36)">
-          <rect width="200" height="84" rx="10" fill="#FFFFFF" stroke="#C9C9C1" strokeWidth="1.5" />
+          <rect width="200" height="84" rx="10" fill="var(--panel-elevated)" stroke="var(--line)" strokeWidth="1.5" />
           <text x="14" y="24" fontFamily="var(--font-plex-mono), monospace" fontSize="11" fill="#2A3632" fontWeight="600">
             01 / INPUT CLAIM
           </text>
@@ -127,7 +127,7 @@ export function EvidenceGateDiagram() {
 
         {/* --- NODE 2: Deterministic Normalizer --- */}
         <g transform="translate(266, 36)">
-          <rect width="190" height="84" rx="10" fill="#FFFFFF" stroke="#C9C9C1" strokeWidth="1.5" />
+          <rect width="190" height="84" rx="10" fill="var(--panel-elevated)" stroke="var(--line)" strokeWidth="1.5" />
           <text x="14" y="24" fontFamily="var(--font-plex-mono), monospace" fontSize="11" fill="#4F4F4A" fontWeight="600">
             02 / SCALAR NORMALIZER
           </text>

@@ -40,7 +40,7 @@ const result = await verifyDraft({
   sourceDocuments: docs,
 });
 
-// 78% resolved in Stage 1 TypeScript rules (0ms model latency)
+// 78% resolved in Stage 1 TypeScript rules (0.4ms deterministic TS, 0 model latency)
 console.log(result.findings[0].verdict); // "CONTRADICTED"
 console.log(result.findings[0].evidence.fact_id); // "F-021" (v4)`,
   },
@@ -271,7 +271,7 @@ export function DeveloperTerminalBand() {
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
                   <span>✦</span>
-                  <span>NORMALIZER_MATCH_F021 (0ms)</span>
+                  <span>NORMALIZER_MATCH_F021 (0.4ms)</span>
                 </div>
               </div>
             </div>

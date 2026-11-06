@@ -8,7 +8,6 @@ import {
   Clock,
   AlertTriangle,
   HelpCircle,
-  Sparkles,
   Terminal,
   Cpu,
   Copy,
@@ -73,7 +72,7 @@ const EIGHT_GRID_ITEMS: GridItem[] = [
   {
     id: "not_checkable",
     title: "NOT_CHECKABLE",
-    badgeColor: "text-v-not-checkable-fg bg-v-not-checkable-bg",
+    badgeColor: "text-v-notcheckable-fg bg-v-notcheckable-bg",
     actionType: "copy",
     actionLabel: "Copy Rule",
     copyPayload:
@@ -119,7 +118,7 @@ export function EightSurfaceGrid() {
       case "unverified":
         return <HelpCircle size={18} className="text-v-unverified-fg" />;
       case "not_checkable":
-        return <Sparkles size={18} className="text-v-not-checkable-fg" />;
+        return <HelpCircle size={18} className="text-v-notcheckable-fg" />;
       case "rest_api":
         return <Terminal size={18} className="text-accent" />;
       default:
