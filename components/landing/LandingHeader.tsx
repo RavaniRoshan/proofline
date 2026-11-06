@@ -7,7 +7,6 @@ import {
   X,
   ArrowRight,
   ChevronDown,
-  ShieldCheck,
   CheckCircle2,
   XCircle,
   Clock,
@@ -26,7 +25,6 @@ export function LandingHeader() {
   const [activeMega, setActiveMega] = useState<MegaTab>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Active scroll listener detecting underlying section background luminance
   useEffect(() => {
     let ticking = false;
 
@@ -34,7 +32,6 @@ export function LandingHeader() {
       const scrollY = window.scrollY;
       setScrolled(scrollY > 24);
 
-      // Probe position: center of the floating pill header (topbar ~36px + 24px)
       const checkY = 64;
       const sections = document.querySelectorAll("section, footer");
       let currentTheme: ThemeMode = "dark";
@@ -49,12 +46,10 @@ export function LandingHeader() {
           const bg = window.getComputedStyle(el).backgroundColor;
           const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
           if (match) {
-            // Ignore transparent wrapper elements
             if (match[4] !== undefined && Number(match[4]) < 0.1) continue;
             const r = Number(match[1]);
             const g = Number(match[2]);
             const b = Number(match[3]);
-            // ITU-R BT.601 perceptual luminance formula
             const luminance = (299 * r + 587 * g + 114 * b) / 1000;
             currentTheme = luminance < 128 ? "dark" : "light";
             break;
@@ -95,64 +90,56 @@ export function LandingHeader() {
 
   return (
     <header
-      className={`fixed left-0 z-50 flex w-full flex-col items-center px-4 transition-[top] duration-300 md:left-1/2 md:-translate-x-1/2 md:max-w-[1240px] md:px-2 ${
-        scrolled ? "top-3 md:top-3.5" : "top-0 md:top-12"
+      className={`fixed left-0 z-50 flex w-full flex-col items-center px-3 sm:px-4 transition-[top] duration-300 md:left-1/2 md:-translate-x-1/2 md:max-w-[1240px] md:px-6 ${
+        scrolled ? "top-2.5 md:top-3.5" : "top-10 md:top-11"
       }`}
     >
-      {/* 100% Solid Opaque Navbar Pill — Zero Transparency */}
       <div
-        className={`w-full rounded-2xl md:rounded-full border px-4 py-2.5 transition-[background-color,border-color,color,box-shadow] duration-300 relative ${
+        className={`w-full rounded-xl md:rounded-full border px-5 py-2.5 transition-[background-color,border-color,color,box-shadow] duration-300 relative ${
           isDark
             ? "border-white/15 bg-[#141412] text-white shadow-[0_16px_36px_-10px_rgba(0,0,0,0.65)]"
             : "border-neutral-300 bg-white text-ink shadow-[0_16px_36px_-10px_rgba(0,0,0,0.08)]"
         }`}
         onMouseLeave={handleMouseLeave}
       >
-        <nav className="flex w-full items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
-          {/* Left: Brand Identity */}
-          <div className="flex shrink-0 items-center gap-2">
-            <Link href="/" className="flex items-center gap-2 group" aria-label="Proofline — Home">
-              <span
-                aria-hidden="true"
-                className={`flex items-center gap-[2px] font-serif text-[18px] font-semibold transition-colors duration-300 ${
-                  isDark ? "text-accent-readable" : "text-accent"
-                }`}
-              >
-                <span>[</span>
-                <span>]</span>
-              </span>
-              <span className="font-serif text-[17px] font-semibold tracking-tight transition-colors duration-300">
-                Proofline
-              </span>
-            </Link>
+        {/* Strict 3-Zone Top Bar Contract */}
+        <nav className="flex w-full items-center justify-between gap-8">
+          {/* Zone 1: Single-line Brand Wordmark */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 shrink-0 whitespace-nowrap"
+            aria-label="Proofline — Home"
+          >
             <span
-              className={`hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-mono uppercase tracking-wider border font-medium ${
-                isDark
-                  ? "border-white/20 bg-white/5 text-white/80"
-                  : "border-neutral-200 bg-neutral-100 text-neutral-700"
+              aria-hidden="true"
+              className={`flex items-center gap-[2px] font-serif text-[18px] font-semibold transition-colors duration-300 ${
+                isDark ? "text-accent-readable" : "text-accent"
               }`}
             >
-              PREFLIGHT GOVERNANCE
+              <span>[</span>
+              <span>]</span>
             </span>
-          </div>
+            <span className="font-serif text-[17px] font-semibold tracking-tight">
+              Proofline
+            </span>
+          </Link>
 
-          {/* Center: Desktop Nav triggers with Mega Menus */}
-          <ul className="hidden lg:flex items-center justify-center gap-1 font-mono text-[13px] tracking-tight">
-            {/* Tab 1: Verdicts */}
+          {/* Zone 2: Concise single-line navigation links */}
+          <ul className="hidden lg:flex items-center justify-center gap-6 font-mono text-[13px] tracking-tight">
             <li onMouseEnter={() => handleMouseEnter("verdicts")}>
               <a
                 href="#verdicts"
-                className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
+                className={`inline-flex items-center gap-1 py-1 whitespace-nowrap shrink-0 transition-colors duration-150 ${
                   activeMega === "verdicts"
                     ? isDark
-                      ? "bg-white/15 text-white font-semibold"
-                      : "bg-neutral-100 text-ink font-semibold"
+                      ? "text-white font-semibold underline underline-offset-4"
+                      : "text-ink font-semibold underline underline-offset-4"
                     : isDark
-                      ? "text-white/80 hover:text-white"
+                      ? "text-white/75 hover:text-white"
                       : "text-neutral-600 hover:text-ink"
                 }`}
               >
-                VERDICTS
+                <span>Verdicts</span>
                 <ChevronDown
                   size={13}
                   className={`transition-transform duration-200 ${
@@ -162,21 +149,20 @@ export function LandingHeader() {
               </a>
             </li>
 
-            {/* Tab 2: Pipeline */}
             <li onMouseEnter={() => handleMouseEnter("pipeline")}>
               <a
                 href="#pipeline"
-                className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
+                className={`inline-flex items-center gap-1 py-1 whitespace-nowrap shrink-0 transition-colors duration-150 ${
                   activeMega === "pipeline"
                     ? isDark
-                      ? "bg-white/15 text-white font-semibold"
-                      : "bg-neutral-100 text-ink font-semibold"
+                      ? "text-white font-semibold underline underline-offset-4"
+                      : "text-ink font-semibold underline underline-offset-4"
                     : isDark
-                      ? "text-white/80 hover:text-white"
+                      ? "text-white/75 hover:text-white"
                       : "text-neutral-600 hover:text-ink"
                 }`}
               >
-                PIPELINE
+                <span>Pipeline</span>
                 <ChevronDown
                   size={13}
                   className={`transition-transform duration-200 ${
@@ -186,21 +172,20 @@ export function LandingHeader() {
               </a>
             </li>
 
-            {/* Tab 3: Governance / Architecture */}
             <li onMouseEnter={() => handleMouseEnter("governance")}>
               <a
-                href="#enterprise"
-                className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
+                href="#register"
+                className={`inline-flex items-center gap-1 py-1 whitespace-nowrap shrink-0 transition-colors duration-150 ${
                   activeMega === "governance"
                     ? isDark
-                      ? "bg-white/15 text-white font-semibold"
-                      : "bg-neutral-100 text-ink font-semibold"
+                      ? "text-white font-semibold underline underline-offset-4"
+                      : "text-ink font-semibold underline underline-offset-4"
                     : isDark
-                      ? "text-white/80 hover:text-white"
+                      ? "text-white/75 hover:text-white"
                       : "text-neutral-600 hover:text-ink"
                 }`}
               >
-                GOVERNANCE
+                <span>Register</span>
                 <ChevronDown
                   size={13}
                   className={`transition-transform duration-200 ${
@@ -210,60 +195,59 @@ export function LandingHeader() {
               </a>
             </li>
 
-            {/* Direct link */}
             <li>
-              <a
-                href="#faq"
-                className={`px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
-                  isDark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-ink"
+              <Link
+                href="/facts"
+                className={`py-1 whitespace-nowrap shrink-0 transition-colors duration-150 hover:underline underline-offset-4 ${
+                  isDark ? "text-white/75 hover:text-white" : "text-neutral-600 hover:text-ink"
                 }`}
               >
-                FAQ
-              </a>
+                42 Facts
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/about"
+                className={`py-1 whitespace-nowrap shrink-0 transition-colors duration-150 hover:underline underline-offset-4 ${
+                  isDark ? "text-white/75 hover:text-white" : "text-neutral-600 hover:text-ink"
+                }`}
+              >
+                Spec
+              </Link>
             </li>
           </ul>
 
-          {/* Right: Actions */}
+          {/* Zone 3: 1 Primary Action */}
           <div className="flex shrink-0 items-center justify-end gap-3">
             <Link
-              href="/about"
-              className={`hidden md:inline-flex items-center px-3 py-1.5 text-[13px] font-mono transition-colors duration-200 ${
-                isDark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-ink"
-              }`}
-            >
-              SPEC
-            </Link>
-            <Link
               href="/check"
-              className={`inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-mono text-[12px] font-semibold tracking-wider transition-all duration-200 ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-mono text-[12px] font-semibold tracking-wider transition-all duration-150 whitespace-nowrap shrink-0 ${
                 isDark
-                  ? "bg-white text-ink hover:bg-neutral-100 shadow-md"
-                  : "bg-ink text-paper hover:bg-slate-deep shadow-md"
+                  ? "bg-white text-ink hover:bg-neutral-200"
+                  : "bg-ink text-paper hover:bg-slate-deep"
               }`}
             >
-              <span>CHECK DRAFT</span>
+              <span>Check a Draft</span>
               <ArrowRight size={13} aria-hidden="true" />
             </Link>
 
-            {/* Mobile Hamburger Button */}
             <button
               type="button"
-              className="lg:hidden flex items-center justify-center w-8 h-8 rounded-full"
+              className="lg:hidden flex items-center justify-center w-9 h-9 rounded-full"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={19} /> : <Menu size={19} />}
             </button>
           </div>
         </nav>
 
-        {/* =========================================================================
-            DESKTOP MEGA-MENU POPUP (100% Solid Opaque — Zero Transparency)
-            ========================================================================= */}
+        {/* Desktop Mega-Menu Popup */}
         {activeMega && (
           <div
-            className={`absolute top-full left-1/2 -translate-x-1/2 mt-3.5 w-full max-w-[920px] rounded-[28px] border p-7 shadow-2xl transition-all duration-200 hidden lg:block ${
+            className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-full max-w-[920px] rounded-[20px] border p-6 shadow-2xl transition-all duration-150 hidden lg:block ${
               isDark
                 ? "border-white/15 bg-[#141412] text-white shadow-[0_24px_60px_rgba(0,0,0,0.9)]"
                 : "border-neutral-200 bg-white text-ink shadow-[0_24px_60px_rgba(0,0,0,0.14)]"
@@ -271,7 +255,6 @@ export function LandingHeader() {
             onMouseEnter={() => handleMouseEnter(activeMega)}
             onMouseLeave={handleMouseLeave}
           >
-            {/* Panel 1: Verdicts Mega Panel */}
             {activeMega === "verdicts" && (
               <div className="grid grid-cols-3 gap-6">
                 <div className="p-1">
@@ -280,30 +263,32 @@ export function LandingHeader() {
                       isDark ? "text-white/60" : "text-neutral-500"
                     }`}
                   >
-                    AFFIRMATIVE &amp; NEGATIVE
+                    Affirmative &amp; Negative
                   </p>
                   <div className="space-y-1">
                     <a
                       href="#verdicts"
-                      className={`p-2.5 rounded-2xl transition-all duration-150 block group ${
+                      onClick={() => setActiveMega(null)}
+                      className={`p-2.5 rounded-xl transition-all duration-150 block ${
                         isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
                       }`}
                     >
-                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-emerald-400 dark:text-emerald-400">
+                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-emerald-400">
                         <CheckCircle2 size={15} />
                         <span>SUPPORTED</span>
                       </div>
                       <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                        Approved fact entails the marketing claim with valid dates.
+                        Approved fact entails the marketing claim with active validity dates.
                       </p>
                     </a>
                     <a
                       href="#verdicts"
-                      className={`p-2.5 rounded-2xl transition-all duration-150 block group ${
+                      onClick={() => setActiveMega(null)}
+                      className={`p-2.5 rounded-xl transition-all duration-150 block ${
                         isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
                       }`}
                     >
-                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-rose-400 dark:text-rose-400">
+                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-rose-400">
                         <XCircle size={15} />
                         <span>CONTRADICTED</span>
                       </div>
@@ -314,36 +299,38 @@ export function LandingHeader() {
                   </div>
                 </div>
 
-                <div className={`p-1 border-l ${isDark ? "border-white/10" : "border-neutral-200"}`}>
+                <div className={`p-1 border-l pl-5 ${isDark ? "border-white/10" : "border-neutral-200"}`}>
                   <p
                     className={`font-mono text-[11px] uppercase tracking-wider font-semibold mb-3 px-2.5 ${
                       isDark ? "text-white/60" : "text-neutral-500"
                     }`}
                   >
-                    TIME &amp; AMBIGUITY
+                    Time &amp; Ambiguity
                   </p>
                   <div className="space-y-1">
                     <a
                       href="#verdicts"
-                      className={`p-2.5 rounded-2xl transition-all duration-150 block group ${
+                      onClick={() => setActiveMega(null)}
+                      className={`p-2.5 rounded-xl transition-all duration-150 block ${
                         isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
                       }`}
                     >
-                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-amber-300 dark:text-amber-300">
+                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-amber-300">
                         <Clock size={15} />
                         <span>STALE</span>
                       </div>
                       <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                        Validity window expired past review date; requires update.
+                        Validity window expired past review date; requires recertification.
                       </p>
                     </a>
                     <a
                       href="#verdicts"
-                      className={`p-2.5 rounded-2xl transition-all duration-150 block group ${
+                      onClick={() => setActiveMega(null)}
+                      className={`p-2.5 rounded-xl transition-all duration-150 block ${
                         isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
                       }`}
                     >
-                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-purple-300 dark:text-purple-300">
+                      <div className="flex items-center gap-1.5 font-mono text-[13px] font-semibold text-purple-300">
                         <AlertTriangle size={15} />
                         <span>CONFLICTING</span>
                       </div>
@@ -354,18 +341,18 @@ export function LandingHeader() {
                   </div>
                 </div>
 
-                <div className={`p-1 border-l ${isDark ? "border-white/10" : "border-neutral-200"}`}>
+                <div className={`p-1 border-l pl-5 ${isDark ? "border-white/10" : "border-neutral-200"}`}>
                   <div
-                    className={`p-5 rounded-[22px] border flex flex-col justify-between h-full ${
-                      isDark ? "bg-white/[0.05] border-white/10" : "bg-neutral-50 border-neutral-200"
+                    className={`p-5 rounded-xl border flex flex-col justify-between h-full ${
+                      isDark ? "bg-white/[0.04] border-white/10" : "bg-neutral-50 border-neutral-200"
                     }`}
                   >
                     <div>
                       <p className="font-mono text-[11px] uppercase tracking-wider text-accent-readable font-bold mb-2">
-                        EVIDENCE GATE
+                        The Evidence Gate
                       </p>
                       <p className={`text-[12px] leading-relaxed ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                        No claim can be contradicted without an exact fact ID, version, source doc, and character span.
+                        No claim can be marked CONTRADICTED without an exact fact ID, version, source document, and character span.
                       </p>
                     </div>
                     <Link
@@ -374,7 +361,7 @@ export function LandingHeader() {
                         isDark ? "text-accent-readable hover:text-white" : "text-accent hover:text-ink"
                       }`}
                     >
-                      <span>View 42 Seed Facts</span>
+                      <span>Browse 42 Seed Facts</span>
                       <ArrowRight size={13} />
                     </Link>
                   </div>
@@ -382,7 +369,6 @@ export function LandingHeader() {
               </div>
             )}
 
-            {/* Panel 2: Pipeline Mega Panel */}
             {activeMega === "pipeline" && (
               <div className="grid grid-cols-3 gap-6">
                 <div className="p-1">
@@ -391,75 +377,72 @@ export function LandingHeader() {
                       isDark ? "text-white/60" : "text-neutral-500"
                     }`}
                   >
-                    DETERMINISTIC LAYER
+                    Stage 1 · Deterministic
                   </p>
-                  <div className="space-y-1">
-                    <div
-                      className={`p-2.5 rounded-2xl transition-all duration-150 flex items-start gap-3 ${
-                        isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
-                      }`}
-                    >
-                      <Layers size={18} className="text-accent-readable shrink-0 mt-0.5" />
-                      <div>
-                        <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
-                          78% Rule Resolution
-                        </p>
-                        <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                          Numbers, dates, currencies solved in code with zero LLM inference cost.
-                        </p>
-                      </div>
+                  <div
+                    className={`p-2.5 rounded-xl flex items-start gap-3 ${
+                      isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
+                    }`}
+                  >
+                    <Layers size={18} className="text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
+                        78% Zero-LLM Resolution
+                      </p>
+                      <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
+                        Numbers, dates, currencies, and disclaimers resolved in TypeScript with 0ms latency.
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                <div className={`p-1 border-l ${isDark ? "border-white/10" : "border-neutral-200"}`}>
+                <div className={`p-1 border-l pl-5 ${isDark ? "border-white/10" : "border-neutral-200"}`}>
                   <p
                     className={`font-mono text-[11px] uppercase tracking-wider font-semibold mb-3 px-2.5 ${
                       isDark ? "text-white/60" : "text-neutral-500"
                     }`}
                   >
-                    SEMANTIC GATEWAY
+                    Stage 3 · Bounded Model
                   </p>
-                  <div className="space-y-1">
-                    <div
-                      className={`p-2.5 rounded-2xl transition-all duration-150 flex items-start gap-3 ${
-                        isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
-                      }`}
-                    >
-                      <Sparkles size={18} className="text-accent-readable shrink-0 mt-0.5" />
-                      <div>
-                        <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
-                          Bounded Search
-                        </p>
-                        <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                          Single LLM pass with at most 5 candidates; returns registered fact IDs only.
-                        </p>
-                      </div>
+                  <div
+                    className={`p-2.5 rounded-xl flex items-start gap-3 ${
+                      isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
+                    }`}
+                  >
+                    <Sparkles size={18} className="text-amber-300 shrink-0 mt-0.5" />
+                    <div>
+                      <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
+                        Top-5 Lexical Retrieval
+                      </p>
+                      <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
+                        Model receives ≤5 candidate facts and returns fact IDs only—never citations.
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                <div className={`p-1 border-l ${isDark ? "border-white/10" : "border-neutral-200"}`}>
+                <div className={`p-1 border-l pl-5 ${isDark ? "border-white/10" : "border-neutral-200"}`}>
                   <div
-                    className={`p-5 rounded-[22px] border flex flex-col justify-between h-full ${
-                      isDark ? "bg-white/[0.05] border-white/10" : "bg-neutral-50 border-neutral-200"
+                    className={`p-5 rounded-xl border flex flex-col justify-between h-full ${
+                      isDark ? "bg-white/[0.04] border-white/10" : "bg-neutral-50 border-neutral-200"
                     }`}
                   >
                     <div>
                       <p className="font-mono text-[11px] uppercase tracking-wider text-accent-readable font-bold mb-2">
-                        HEADLESS CI/CD
+                        Headless REST API
                       </p>
                       <p className={`text-[12px] leading-relaxed ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                        Run Proofline in GitHub Actions or editorial pipelines using standard curl or JSON payloads.
+                        Integrate `POST /api/verify` into CI/CD preflight checks or editorial assistants.
                       </p>
                     </div>
                     <a
                       href="#build"
+                      onClick={() => setActiveMega(null)}
                       className={`inline-flex items-center gap-1.5 mt-4 font-mono text-[12px] font-semibold ${
                         isDark ? "text-accent-readable hover:text-white" : "text-accent hover:text-ink"
                       }`}
                     >
-                      <span>Explore REST API</span>
+                      <span>Test Live API Playground</span>
                       <ArrowRight size={13} />
                     </a>
                   </div>
@@ -467,7 +450,6 @@ export function LandingHeader() {
               </div>
             )}
 
-            {/* Panel 3: Governance Mega Panel */}
             {activeMega === "governance" && (
               <div className="grid grid-cols-3 gap-6">
                 <div className="p-1">
@@ -476,69 +458,67 @@ export function LandingHeader() {
                       isDark ? "text-white/60" : "text-neutral-500"
                     }`}
                   >
-                    BRAND SOURCE OF TRUTH
+                    Source of Truth
                   </p>
-                  <div className="space-y-1">
-                    <div
-                      className={`p-2.5 rounded-2xl transition-all duration-150 ${
-                        isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
-                      }`}
-                    >
-                      <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
-                        Versioned Register
-                      </p>
-                      <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                        Marketing facts signed off by product owners with cryptographic timestamps.
-                      </p>
-                    </div>
-                  </div>
+                  <Link
+                    href="/facts"
+                    className={`block p-2.5 rounded-xl ${
+                      isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
+                    }`}
+                  >
+                    <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
+                      Versioned Fact Register
+                    </p>
+                    <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
+                      42 seeded Flowdesk records with validity windows, stale flags, and conflict pairs.
+                    </p>
+                  </Link>
                 </div>
 
-                <div className={`p-1 border-l ${isDark ? "border-white/10" : "border-neutral-200"}`}>
+                <div className={`p-1 border-l pl-5 ${isDark ? "border-white/10" : "border-neutral-200"}`}>
                   <p
                     className={`font-mono text-[11px] uppercase tracking-wider font-semibold mb-3 px-2.5 ${
                       isDark ? "text-white/60" : "text-neutral-500"
                     }`}
                   >
-                    AUDIT LEDGER
+                    Compliance Trail
                   </p>
-                  <div className="space-y-1">
-                    <div
-                      className={`p-2.5 rounded-2xl transition-all duration-150 ${
-                        isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
-                      }`}
-                    >
-                      <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
-                        Append-Only Records
-                      </p>
-                      <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                        Every decision recorded locally with SHA-256 seal and reviewer reasoning.
-                      </p>
-                    </div>
-                  </div>
+                  <Link
+                    href="/audit"
+                    className={`block p-2.5 rounded-xl ${
+                      isDark ? "hover:bg-white/[0.08]" : "hover:bg-neutral-100"
+                    }`}
+                  >
+                    <p className={`font-mono text-[13px] font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
+                      Append-Only Audit Log
+                    </p>
+                    <p className={`text-[12px] leading-relaxed mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
+                      Every human review decision recorded locally with timestamp and rationale.
+                    </p>
+                  </Link>
                 </div>
 
-                <div className={`p-1 border-l ${isDark ? "border-white/10" : "border-neutral-200"}`}>
+                <div className={`p-1 border-l pl-5 ${isDark ? "border-white/10" : "border-neutral-200"}`}>
                   <div
-                    className={`p-5 rounded-[22px] border flex flex-col justify-between h-full ${
-                      isDark ? "bg-white/[0.05] border-white/10" : "bg-neutral-50 border-neutral-200"
+                    className={`p-5 rounded-xl border flex flex-col justify-between h-full ${
+                      isDark ? "bg-white/[0.04] border-white/10" : "bg-neutral-50 border-neutral-200"
                     }`}
                   >
                     <div>
                       <p className="font-mono text-[11px] uppercase tracking-wider text-accent-readable font-bold mb-2">
-                        ZERO AUTH SPEC
+                        Register Health
                       </p>
                       <p className={`text-[12px] leading-relaxed ${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                        No sign-in required. Evaluates instantly in private incognito tabs.
+                        Inspect register health metrics, deterministic vs model split, and active alerts.
                       </p>
                     </div>
                     <Link
-                      href="/about"
+                      href="/dashboard"
                       className={`inline-flex items-center gap-1.5 mt-4 font-mono text-[12px] font-semibold ${
                         isDark ? "text-accent-readable hover:text-white" : "text-accent hover:text-ink"
                       }`}
                     >
-                      <span>Read the Architecture Spec</span>
+                      <span>Open Dashboard</span>
                       <ArrowRight size={13} />
                     </Link>
                   </div>
@@ -548,69 +528,64 @@ export function LandingHeader() {
           </div>
         )}
 
-        {/* =========================================================================
-            MOBILE ACCORDION DRAWER (100% Solid)
-            ========================================================================= */}
+        {/* Mobile Drawer */}
         {mobileOpen && (
           <div
-            className={`mt-4 border-t pt-4 pb-2 lg:hidden space-y-4 font-mono text-[13px] ${
+            className={`mt-3 border-t pt-3 pb-2 lg:hidden space-y-3 font-mono text-[13px] ${
               isDark ? "border-white/10 text-white" : "border-neutral-200 text-ink"
             }`}
           >
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-1.5">
               <a
                 href="#verdicts"
-                className={`py-1.5 transition-colors ${
-                  isDark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-ink"
-                }`}
+                className="py-1.5 text-white/80 hover:text-white"
                 onClick={() => setMobileOpen(false)}
               >
-                VERDICTS &amp; EVIDENCE
+                Verdicts &amp; Evidence
               </a>
               <a
                 href="#pipeline"
-                className={`py-1.5 transition-colors ${
-                  isDark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-ink"
-                }`}
+                className="py-1.5 text-white/80 hover:text-white"
                 onClick={() => setMobileOpen(false)}
               >
-                PREFLIGHT PIPELINE
+                4-Stage Pipeline
               </a>
               <a
-                href="#enterprise"
-                className={`py-1.5 transition-colors ${
-                  isDark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-ink"
-                }`}
+                href="#register"
+                className="py-1.5 text-white/80 hover:text-white"
                 onClick={() => setMobileOpen(false)}
               >
-                ENTERPRISE GOVERNANCE
-              </a>
-              <a
-                href="#faq"
-                className={`py-1.5 transition-colors ${
-                  isDark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-ink"
-                }`}
-                onClick={() => setMobileOpen(false)}
-              >
-                FAQ
+                Fact Register
               </a>
               <Link
-                href="/about"
-                className={`py-1.5 transition-colors ${
-                  isDark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-ink"
-                }`}
+                href="/facts"
+                className="py-1.5 text-white/80 hover:text-white"
                 onClick={() => setMobileOpen(false)}
               >
-                ARCHITECTURE SPEC
+                Browse 42 Facts
+              </Link>
+              <Link
+                href="/dashboard"
+                className="py-1.5 text-white/80 hover:text-white"
+                onClick={() => setMobileOpen(false)}
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/about"
+                className="py-1.5 text-white/80 hover:text-white"
+                onClick={() => setMobileOpen(false)}
+              >
+                Architecture Spec
               </Link>
             </div>
-            <div className={`pt-3 border-t flex flex-col gap-2 ${isDark ? "border-white/10" : "border-neutral-200"}`}>
+            <div className="pt-2 border-t border-white/10">
               <Link
                 href="/check"
                 className="btn-primary-landing w-full text-center"
                 onClick={() => setMobileOpen(false)}
               >
-                OPEN THE CHECKER
+                Check a Draft
               </Link>
             </div>
           </div>

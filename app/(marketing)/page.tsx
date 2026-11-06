@@ -1,611 +1,547 @@
 import Link from "next/link";
 import { LandingHeader } from "@/components/landing/LandingHeader";
 import { HeroRotator } from "@/components/landing/HeroRotator";
-import { LogoLoop } from "@/components/landing/LogoLoop";
+import { HeroWorkbench } from "@/components/landing/HeroWorkbench";
 import { FaqAccordion } from "@/components/landing/FaqAccordion";
 import { VerdictCard } from "@/components/landing/VerdictCard";
 import { PipelineDemo } from "@/components/landing/PipelineDemo";
+import { ApiPlayground } from "@/components/landing/ApiPlayground";
 import { NewsletterForm } from "@/components/landing/NewsletterForm";
 import { EvidenceGateDiagram } from "@/components/landing/assets/EvidenceGateDiagram";
 import { RegisterLockupDiagram } from "@/components/landing/assets/RegisterLockupDiagram";
 import { DeterministicSplitDiagram } from "@/components/landing/assets/DeterministicSplitDiagram";
 import { EnterpriseSecurityDiagram } from "@/components/landing/assets/EnterpriseSecurityDiagram";
 import {
-  ShieldCheck,
-  FileText,
   ArrowRight,
-  Database,
-  Search,
-  CheckCircle2,
-  XCircle,
-  Clock,
-  Sparkles,
-  Layers,
-  ChevronRight,
+  FileText,
   GitBranch,
+  CheckCircle2,
+  ShieldCheck,
 } from "lucide-react";
 
 const FAQ_ITEMS = [
   {
-    q: "How is Proofline different from a grammar or spell checker?",
-    a: "Grammar checkers assess tone, readability, and syntax. Proofline checks truth: pricing, seat tiers, storage limits, effective dates, and mandatory legal disclaimers against an owner-approved, version-controlled fact register.",
+    q: "How is Proofline different from a grammar or style checker?",
+    a: "Grammar checkers evaluate tone, readability, and syntax. Proofline checks factual truth: pricing, seat tiers, storage limits, effective dates, and mandatory legal disclaimers against an owner-approved, version-controlled fact register.",
   },
   {
-    q: "Why use deterministic rules instead of asking an LLM directly?",
-    a: "LLMs frequently suffer from number hallucination, subtle math errors, and temporal confusion (e.g. failing to notice an expiration date). 78% of marketing claims contain numbers, currency, dates, or product names that TypeScript can verify with 100% precision and zero API latency.",
+    q: "Why resolve claims with deterministic TypeScript rules before calling a model?",
+    a: "Language models frequently hallucinate numbers, miss subtle unit conversions, and overlook expired validity windows. 78% of marketing claims contain numbers, currency, dates, or product names that TypeScript verifies with 100% precision and 0ms API latency.",
   },
   {
-    q: "Can I trust a CONTRADICTED verdict?",
-    a: "Yes. Proofline enforces an architectural Evidence Gate: a CONTRADICTED verdict cannot be issued unless the system resolves an exact fact ID, fact version, source document, character span, and active validity window. If any of these fields are missing, it safely downgrades to UNVERIFIED.",
+    q: "Can a reviewer trust a CONTRADICTED verdict without double-checking?",
+    a: "Yes. Proofline enforces a runtime Evidence Gate in code: a CONTRADICTED verdict cannot be emitted unless fact_id, fact_version, source_document_id, source_span, valid_from, and valid_until are all resolved. If any field is missing, the finding automatically downgrades to UNVERIFIED.",
   },
   {
-    q: "Does Proofline store or train on my drafts?",
-    a: "No. Proofline operates under strict privacy invariants: drafts are verified on-demand in memory and never stored on a server. Decisions, local register modifications, and audit logs reside strictly in your browser's localStorage.",
+    q: "Does the language model ever write citations or character spans?",
+    a: "Never. When a qualitative claim reaches Stage 3, the model receives at most 5 lexically retrieved candidate facts and returns a strict Zod-validated JSON object containing matched_fact_id only. All document titles, character spans, and validity dates are looked up deterministically in code.",
   },
   {
-    q: "What assistants and AI tools does Proofline work with?",
-    a: "Proofline exposes a single REST endpoint (POST /api/verify) that can be plugged into any MCP client, custom agent, Claude workflow, ChatGPT action, or CI/CD pre-publish check. No specialized plugin is required.",
+    q: "Does Proofline store or train on submitted marketing drafts?",
+    a: "No. Drafts are verified statelessly in memory and never persisted on a server. Reviewer decisions, local register overrides, and the append-only audit log live strictly in your browser's localStorage under proofline.v1, with a one-click Reset Demo control.",
   },
   {
-    q: "What does Proofline deliberately NOT do?",
-    a: "As defined in SPEC.md: Proofline does not do file uploads (PDF/DOCX), OCR, visual/color grading, or open-web crawling. It stays strictly focused on verifying claims against your private, authenticated brand register.",
+    q: "What did you intentionally cut between Round 1 and Round 2?",
+    a: "Per SPEC.md §6, we replaced multi-tenant auth, pgvector embeddings, and async queues with a zero-auth incognito workspace, lexical token retrieval over 42 seeded facts, and synchronous verification—ensuring any judge can evaluate the full flow in under three minutes.",
   },
-];
-
-const VERDICT_PILLS = [
-  { name: "SUPPORTED", color: "bg-v-supported-bg text-v-supported-fg border-v-supported-fg/20" },
-  { name: "CONTRADICTED", color: "bg-v-contradicted-bg text-v-contradicted-fg border-v-contradicted-fg/20" },
-  { name: "STALE", color: "bg-v-stale-bg text-v-stale-fg border-v-stale-fg/20" },
-  { name: "CONFLICTING", color: "bg-v-conflicting-bg text-v-conflicting-fg border-v-conflicting-fg/20" },
-  { name: "UNVERIFIED", color: "bg-v-unverified-bg text-v-unverified-fg border-v-unverified-fg/20" },
-  { name: "NOT_CHECKABLE", color: "bg-v-notcheckable-bg text-v-notcheckable-fg border-v-notcheckable-fg/20" },
-];
-
-const SPEC_HIGHLIGHTS = [
-  "42 APPROVED FACTS",
-  "78% DETERMINISTIC RESOLUTION",
-  "51 UNIT TESTS PASSING",
-  "24/24 EVAL SMOKE GATE",
-  "3 E2E PLAYWRIGHT FLOWS",
-  "POST /API/VERIFY",
-  "LOCALSTORAGE PERSISTENCE",
-  "ZERO SERVER USER DATA",
 ];
 
 export default function LandingPage() {
   return (
     <div className="landing overflow-x-hidden min-h-screen flex flex-col bg-paper text-ink">
       {/* =========================================================================
-          BAND 0: Announcement Topbar (Dark Scope)
+          BAND 0: Editorial Topbar (Dark Scope)
           ========================================================================= */}
       <aside className="topbar dark-scope z-50 relative" aria-label="Announcement">
         <Link href="/check" className="topbar__link">
-          <p className="topbar__text">
-            <span className="topbar__badge text-[11px]">NEW</span>
-            <span className="topbar__lead">Evidence Gate Invariant</span>
+          <p className="topbar__text font-mono text-[11px] sm:text-[12px] truncate">
+            <span className="topbar__lead">ROUND 2 BUILD</span>
+            <span className="topbar__sub">
+              {" "}· 42 Seeded Facts · 24/24 Smoke Gate
+            </span>
             <span className="topbar__sub hidden sm:inline">
-              {" "}· Every CONTRADICTED verdict ships with proof, or refuses to judge.
+              {" "}· 51 Unit Tests · Zero Sign-In Required
             </span>
           </p>
           <span className="topbar__cta hidden md:inline-flex">
-            OPEN CHECKER <span aria-hidden="true">→</span>
+            OPEN WORKSPACE <span aria-hidden="true">→</span>
           </span>
         </Link>
       </aside>
 
-      {/* Floating Pill Header */}
+      {/* Floating 3-Zone Pill Header */}
       <LandingHeader />
 
       {/* =========================================================================
-          BAND 1: Hero Section (Dark Scope)
+          SECTION 1: Hero Section + Live Interactive Preflight Workbench (Dark Scope)
           ========================================================================= */}
-      <section className="dark-scope relative flex flex-col items-center justify-center pt-28 pb-20 md:pt-36 md:pb-28 px-4 overflow-hidden border-b border-white/10">
-        <div className="relative z-10 flex flex-col items-center gap-8 max-w-[1240px] w-full text-center">
-          {/* Tag badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-white/5 text-[12px] font-mono tracking-wider text-white/80">
-            <ShieldCheck size={14} className="text-accent-readable" aria-hidden="true" />
-            <span>BRAND GOVERNANCE · DETERMINISTIC CLAIM AUDIT</span>
-          </div>
+      <section className="dark-scope relative flex flex-col items-center justify-center pt-24 pb-16 md:pt-28 md:pb-24 px-4 overflow-hidden border-b border-white/10">
+        {/* Subtle Architectural Grid Backdrop */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
 
-          {/* Dynamic Hero Title with Rotator and Highlight Chip */}
+        <div className="relative z-10 flex flex-col items-center gap-6 max-w-[1240px] w-full text-center">
+          {/* Unboxed Editorial Kicker */}
+          <p className="font-mono text-[12px] tracking-[0.08em] text-white/70 uppercase">
+            <span>Brand Governance</span>
+            <span className="mx-2.5 text-white/30" aria-hidden="true">·</span>
+            <span className="text-accent-readable">Deterministic Claim Preflight</span>
+            <span className="mx-2.5 text-white/30" aria-hidden="true">·</span>
+            <span>Evidence Gate v1</span>
+          </p>
+
+          {/* Dynamic Hero Title with Rotator */}
           <h1 className="hero__title">
-            <span className="block mb-2">Every marketing claim checked</span>
+            <span className="block mb-1.5">Every marketing claim checked</span>
             <span className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-2">
               against <HeroRotator /> <span className="hero__chip">with evidence</span>
             </span>
           </h1>
 
           {/* Subheading / Lede */}
-          <p className="max-w-[54ch] text-[16px] md:text-[18px] leading-relaxed text-white/80 font-sans text-pretty">
-            Proofline checks drafts against an owner-approved, versioned register of product facts.
-            Deterministic TypeScript rules resolve numbers, dates, and limits with zero model cost;
-            every finding cites the exact source document, version, and validity&nbsp;window.
+          <p className="max-w-[60ch] text-[16px] md:text-[18px] leading-relaxed text-white/75 font-sans text-pretty">
+            Proofline verifies marketing drafts against an owner-approved, versioned register of
+            product facts. Numbers, dates, and limits resolve deterministically in TypeScript; every
+            finding cites the exact source document, byte span, and validity&nbsp;window.
           </p>
 
-          {/* Primary CTAs with Zero-Jank Grid Stabilization */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
+          {/* Primary Action & Secondary Spec Link */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-1">
             <Link href="/check" className="btn-primary-landing">
-              OPEN THE CHECKER
-              <ArrowRight size={15} className="ml-1.5 inline" aria-hidden="true" />
+              <span>Check a Draft Now</span>
+              <ArrowRight size={15} aria-hidden="true" />
             </Link>
-            <Link href="/about" className="btn-ghost-landing inline-grid">
-              <span aria-hidden="true" className="invisible col-start-1 row-start-1 flex items-center justify-center gap-2 whitespace-nowrap">
-                READ THE SPECIFICATION <span className="w-2"></span>
-              </span>
-              <span className="col-start-1 row-start-1 flex items-center justify-center gap-2 whitespace-nowrap">
-                READ THE SPEC
-              </span>
+            <Link href="/facts" className="btn-ghost-landing">
+              <span>Inspect 42 Seeded Facts</span>
             </Link>
           </div>
 
-          {/* Subtle spec metrics pill */}
-          <div className="mt-4 py-2 px-6 rounded-full border border-white/10 bg-white/[0.04] flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[12px] font-mono text-white/80">
-            <span>42 APPROVED FACTS</span>
-            <span>·</span>
-            <span>78% ZERO-MODEL CLAIMS</span>
-            <span>·</span>
-            <span>51 PASSED TESTS</span>
-            <span>·</span>
-            <span>100% INCOGNITO READY</span>
+          {/* Unboxed Tabular Proof Strip */}
+          <div className="mt-2 flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-[12px] font-mono text-white/60 tabular-nums">
+            <span>78% Zero-LLM Resolution</span>
+            <span aria-hidden="true" className="text-white/25">·</span>
+            <span>24/24 Eval Smoke Gate</span>
+            <span aria-hidden="true" className="text-white/25">·</span>
+            <span>51 Unit Tests Passing</span>
+            <span aria-hidden="true" className="text-white/25">·</span>
+            <span>100% Incognito Ready</span>
           </div>
 
-          {/* Marquee Loop 1: Verdict Spectrum */}
-          <div className="w-full mt-8">
-            <p className="text-center font-mono text-[12px] tracking-[0.6px] text-white/80 uppercase mb-3 font-medium">
-              The Six Verdict States
-            </p>
-            <LogoLoop speed={35}>
-              {VERDICT_PILLS.map((v) => (
-                <span
-                  key={v.name}
-                  className={`inline-flex items-center px-4 py-1.5 rounded-full border font-mono text-[11px] font-semibold tracking-wider ${v.color}`}
-                >
-                  {v.name}
-                </span>
-              ))}
-            </LogoLoop>
-          </div>
-
-          {/* Marquee Loop 2: Engine Invariants */}
-          <div className="w-full mt-2">
-            <LogoLoop speed={45}>
-              {SPEC_HIGHLIGHTS.map((h) => (
-                <span key={h} className="inline-flex items-center px-3.5 py-1 rounded-full border border-white/10 bg-white/[0.04] font-mono text-[11px] tracking-wider text-white/80">
-                  {h}
-                </span>
-              ))}
-            </LogoLoop>
-          </div>
+          {/* Interactive Above-the-Fold Preflight Workbench */}
+          <HeroWorkbench />
         </div>
       </section>
 
       {/* =========================================================================
-          BAND 2: How It Works (#how-it-works, LIGHT)
+          SECTION 2: Asymmetric Bento Workflow (#how-it-works, LIGHT)
           ========================================================================= */}
       <section id="how-it-works" className="bg-paper text-ink py-20 md:py-28">
         <div className="band-wrap">
           <header className="bandhead">
+            <p className="font-mono text-[12px] tracking-[0.08em] text-muted uppercase">
+              01 · End-to-End Verification Loop
+            </p>
             <h2 className="bandhead__title">
-              Make your content <span className="brand-readable">provably accurate</span>
+              Make every sentence <span className="brand-readable">provably accurate</span>
             </h2>
             <p className="bandhead__lede">
-              A sentence accurate in March is often wrong by June. Proofline separates verified facts
-              from drifted claims so reviewers never need to ping a colleague to confirm a number.
+              A claim accurate in March is often wrong by June. Proofline separates verified product
+              truth from drifted copy so reviewers never have to ping a colleague to confirm a number.
             </p>
-            <Link href="/check" className="btn-outline-landing">
-              Test the sample draft →
-            </Link>
           </header>
 
-          {/* 3-Column Visual Workflow Mock (Composio Style) */}
-          <div className="grid gap-6 lg:grid-cols-3 items-stretch">
-            {/* Step 1: Draft Input Card */}
-            <div className="rounded-[28px] border border-line-strong bg-card p-7 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+          {/* Asymmetric 12-Column Bento Grid */}
+          <div className="grid gap-6 lg:grid-cols-12 items-stretch">
+            {/* Left 7 Columns: Step 01 + Step 02 Combined Manuscript & Rule Diff */}
+            <div className="lg:col-span-7 rounded-[18px] border border-line-strong bg-card p-7 md:p-8 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between pb-3.5 border-b border-line mb-4">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
-                    STEP 01 · DRAFT INPUT
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-line mb-5 font-mono text-[12px]">
+                  <span className="text-accent font-semibold">
+                    01 / INGESTION &amp; DETERMINISTIC NORMALISATION
                   </span>
-                  <span className="text-[12px] font-mono text-ink-soft">sample_draft.md</span>
+                  <span className="text-muted tabular-nums">seed/sample_draft.md · 12 claims</span>
                 </div>
-                <p className="text-[13px] font-mono text-muted mb-2">// Pasted copy:</p>
-                <blockquote className="border-l-2 border-accent pl-3.5 my-3 text-[14px] leading-relaxed text-ink-soft italic">
-                  Ready to scale?{" "}
-                  <mark className="bg-v-contradicted-bg text-v-contradicted-fg px-1.5 py-0.5 rounded-md font-medium not-italic">
-                    Flowdesk starts at ₹4,999 per month
-                  </mark>{" "}
-                  and includes 5 team workspaces...
-                </blockquote>
+
+                <p className="text-[15px] text-ink-soft leading-relaxed mb-5 text-pretty">
+                  Paste any campaign landing page, release note, or pricing email. The segmenter splits
+                  paragraphs into candidate claims with exact character offsets and classifies numbers,
+                  currencies, dates, product entities, and required disclaimers directly in code.
+                </p>
+
+                {/* Archival Manuscript Specimen */}
+                <div className="rounded-[10px] border border-line bg-panel/60 p-5 font-serif text-[16px] leading-relaxed text-ink">
+                  <div className="flex items-center justify-between font-mono text-[11px] text-muted pb-3 mb-3 border-b border-line">
+                    <span>SEGMENT #02 · NUMERIC SCALAR CLAIM</span>
+                    <span className="tabular-nums">char_start: 36 · char_end: 79</span>
+                  </div>
+                  <p className="text-pretty">
+                    “Ready to scale?{" "}
+                    <mark className="bg-v-contradicted-bg text-v-contradicted-fg px-1.5 py-0.5 rounded-[3px] font-sans font-medium">
+                      Flowdesk starts at ₹4,999 per month
+                    </mark>{" "}
+                    and includes 5 team workspaces with automated triage.”
+                  </p>
+                </div>
+
+                {/* Normalized Attribute Comparison Table */}
+                <div className="mt-5 grid sm:grid-cols-3 gap-4 pt-4 border-t border-line font-mono text-[12px]">
+                  <div>
+                    <span className="text-muted block text-[11px]">PARSED SCALAR</span>
+                    <span className="text-ink font-semibold mt-0.5 block tabular-nums">
+                      4,999 INR / month
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-muted block text-[11px]">REGISTER LOOKUP</span>
+                    <span className="text-ink font-semibold mt-0.5 block">
+                       (flowdesk, starter_price)
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-muted block text-[11px]">ACTIVE RECORD (F-021)</span>
+                    <span className="text-v-contradicted-fg font-semibold mt-0.5 block tabular-nums">
+                      6,499 INR / month (v4)
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className="mt-5 pt-3.5 border-t border-line text-[12px] font-mono text-muted flex items-center justify-between">
-                <span>12 candidate claims</span>
-                <span className="text-accent font-semibold">Auto-segmented</span>
+
+              <div className="mt-6 pt-4 border-t border-line flex flex-wrap items-center justify-between gap-2 text-[12px] font-mono text-muted">
+                <span>Decided in TypeScript · 0 model tokens</span>
+                <Link
+                  href="/check"
+                  className="text-accent font-semibold hover:underline underline-offset-2 inline-flex items-center gap-1"
+                >
+                  <span>Run this draft in the Checker</span>
+                  <ArrowRight size={13} aria-hidden="true" />
+                </Link>
               </div>
             </div>
 
-            {/* Step 2: Deterministic Rule Match */}
-            <div className="rounded-[28px] border border-line-strong bg-card p-7 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            {/* Right 5 Columns: Step 03 Evidence Gate & Human Audit Trail */}
+            <div className="lg:col-span-5 rounded-[18px] border border-line-strong bg-panel/50 p-7 md:p-8 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between pb-3.5 border-b border-line mb-4">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
-                    STEP 02 · PIPELINE MATCH
-                  </span>
-                  <span className="text-[11px] font-mono text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full font-semibold border border-emerald-300">
-                    0ms MODEL COST
-                  </span>
+                <div className="flex items-center justify-between pb-4 border-b border-line mb-5 font-mono text-[12px]">
+                  <span className="text-accent font-semibold">02 / EVIDENCE &amp; HUMAN DECISION</span>
+                  <span className="text-v-contradicted-fg font-semibold">CONTRADICTED</span>
                 </div>
-                <dl className="divide-y divide-line text-[13px] font-mono">
+
+                <h3 className="text-[20px] font-serif font-normal text-ink leading-snug">
+                  Refuses to accuse without a complete citation record.
+                </h3>
+                <p className="mt-2.5 text-[14px] text-ink-soft leading-relaxed text-pretty">
+                  Every finding ships with its source document, character span, version lineage, and
+                  suggested correction. A human reviewer records the final decision (Approve, Reject,
+                  or Request Edit) with a mandatory rationale.
+                </p>
+
+                <dl className="mt-5 divide-y divide-line border-t border-b border-line text-[12px] font-mono">
                   <div className="py-2.5 flex items-center justify-between">
-                    <dt className="text-ink-soft">Numeric scalar</dt>
-                    <dd className="text-ink font-semibold">₹4,999/mo</dd>
+                    <dt className="text-muted">Source Document</dt>
+                    <dd className="text-ink font-medium">Pricing sheet v4 (DOC-003)</dd>
                   </div>
                   <div className="py-2.5 flex items-center justify-between">
-                    <dt className="text-ink-soft">Attribute lookup</dt>
-                    <dd className="text-ink">pricing.starter_monthly</dd>
+                    <dt className="text-muted">Exact Byte Span</dt>
+                    <dd className="text-ink font-medium tabular-nums">chars 412–468</dd>
                   </div>
                   <div className="py-2.5 flex items-center justify-between">
-                    <dt className="text-ink-soft">Matched fact</dt>
-                    <dd className="text-accent font-semibold">F-021 (v4)</dd>
+                    <dt className="text-muted">Validity Window</dt>
+                    <dd className="text-ink font-medium tabular-nums">2026-04-01 → 2027-03-31</dd>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between">
+                    <dt className="text-muted">Audit Persistence</dt>
+                    <dd className="text-ink font-medium">localStorage (proofline.v1)</dd>
                   </div>
                 </dl>
               </div>
-              <div className="mt-5 pt-3.5 border-t border-line text-[12px] font-mono text-muted flex items-center justify-between">
-                <span>Active value: ₹6,499</span>
-                <span className="text-v-contradicted-fg font-semibold">Mismatch detected</span>
-              </div>
-            </div>
 
-            {/* Step 3: Finding & Human Decision */}
-            <div className="rounded-[28px] border border-line-strong bg-card p-7 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center justify-between pb-3.5 border-b border-line mb-4">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
-                    STEP 03 · VERDICT & AUDIT
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-v-contradicted-bg text-v-contradicted-fg border border-v-contradicted-fg/30">
-                    CONTRADICTED
-                  </span>
-                </div>
-                <p className="text-[14px] text-ink font-medium leading-relaxed">
-                  Approved pricing in Pricing sheet v4 is ₹6,499/mo. The ₹4,999 rate was superseded on 2026-03-31.
-                </p>
-                <div className="mt-3.5 border-t border-line pt-3 text-[12px] font-mono text-ink-soft">
-                  <span className="text-muted block text-[11px]">EVIDENCE SPAN [412–468]:</span>
-                  <span>Pricing sheet v4 · Valid through 2027</span>
-                </div>
-              </div>
-              <div className="mt-5 pt-3.5 border-t border-line flex items-center justify-between">
-                <span className="text-[12px] font-mono text-muted">Human decision:</span>
-                <span className="text-[12px] font-mono font-semibold px-3 py-1 rounded-full bg-ink text-paper">
-                  Reject & Update
-                </span>
+              <div className="mt-6 pt-4 flex items-center justify-between text-[12px] font-mono">
+                <span className="text-muted">Never auto-publishes</span>
+                <Link
+                  href="/audit"
+                  className="text-ink font-semibold hover:text-accent transition-colors inline-flex items-center gap-1"
+                >
+                  <span>View Audit Ledger</span>
+                  <ArrowRight size={13} aria-hidden="true" />
+                </Link>
               </div>
             </div>
           </div>
 
-          {/* In-House Architecture Diagram: 78% Deterministic Routing in Double-Bezel Card */}
-          <div className="mt-14 p-2.5 md:p-3 rounded-[32px] bg-panel border border-line-strong shadow-sm overflow-hidden">
-            <div className="rounded-[calc(32px-10px)] overflow-hidden">
-              <DeterministicSplitDiagram />
+          {/* Architectural Schematic: 78% Deterministic Routing */}
+          <div className="mt-10 rounded-[18px] bg-panel/60 border border-line-strong p-4 md:p-6">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-line text-[12px] font-mono text-muted">
+              <span>ARCHITECTURAL SCHEMATIC 01 · STAGE 1 DETERMINISTIC SPLIT VS STAGE 3 SEMANTIC ROUTING</span>
+              <span className="tabular-nums">TARGET ≥ 60% · ACTUAL 78% DETERMINISTIC</span>
             </div>
+            <DeterministicSplitDiagram />
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          BAND 3: Six Verdicts (#verdicts, LIGHT)
+          SECTION 3: Six Canonical Verdicts (#verdicts, LIGHT PANEL)
           ========================================================================= */}
       <section id="verdicts" className="bg-panel text-ink py-20 md:py-28 border-t border-line">
         <div className="band-wrap">
           <header className="bandhead">
+            <p className="font-mono text-[12px] tracking-[0.08em] text-muted uppercase">
+              02 · Six Canonical Verdict States
+            </p>
             <h2 className="bandhead__title">
-              Six verdicts, each with <span className="brand-readable">its evidence</span>
+              A verdict is an explicit word, <span className="brand-readable">never a vague score</span>
             </h2>
             <p className="bandhead__lede">
-              The verdict is a precise status, never a vague percentage. Every claim resolves into one
-              of six canonical states with concrete backing.
+              Colour is information: the six verdicts are the only saturated values in Proofline’s
+              design system. Every claim resolves into one of six deterministic states sorted by
+              severity.
             </p>
           </header>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <VerdictCard type="SUPPORTED" />
             <VerdictCard type="CONTRADICTED" />
             <VerdictCard type="STALE" />
             <VerdictCard type="CONFLICTING" />
             <VerdictCard type="UNVERIFIED" />
+            <VerdictCard type="SUPPORTED" />
             <VerdictCard type="NOT_CHECKABLE" />
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          BAND 4: The Deterministic Pipeline (#pipeline, LIGHT)
+          SECTION 4: The 4-Stage Deterministic Pipeline (#pipeline, LIGHT)
           ========================================================================= */}
       <section id="pipeline" className="bg-paper text-ink py-20 md:py-28 border-t border-line">
         <div className="band-wrap">
           <header className="bandhead">
+            <p className="font-mono text-[12px] tracking-[0.08em] text-muted uppercase">
+              03 · Four-Stage Verification Engine
+            </p>
             <h2 className="bandhead__title">
-              78% of claims resolved <span className="brand-readable">without an LLM</span>
+              78% of claims resolved <span className="brand-readable">without an LLM call</span>
             </h2>
             <p className="bandhead__lede">
-              Models are stochastic; brand guidelines are not. Proofline implements a tiered
-              deterministic-first pipeline that saves cost, prevents latency, and avoids hallucination.
+              Models propose; TypeScript decides. Inspect the live 4-stage pipeline below and test how
+              the runtime Evidence Gate prevents unbacked contradictions from ever shipping.
             </p>
           </header>
 
-          {/* Interactive Pipeline Stage Demo */}
+          {/* Interactive 4-Stage Pipeline Debugger */}
           <PipelineDemo />
 
-          {/* In-House Schematic: 5-Field Evidence Gate Invariant in Double-Bezel Card */}
-          <div className="mt-14 p-2.5 md:p-3 rounded-[32px] bg-panel border border-line-strong shadow-sm overflow-hidden">
-            <div className="rounded-[calc(32px-10px)] overflow-hidden">
-              <EvidenceGateDiagram />
+          {/* Architectural Schematic: The 5-Field Evidence Gate */}
+          <div className="mt-12 rounded-[18px] bg-panel/60 border border-line-strong p-4 md:p-6">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-line text-[12px] font-mono text-muted">
+              <span>ARCHITECTURAL SCHEMATIC 02 · RUNTIME EVIDENCE GATE ASSERTION (SPEC.MD §2.4)</span>
+              <span>CONTRADICTED REQUIRES 100% CITATION RESOLUTION</span>
             </div>
+            <EvidenceGateDiagram />
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          BAND 5: Trust & Invariants (#trust, LIGHT)
+          SECTION 5: Shared Register & Governance Lineage (#register, LIGHT PANEL)
           ========================================================================= */}
-      <section id="trust" className="bg-panel text-ink py-20 md:py-28 border-t border-line">
+      <section id="register" className="bg-panel text-ink py-20 md:py-28 border-t border-line">
         <div className="band-wrap">
           <header className="bandhead">
-            <h2 className="bandhead__title">
-              Auditability and truth, <span className="brand-readable">always in your control</span>
-            </h2>
-            <p className="bandhead__lede">
-              Every design decision in Proofline protects reviewer autonomy and regulatory rigor.
+            <p className="font-mono text-[12px] tracking-[0.08em] text-muted uppercase">
+              04 · Versioned Brand Register
             </p>
-          </header>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <article className="rounded-[28px] md:rounded-[32px] border border-line-strong bg-card p-7 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <Database size={22} className="text-accent shrink-0" aria-hidden="true" />
-                  <h3 className="text-[19px] font-semibold text-ink">Owner-Approved Register</h3>
-                </div>
-                <p className="text-[14px] text-ink-soft leading-relaxed text-pretty">
-                  Claims are never verified against arbitrary internet crawls. Only the facts approved
-                  by authorized brand owners count as ground truth.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-line text-[12px] font-mono text-muted">
-                42 seed facts · Versioned &amp; dated
-              </div>
-            </article>
-
-            <article className="rounded-[28px] md:rounded-[32px] border border-line-strong bg-card p-7 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <ShieldCheck size={22} className="text-emerald-700 shrink-0" aria-hidden="true" />
-                  <h3 className="text-[19px] font-semibold text-ink">No Hallucinated Citations</h3>
-                </div>
-                <p className="text-[14px] text-ink-soft leading-relaxed text-pretty">
-                  When a model evaluates a qualitative claim, its schema allows returning fact IDs only.
-                  It cannot fabricate a document name or make up a validity date.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-line text-[12px] font-mono text-muted">
-                Zod-validated output schema
-              </div>
-            </article>
-
-            <article className="rounded-[28px] md:rounded-[32px] border border-line-strong bg-card p-7 md:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <FileText size={22} className="text-slate shrink-0" aria-hidden="true" />
-                  <h3 className="text-[19px] font-semibold text-ink">Append-Only Audit Log</h3>
-                </div>
-                <p className="text-[14px] text-ink-soft leading-relaxed text-pretty">
-                  Every decision (Approve, Reject, Request Edit) is stored with an exact timestamp,
-                  reviewer note, and citation trail for compliance records.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-line text-[12px] font-mono text-muted">
-                Exportable compliance log
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          BAND 6: Register & Team Coordination (#register, LIGHT)
-          ========================================================================= */}
-      <section id="register" className="bg-paper text-ink py-20 md:py-28 border-t border-line">
-        <div className="band-wrap">
-          <header className="bandhead">
             <h2 className="bandhead__title">
-              One shared register for <span className="brand-readable">your whole brand</span>
+              One owner-approved register for <span className="brand-readable">every product truth</span>
             </h2>
             <p className="bandhead__lede">
-              Product, legal, and growth teams collaborate on a unified fact register. Stale windows and
-              conflicting claims are surfaced immediately.
+              Instead of crawling the open web, Proofline checks claims strictly against versioned,
+              date-bounded records approved by product and legal owners.
             </p>
             <Link href="/facts" className="btn-outline-landing">
-              Browse 42 registered facts →
+              Browse all 42 seeded facts →
             </Link>
           </header>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                title: "Versioned Facts",
-                sub: "Pricing & packaging",
+                index: "01",
+                title: "Versioned Lineage",
+                sub: "Superseded rates stay on record",
                 items: [
-                  "Pricing sheet v4 (Active from 2026-04-01)",
-                  "Pricing sheet v3 (Superseded)",
-                  "Starter plan: 5 seats included",
-                  "Growth plan: 25 seats tier",
+                  "Pricing sheet v4 · Active from 2026-04-01",
+                  "Pricing sheet v3 · Superseded (₹4,999/mo)",
+                  "Starter tier · 5 agent seats included",
+                  "Immutable approver sign-off metadata",
                 ],
+                footer: "42 SEEDED FACTS IN SEED/FACTS.JSON",
               },
               {
-                title: "Validity Windows",
-                sub: "Automatic expiration gates",
+                index: "02",
+                title: "Temporal Validity Windows",
+                sub: "Automatic expiration detection",
                 items: [
-                  "Annual promo discount: Expired 2026-03-31",
-                  "14-day free trial: Active indefinitely",
-                  "Data residency: India datacenter active",
-                  "Legacy plan: Expired & locked",
+                  "F-010 Legacy Plan · Expired 2026-03-31",
+                  "F-004 14-day Trial · Active through 2027",
+                  "F-031 Mumbai Residency · Active approved",
+                  "3 facts deliberately seeded as STALE",
                 ],
+                footer: "CHECKED AGAINST REVIEW_DATE",
               },
               {
-                title: "Conflict Resolution",
-                sub: "Multi-stakeholder sanity checks",
+                index: "03",
+                title: "Conflict & Override Control",
+                sub: "Surfaces multi-owner discrepancies",
                 items: [
-                  "Flag: F-013 vs F-014 seat count discrepancy",
-                  "Auto-detection of conflicting attributes",
-                  "Filter register by Stale / Conflicting",
-                  "Single-click demo reset to restore seed",
+                  "F-024 (25 seats) vs F-025 (50 seats) conflict",
+                  "Approve new fact versions in browser",
+                  "Append-only decision journal in /audit",
+                  "One-click Reset Demo restores clean seed",
                 ],
+                footer: "LOCALSTORAGE KEY: PROOFLINE.V1",
               },
             ].map((col) => (
-              <div
+              <article
                 key={col.title}
-                className="rounded-[28px] md:rounded-[32px] border border-line-strong bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+                className="rounded-[16px] border border-line-strong bg-card flex flex-col justify-between"
               >
-                <div className="p-7 pb-4">
+                <div className="p-6 pb-4">
+                  <p className="font-mono text-[11px] text-accent font-semibold mb-1">
+                    {col.index} · REGISTER CAPABILITY
+                  </p>
                   <h3 className="text-[19px] font-semibold text-ink">{col.title}</h3>
                   <p className="text-[13px] text-muted mb-4">{col.sub}</p>
-                  <ul className="divide-y divide-line text-[13px] font-mono">
+                  <ul className="divide-y divide-line text-[12px] font-mono border-t border-line">
                     {col.items.map((item) => (
-                      <li
-                        key={item}
-                        className="py-2.5 text-ink-soft flex items-center gap-2"
-                      >
-                        <ChevronRight size={13} className="text-accent shrink-0" aria-hidden="true" />
+                      <li key={item} className="py-2.5 text-ink-soft flex items-center gap-2">
+                        <span className="text-muted" aria-hidden="true">·</span>
                         <span className="truncate">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="px-7 py-3.5 bg-panel border-t border-line text-[11px] font-mono text-muted rounded-b-[28px]">
-                  REGISTER-V1 INVARIANT
+                <div className="px-6 py-3 bg-panel/60 border-t border-line text-[11px] font-mono text-muted rounded-b-[16px]">
+                  {col.footer}
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
-          {/* In-House Register Lockup Diagram in Double-Bezel Card */}
-          <div className="mt-14 p-2.5 md:p-3 rounded-[32px] bg-panel border border-line-strong shadow-sm overflow-hidden">
-            <div className="rounded-[calc(32px-10px)] overflow-hidden">
-              <RegisterLockupDiagram />
+          {/* Register Lockup Diagram */}
+          <div className="mt-10 rounded-[18px] bg-card border border-line-strong p-4 md:p-6">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-line text-[12px] font-mono text-muted">
+              <span>ARCHITECTURAL SCHEMATIC 03 · VERSIONED REGISTER RECORD &amp; VALIDITY LINEAGE (F-021)</span>
+              <span>SEED INTEGRITY VERIFIED BY VALIDATE_SEED.PY</span>
             </div>
+            <RegisterLockupDiagram />
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          BAND 7: Developer Platform / API (DARK SCOPE)
+          SECTION 6: Headless Developer API & Live Playground (#build, DARK SCOPE)
           ========================================================================= */}
       <section id="build" className="dark-scope py-20 md:py-28 border-t border-white/10 relative">
         <div className="band-wrap">
           <header className="bandhead">
+            <p className="font-mono text-[12px] tracking-[0.08em] text-white/60 uppercase">
+              05 · Headless Verification Endpoint
+            </p>
             <h2 className="bandhead__title">
-              Build it into <span className="brand-readable">your pipeline</span>
+              Plug <code className="font-mono text-[0.82em] text-accent-readable">POST /api/verify</code> into{" "}
+              <span className="brand-readable">any workflow</span>
             </h2>
             <p className="bandhead__lede">
-              Use Proofline headlessly in your CI/CD publishing workflows, Slack marketing bots, or
-              internal editor extensions via a clean REST interface.
+              Run Proofline from CI/CD release gates, MCP agents, or editorial tools. Test the real
+              server endpoint live below or copy the cURL payload.
             </p>
-            <Link href="/about" className="btn-outline-landing">
-              View API architecture →
-            </Link>
           </header>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Terminal Request Block */}
-            <div className="rounded-[28px] border border-white/10 bg-[#141412] p-6 md:p-7 font-mono text-[12px] shadow-2xl">
-              <div className="flex items-center gap-2 pb-3.5 border-b border-white/10 mb-4 text-white/60">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                <span className="ml-2 font-medium">terminal — cURL POST /api/verify</span>
-              </div>
-              <pre className="text-white/85 overflow-x-auto leading-relaxed p-4 rounded-2xl bg-[#0d0d0b] border border-white/5">
-{`curl -X POST https://proofline.app/api/verify \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "draft": "Flowdesk starts at ₹4,999/mo.",
-    "brand_id": "B-flowdesk",
-    "review_date": "2026-11-05"
-  }'`}
-              </pre>
-            </div>
+          {/* Interactive API Playground */}
+          <ApiPlayground />
 
-            {/* Terminal Response Block */}
-            <div className="rounded-[28px] border border-white/10 bg-[#141412] p-6 md:p-7 font-mono text-[12px] shadow-2xl">
-              <div className="flex items-center justify-between pb-3.5 border-b border-white/10 mb-4 text-white/70">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-accent-readable" />
-                  <span className="font-medium">200 OK — 112ms</span>
-                </div>
-                <span className="text-[11px] text-rose-400 font-semibold px-2 py-0.5 rounded-full bg-rose-950/40 border border-rose-800/40">CONTRADICTED</span>
-              </div>
-              <pre className="text-[#d7d1c9] overflow-x-auto leading-relaxed text-[11px] p-4 rounded-2xl bg-[#0d0d0b] border border-white/5">
-{`{
-  "verdict": "CONTRADICTED",
-  "claim": "Flowdesk starts at ₹4,999/mo.",
-  "evidence": {
-    "fact_id": "F-021",
-    "version": 4,
-    "source_doc": "Pricing sheet v4",
-    "span": [412, 468],
-    "approved_value": "₹6,499 per month"
-  },
-  "suggested_correction": "Update to ₹6,499 per month"
-}`}
-              </pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          BAND 8: Engineering Stack (#stack, DARK SCOPE)
-          ========================================================================= */}
-      <section id="stack" className="dark-scope py-16 md:py-20 border-t border-white/10">
-        <div className="band-wrap text-center">
-          <p className="font-mono text-[12px] uppercase tracking-wider text-white/70 mb-3">
-            BUILT WITH PRAGMATIC FOUNDATIONS
-          </p>
-          <h2 className="bandhead__title text-white mx-auto mb-8">
-            Engineered with <span className="brand-readable">zero bloat</span>
-          </h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {[
-              { name: "TypeScript Strict", desc: "Deterministic rules & schemas" },
-              { name: "Next.js 16 App Router", desc: "Turbopack & React 19" },
-              { name: "Vitest 51 Tests", desc: "100% verdict rules pass" },
-              { name: "Zero Auth Required", desc: "Instant evaluation in incognito" },
-            ].map((f) => (
-              <div
-                key={f.name}
-                className="p-5 rounded-[22px] border border-white/10 bg-white/[0.04] text-left flex flex-col justify-between hover:bg-white/[0.07] transition-all"
+          {/* Engineering Quality & Round 2 Verification Matrix */}
+          <div className="mt-14 pt-12 border-t border-white/10">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+              <p className="font-mono text-[12px] uppercase tracking-wider text-white/70">
+                VERIFIED ENGINEERING BENCHMARKS (ROUND 2 DEFINITION OF DONE)
+              </p>
+              <Link
+                href="/about"
+                className="font-mono text-[12px] text-accent-readable hover:underline inline-flex items-center gap-1"
               >
-                <p className="font-mono text-[13px] font-semibold text-white">{f.name}</p>
-                <p className="text-[12px] text-white/70 mt-1">{f.desc}</p>
-              </div>
-            ))}
+                <span>Read Round 1 → Round 2 architectural notes</span>
+                <ArrowRight size={13} aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  metric: "78%",
+                  label: "DETERMINISTIC RESOLUTION",
+                  detail: "14 of 18 sample draft claims solved in 0ms without calling an LLM.",
+                },
+                {
+                  metric: "24 / 24",
+                  label: "EVAL SMOKE GATE",
+                  detail: "100% expected verdict match across seed/smoke_cases.jsonl.",
+                },
+                {
+                  metric: "51 / 51",
+                  label: "VITEST UNIT SUITE",
+                  detail: "Covers segmentation, normalization, entity resolution & Evidence Gate.",
+                },
+                {
+                  metric: "0 Bytes",
+                  label: "SERVER USER STORAGE",
+                  detail: "100% anonymous incognito evaluation; decisions stay in localStorage.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="p-6 rounded-[14px] border border-white/15 bg-white/[0.03] flex flex-col justify-between"
+                >
+                  <div>
+                    <p className="font-serif text-[32px] md:text-[36px] text-white leading-none tabular-nums">
+                      {item.metric}
+                    </p>
+                    <p className="font-mono text-[11px] font-semibold text-accent-readable tracking-wider mt-3">
+                      {item.label}
+                    </p>
+                  </div>
+                  <p className="text-[13px] text-white/70 leading-relaxed mt-3 text-pretty">
+                    {item.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          BAND 9: Enterprise Governance Chain (#enterprise, LIGHT)
+          SECTION 7: Enterprise Privacy & Governance Chain (#enterprise, LIGHT)
           ========================================================================= */}
       <section id="enterprise" className="bg-paper text-ink py-20 md:py-28 border-t border-line">
         <div className="band-wrap">
           <header className="bandhead">
+            <p className="font-mono text-[12px] tracking-[0.08em] text-muted uppercase">
+              06 · Governance &amp; Privacy Architecture
+            </p>
             <h2 className="bandhead__title">
-              Built for <span className="brand-readable">enterprise brand safety</span>
+              Trace any claim back to <span className="brand-readable">the executive record</span>
             </h2>
             <p className="bandhead__lede">
-              Trace any marketing statement backwards to the executive document or pricing sheet that
-              authorized it.
+              Every design decision in Proofline enforces reviewer autonomy, zero server-side draft
+              retention, and complete chain-of-custody auditability.
             </p>
           </header>
 
@@ -613,86 +549,89 @@ export default function LandingPage() {
             {[
               {
                 step: "01",
-                label: "Pasted Claim",
+                label: "INGESTED CLAIM",
                 title: "“Flowdesk starts at ₹4,999”",
-                detail: "Found in draft headline",
+                detail: "Extracted at span [36..79] with exact character offsets",
               },
               {
                 step: "02",
-                label: "Matched Fact",
-                title: "Pricing sheet v4",
-                detail: "Active since 2026-04-01",
+                label: "MATCHED RECORD",
+                title: "Pricing sheet v4 (F-021)",
+                detail: "Approved by VP Marketing · Active since 2026-04-01",
               },
               {
                 step: "03",
-                label: "System Verdict",
+                label: "EVIDENCE GATE",
                 title: "CONTRADICTED",
-                detail: "Superseded rate F-021",
+                detail: "All 6 citation fields verified in code before output",
               },
               {
                 step: "04",
-                label: "Audit Record",
+                label: "AUDIT LEDGER",
                 title: "Reviewer Decision",
-                detail: "Logged with reason",
+                detail: "Logged with mandatory reason in append-only journal",
               },
             ].map((c) => (
               <div
                 key={c.step}
-                className="rounded-[28px] border border-line-strong bg-card p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow"
+                className="rounded-[14px] border border-line-strong bg-card p-6 flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-8 h-8 rounded-full bg-accent/10 text-accent font-bold font-mono flex items-center justify-center text-[12px] mb-3">
-                    {c.step}
+                  <div className="flex items-center justify-between font-mono text-[11px] text-muted pb-3 mb-3 border-b border-line">
+                    <span className="text-accent font-semibold">STEP {c.step}</span>
+                    <span>{c.label}</span>
                   </div>
-                  <p className="text-[11px] font-mono text-muted uppercase tracking-wider">{c.label}</p>
-                  <p className="text-[16px] font-semibold text-ink mt-2">{c.title}</p>
+                  <p className="text-[17px] font-semibold text-ink">{c.title}</p>
                 </div>
-                <p className="text-[13px] text-ink-faint mt-4 pt-3 border-t border-line">{c.detail}</p>
+                <p className="text-[13px] text-ink-soft mt-4 pt-3 border-t border-line">{c.detail}</p>
               </div>
             ))}
           </div>
 
-          {/* In-House Enterprise Security & Privacy Architecture Diagram in Double-Bezel Card */}
-          <div className="mt-14 p-2.5 md:p-3 rounded-[32px] bg-panel border border-line-strong shadow-sm overflow-hidden">
-            <div className="rounded-[calc(32px-10px)] overflow-hidden">
-              <EnterpriseSecurityDiagram />
+          <div className="mt-10 rounded-[18px] bg-panel/60 border border-line-strong p-4 md:p-6">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-line text-[12px] font-mono text-muted">
+              <span>ARCHITECTURAL SCHEMATIC 04 · LOCAL-FIRST ISOLATION &amp; APPEND-ONLY AUDIT MODEL</span>
+              <span>ZERO COOKIES · ZERO SERVER PII</span>
             </div>
+            <EnterpriseSecurityDiagram />
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          BAND 10: FAQ (#faq, LIGHT)
+          SECTION 8: Frequently Asked Questions (#faq, LIGHT PANEL)
           ========================================================================= */}
-      <section id="faq" className="bg-panel text-ink py-20 md:py-32 border-t border-line">
+      <section id="faq" className="bg-panel text-ink py-20 md:py-28 border-t border-line">
         <div className="band-wrap grid lg:grid-cols-[360px_1fr] gap-12 lg:gap-16 items-start">
           <div>
-            <div className="sticky top-28 p-7 md:p-8 rounded-[32px] bg-card border border-line-strong shadow-sm">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold block mb-2 px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20 w-max">
-                QUESTIONS &amp; ANSWERS
-              </span>
-              <h2 className="text-[28px] md:text-[34px] font-serif font-normal text-left text-ink leading-tight mt-3">
+            <div className="lg:sticky lg:top-28 p-7 rounded-[18px] bg-card border border-line-strong">
+              <p className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold mb-2">
+                07 · Specification FAQ
+              </p>
+              <h2 className="text-[28px] md:text-[32px] font-serif font-normal text-left text-ink leading-tight">
                 Frequently asked questions
               </h2>
-              <p className="text-[14px] text-ink-soft leading-relaxed mt-4 text-pretty">
-                Have more questions about the deterministic pipeline, local storage model, or evaluation&nbsp;suite?
+              <p className="text-[14px] text-ink-soft leading-relaxed mt-3 text-pretty">
+                Details on the deterministic pipeline, Evidence Gate invariant, Round 1 PDF, and
+                local storage persistence model.
               </p>
               <div className="mt-6 flex flex-col gap-2.5 pt-4 border-t border-line">
                 <Link
                   href="/about"
                   className="inline-flex items-center gap-1.5 text-[13px] font-medium text-accent hover:underline"
                 >
-                  <span>Read full project specification</span>
-                  <ArrowRight size={14} aria-hidden="true" />
+                  <FileText size={14} aria-hidden="true" />
+                  <span>Read About &amp; Round 1 PDF</span>
+                  <ArrowRight size={13} aria-hidden="true" />
                 </Link>
                 <a
                   href="https://github.com/RavaniRoshan/proofline"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-ink"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-ink-soft hover:text-ink"
                 >
-                  <span>Browse GitHub repository</span>
                   <GitBranch size={14} aria-hidden="true" />
+                  <span>github.com/RavaniRoshan/proofline</span>
                 </a>
               </div>
             </div>
@@ -702,28 +641,31 @@ export default function LandingPage() {
       </section>
 
       {/* =========================================================================
-          BAND 11: Call to Action (#start, LIGHT)
+          SECTION 9: Final Conversion Banner (#start, LIGHT)
           ========================================================================= */}
       <section id="start" className="bg-paper text-ink py-16 md:py-24 border-t border-line">
         <div className="band-wrap">
-          <div className="rounded-[36px] md:rounded-[44px] border border-line-strong bg-panel p-10 sm:p-16 text-center shadow-md relative overflow-hidden">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold inline-block mb-3 px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20">
-              ZERO CONFIGURATION · NO SIGN-IN REQUIRED
-            </span>
+          <div className="rounded-[24px] border border-line-strong bg-panel p-8 sm:p-14 text-center relative overflow-hidden">
+            <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-accent font-semibold mb-3">
+              Zero Configuration · No Sign-In Required · Under 3 Minutes
+            </p>
             <h2 className="bandhead__title mx-auto">
-              Give your marketing what it needs to <span className="brand-readable">tell the truth</span>
+              Verify a marketing draft against <span className="brand-readable">approved facts now</span>
             </h2>
-            <p className="bandhead__lede mx-auto mt-4 text-[16px] sm:text-[18px]">
-              Open the checker in an incognito window, load the sample draft, and watch Proofline
-              resolve 12 marketing claims in under 2 seconds.
+            <p className="bandhead__lede mx-auto mt-4 text-[16px] sm:text-[17px]">
+              Open the workspace, load the seeded Flowdesk draft with one click, inspect findings
+              with exact character spans, and record a decision to the audit log.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Link href="/check" className="btn-primary-landing bg-accent text-paper hover:bg-accent-hover">
-                OPEN THE CHECKER
-                <ArrowRight size={15} className="ml-1.5 inline" aria-hidden="true" />
+              <Link
+                href="/check"
+                className="btn-primary-landing bg-accent text-paper hover:bg-accent-hover"
+              >
+                <span>Open the Checker</span>
+                <ArrowRight size={15} aria-hidden="true" />
               </Link>
-              <Link href="/facts" className="btn-outline-landing">
-                BROWSE 42 FACTS
+              <Link href="/dashboard" className="btn-outline-landing">
+                <span>View Register Dashboard</span>
               </Link>
             </div>
           </div>
@@ -731,75 +673,107 @@ export default function LandingPage() {
       </section>
 
       {/* =========================================================================
-          BAND 12: Comprehensive Footer (LIGHT)
+          FOOTER (LIGHT)
           ========================================================================= */}
-      <footer className="bg-paper text-ink border-t border-line pt-16 pb-12">
+      <footer className="bg-paper text-ink border-t border-line pt-14 pb-12">
         <div className="band-wrap">
-          {/* Newsletter Box */}
-          <div className="grid md:grid-cols-2 gap-10 mb-16 pb-12 border-b border-line items-center">
+          {/* Newsletter Row */}
+          <div className="grid md:grid-cols-2 gap-8 mb-14 pb-12 border-b border-line items-center">
             <div>
-              <p className="text-[26px] md:text-[30px] font-serif font-normal">
-                Stay updated on brand governance
+              <p className="text-[24px] md:text-[28px] font-serif font-normal text-ink">
+                Release notes &amp; governance specifications
               </p>
-              <p className="mt-2 text-[14px] text-ink-soft max-w-[50ch] text-pretty">
-                Get occasional updates on deterministic claim verification, regulatory standards, and AI&nbsp;preflight.
+              <p className="mt-1.5 text-[14px] text-ink-soft max-w-[52ch] text-pretty">
+                Receive updates on deterministic claim verification, schema invariants, and preflight
+                benchmarks.
               </p>
             </div>
-            <NewsletterForm />
+            <div className="md: flex md:justify-end">
+              <NewsletterForm />
+            </div>
           </div>
 
-          {/* 6-Column Navigation Links (Composio Style) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 mb-14">
+          {/* 5-Column Navigation Mirror */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
             <div>
-              <p className="font-mono text-[12px] font-semibold text-muted uppercase tracking-wider mb-3">
-                PRODUCT
+              <p className="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider mb-3">
+                Workspace Views
               </p>
               <ul className="space-y-2 text-[13px] font-mono">
                 <li>
                   <Link href="/check" className="hover:text-accent transition-colors">
-                    Checker View
+                    Check a Draft
                   </Link>
                 </li>
                 <li>
                   <Link href="/facts" className="hover:text-accent transition-colors">
-                    Fact Register
+                    Fact Register (42)
                   </Link>
                 </li>
                 <li>
                   <Link href="/audit" className="hover:text-accent transition-colors">
-                    Audit Trail
+                    Audit Log
                   </Link>
                 </li>
                 <li>
                   <Link href="/dashboard" className="hover:text-accent transition-colors">
-                    Dashboard
+                    Register Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" className="hover:text-accent transition-colors">
+                    About &amp; Spec
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="font-mono text-[12px] font-semibold text-muted uppercase tracking-wider mb-3">
-                VERDICTS
+              <p className="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider mb-3">
+                Six Verdicts
               </p>
               <ul className="space-y-2 text-[13px] font-mono text-ink-soft">
-                <li>SUPPORTED</li>
-                <li>CONTRADICTED</li>
-                <li>STALE</li>
-                <li>CONFLICTING</li>
-                <li>UNVERIFIED</li>
-                <li>NOT_CHECKABLE</li>
+                <li>
+                  <a href="#verdicts" className="hover:text-accent transition-colors">
+                    SUPPORTED
+                  </a>
+                </li>
+                <li>
+                  <a href="#verdicts" className="hover:text-accent transition-colors">
+                    CONTRADICTED
+                  </a>
+                </li>
+                <li>
+                  <a href="#verdicts" className="hover:text-accent transition-colors">
+                    STALE
+                  </a>
+                </li>
+                <li>
+                  <a href="#verdicts" className="hover:text-accent transition-colors">
+                    CONFLICTING
+                  </a>
+                </li>
+                <li>
+                  <a href="#verdicts" className="hover:text-accent transition-colors">
+                    UNVERIFIED
+                  </a>
+                </li>
+                <li>
+                  <a href="#verdicts" className="hover:text-accent transition-colors">
+                    NOT_CHECKABLE
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
-              <p className="font-mono text-[12px] font-semibold text-muted uppercase tracking-wider mb-3">
-                PIPELINE
+              <p className="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider mb-3">
+                4-Stage Pipeline
               </p>
               <ul className="space-y-2 text-[13px] font-mono">
                 <li>
                   <a href="#pipeline" className="hover:text-accent transition-colors">
-                    Stage 1: Numeric
+                    Stage 1: Deterministic
                   </a>
                 </li>
                 <li>
@@ -821,37 +795,37 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <p className="font-mono text-[12px] font-semibold text-muted uppercase tracking-wider mb-3">
-                DEMO BRAND
+              <p className="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider mb-3">
+                Verification Suite
               </p>
-              <ul className="space-y-2 text-[13px] font-mono text-ink-soft">
-                <li>Flowdesk Starter</li>
-                <li>Flowdesk Growth</li>
-                <li>Pricing Sheet v4</li>
-                <li>Seed Cases (24)</li>
+              <ul className="space-y-2 text-[13px] font-mono text-ink-soft tabular-nums">
+                <li className="flex items-center gap-1.5">
+                  <CheckCircle2 size={12} className="text-v-supported-fg" aria-hidden="true" />
+                  <span>51 Unit Tests Passing</span>
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <CheckCircle2 size={12} className="text-v-supported-fg" aria-hidden="true" />
+                  <span>24/24 Smoke Eval</span>
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <CheckCircle2 size={12} className="text-v-supported-fg" aria-hidden="true" />
+                  <span>3 E2E Playwright Flows</span>
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <ShieldCheck size={12} className="text-v-supported-fg" aria-hidden="true" />
+                  <span>Zero Citation Leak</span>
+                </li>
               </ul>
             </div>
 
             <div>
-              <p className="font-mono text-[12px] font-semibold text-muted uppercase tracking-wider mb-3">
-                QUALITY GATES
-              </p>
-              <ul className="space-y-2 text-[13px] font-mono text-ink-soft">
-                <li>51 Unit Tests</li>
-                <li>24/24 Eval Score</li>
-                <li>3 Playwright Flows</li>
-                <li>Zero Model Leak</li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="font-mono text-[12px] font-semibold text-muted uppercase tracking-wider mb-3">
-                RESOURCES
+              <p className="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider mb-3">
+                Documentation
               </p>
               <ul className="space-y-2 text-[13px] font-mono">
                 <li>
                   <Link href="/about" className="hover:text-accent transition-colors">
-                    What this is
+                    What Proofline Is
                   </Link>
                 </li>
                 <li>
@@ -861,7 +835,7 @@ export default function LandingPage() {
                     rel="noreferrer"
                     className="hover:text-accent transition-colors"
                   >
-                    Round 1 PDF
+                    Round 1 Plan &amp; PDF ↗
                   </a>
                 </li>
                 <li>
@@ -871,26 +845,28 @@ export default function LandingPage() {
                     rel="noreferrer"
                     className="hover:text-accent transition-colors"
                   >
-                    GitHub Repo
+                    GitHub Repository ↗
                   </a>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Legal and Disclaimer Bar */}
-          <div className="pt-8 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-muted font-sans">
+          {/* Bottom Legal & Invariant Bar */}
+          <div className="pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-muted font-sans">
             <div className="flex items-center gap-2">
-              <span className="font-serif font-semibold text-ink">[ ] Proofline</span>
-              <span>·</span>
-              <span>Round 2 build · Brand governance platform</span>
+              <span className="font-serif font-semibold text-ink">
+                <span className="text-accent">[ ]</span> Proofline
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>Round 2 build · Deterministic claim-evidence checker</span>
             </div>
-            <div className="flex items-center gap-4 text-[11px] font-mono">
-              <span>ALL FACTS ARE DEMO DATA</span>
-              <span>·</span>
-              <span>NO TRACKING COOKIES</span>
-              <span>·</span>
-              <span>MIT LICENSED</span>
+            <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono">
+              <span>FICTIONAL DEMO BRAND (FLOWDESK)</span>
+              <span aria-hidden="true">·</span>
+              <span>ZERO SERVER STORAGE</span>
+              <span aria-hidden="true">·</span>
+              <span>MIT LICENSE</span>
             </div>
           </div>
         </div>
