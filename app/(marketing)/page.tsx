@@ -6,15 +6,15 @@ import { UseCasesDualPane } from "@/components/landing/UseCasesDualPane";
 import { TrustSecurityCards } from "@/components/landing/AgentsAndTrustBands";
 import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
 import Features4 from "@/components/ui/features-4";
-import { ApiPlayground } from "@/components/landing/ApiPlayground";
+
 import Faq6 from "@/components/ui/faq-6";
 import Bento1 from "@/components/ui/bento-1";
 import { Footer15 } from "@/components/ui/footer-15";
 import { FaArrowRight } from "react-icons/fa6";
-import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
-import { RegisterLineageBento } from "@/components/landing/bento/RegisterLineageBento";
-import { EvidenceGateInspectorBento } from "@/components/landing/bento/EvidenceGateInspectorBento";
-import { AuditLedgerBento } from "@/components/landing/bento/AuditLedgerBento";
+
+
+
+
 import { CheckCircle2, Lock, FileCheck2 } from "lucide-react";
 
 const FOOTER_LINKS = [
@@ -141,14 +141,6 @@ export default function LandingPage() {
           {/* 2-Column Sticky Timeline + 547x680 Rounded-[32px] Silk Mesh Card */}
           <StickyJobsBand />
 
-          {/* Deterministic 78% / 22% Routing Schematic */}
-          <div className="mt-16 rounded-[24px] border border-ink/10 bg-panel/45 p-5 md:p-7">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 pb-3.5 font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-              <span>STAGE 1 DETERMINISTIC RULES (78%) VS STAGE 3 BOUNDED MODEL ROUTING (22%)</span>
-              <span className="tabular-nums">&lt;1ms LATENCY · $0.00 TOKEN COST ON SCALARS</span>
-            </div>
-            <DeterministicRoutingBento />
-          </div>
 
           {/* Interactive Bento Suite */}
           <div className="mt-12 overflow-hidden rounded-[24px] border border-ink/10 bg-card">
@@ -338,14 +330,6 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Interactive Version Lineage & Register Lockup Schematic */}
-          <div className="mt-10 rounded-[24px] border border-ink/10 bg-panel/45 p-5 md:p-7">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 pb-3.5 font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-              <span>VERSIONED REGISTER LINEAGE · F-021 (V3 SUPERSEDED → V4 ACTIVE)</span>
-              <span>VALIDATED BY SCRIPTS/VALIDATE_SEED.PY</span>
-            </div>
-            <RegisterLineageBento />
-          </div>
         </div>
       </section>
 
@@ -369,14 +353,6 @@ export default function LandingPage() {
           {/* 3 Visual-Top Cards matching 07-band6-trust-security.png */}
           <TrustSecurityCards />
 
-          {/* Mechanical 5-Pin Evidence Gate Diagram */}
-          <div className="mt-12 rounded-[24px] border border-ink/10 bg-panel/45 p-5 md:p-7">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 pb-3.5 font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-              <span>RUNTIME EVIDENCE GATE ASSERTION (SPEC.MD §2.4 · LIB/VERDICT.TS)</span>
-              <span>BLOCKS CONTRADICTED UNLESS 100% OF FIELDS RESOLVE</span>
-            </div>
-            <EvidenceGateInspectorBento />
-          </div>
         </div>
       </section>
 
@@ -386,13 +362,6 @@ export default function LandingPage() {
       <section id="build" className="bg-paper text-ink scroll-mt-20">
         <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-4 py-10 md:px-7 md:py-14">
           <Features4 />
-          <div className="mt-8 rounded-[32px] bg-[#141412] border border-white/10 p-5 sm:p-8 md:p-12 text-white shadow-2xl overflow-hidden">
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
-              <span>INTERACTIVE API PLAYGROUND · POST /API/VERIFY</span>
-              <span className="text-emerald-400 font-bold">&lt;1ms DETERMINISTIC ENGINE</span>
-            </div>
-            <ApiPlayground />
-          </div>
         </div>
       </section>
 
@@ -478,14 +447,6 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Enterprise Security & Audit Chain Diagram */}
-          <div className="mt-10 rounded-[24px] border border-ink/10 bg-panel/45 p-5 md:p-7">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 pb-3.5 font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-              <span>END-TO-END CHAIN OF CUSTODY &amp; ZERO SERVER RETENTION ARCHITECTURE</span>
-              <span>AUDITABLE IN /AUDIT &amp; /DASHBOARD</span>
-            </div>
-            <AuditLedgerBento />
-          </div>
         </div>
       </section>
 
