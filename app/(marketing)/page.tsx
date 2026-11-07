@@ -5,7 +5,7 @@ import { MeshCardBackdrop } from "@/components/landing/HeroTunnelCanvas";
 import { UseCasesDualPane } from "@/components/landing/UseCasesDualPane";
 import { TrustSecurityCards } from "@/components/landing/AgentsAndTrustBands";
 import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
-import { DeveloperTerminalBand } from "@/components/landing/DeveloperTerminalBand";
+import Features4 from "@/components/ui/features-4";
 import { ApiPlayground } from "@/components/landing/ApiPlayground";
 import { FaqAccordion } from "@/components/landing/FaqAccordion";
 import Bento1 from "@/components/ui/bento-1";
@@ -347,11 +347,13 @@ export default function LandingPage() {
           ========================================================================= */}
       <section id="build" className="bg-paper text-ink scroll-mt-20">
         <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-4 py-10 md:px-7 md:py-14">
-          <div className="rounded-[32px] bg-[#141412] border border-white/10 p-5 sm:p-8 md:p-12 text-white shadow-2xl overflow-hidden">
-            <DeveloperTerminalBand />
-            <div className="mt-12 pt-10 border-t border-white/10">
-              <ApiPlayground />
+          <Features4 />
+          <div className="mt-8 rounded-[32px] bg-[#141412] border border-white/10 p-5 sm:p-8 md:p-12 text-white shadow-2xl overflow-hidden">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+              <span>INTERACTIVE API PLAYGROUND · POST /API/VERIFY</span>
+              <span className="text-emerald-400 font-bold">&lt;1ms DETERMINISTIC ENGINE</span>
             </div>
+            <ApiPlayground />
           </div>
         </div>
       </section>
