@@ -44,7 +44,6 @@ export function Faq6({
         </div>
 
         <div className="md:col-span-8 lg:col-span-7 relative">
-          <div className="absolute inset-y-0 left-1/2 w-px border-l border-dashed border-border pointer-events-none -z-10 hidden md:block" />
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem
