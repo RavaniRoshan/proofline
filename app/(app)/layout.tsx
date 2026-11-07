@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Header } from "@/components/ui/vercel-navbar";
 import { NavLinks } from "@/components/NavLinks";
 import { ResetDemo } from "@/components/ResetDemo";
-import { ProoflineBreadcrumb } from "@/components/ui/breadcrumb-dropdown";
+import { BreadcrumbDropdown } from "@/components/ui/breadcrumb-dropdown";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,7 +25,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       {/* Main Content Stage */}
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-4 sm:px-6 sm:py-6">
         <div className="mb-4">
-          <ProoflineBreadcrumb />
+          <BreadcrumbDropdown />
         </div>
         {children}
       </main>

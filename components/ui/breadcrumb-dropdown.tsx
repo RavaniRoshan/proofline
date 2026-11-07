@@ -31,67 +31,9 @@ import {
   ScrollText,
   BarChart3,
   Info,
-  Layers,
-  ArrowRight,
 } from "lucide-react";
 
-//  ------------------------------ | BREADCRUMB - DROPDOWN (PRIMITIVE) | ------------------------------  //
-
-export function BreadcrumbDropdown() {
-  return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink render={<Link href="/" />}>Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <DotIcon />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              render={
-                <Button
-                  variant="ghost"
-                  className="flex h-auto items-center gap-1 p-0 hover:bg-transparent aria-expanded:bg-transparent aria-expanded:text-inherit dark:hover:bg-transparent text-xs font-mono"
-                />
-              }
-            >
-              Components
-              <ChevronDownIcon data-icon="inline-end" className="size-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard">Dashboard</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/check">Preflight Checker</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/facts">Fact Register</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/audit">Audit Journal</Link>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <DotIcon />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
-}
-
-//  ------------------------------ | PROOFLINE APP CONTEXT BREADCRUMB | ------------------------------  //
-
-const VIEWS = [
+const WORKSPACE_MODULES = [
   { href: "/dashboard", label: "Operational Telemetry", icon: BarChart3, badge: "04" },
   { href: "/check", label: "Preflight Claim Governance", icon: ShieldCheck, badge: "01" },
   { href: "/facts", label: "Ground Truth Register", icon: Database, badge: "02" },
@@ -99,52 +41,56 @@ const VIEWS = [
   { href: "/about", label: "Architecture Specification", icon: Info, badge: "05" },
 ];
 
-export function ProoflineBreadcrumb({
-  currentPageTitle,
-}: {
-  currentPageTitle?: string;
-}) {
+export interface BreadcrumbDropdownProps {
+  homeLabel?: string;
+  homeHref?: string;
+  sectionLabel?: string;
+  pageLabel?: string;
+}
+
+//  ------------------------------ | BREADCRUMB - DROPDOWN | ------------------------------  //
+
+export function BreadcrumbDropdown({
+  homeLabel = "Proofline",
+  homeHref = "/",
+  sectionLabel,
+  pageLabel,
+}: BreadcrumbDropdownProps = {}) {
   const pathname = usePathname();
-  const currentView = VIEWS.find((v) => v.href === pathname) || VIEWS[0];
+  const activeModule = WORKSPACE_MODULES.find((m) => m.href === pathname);
+
+  const displaySection = sectionLabel ?? "Workspace";
+  const displayPage = pageLabel ?? activeModule?.label ?? "Operational Telemetry";
 
   return (
-    <Breadcrumb className="py-1">
+    <Breadcrumb className="py-0.5">
       <BreadcrumbList>
-        {/* Brand Home Anchor */}
         <BreadcrumbItem>
-          <BreadcrumbLink
-            render={
-              <Link
-                href="/"
-                className="font-mono text-xs font-semibold text-muted-foreground hover:text-foreground flex items-center gap-1"
-              />
-            }
-          >
-            <span>[ ] Proofline</span>
+          <BreadcrumbLink render={<Link href={homeHref} />}>
+            <span className="font-mono text-xs font-semibold text-muted-foreground hover:text-foreground">
+              [ ] {homeLabel}
+            </span>
           </BreadcrumbLink>
         </BreadcrumbItem>
-
         <BreadcrumbSeparator>
           <DotIcon className="size-4 text-muted-foreground/60" />
         </BreadcrumbSeparator>
-
-        {/* View Switcher Dropdown */}
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger
               render={
                 <Button
                   variant="ghost"
-                  className="flex h-auto items-center gap-1 p-0 font-mono text-xs text-muted-foreground hover:text-foreground hover:bg-transparent aria-expanded:text-foreground cursor-pointer"
+                  className="flex h-auto items-center gap-1 p-0 hover:bg-transparent aria-expanded:bg-transparent aria-expanded:text-inherit dark:hover:bg-transparent font-mono text-xs text-muted-foreground hover:text-foreground cursor-pointer"
                 />
               }
             >
-              <span className="font-semibold">{currentView.label}</span>
+              <span>{displaySection}</span>
               <ChevronDownIcon data-icon="inline-end" className="size-3.5 text-muted-foreground" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56 font-mono text-xs">
               <DropdownMenuGroup>
-                {VIEWS.map(({ href, label, icon: Icon, badge }) => (
+                {WORKSPACE_MODULES.map(({ href, label, icon: Icon, badge }) => (
                   <DropdownMenuItem key={href} asChild>
                     <Link
                       href={href}
@@ -162,21 +108,17 @@ export function ProoflineBreadcrumb({
             </DropdownMenuContent>
           </DropdownMenu>
         </BreadcrumbItem>
-
-        {/* Optional Sub-resource or Detail View */}
-        {currentPageTitle && (
-          <>
-            <BreadcrumbSeparator>
-              <DotIcon className="size-4 text-muted-foreground/60" />
-            </BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbPage className="font-mono text-xs text-foreground font-semibold">
-                {currentPageTitle}
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </>
-        )}
+        <BreadcrumbSeparator>
+          <DotIcon className="size-4 text-muted-foreground/60" />
+        </BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbPage className="font-mono text-xs text-foreground font-semibold">
+            {displayPage}
+          </BreadcrumbPage>
+        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   );
 }
+
+export default BreadcrumbDropdown;
