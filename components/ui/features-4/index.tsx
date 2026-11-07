@@ -1,206 +1,249 @@
 'use client';
 
+import React from 'react';
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/base-ui/card';
-
 import {
-  HiSignal,
-  HiUsers,
-  HiChartBar,
-  HiArrowTrendingUp,
-  HiClock,
-  HiExclamationTriangle,
-} from 'react-icons/hi2';
+  Zap,
+  Clock,
+  ShieldCheck,
+  CheckCircle2,
+  XCircle,
+  AlertTriangle,
+  Database,
+  Layers,
+  ArrowRight,
+  TrendingUp,
+  FileCheck,
+} from 'lucide-react';
 
 export default function Features4() {
   return (
-    <div className="flex w-full flex-col items-center justify-center">
+    <div className="flex w-full flex-col items-center justify-center font-sans">
+      {/* Centered Section Header */}
       <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
-        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
           [05] CORE VERIFICATION MOSAIC
         </span>
-        <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
-          Understand faster,{" "}
-          <span className="text-accent">act smarter</span>
+        <h2 className="max-w-[22ch] text-balance font-serif text-[32px] md:text-[44px] font-normal tracking-[-0.04em] leading-[1.08] text-ink dark:text-white">
+          Deterministic rules,{" "}
+          <span className="text-accent dark:text-[#E07A70]">provable truth</span>
         </h2>
-
-        <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft text-pretty">
-          Get clarity on performance, uncover patterns, and take action with
-          insights that actually move things forward.
+        <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.02em] leading-[1.45] text-ink-soft dark:text-zinc-300 text-pretty">
+          High-throughput TypeScript scalar rules, version-controlled ground truth registers, and a runtime Evidence Gate engineered to eliminate copy drift.
         </p>
       </div>
 
+      {/* 3-Column Equal Height Cards */}
       <div className="grid w-full max-w-6xl items-stretch gap-6 md:grid-cols-3 lg:gap-8">
-        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[32px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
-          <CardContent className="flex h-full flex-col gap-8 p-4">
-            <div className="text-center">
-              <h3 className="text-foreground text-2xl font-semibold">
-                Activity stream
+        {/* ===================================================================
+            CARD 1: Sub-Millisecond Preflight Telemetry
+            =================================================================== */}
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
+          <CardContent className="flex h-full flex-col justify-between gap-6 p-6 md:p-7">
+            <div>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+                01 · Preflight Engine
+              </span>
+              <h3 className="font-serif text-2xl font-normal tracking-tight text-ink dark:text-white mt-1">
+                Sub-millisecond Preflight
               </h3>
-              <p className="text-muted-foreground text-md/6">
-                Track live system activity and event flow in real time, helping
-                you spot spikes and performance changes instantly.
+              <p className="text-sm text-ink-soft dark:text-zinc-400 mt-2 leading-relaxed">
+                Normalizes currency, seat limits, storage quotas, and temporal validity windows in memory before making any model call.
               </p>
             </div>
 
-            <div className="bg-background dark:bg-background/60 flex min-h-[350px] flex-col justify-between rounded-4xl p-4 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.03),0px_1px_2px_-1px_rgba(0,0,0,0.04),0px_2px_4px_0px_rgba(0,0,0,0.04)] dark:shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.04),0px_2px_4px_0px_rgba(0,0,0,0.04),inset_0px_2px_0px_0px_rgba(255,255,255,0.05)]">
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground flex items-center gap-1 text-sm">
-                  <HiSignal className="text-primary h-4 w-4" />
-                  Live events
+            {/* Inner Telemetry Console */}
+            <div className="flex flex-col justify-between rounded-2xl border border-ink/10 dark:border-white/10 bg-panel/70 dark:bg-zinc-900/60 p-5 shadow-xs">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-ink-soft dark:text-zinc-400 flex items-center gap-1.5">
+                  <Zap className="size-3.5 text-accent dark:text-[#E07A70]" />
+                  Scalar AST Fast-Path
                 </span>
-                <span className="text-primary text-xs">● live</span>
+                <span className="text-[#1F5C43] dark:text-[#4ADE80] font-semibold">
+                  ● 0.38ms avg
+                </span>
               </div>
 
-              <div className="flex items-end justify-between">
-                <div className="text-foreground text-4xl font-semibold">
-                  18,942
+              <div className="mt-4 flex items-baseline justify-between">
+                <div className="text-3xl font-mono font-bold tracking-tight text-ink dark:text-white">
+                  78%
                 </div>
-                <div className="text-primary text-sm">+12%</div>
+                <div className="text-xs font-mono font-semibold text-[#1F5C43] dark:text-[#4ADE80]">
+                  $0.00 Token Cost
+                </div>
               </div>
 
-              <div className="flex h-24 items-end gap-2">
-                {[40, 60, 35, 80, 55, 90, 70].map((h, i) => (
-                  <div
-                    key={i}
-                    className="bg-primary/80 w-full rounded-md"
-                    style={{ height: `${h}%` }}
-                  />
+              {/* 7 Latency Distribution Bars */}
+              <div className="mt-4 flex h-16 items-end gap-1.5">
+                {[
+                  { h: 42, label: "0.34ms" },
+                  { h: 65, label: "0.38ms" },
+                  { h: 50, label: "0.36ms" },
+                  { h: 88, label: "0.41ms" },
+                  { h: 58, label: "0.37ms" },
+                  { h: 45, label: "0.35ms" },
+                  { h: 72, label: "0.39ms" },
+                ].map((bar, i) => (
+                  <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                    <div
+                      className="w-full rounded-xs bg-[#8B1E27]/80 dark:bg-[#E07A70]/80 transition-all hover:bg-[#8B1E27]"
+                      style={{ height: `${bar.h}%` }}
+                    />
+                  </div>
                 ))}
               </div>
 
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="bg-muted rounded-lg p-3">
-                  <div className="text-muted-foreground flex items-center gap-1 text-xs">
-                    <HiClock className="h-3 w-3" />
-                    Latency
-                  </div>
-                  <div className="text-foreground text-lg font-medium">
-                    1.2s
-                  </div>
+              <div className="mt-4 grid grid-cols-2 gap-2 text-xs font-mono">
+                <div className="rounded-lg bg-paper dark:bg-zinc-800 p-2.5 border border-ink/5 dark:border-white/5">
+                  <span className="text-[10px] uppercase text-ink-soft dark:text-zinc-400 block">
+                    Regex Rules
+                  </span>
+                  <span className="text-sm font-bold text-ink dark:text-white">
+                    12 Active
+                  </span>
                 </div>
-                <div className="bg-muted rounded-lg p-3">
-                  <div className="text-muted-foreground flex items-center gap-1 text-xs">
-                    <HiExclamationTriangle className="h-3 w-3" />
-                    Errors
-                  </div>
-                  <div className="text-destructive text-lg font-medium">
-                    -2.3%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[32px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
-          <CardContent className="flex h-full flex-col gap-8 p-4">
-            <div className="text-center">
-              <h3 className="text-foreground text-2xl font-semibold">
-                User segments
-              </h3>
-              <p className="text-muted-foreground text-md/6">
-                Understand how different user groups behave and interact, so you
-                can identify patterns and high-impact segments quickly.
-              </p>
-            </div>
-
-            <div className="bg-background dark:bg-background/60 flex min-h-[350px] flex-col justify-between rounded-4xl p-4 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.03),0px_1px_2px_-1px_rgba(0,0,0,0.04),0px_2px_4px_0px_rgba(0,0,0,0.04)] dark:shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.04),0px_2px_4px_0px_rgba(0,0,0,0.04),inset_0px_2px_0px_0px_rgba(255,255,255,0.05)]">
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground flex items-center gap-1 text-sm">
-                  <HiUsers className="text-primary h-4 w-4" />
-                  Active segments
-                </span>
-                <span className="text-muted-foreground text-xs">12 groups</span>
-              </div>
-
-              <div className="flex items-center justify-center">
-                <div className="border-primary/20 relative flex h-28 w-28 items-center justify-center rounded-full border-8">
-                  <div className="border-primary absolute h-full w-full rotate-45 rounded-full border-8 border-t-transparent" />
-                  <span className="text-foreground text-xl font-semibold">
-                    68%
+                <div className="rounded-lg bg-paper dark:bg-zinc-800 p-2.5 border border-ink/5 dark:border-white/5">
+                  <span className="text-[10px] uppercase text-ink-soft dark:text-zinc-400 block">
+                    Precision
+                  </span>
+                  <span className="text-sm font-bold text-[#1F5C43] dark:text-[#4ADE80]">
+                    100% Deterministic
                   </span>
                 </div>
               </div>
+            </div>
+          </CardContent>
+        </Card>
 
-              <div className="space-y-3">
-                {[
-                  { name: 'Power users', value: 48 },
-                  { name: 'New users', value: 32 },
-                  { name: 'Churn risk', value: 47 },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between text-sm"
-                  >
-                    <span className="text-muted-foreground">{item.name}</span>
-                    <span className="text-foreground font-medium">
-                      {item.value}%
+        {/* ===================================================================
+            CARD 2: Owner-Approved Fact Register (42 Seed Facts)
+            =================================================================== */}
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
+          <CardContent className="flex h-full flex-col justify-between gap-6 p-6 md:p-7">
+            <div>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+                02 · Ground Truth
+              </span>
+              <h3 className="font-serif text-2xl font-normal tracking-tight text-ink dark:text-white mt-1">
+                Versioned Fact Register
+              </h3>
+              <p className="text-sm text-ink-soft dark:text-zinc-400 mt-2 leading-relaxed">
+                Single source of truth maintained by designated product and legal owners with temporal validity windows and amendment lineage.
+              </p>
+            </div>
+
+            {/* Inner Register Console */}
+            <div className="flex flex-col justify-between rounded-2xl border border-ink/10 dark:border-white/10 bg-panel/70 dark:bg-zinc-900/60 p-5 shadow-xs">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-ink-soft dark:text-zinc-400 flex items-center gap-1.5">
+                  <Database className="size-3.5 text-ink dark:text-white" />
+                  seed/facts.json
+                </span>
+                <span className="text-ink-faint dark:text-zinc-500">
+                  42 Seed Facts
+                </span>
+              </div>
+
+              {/* Circular Gauge */}
+              <div className="my-3 flex items-center justify-center">
+                <div className="relative flex size-24 items-center justify-center rounded-full border-4 border-ink/10 dark:border-white/10">
+                  <div className="absolute inset-0 rounded-full border-4 border-[#1F5C43] border-t-transparent" />
+                  <div className="flex flex-col items-center">
+                    <span className="text-lg font-mono font-bold text-ink dark:text-white">
+                      100%
                     </span>
+                    <span className="text-[9px] font-mono uppercase text-ink-faint dark:text-zinc-500">
+                      Grounded
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fact Categories */}
+              <div className="space-y-1.5 text-xs font-mono">
+                {[
+                  { name: "Pricing & Tiers", count: "14 Facts", pct: "100%" },
+                  { name: "SLA & Uptime", count: "8 Facts", pct: "100%" },
+                  { name: "Data Residency & SOC 2", count: "12 Facts", pct: "100%" },
+                  { name: "Storage & Quotas", count: "8 Facts", pct: "100%" },
+                ].map((cat) => (
+                  <div
+                    key={cat.name}
+                    className="flex items-center justify-between rounded px-2.5 py-1 bg-paper dark:bg-zinc-800 border border-ink/5 dark:border-white/5"
+                  >
+                    <span className="text-ink dark:text-zinc-200">{cat.name}</span>
+                    <span className="text-ink-soft dark:text-zinc-400">{cat.count}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex gap-2">
-                <div className="bg-primary h-2 flex-1 rounded-full" />
-                <div className="bg-primary/60 h-2 flex-1 rounded-full" />
-                <div className="bg-primary/30 h-2 flex-1 rounded-full" />
+              <div className="mt-3 flex gap-1.5">
+                <div className="h-1.5 flex-[4] rounded-full bg-[#1F5C43]" />
+                <div className="h-1.5 flex-[1] rounded-full bg-[#8B1E27]" />
+                <div className="h-1.5 flex-[1] rounded-full bg-[#B8860B]" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[32px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
-          <CardContent className="flex h-full flex-col gap-8 p-4">
-            <div className="text-center">
-              <h3 className="text-foreground text-2xl font-semibold">
-                Momentum score
+        {/* ===================================================================
+            CARD 3: 5-State Mathematical Verdict Lattice
+            =================================================================== */}
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
+          <CardContent className="flex h-full flex-col justify-between gap-6 p-6 md:p-7">
+            <div>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+                03 · Formal Taxonomy
+              </span>
+              <h3 className="font-serif text-2xl font-normal tracking-tight text-ink dark:text-white mt-1">
+                Formal Verdict Lattice
               </h3>
-              <p className="text-muted-foreground text-md/6">
-                Monitor growth across key metrics with a unified score,
-                revealing trends and momentum shifts at a glance.
+              <p className="text-sm text-ink-soft dark:text-zinc-400 mt-2 leading-relaxed">
+                Eliminates fuzzy language model verdicts. Claims receive formal verdicts backed by byte-exact references and cryptographic proofs.
               </p>
             </div>
 
-            <div className="bg-background dark:bg-background/60 flex min-h-[350px] flex-col justify-between rounded-4xl p-4 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.03),0px_1px_2px_-1px_rgba(0,0,0,0.04),0px_2px_4px_0px_rgba(0,0,0,0.04)] dark:shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.06),0px_1px_2px_-1px_rgba(0,0,0,0.04),0px_2px_4px_0px_rgba(0,0,0,0.04),inset_0px_2px_0px_0px_rgba(255,255,255,0.05)]">
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground flex items-center gap-1 text-sm">
-                  <HiChartBar className="text-primary h-4 w-4" />
-                  Growth score
+            {/* Inner Lattice Console */}
+            <div className="flex flex-col justify-between rounded-2xl border border-ink/10 dark:border-white/10 bg-panel/70 dark:bg-zinc-900/60 p-5 shadow-xs">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-ink-soft dark:text-zinc-400 flex items-center gap-1.5">
+                  <ShieldCheck className="size-3.5 text-[#1F5C43]" />
+                  lib/verdict.ts
                 </span>
-                <span className="text-primary border-primary/20 bg-primary/5 rounded-3xl border px-2 text-xs">
-                  +6.2%
+                <span className="rounded bg-accent/10 px-1.5 py-0.5 text-[10px] font-bold text-accent dark:text-[#E07A70]">
+                  5 Verdicts
                 </span>
               </div>
 
-              <div className="text-foreground text-5xl font-semibold">78</div>
-
-              <div className="space-y-4">
+              {/* Distribution Breakdown */}
+              <div className="mt-3 space-y-2 text-xs font-mono">
                 {[
-                  { label: 'Acquisition', value: 82 },
-                  { label: 'Engagement', value: 68 },
-                  { label: 'Retention', value: 74 },
-                ].map((item, i) => (
-                  <div key={i} className="space-y-1">
-                    <div className="text-muted-foreground flex justify-between text-xs">
-                      <span>{item.label}</span>
-                      <span>{item.value}%</span>
+                  { name: "SUPPORTED", pct: 64, color: "bg-[#1F5C43]", fg: "text-[#1F5C43] dark:text-[#4ADE80]" },
+                  { name: "CONTRADICTED", pct: 18, color: "bg-[#8B1E27]", fg: "text-[#8B1E27] dark:text-[#E07A70]" },
+                  { name: "STALE", pct: 11, color: "bg-[#B8860B]", fg: "text-[#B8860B] dark:text-[#FBBF24]" },
+                  { name: "CONFLICTING", pct: 4, color: "bg-zinc-500", fg: "text-zinc-500" },
+                  { name: "UNVERIFIABLE", pct: 3, color: "bg-zinc-400", fg: "text-zinc-400" },
+                ].map((item) => (
+                  <div key={item.name} className="space-y-1">
+                    <div className="flex justify-between text-[11px]">
+                      <span className={`font-semibold ${item.fg}`}>{item.name}</span>
+                      <span className="text-ink-soft dark:text-zinc-400">{item.pct}%</span>
                     </div>
-                    <div className="bg-muted h-2 w-full rounded-full">
+                    <div className="h-1.5 w-full rounded-full bg-ink/10 dark:bg-white/10 overflow-hidden">
                       <div
-                        className="bg-primary h-2 rounded-full"
-                        style={{ width: `${item.value}%` }}
+                        className={`h-full rounded-full ${item.color}`}
+                        style={{ width: `${item.pct}%` }}
                       />
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-muted flex justify-between rounded-lg p-3 text-sm">
-                <span className="text-muted-foreground flex items-center gap-1">
-                  <HiArrowTrendingUp className="h-4 w-4" />
-                  Trend
-                </span>
-                <span className="text-primary font-medium">Accelerating</span>
+              {/* Downgrade Invariant Pill */}
+              <div className="mt-3.5 rounded-lg border border-ink/10 dark:border-white/10 bg-paper dark:bg-zinc-800 p-2.5 text-[11px] font-mono text-ink-soft dark:text-zinc-400 flex items-center justify-between">
+                <span>Citation Invariant</span>
+                <span className="font-semibold text-ink dark:text-white">Strict Shear Line</span>
               </div>
             </div>
           </CardContent>

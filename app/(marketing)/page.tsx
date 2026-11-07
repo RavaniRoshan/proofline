@@ -106,14 +106,14 @@ export default function LandingPage() {
 
           {/* Centered Section Header + Sharp 0px Mono CTA */}
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               [01] INTERACTIVE VERIFICATION WORKFLOWS
             </span>
-            <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
+            <h2 className="max-w-[22ch] text-balance font-serif text-[32px] md:text-[44px] font-normal tracking-[-0.04em] leading-[1.08] text-ink dark:text-white">
               Make your copy{" "}
-              <span className="text-accent">provably accurate</span>
+              <span className="text-accent dark:text-[#E07A70]">provably accurate</span>
             </h2>
-            <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft text-pretty">
+            <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft dark:text-zinc-300 text-pretty">
               Proofline gives reviewers deterministic rules, access to your owner-approved fact
               register, and an Evidence Gate that already works, so claims ship right the first
               time.
@@ -151,13 +151,13 @@ export default function LandingPage() {
           {/* Interactive Bento Suite with generous spacing and dedicated showcase header */}
           <div className="mt-28 md:mt-36 border-t border-ink/15 dark:border-white/12 pt-20">
             <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
-              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/12 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/12 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
                 [02.2] ARCHITECTURAL SPECIFICATION
               </span>
-              <h3 className="max-w-[24ch] text-balance font-sans text-[28px] md:text-[38px] font-normal tracking-[-0.04em] leading-[1.12] text-ink">
-                Unified Claim Verification <span className="text-accent">Engine</span>
+              <h3 className="max-w-[24ch] text-balance font-serif text-[28px] md:text-[38px] font-normal tracking-[-0.04em] leading-[1.12] text-ink dark:text-white">
+                Unified Claim Verification <span className="text-accent dark:text-[#E07A70]">Engine</span>
               </h3>
-              <p className="mt-3.5 max-w-[52ch] text-[15px] md:text-[16.5px] tracking-[-0.02em] leading-[1.5] text-ink-soft">
+              <p className="mt-3.5 max-w-[52ch] text-[15px] md:text-[16.5px] tracking-[-0.02em] leading-[1.5] text-ink-soft dark:text-zinc-300">
                 Interactive topology of high-throughput deterministic rules, local citation verification, and zero-token scalar pipelines.
               </p>
             </div>
@@ -181,14 +181,14 @@ export default function LandingPage() {
 
           {/* Centered Header + Sharp 0px Button */}
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               [03] COLLABORATIVE TRUTH REGISTER
             </span>
-            <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
+            <h2 className="max-w-[22ch] text-balance font-serif text-[32px] md:text-[44px] font-normal tracking-[-0.04em] leading-[1.08] text-ink dark:text-white">
               One register for{" "}
-              <span className="text-accent">your whole team</span>
+              <span className="text-accent dark:text-[#E07A70]">your whole team</span>
             </h2>
-            <p className="mt-3.5 max-w-[52ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft">
+            <p className="mt-3.5 max-w-[52ch] text-[16px] md:text-[17px] tracking-[-0.02em] leading-[1.45] text-ink-soft dark:text-zinc-300">
               Approve product facts, validity windows, and disclaimers once. Every reviewer’s check
               gets them automatically.
             </p>
@@ -369,14 +369,14 @@ export default function LandingPage() {
           <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
 
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               [04] DETERMINISTIC PROOF &amp; EVIDENCE
             </span>
-            <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
+            <h2 className="max-w-[22ch] text-balance font-serif text-[32px] md:text-[44px] font-normal tracking-[-0.04em] leading-[1.08] text-ink dark:text-white">
               Deterministic proof,{" "}
-              <span className="block text-accent">always in your control</span>
+              <span className="block text-accent dark:text-[#E07A70]">always in your control</span>
             </h2>
-            <p className="mt-4 max-w-[48ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft">
+            <p className="mt-4 max-w-[48ch] text-[16px] md:text-[17px] tracking-[-0.02em] leading-[1.45] text-ink-soft dark:text-zinc-300">
               Decide what facts are active and what evidence is required. Proofline keeps unbacked
               claims out.
             </p>
@@ -411,14 +411,14 @@ export default function LandingPage() {
           <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
 
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               [06] ENTERPRISE GOVERNANCE &amp; PRIVACY
             </span>
-            <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
+            <h2 className="max-w-[22ch] text-balance font-serif text-[32px] md:text-[44px] font-normal tracking-[-0.04em] leading-[1.08] text-ink dark:text-white">
               One place to govern{" "}
-              <span className="text-accent">every claim in your company.</span>
+              <span className="text-accent dark:text-[#E07A70]">every claim in your company.</span>
             </h2>
-            <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft">
+            <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.02em] leading-[1.45] text-ink-soft dark:text-zinc-300">
               Roll Proofline out across product marketing, legal, and release engineering within
               strict local-first privacy and deterministic audit rules.
             </p>
