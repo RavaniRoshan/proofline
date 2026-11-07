@@ -1,0 +1,9 @@
+.web3-dashboard {
+  --chart-1: #8B1E27;
+  --chart-2: #D4847A;
+}
+
+.dark .web3-dashboard {
+  --chart-1: #D4847A;
+  --chart-2: #8B1E27;
+}

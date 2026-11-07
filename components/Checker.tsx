@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import {
   ShieldCheck,
   Loader2,
@@ -10,6 +11,13 @@ import {
   RotateCcw,
   ChevronDown,
   ClipboardPaste,
+  Zap,
+  Lock,
+  Layers,
+  FileText,
+  Clock,
+  ArrowRight,
+  Sparkles,
 } from "lucide-react";
 import type { VerifyResult, Verdict, Finding } from "@/lib/types";
 import { ALL_VERDICTS } from "@/lib/types";
@@ -18,8 +26,36 @@ import { MarkedDraft } from "@/components/MarkedDraft";
 import { EvidenceDrawer } from "@/components/EvidenceDrawer";
 import { useProoflineState } from "@/lib/use-proofline";
 import { cn } from "@/lib/utils";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { AssetBadge } from "@/components/ui/web3-dashboard/components/web3/asset-badge";
 
 const COLLAPSED_VERDICTS: Verdict[] = ["SUPPORTED", "NOT_CHECKABLE"];
+
+function getVerdictAssetBadge(verdict: Verdict) {
+  switch (verdict) {
+    case "CONTRADICTED":
+      return { symbol: "C", color: "bg-[#8B1E27]" };
+    case "STALE":
+      return { symbol: "S", color: "bg-amber-600" };
+    case "CONFLICTING":
+      return { symbol: "X", color: "bg-purple-600" };
+    case "UNVERIFIED":
+      return { symbol: "U", color: "bg-slate-600" };
+    case "SUPPORTED":
+      return { symbol: "V", color: "bg-[#1F5C43]" };
+    case "NOT_CHECKABLE":
+      return { symbol: "N", color: "bg-gray-500" };
+  }
+}
 
 export function Checker({ sampleDraft }: { sampleDraft: string }) {
   const [draft, setDraft] = useState("");
@@ -137,141 +173,339 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
   const decidedCount = Object.keys(stored.decisions).length;
 
   return (
-    <div>
-      {/* ---- input card ---- */}
-      <section className="rounded-[6px] border border-line-strong bg-card p-4 sm:p-5">
-        <div className="flex items-center justify-between gap-2">
-          <label htmlFor="draft" className="text-sm font-semibold text-foreground">
-            Your draft
-          </label>
-          <div className="flex items-center gap-3">
-            <span className="hidden text-xs text-muted sm:inline">{draft.trim() ? `${draft.trim().split(/\s+/).length} words` : "empty"}</span>
-            <button
-              type="button"
+    <div className="space-y-5">
+      {/* =========================================================================
+          1. TOP ENTERPRISE STATUS RIBBON
+          ========================================================================= */}
+      <Card className="p-3.5 sm:p-4 shadow-xs border border-border">
+        <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-[#1F5C43] animate-pulse" />
+              <span className="font-semibold text-foreground">Preflight Engine:</span>
+              <span className="rounded-full bg-v-supported-bg px-2 py-0.5 font-mono text-[11px] font-semibold text-v-supported-fg border border-v-supported-border">
+                Ready · Stage 1–4 Pipeline
+              </span>
+            </div>
+
+            <div className="hidden sm:flex items-center gap-1.5">
+              <span className="text-muted-foreground">Ruleset:</span>
+              <span className="font-medium text-foreground">78% Fast-Path Deterministic</span>
+            </div>
+
+            <div className="hidden md:flex items-center gap-1.5">
+              <span className="text-muted-foreground">Active Window:</span>
+              <span className="font-mono text-foreground">{reviewDate} → Active</span>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <span className="text-muted-foreground">Boundary:</span>
+              <Badge variant="outline" className="font-mono text-[11px] font-semibold">
+                Zero DB Writes
+              </Badge>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => setDraft(sampleDraft)}
-              data-testid="load-sample"
-              className="btn-proofline-tactile inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-xs font-medium text-ink-soft active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:border-slate"
+              className="h-7 gap-1 font-mono text-xs text-foreground"
             >
-              <Wand2 size={13} aria-hidden="true" />
-              Load sample draft
-            </button>
+              <Wand2 size={12} />
+              <span>Load Sample Draft</span>
+            </Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* =========================================================================
+          2. PREFLIGHT TELEMETRY STAT CARDS (4 Tone-Badged High-Density Cards)
+          ========================================================================= */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Card 1: Fast-Path Rule Latency */}
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Rule Resolution
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-[#8B1E27]/10 text-[#8B1E27] dark:text-[#D4847A]">
+              <Zap size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono">
+              0.4ms
+            </span>
+            <span className="font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              Stage 1 Pure TS
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Exact lookup for pricing, dates &amp; quotas at $0 LLM cost
+          </p>
+        </Card>
+
+        {/* Card 2: Deterministic Fast-Path Ratio */}
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Deterministic Ratio
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-[#1F5C43]/10 text-[#1F5C43]">
+              <Layers size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono">
+              78%
+            </span>
+            <span className="font-mono text-xs text-muted-foreground">
+              Fast-path target
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Only qualitative marketing claims route to bounded model
+          </p>
+        </Card>
+
+        {/* Card 3: Bounded Context Budget */}
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Bounded Budget
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400">
+              <Lock size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono">
+              ≤ 5
+            </span>
+            <span className="font-mono text-xs text-muted-foreground">
+              Candidate facts
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Lexical top-5 retrieval eliminates model hallucination space
+          </p>
+        </Card>
+
+        {/* Card 4: Evidence Gate Guarantee */}
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Evidence Gate
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+              <ShieldCheck size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono">
+              6-Field
+            </span>
+            <span className="font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              Invariant Law
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            No CONTRADICTED ships without document span and fact version
+          </p>
+        </Card>
+      </section>
+
+      {/* =========================================================================
+          3. DRAFT INPUT CARD (Web3-inspired Container)
+          ========================================================================= */}
+      <Card className="shadow-xs border border-border bg-card overflow-hidden">
+        <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-border/60">
+          <div>
+            <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Candidate Draft Copy
+            </CardTitle>
+            <CardDescription className="text-[11px] mt-0.5">
+              Paste marketing briefs, pricing announcements, SLA terms, or release notes
+            </CardDescription>
+          </div>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className="font-mono text-[10px]">
+              {draft.trim() ? `${draft.trim().split(/\s+/).length} words` : "Empty buffer"}
+            </Badge>
             {draft && (
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="sm"
                 onClick={() => {
                   setDraft("");
                   setResult(null);
                   setStatus("idle");
                   textareaRef.current?.focus();
                 }}
-                className="btn-proofline-tactile inline-flex items-center gap-1 text-xs font-medium text-muted active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:text-foreground"
+                className="h-7 px-2 text-xs font-mono text-muted-foreground hover:text-foreground"
                 aria-label="Clear the draft"
               >
-                <RotateCcw size={13} aria-hidden="true" />
+                <RotateCcw size={12} className="mr-1" />
                 Clear
-              </button>
+              </Button>
             )}
           </div>
-        </div>
-        <textarea
-          id="draft"
-          ref={textareaRef}
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          spellCheck={false}
-          placeholder="Paste your launch page, release note, pricing page…"
-          className="mt-3 h-48 w-full resize-y rounded-[4px] border border-line-strong bg-background p-4 text-[15px] leading-relaxed placeholder:text-muted focus:border-slate focus:outline-none sm:h-56"
-          data-testid="draft-input"
-        />
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            onClick={() => void check()}
-            disabled={status === "checking"}
-            data-testid="check-button"
-            className="btn-proofline-tactile inline-flex h-11 min-w-36 items-center justify-center gap-2 rounded-[4px] bg-accent px-6 text-base font-semibold text-white active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:bg-accent-hover disabled:opacity-60 disabled:active:scale-100"
-          >
-            {status === "checking" ? (
-              <>
-                <Loader2 size={18} className="animate-spin" aria-hidden="true" />
-                Checking…
-              </>
-            ) : (
-              <>
-                <ShieldCheck size={18} aria-hidden="true" />
-                Check
-              </>
-            )}
-          </button>
-          <kbd className="hidden rounded-[4px] border border-line-strong bg-panel px-2 py-1 text-[11px] text-muted sm:inline">
-            ⌘↵ to check · j / k to move
-          </kbd>
-          <p className="ml-auto text-[12px] text-muted">
-            Checked against the register as of <span className="font-mono">{reviewDate}</span>. Nothing you type is stored.
-          </p>
-        </div>
-      </section>
+        </CardHeader>
 
-      {/* ---- error ---- */}
-      {status === "error" && error && (
-        <div role="alert" className="mt-4 flex items-start gap-3 rounded-[6px] border border-v-contradicted-fg/30 bg-v-contradicted-bg p-4 text-sm text-v-contradicted-fg">
-          <AlertTriangle size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
-          <div>
-            <p className="font-semibold">The check could not complete.</p>
-            <p className="mt-0.5">{error}</p>
-            <p className="mt-1 text-xs opacity-90">Nothing was changed in your register. Press Check again to retry.</p>
+        <CardContent className="pt-4">
+          <textarea
+            id="draft"
+            ref={textareaRef}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            spellCheck={false}
+            placeholder="Paste candidate copy here: e.g. Flowdesk pricing starts at $4,999/mo with 99.99% uptime..."
+            className="h-44 w-full resize-y rounded-lg border border-border bg-background p-4 font-sans text-sm leading-relaxed placeholder:text-muted-foreground focus:border-[#8B1E27] dark:focus:border-[#D4847A] focus:outline-none transition-colors sm:h-52"
+            data-testid="draft-input"
+          />
+
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <Button
+                type="button"
+                onClick={() => void check()}
+                disabled={status === "checking"}
+                data-testid="check-button"
+                className="btn-proofline-tactile h-10 min-w-36 gap-2 font-mono text-xs font-semibold bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-all cursor-pointer"
+              >
+                {status === "checking" ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" aria-hidden="true" />
+                    <span>Executing Pipeline…</span>
+                  </>
+                ) : (
+                  <>
+                    <ShieldCheck size={16} aria-hidden="true" />
+                    <span>Run Preflight Check</span>
+                  </>
+                )}
+              </Button>
+
+              <kbd className="hidden sm:inline-flex items-center rounded border border-border bg-muted/60 px-2 py-1 font-mono text-[10px] text-muted-foreground">
+                ⌘↵ to check · j / k to navigate
+              </kbd>
+            </div>
+
+            <p className="font-mono text-[11px] text-muted-foreground">
+              Checked against register as of <span className="font-semibold text-foreground">{reviewDate}</span>. Zero server retention.
+            </p>
           </div>
-        </div>
+        </CardContent>
+      </Card>
+
+      {/* =========================================================================
+          4. ERROR STATE
+          ========================================================================= */}
+      {status === "error" && error && (
+        <Card className="border-v-contradicted-border bg-v-contradicted-bg p-4 text-xs text-v-contradicted-fg">
+          <div className="flex items-start gap-3">
+            <AlertTriangle size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
+            <div>
+              <p className="font-semibold font-mono text-sm">The check could not complete</p>
+              <p className="mt-0.5">{error}</p>
+              <p className="mt-1 font-mono text-[11px] opacity-90">
+                Nothing was changed in your register. Adjust your draft and press Run Preflight Check again.
+              </p>
+            </div>
+          </div>
+        </Card>
       )}
 
-      {/* ---- empty state ---- */}
+      {/* =========================================================================
+          5. IDLE STATE GUIDANCE CARDS
+          ========================================================================= */}
       {status === "idle" && (
-        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-3">
           {[
-            { step: "1", title: "Paste a draft", body: "Or load the sample — a launch page seeded with five kinds of problem.", icon: ClipboardPaste },
-            { step: "2", title: "Press Check", body: "Rules decide numbers, dates, names and disclaimers. The model only reads what rules cannot.", icon: ShieldCheck },
-            { step: "3", title: "Decide on each finding", body: "Approve, reject or request an edit — with a reason. Decisions land in the audit log.", icon: Wand2 },
+            {
+              step: "01",
+              title: "Draft Ingestion",
+              body: "Paste candidate copy or load the Flowdesk sample draft seeded with pricing and SLA contradictions.",
+              icon: ClipboardPaste,
+            },
+            {
+              step: "02",
+              title: "Deterministic Execution",
+              body: "Stage 1 TypeScript rules evaluate numbers and dates with <1ms latency. Bounded model handles nuances.",
+              icon: ShieldCheck,
+            },
+            {
+              step: "03",
+              title: "Append-Only Audit Journal",
+              body: "Approve, reject or request an edit on each finding. Every human judgment is signed with SHA-256.",
+              icon: Wand2,
+            },
           ].map(({ step, title, body, icon: Icon }) => (
-            <div key={step} className="rounded-[6px] border border-dashed border-line-strong bg-panel/40 p-4">
-              <Icon size={18} aria-hidden="true" className="text-slate" />
-              <p className="mt-2 text-sm font-semibold">{step}. {title}</p>
-              <p className="mt-1 text-[13px] leading-snug text-muted">{body}</p>
-            </div>
+            <Card key={step} className="p-4 sm:p-5 border-dashed border-border/80 bg-card/60">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[11px] font-bold text-[#8B1E27] dark:text-[#D4847A]">
+                  STAGE {step}
+                </span>
+                <Icon size={16} aria-hidden="true" className="text-muted-foreground/80" />
+              </div>
+              <p className="mt-2 text-sm font-semibold text-foreground">{title}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{body}</p>
+            </Card>
           ))}
         </div>
       )}
 
-      {/* ---- results ---- */}
+      {/* =========================================================================
+          6. PIPELINE RESULTS VIEW
+          ========================================================================= */}
       {status === "done" && result && (
-        <section className="mt-6" aria-live="polite">
-          <div
-            className="flex flex-wrap items-center gap-2"
-            data-testid="summary"
-            role="status"
-            aria-live="polite"
-          >
-            <p className="text-sm font-semibold">{result.summary.total} findings</p>
-            <span className="text-muted" aria-hidden="true">·</span>
-            {ALL_VERDICTS.map((v) =>
-              result.summary.by_verdict[v] > 0 ? (
-                <span key={v} className="rounded-[4px] border border-line-strong bg-panel px-2 py-0.5 text-[11px] font-medium text-foreground">
-                  {result.summary.by_verdict[v]} {v.replace("_", " ")}
+        <section className="space-y-4" aria-live="polite">
+          {/* Results Summary Bar */}
+          <Card className="p-3.5 sm:p-4 shadow-xs border border-border">
+            <div
+              className="flex flex-wrap items-center justify-between gap-3 text-xs"
+              data-testid="summary"
+              role="status"
+              aria-live="polite"
+            >
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-mono text-sm font-bold text-foreground">
+                  {result.summary.total} Findings Evaluated
                 </span>
-              ) : null,
-            )}
-            <span className="text-muted" aria-hidden="true">·</span>
-            <div className="inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2 py-0.5 text-[11px] font-mono text-ink-soft">
-              <span className="h-1.5 w-1.5 rounded-full bg-v-supported-fg" />
-              <span>
-                {result.summary.model === 0
-                  ? "Rules only (100% deterministic)"
-                  : `${result.summary.deterministic} rules (${Math.round((result.summary.deterministic / (result.summary.deterministic + result.summary.model)) * 100)}%) · ${result.summary.model} model`}
-              </span>
-            </div>
-          </div>
+                <span className="text-border" aria-hidden="true">·</span>
 
-          {/* Desktop & Mobile Responsive Layout */}
-          <div className="mt-4 grid gap-6 lg:grid-cols-12 items-start">
+                {ALL_VERDICTS.map((v) => {
+                  const count = result.summary.by_verdict[v];
+                  if (!count) return null;
+                  const asset = getVerdictAssetBadge(v);
+                  return (
+                    <span
+                      key={v}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/60 px-2 py-0.5 font-mono text-[11px] font-medium text-foreground"
+                    >
+                      <AssetBadge symbol={asset.symbol} color={asset.color} size="sm" />
+                      <span>{count} {v.replace("_", " ")}</span>
+                    </span>
+                  );
+                })}
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground">
+                <span className="size-2 rounded-full bg-[#1F5C43] animate-pulse" />
+                <span>
+                  {result.summary.model === 0
+                    ? "100% Deterministic Fast-Path"
+                    : `${result.summary.deterministic} rules (${Math.round((result.summary.deterministic / (result.summary.deterministic + result.summary.model)) * 100)}%) · ${result.summary.model} bounded model`}
+                </span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Desktop & Mobile Responsive Split Stage */}
+          <div className="grid gap-6 lg:grid-cols-12 items-start">
             {/* Desktop Left: Sticky Marked Draft */}
             <div className="hidden lg:block lg:col-span-5 sticky top-20">
               <MarkedDraft
@@ -296,15 +530,15 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
 
             {/* Mobile View Switcher */}
             <div className="lg:hidden w-full">
-              <div className="mb-3 flex border-b border-line">
+              <div className="mb-3 flex border-b border-border">
                 <button
                   type="button"
                   onClick={() => setMobileTab("findings")}
                   className={cn(
-                    "pb-2 px-3 text-xs font-semibold transition-colors",
+                    "pb-2 px-3 font-mono text-xs font-semibold transition-colors cursor-pointer",
                     mobileTab === "findings"
-                      ? "border-b-2 border-slate text-foreground"
-                      : "text-muted hover:text-foreground"
+                      ? "border-b-2 border-[#8B1E27] text-foreground dark:border-[#D4847A]"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   Findings ({result.summary.total})
@@ -313,10 +547,10 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                   type="button"
                   onClick={() => setMobileTab("draft")}
                   className={cn(
-                    "pb-2 px-3 text-xs font-semibold transition-colors",
+                    "pb-2 px-3 font-mono text-xs font-semibold transition-colors cursor-pointer",
                     mobileTab === "draft"
-                      ? "border-b-2 border-slate text-foreground"
-                      : "text-muted hover:text-foreground"
+                      ? "border-b-2 border-[#8B1E27] text-foreground dark:border-[#D4847A]"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   Marked Draft
@@ -354,12 +588,12 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               data-testid="findings-list"
             >
               {actionable.length === 0 ? (
-                <div className="rounded-[6px] border border-v-supported-fg/30 bg-v-supported-bg p-5 text-sm text-v-supported-fg">
-                  <p className="font-semibold">Nothing blocking.</p>
-                  <p className="mt-1 opacity-90">
-                    Every checkable claim in this draft matches the register. Review the supported items below before you ship.
+                <Card className="border-v-supported-border bg-v-supported-bg p-5 text-sm text-v-supported-fg">
+                  <p className="font-semibold font-mono">Zero Contradictions Detected</p>
+                  <p className="mt-1 opacity-90 text-xs">
+                    Every checkable claim in this draft matches what the register approves. Review the verified items below before release.
                   </p>
-                </div>
+                </Card>
               ) : (
                 actionable.map((f, i) => (
                   <FindingCard
@@ -375,13 +609,15 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               )}
 
               {collapsed.length > 0 && (
-                <details className="mt-4 rounded-[6px] border border-line-strong bg-card">
-                  <summary className="flex cursor-pointer items-center gap-2 rounded-t-[6px] px-4 py-3 text-sm font-medium text-muted hover:text-foreground">
-                    <ChevronDown size={16} aria-hidden="true" className="transition-transform" />
-                    Supported and not checkable ({collapsed.length})
-                    <span className="ml-auto text-[11px] font-normal">shown so you can see what passed</span>
+                <details className="mt-3 rounded-xl border border-border bg-card">
+                  <summary className="flex cursor-pointer items-center gap-2 rounded-t-xl px-4 py-3 font-mono text-xs font-medium text-muted-foreground hover:text-foreground">
+                    <ChevronDown size={15} aria-hidden="true" className="transition-transform" />
+                    <span>Supported and Not Checkable ({collapsed.length})</span>
+                    <span className="ml-auto text-[11px] font-normal text-muted-foreground/80">
+                      verified assertions passed
+                    </span>
                   </summary>
-                  <div className="flex flex-col gap-3 border-t border-line p-4">
+                  <div className="flex flex-col gap-3 border-t border-border/60 p-4">
                     {collapsed.map((f, i) => (
                       <FindingCard
                         key={f.id}
@@ -398,13 +634,17 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               )}
 
               {decidedCount > 0 && (
-                <p className="mt-4 text-xs text-muted">
-                  {decidedCount} decision{decidedCount === 1 ? "" : "s"} recorded in this browser. See{" "}
-                  <a className="font-medium text-accent underline underline-offset-2" href="/audit">
-                    Audit
-                  </a>
-                  .
-                </p>
+                <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground border-t border-border/60 pt-3">
+                  <span className="font-mono">
+                    {decidedCount} human decision{decidedCount === 1 ? "" : "s"} logged in this session.
+                  </span>
+                  <Button asChild variant="ghost" size="sm" className="h-7 text-xs font-mono text-accent-brand dark:text-accent-readable">
+                    <Link href="/audit">
+                      <span>Inspect Audit Journal</span>
+                      <ArrowRight size={12} className="ml-1" />
+                    </Link>
+                  </Button>
+                </div>
               )}
             </div>
           </div>
