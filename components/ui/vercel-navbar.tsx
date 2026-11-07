@@ -46,7 +46,8 @@ import {
   Moon, 
   Sun,
 } from "@aliimam/icons";
-import { Button } from "@/components/ui/button"; 
+import { Button } from "@/components/ui/button";
+import { CommandPalette } from "@/components/CommandPalette"; 
 import { useState, useCallback, useEffect } from "react"; 
 
 const cloud: {

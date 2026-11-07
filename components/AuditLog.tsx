@@ -133,7 +133,7 @@ export function AuditLog() {
           <button
             type="button"
             onClick={download}
-            className="inline-flex h-9 items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-3 text-xs font-medium text-foreground transition-colors hover:border-slate hover:bg-paper"
+            className="btn-proofline-tactile inline-flex h-9 items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-3 text-xs font-medium text-foreground transition-colors hover:border-slate hover:bg-paper active:scale-[0.97] cursor-pointer"
           >
             <Download size={13} aria-hidden="true" />
             Download JSON

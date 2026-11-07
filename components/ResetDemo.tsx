@@ -17,7 +17,7 @@ export function ResetDemo() {
         setDone(true);
         router.push("/");
       }}
-      className="inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:border-v-contradicted-fg/40 hover:text-v-contradicted-fg"
+      className="btn-proofline-tactile inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:border-v-contradicted-fg/40 hover:text-v-contradicted-fg active:scale-[0.97] cursor-pointer"
       title="Clear this browser's decisions, audit log and locally approved register edits, then reload the seeded demo"
     >
       <RotateCcw size={13} aria-hidden="true" />

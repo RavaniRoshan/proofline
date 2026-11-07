@@ -113,7 +113,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 aria-pressed={active}
                 onClick={() => setFilter(id)}
                 data-testid={`filter-${id}`}
-                className={`inline-flex h-9 items-center gap-1.5 rounded-[4px] border px-3 text-[13px] font-medium transition-colors ${
+                className={`btn-proofline-tactile inline-flex h-9 items-center gap-1.5 rounded-[4px] border px-3 text-[13px] font-medium transition-colors active:scale-[0.97] cursor-pointer ${
                   active
                     ? "border-slate bg-slate text-white"
                     : "border-line-strong bg-panel text-ink-soft hover:border-slate hover:text-foreground"

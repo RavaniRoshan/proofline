@@ -15,11 +15,23 @@ export default async function DashboardPage() {
   const result = await verifyDraft(sampleDraft, { reviewDate });
   return (
     <div>
-      <h1 className="text-2xl font-bold tracking-tight">The register, at a glance.</h1>
-      <p className="mt-1.5 max-w-2xl text-[15px] text-muted">
-        Register health as of <span className="font-mono">{reviewDate}</span>, plus what this browser
-        has decided so far.
-      </p>
+      <div className="mb-6 flex flex-col gap-1.5">
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-brand dark:text-accent-readable">
+            [04] OPERATIONAL TELEMETRY
+          </span>
+          <span className="text-muted-foreground/40">·</span>
+          <span className="font-mono text-xs text-muted-foreground">
+            Register Health &amp; Decision Distribution
+          </span>
+        </div>
+        <h1 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl text-balance text-foreground">
+          The register, at a glance.
+        </h1>
+        <p className="max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+          Live register health as of <span className="font-mono font-medium text-foreground">{reviewDate}</span>, tracking deterministic rule efficacy ratios and reviewer consensus in this browser session.
+        </p>
+      </div>
       <Dashboard
         stats={stats}
         reviewDate={reviewDate}
