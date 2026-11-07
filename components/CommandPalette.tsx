@@ -12,6 +12,7 @@ import {
   RotateCcw,
   Home,
   ArrowRight,
+  BookText,
 } from "lucide-react";
 import { resetDemo } from "@/lib/local";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
@@ -74,6 +75,13 @@ export function CommandPalette() {
       sublabel: "System architecture, invariants, and Round 1 PDF",
       icon: Info,
       action: () => router.push("/about"),
+    },
+    {
+      id: "docs",
+      label: "Documentation Hub",
+      sublabel: "Fumadocs system guide, architecture, Evidence Gate & REST API",
+      icon: BookText,
+      action: () => router.push("/docs"),
     },
     {
       id: "home",

@@ -45,26 +45,26 @@ const defaultColumns: Footer15Column[] = [
   {
     title: 'Engine Specs',
     links: [
-      { label: 'Deterministic AST Fast-Path', href: '/about' },
-      { label: 'Bounded Lexical Top-5', href: '/about' },
-      { label: 'Evidence Gate Invariant', href: '/about' },
-      { label: '6-Field Provenance Proof', href: '/about' },
+      { label: 'Deterministic TS Engine', href: '/docs/architecture' },
+      { label: '6-Field Evidence Gate', href: '/docs/evidence-gate' },
+      { label: 'Version Lineage Schema', href: '/docs/fact-register' },
+      { label: 'REST API Specification', href: '/docs/api-reference' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'Documentation',
     links: [
-      { label: 'Architecture & Thesis', href: '/about' },
-      { label: 'Round 1 PDF Plan', href: 'https://drive.google.com/file/d/1f2UiggPpvjTz1mhgyASbu8RWp1csY9q4/view?usp=sharing' },
-      { label: 'GitHub Repository', href: 'https://github.com/RavaniRoshan/proofline' },
-      { label: 'Flowdesk Seed Data', href: '/facts' },
+      { label: 'Documentation Hub', href: '/docs' },
+      { label: 'TypeScript SDK', href: '/docs/typescript-sdk' },
+      { label: 'Local-First Privacy', href: '/docs/security-compliance' },
+      { label: 'Architecture & RFC', href: '/about' },
     ],
   },
   {
     title: 'Verification',
     links: [
       { label: '111 Vitest Unit Tests', href: 'https://github.com/RavaniRoshan/proofline' },
-      { label: 'Zero Database Persistence', href: '/audit' },
+      { label: 'Zero Database Persistence', href: '/docs/security-compliance' },
       { label: 'SHA-256 Decision Signing', href: '/audit' },
       { label: 'Evaluation Benchmarks', href: '/dashboard' },
     ],

@@ -39,6 +39,11 @@ import { MarketsPanel } from "@/components/ui/web3-dashboard/components/web3/mar
 import { AssetTableCard } from "@/components/ui/web3-dashboard/components/web3/asset-table-card";
 import { DashboardTopbar } from "@/components/ui/web3-dashboard/components/web3/topbar";
 import { netWorthAssets, borrowedAssets } from "@/components/ui/web3-dashboard/data";
+import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
+import { RegisterLineageBento } from "@/components/landing/bento/RegisterLineageBento";
+import { EvidenceGateInspectorBento } from "@/components/landing/bento/EvidenceGateInspectorBento";
+import { AuditLedgerBento } from "@/components/landing/bento/AuditLedgerBento";
+import { ApiPlayground } from "@/components/landing/ApiPlayground";
 
 export function Dashboard({
   stats,
@@ -56,6 +61,9 @@ export function Dashboard({
     from: new Date(2026, 3, 1),
     to: new Date(2026, 10, 7),
   });
+  const [activeEngineTab, setActiveEngineTab] = useState<
+    "deterministic" | "lineage" | "gate" | "api" | "audit"
+  >("deterministic");
   const totalClaims = deterministic + model;
   const rulesPct = totalClaims > 0 ? Math.round((deterministic / totalClaims) * 100) : 78;
 
@@ -154,7 +162,121 @@ export function Dashboard({
       </section>
 
       {/* =========================================================================
-          6. LIVE SESSION AUDIT TRAIL (Local Browser State with SHA-256 Hashes)
+          6. INTERACTIVE ENGINE TOPOLOGY & ARCHITECTURAL INSPECTORS
+          ========================================================================= */}
+      <Card className="shadow-xs border border-border overflow-hidden">
+        <CardHeader className="border-b border-border/60 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-brand dark:text-accent-readable">
+                  [LIVE ENGINE INSPECTORS]
+                </span>
+                <span className="text-muted-foreground/40">·</span>
+                <span className="font-mono text-xs text-muted-foreground">
+                  Interactive Architectural Pipeline
+                </span>
+              </div>
+              <CardTitle className="text-lg font-bold tracking-tight text-foreground mt-1">
+                Deterministic Routing, Proof Gates &amp; Audit Trail
+              </CardTitle>
+              <CardDescription className="text-xs mt-0.5">
+                Inspect how claims resolve deterministically before model invocation, enforce the 6-field Evidence Gate, and verify SHA-256 Merkle proofs.
+              </CardDescription>
+            </div>
+
+            {/* Tab switchers */}
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-muted/40 rounded-lg border border-border text-xs font-mono">
+              <button
+                type="button"
+                onClick={() => setActiveEngineTab("deterministic")}
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  activeEngineTab === "deterministic"
+                    ? "bg-foreground text-background font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                TS Router (78%)
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveEngineTab("lineage")}
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  activeEngineTab === "lineage"
+                    ? "bg-foreground text-background font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                F-021 Lineage
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveEngineTab("gate")}
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  activeEngineTab === "gate"
+                    ? "bg-foreground text-background font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Evidence Gate
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveEngineTab("api")}
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  activeEngineTab === "api"
+                    ? "bg-foreground text-background font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                API Playground
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveEngineTab("audit")}
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  activeEngineTab === "audit"
+                    ? "bg-foreground text-background font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                SOC 2 Ledger
+              </button>
+            </div>
+          </div>
+        </CardHeader>
+
+        <CardContent className="p-4 sm:p-6 bg-muted/10">
+          {activeEngineTab === "deterministic" && (
+            <div className="animate-in fade-in duration-200">
+              <DeterministicRoutingBento />
+            </div>
+          )}
+          {activeEngineTab === "lineage" && (
+            <div className="animate-in fade-in duration-200">
+              <RegisterLineageBento />
+            </div>
+          )}
+          {activeEngineTab === "gate" && (
+            <div className="animate-in fade-in duration-200">
+              <EvidenceGateInspectorBento />
+            </div>
+          )}
+          {activeEngineTab === "api" && (
+            <div className="animate-in fade-in duration-200">
+              <ApiPlayground />
+            </div>
+          )}
+          {activeEngineTab === "audit" && (
+            <div className="animate-in fade-in duration-200">
+              <AuditLedgerBento />
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* =========================================================================
+          7. LIVE SESSION AUDIT TRAIL (Local Browser State with SHA-256 Hashes)
           ========================================================================= */}
       <Card className="shadow-xs border border-border">
         <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/60">

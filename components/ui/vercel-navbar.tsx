@@ -48,7 +48,9 @@ import {
 } from "@aliimam/icons";
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/CommandPalette"; 
-import { useState, useCallback, useEffect } from "react"; 
+import { useState, useCallback, useEffect, useRef } from "react"; 
+import { MagneticButton } from "@/components/motion/MagneticButton";
+import { gsap, GSAP_EASING, useGsapReducedMotion } from "@/lib/motion/gsap-config";
 
 const cloud: {
   title: string;
@@ -90,19 +92,19 @@ const core: {
 }[] = [
   {
     title: "Deterministic Engine",
-    href: "/about#pipeline",
+    href: "/docs/architecture",
     icon: <Code strokeWidth={2} />,
     description: "0.4ms TypeScript regex and boundary rules",
   },
   {
     title: "Evidence Gate",
-    href: "/about#pipeline",
+    href: "/docs/evidence-gate",
     icon: <Shield strokeWidth={2} />,
     description: "Strict 6-field citation & byte span verification",
   },
   {
     title: "Scalar Normalizer",
-    href: "/about#pipeline",
+    href: "/docs/architecture",
     icon: <Cpu strokeWidth={2} />,
     description: "Format-agnostic currency, quota & date resolution",
   },
@@ -122,13 +124,13 @@ const security: {
 }[] = [
   {
     title: "Zero Retention",
-    href: "/about#architecture",
+    href: "/docs/security-compliance",
     icon: <Shield strokeWidth={2} />,
     description: "In-memory evaluation, zero training on customer prose",
   },
   {
     title: "Release Gates",
-    href: "/about#pipeline",
+    href: "/docs/architecture",
     icon: <Bot strokeWidth={2} />,
     description: "Block deployment pipelines on contradicted claims",
   },
@@ -154,7 +156,7 @@ const company: {
 }[] = [
   {
     title: "Architecture & Invariants",
-    href: "/about",
+    href: "/docs/architecture",
     icon: <BriefcaseBusiness strokeWidth={2} />,
     description: "In-depth system design & correctness proofs",
   },
@@ -192,19 +194,19 @@ const open: {
 }[] = [
   {
     title: "TypeScript SDK",
-    href: "https://github.com/RavaniRoshan/proofline",
+    href: "/docs/typescript-sdk",
     icon: <Code strokeWidth={2} />,
     description: "Headless verifyDraft() pure function library",
   },
   {
     title: "Headless REST API",
-    href: "/api/verify",
+    href: "/docs/api-reference",
     icon: <Network strokeWidth={2} />,
     description: "POST /api/verify direct JSON verification endpoint",
   },
   {
     title: "Zod Schema Gate",
-    href: "https://github.com/RavaniRoshan/proofline",
+    href: "/docs/evidence-gate",
     icon: <Component strokeWidth={2} />,
     description: "Strict runtime verification schemas & contracts",
   },
@@ -223,26 +225,26 @@ const tools: {
   description: string;
 }[] = [
   {
+    title: "Documentation Hub",
+    href: "/docs",
+    icon: <BookText strokeWidth={2} />,
+    description: "Complete Fumadocs system and API reference",
+  },
+  {
     title: "Architecture RFC",
-    href: "/about",
+    href: "/docs/architecture",
     icon: <Network strokeWidth={2} />,
     description: "Deterministic split pipeline documentation",
   },
   {
     title: "Verdict Taxonomy",
-    href: "/audit",
+    href: "/docs/evidence-gate",
     icon: <Component strokeWidth={2} />,
     description: "6 rigorous verdicts from Supported to Contradicted",
   },
   {
-    title: "24 Smoke Tests",
-    href: "https://github.com/RavaniRoshan/proofline",
-    icon: <Codepen strokeWidth={2} />,
-    description: "Automated ground-truth test cases and validation",
-  },
-  {
     title: "REST API Reference",
-    href: "/api/verify",
+    href: "/docs/api-reference",
     icon: <Code strokeWidth={2} />,
     description: "Typed request and response specifications",
   },
@@ -314,6 +316,8 @@ const users: {
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const reducedMotion = useGsapReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -324,8 +328,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (reducedMotion || !headerRef.current) return;
+    gsap.fromTo(
+      headerRef.current,
+      { y: -14, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.45, ease: GSAP_EASING.entrance, clearProps: "all" }
+    );
+  }, [reducedMotion]);
+
   return (
     <header
+      ref={headerRef}
       className={`flex sticky px-4 z-50 top-0 w-full bg-background items-center h-16 justify-between transition-colors duration-200 ${
         scrolled ? "border-b border-border shadow-xs" : "border-b border-transparent"
       }`}
@@ -529,7 +543,7 @@ export function Header() {
                     "rounded-full h-8 font-normal text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  <Link href="https://github.com/RavaniRoshan/proofline#readme" target="_blank" rel="noopener noreferrer">
+                  <Link href="/docs">
                     Docs
                   </Link>
                 </NavigationMenuLink>
@@ -559,9 +573,11 @@ export function Header() {
             <Link href="/facts">Fact Register</Link>
           </Button>
 
-          <Button asChild size="sm" className="bg-foreground text-background hover:bg-foreground/90 font-medium text-xs px-3.5 h-8">
-            <Link href="/check">Check a Draft →</Link>
-          </Button>
+          <MagneticButton maxDistance={4}>
+            <Button asChild size="sm" className="bg-foreground text-background hover:bg-foreground/90 font-medium text-xs px-3.5 h-8">
+              <Link href="/check">Check a Draft →</Link>
+            </Button>
+          </MagneticButton>
 
           {/* User / Workspace Dropdown */}
           <DropdownMenu>
@@ -595,6 +611,9 @@ export function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="py-2 text-sm cursor-pointer">
                   <Link href="/audit" className="w-full">Decision Journal</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="py-2 text-sm cursor-pointer">
+                  <Link href="/docs" className="w-full">Documentation Hub</Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator className="-mx-3" />

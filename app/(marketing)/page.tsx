@@ -6,16 +6,13 @@ import { UseCasesDualPane } from "@/components/landing/UseCasesDualPane";
 import { TrustSecurityCards } from "@/components/landing/AgentsAndTrustBands";
 import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
 import Features4 from "@/components/ui/features-4";
-
 import Faq6 from "@/components/ui/faq-6";
 import Bento1 from "@/components/ui/bento-1";
 import { Footer15 } from "@/components/ui/footer-15";
 import { FaArrowRight } from "react-icons/fa6";
-
-
-
-
 import { CheckCircle2, Lock, FileCheck2 } from "lucide-react";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { MagneticButton } from "@/components/motion/MagneticButton";
 
 const FOOTER_LINKS = [
   {
@@ -30,19 +27,19 @@ const FOOTER_LINKS = [
   {
     title: "ARCHITECTURE",
     links: [
-      { label: "Deterministic Split (78/22)", href: "/about#pipeline" },
-      { label: "Evidence Gate Specification", href: "/about#gate" },
-      { label: "Verdict Taxonomy Matrix", href: "/audit" },
-      { label: "REST API Endpoint", href: "/api/verify" },
+      { label: "Deterministic Split (78/22)", href: "/docs/architecture" },
+      { label: "Evidence Gate Specification", href: "/docs/evidence-gate" },
+      { label: "Fact Register Lineage", href: "/docs/fact-register" },
+      { label: "REST API Endpoint", href: "/docs/api-reference" },
     ],
   },
   {
     title: "GOVERNANCE & TRUST",
     links: [
+      { label: "Documentation Hub", href: "/docs" },
+      { label: "TypeScript SDK", href: "/docs/typescript-sdk" },
+      { label: "Zero Server Storage", href: "/docs/security-compliance" },
       { label: "Architecture RFC", href: "/about" },
-      { label: "24 Smoke Evals", href: "https://github.com/RavaniRoshan/proofline" },
-      { label: "Zero Server Storage", href: "/about#privacy" },
-      { label: "GitHub Repository", href: "https://github.com/RavaniRoshan/proofline" },
     ],
   },
 ];
@@ -133,7 +130,9 @@ export default function LandingPage() {
           </div>
 
           {/* 3-Column Connected Interactive Flow Stage */}
-          <UseCasesDualPane />
+          <ScrollReveal direction="up" distance={20} blur={4}>
+            <UseCasesDualPane />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -163,9 +162,11 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="overflow-hidden rounded-[28px] border border-ink/15 dark:border-white/12 bg-card shadow-[0_8px_32px_-8px_rgba(26,26,24,0.08)]">
-              <Bento1 />
-            </div>
+            <ScrollReveal direction="up" distance={24} blur={6}>
+              <div className="overflow-hidden rounded-[28px] border border-ink/15 dark:border-white/12 bg-card shadow-[0_8px_32px_-8px_rgba(26,26,24,0.08)]">
+                <Bento1 />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -382,7 +383,9 @@ export default function LandingPage() {
           </div>
 
           {/* 3 Visual-Top Cards matching 07-band6-trust-security.png */}
-          <TrustSecurityCards />
+          <ScrollReveal direction="up" distance={20} blur={4}>
+            <TrustSecurityCards />
+          </ScrollReveal>
 
         </div>
       </section>
@@ -393,7 +396,9 @@ export default function LandingPage() {
       <section id="build" className="relative bg-paper text-ink scroll-mt-20">
         <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
           <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
-          <Features4 />
+          <ScrollReveal direction="up" distance={20} blur={4}>
+            <Features4 />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -493,17 +498,19 @@ export default function LandingPage() {
       <section id="faq" className="relative bg-paper text-ink scroll-mt-20">
         <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
           <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
-          <Faq6
-            badge="[07] FREQUENTLY ASKED QUESTIONS"
-            title={
-              <>
-                Frequently
-                <br />
-                asked questions.
-              </>
-            }
-            faqs={PROOFLINE_FAQS}
-          />
+          <ScrollReveal direction="up" distance={20} blur={4}>
+            <Faq6
+              badge="[07] FREQUENTLY ASKED QUESTIONS"
+              title={
+                <>
+                  Frequently
+                  <br />
+                  asked questions.
+                </>
+              }
+              faqs={PROOFLINE_FAQS}
+            />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -514,41 +521,47 @@ export default function LandingPage() {
       <section id="start" className="relative bg-paper text-ink">
         <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
           <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
-          <div className="relative flex min-h-[420px] flex-col items-center justify-center overflow-hidden rounded-[32px] border border-ink/15 dark:border-white/12 p-8 text-center md:min-h-[480px] md:p-16 shadow-[0_16px_48px_-12px_rgba(26,26,24,0.12)]">
-            {/* Diagonal Silk Mesh Backdrop in Proofline Tokens */}
-            <MeshCardBackdrop />
+          <ScrollReveal direction="up" distance={20} blur={4}>
+            <div className="relative flex min-h-[420px] flex-col items-center justify-center overflow-hidden rounded-[32px] border border-ink/15 dark:border-white/12 p-8 text-center md:min-h-[480px] md:p-16 shadow-[0_16px_48px_-12px_rgba(26,26,24,0.12)]">
+              {/* Diagonal Silk Mesh Backdrop in Proofline Tokens */}
+              <MeshCardBackdrop />
 
-            <div className="relative z-10 flex max-w-2xl flex-col items-center gap-4">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-paper/80 dark:bg-white/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
-                [08] GET STARTED IN SECONDS
-              </span>
-              <h2 className="max-w-[20ch] text-balance font-sans text-[32px] md:text-[46px] font-normal tracking-[-0.042em] leading-[1.08] text-ink dark:text-white">
-                Give your team what it needs to{" "}
-                <span className="text-accent dark:text-[#E07A70]">tell the truth</span>
-              </h2>
-              <p className="max-w-[38ch] text-balance text-[16px] md:text-[17.5px] tracking-[-0.022em] leading-[1.45] text-ink-soft dark:text-zinc-300">
-                Open Proofline in the browser you already use. Free to evaluate, and ready in
-                seconds.
-              </p>
+              <div className="relative z-10 flex max-w-2xl flex-col items-center gap-4">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-paper/80 dark:bg-white/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+                  [08] GET STARTED IN SECONDS
+                </span>
+                <h2 className="max-w-[20ch] text-balance font-sans text-[32px] md:text-[46px] font-normal tracking-[-0.042em] leading-[1.08] text-ink dark:text-white">
+                  Give your team what it needs to{" "}
+                  <span className="text-accent dark:text-[#E07A70]">tell the truth</span>
+                </h2>
+                <p className="max-w-[38ch] text-balance text-[16px] md:text-[17.5px] tracking-[-0.022em] leading-[1.45] text-ink-soft dark:text-zinc-300">
+                  Open Proofline in the browser you already use. Free to evaluate, and ready in
+                  seconds.
+                </p>
 
-              {/* Dual Sharp 0px Buttons — High-contrast across both Light and Dark modes */}
-              <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  href="/check"
-                  className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-md font-semibold"
-                >
-                  <span>CHECK A DRAFT</span>
-                  <span aria-hidden="true">→</span>
-                </Link>
-                <a
-                  href="#how-it-works"
-                  className="inline-flex items-center justify-center border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
-                >
-                  SEE IT WORK
-                </a>
+                {/* Dual Sharp 0px Buttons — High-contrast across both Light and Dark modes */}
+                <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
+                  <MagneticButton pullStrength={0.25}>
+                    <Link
+                      href="/check"
+                      className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-md font-semibold"
+                    >
+                      <span>CHECK A DRAFT</span>
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  </MagneticButton>
+                  <MagneticButton pullStrength={0.2}>
+                    <a
+                      href="#how-it-works"
+                      className="inline-flex items-center justify-center border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
+                    >
+                      SEE IT WORK
+                    </a>
+                  </MagneticButton>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
