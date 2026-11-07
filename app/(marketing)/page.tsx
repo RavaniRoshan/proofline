@@ -7,7 +7,7 @@ import { TrustSecurityCards } from "@/components/landing/AgentsAndTrustBands";
 import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
 import Features4 from "@/components/ui/features-4";
 import { ApiPlayground } from "@/components/landing/ApiPlayground";
-import { FaqAccordion } from "@/components/landing/FaqAccordion";
+import Faq6 from "@/components/ui/faq-6";
 import Bento1 from "@/components/ui/bento-1";
 import { Footer7 } from "@/components/ui/footer-7";
 import { FaArrowRight } from "react-icons/fa6";
@@ -81,6 +81,13 @@ const FAQ_ITEMS = [
     a: "Yes. Proofline exposes a headless `POST /api/verify` JSON endpoint that runs the exact same 4-stage pipeline for GitHub Actions release gates, MCP agents, and internal publishing tools.",
   },
 ];
+
+const PROOFLINE_FAQS = FAQ_ITEMS.map((item, idx) => ({
+  id: `item-${idx + 1}`,
+  question: item.q,
+  answer: item.a,
+}));
+
 
 export default function LandingPage() {
   return (
@@ -483,23 +490,21 @@ export default function LandingPage() {
       </section>
 
       {/* =========================================================================
-          BAND 11 (#faq): Frequently Asked Questions
-          (Exact match to 09-band11-faq-accordion.png: unboxed left H2 + right accordion)
+          BAND 11 (#faq): Frequently Asked Questions (Faq6 Primitive)
           ========================================================================= */}
       <section id="faq" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-14 md:px-10 md:py-20">
-          <div className="grid gap-10 md:grid-cols-12 md:gap-12 items-start">
-            <div className="md:col-span-4">
-              <h2 className="font-sans text-[32px] md:text-[42px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
-                Frequently{" "}
-                <br className="hidden md:block" />
-                asked questions
-              </h2>
-            </div>
-            <div className="md:col-span-8">
-              <FaqAccordion items={FAQ_ITEMS} />
-            </div>
-          </div>
+        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-4 py-12 md:px-8 md:py-16">
+          <Faq6
+            badge="FAQ & GOVERNANCE"
+            title={
+              <>
+                Frequently
+                <br />
+                asked questions.
+              </>
+            }
+            faqs={PROOFLINE_FAQS}
+          />
         </div>
       </section>
 
