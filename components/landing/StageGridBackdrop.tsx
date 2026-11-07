@@ -22,7 +22,12 @@ export function StageGridBackdrop() {
         }}
       />
 
-      {/* 2. Static SVG Precision Coordinate Grid */}
+      {/* 2. Hardware-Accelerated Ambient Radar Scanner Sweep (Zero-CPU Compositor Layer) */}
+      <div className="stage-radar-sweep-container absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="stage-radar-sweep-bar" />
+      </div>
+
+      {/* 3. Static SVG Precision Coordinate Grid */}
       <svg
         className="absolute inset-0 h-full w-full opacity-65 dark:opacity-45"
         xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +104,15 @@ export function StageGridBackdrop() {
         </g>
       </svg>
 
-      {/* 3. Blueprint Corner Registration Marks */}
+      {/* 4. Strategic POI Beacon Pings at Perspective Intersections (Video 2 Anchorage) */}
+      <div className="absolute top-[18%] left-[22%] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <span className="stage-poi-beacon" />
+      </div>
+      <div className="absolute top-[18%] right-[22%] translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <span className="stage-poi-beacon" />
+      </div>
+
+      {/* 5. Blueprint Corner Registration Marks */}
       <div className="absolute top-3.5 left-4 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-wider text-ink/35 dark:text-white/35">
         <span className="font-bold text-accent">┌</span>
         <span>BAY-01 · VERIFICATION BRIEF</span>

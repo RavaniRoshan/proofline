@@ -15,7 +15,9 @@ import {
   Play,
   Pause,
   Loader2,
+  Terminal,
 } from "lucide-react";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 interface StackTab {
   id: string;
@@ -24,7 +26,7 @@ interface StackTab {
   code: string;
 }
 
-const STACK_TABS: StackTab[] = [
+export const STACK_TABS: StackTab[] = [
   {
     id: "typescript",
     label: "TypeScript",
@@ -121,6 +123,7 @@ export function assertEvidenceGate(finding: CandidateFinding): VerifiedFinding {
 ];
 
 export function DeveloperTerminalBand() {
+  const prefersReduced = usePrefersReducedMotion();
   const [paused, setPaused] = useState(false);
   const [isRunningApi, setIsRunningApi] = useState(false);
   const [liveLatencyMs, setLiveLatencyMs] = useState<number | null>(null);
@@ -142,6 +145,8 @@ export function DeveloperTerminalBand() {
   const [activeStackTab, setActiveStackTab] = useState<string>("typescript");
   const [copiedCmd, setCopiedCmd] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
+
+  const effectivePaused = paused || prefersReduced;
 
   const runLiveVerify = async () => {
     setIsRunningApi(true);
@@ -212,16 +217,78 @@ export function DeveloperTerminalBand() {
           (Exact match to 08-band7-terminal-card.png)
           ===================================================================== */}
       <div className="relative mx-auto w-full max-w-[1158px]">
+        {/* Soft atmospheric glow behind the center hub */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-3xl transition-opacity duration-deliberate"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(212, 132, 122, 0.22) 0%, rgba(139, 30, 39, 0.08) 50%, transparent 72%)",
+          }}
+        />
+
         <div className="relative grid grid-cols-1 items-center gap-6 lg:grid-cols-[1fr_320px_1fr] lg:gap-0">
-          {/* Glowing horizontal connector line on desktop */}
+          {/* Glowing kinetic SVG connector bus line across desktop columns */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute top-1/2 right-[28%] left-[28%] z-0 hidden h-px -translate-y-1/2 lg:block"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(212,132,122,0.85) 0%, rgba(212,132,122,0.35) 50%, rgba(255,255,255,0.18) 100%)",
-            }}
-          />
+            className="pointer-events-none absolute top-1/2 right-[25%] left-[25%] z-0 hidden h-6 -translate-y-1/2 overflow-visible lg:block"
+          >
+            <svg
+              className="w-full h-full overflow-visible"
+              viewBox="0 0 500 24"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="terminal-pulse-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#D4847A" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#D4847A" stopOpacity="0.95" />
+                  <stop offset="100%" stopColor="#D4847A" stopOpacity="0" />
+                </linearGradient>
+                <filter id="terminal-wire-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="2" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* Base circuit alignment wire */}
+              <line
+                x1="0"
+                y1="12"
+                x2="500"
+                y2="12"
+                stroke="rgba(255, 255, 255, 0.14)"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+              />
+
+              {/* Terminal circuit junction pins */}
+              <circle cx="8" cy="12" r="2.5" fill="rgba(255, 255, 255, 0.4)" />
+              <circle cx="250" cy="12" r="2" fill="rgba(212, 132, 122, 0.5)" />
+              <circle cx="492" cy="12" r="2.5" fill="rgba(255, 255, 255, 0.4)" />
+
+              {/* Kinetic data packet pulse flowing left-to-right across center hub */}
+              {!effectivePaused && (
+                <line
+                  x1="0"
+                  y1="12"
+                  x2="64"
+                  y2="12"
+                  stroke="url(#terminal-pulse-gradient)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  filter="url(#terminal-wire-glow)"
+                  className="terminal-signal-packet"
+                  style={{
+                    animationPlayState: effectivePaused ? "paused" : "running",
+                  }}
+                />
+              )}
+            </svg>
+          </div>
 
           {/* LEFT PANE: macOS Terminal Card (h-[458px], rounded-[12px]) */}
           <div className="relative z-10 flex h-[458px] flex-col justify-between overflow-hidden rounded-[12px] border border-white/10 bg-[#1e1e1e] font-mono text-xs text-white shadow-2xl">
@@ -237,7 +304,7 @@ export function DeveloperTerminalBand() {
                   ~/your-pipeline
                 </span>
               </div>
-              <span className="text-[10px] uppercase tracking-wider text-accent-readable">
+              <span className="text-[10px] uppercase tracking-wider text-accent-readable font-semibold">
                 STAGE 1–4
               </span>
             </div>
@@ -257,20 +324,20 @@ export function DeveloperTerminalBand() {
               </pre>
 
               {/* Prompt Box */}
-              <div className="rounded-[4px] bg-white/[0.05] p-3 text-[12px] leading-relaxed text-white/85">
+              <div className="rounded-[4px] bg-white/[0.05] p-3 text-[12px] leading-relaxed text-white/85 border border-white/5">
                 <span className="text-white/40 mr-1.5">&gt;</span>
                 Verify tomorrow’s call brief &amp; Q2 pricing draft against
                 seed/facts.json, then output a signed citation brief.
               </div>
 
-              {/* Live Tool Execution Lines */}
+              {/* Live Tool Execution Lines with Staged Pacing */}
               <div className="space-y-1.5 text-[11px] tracking-wide">
-                <div className="flex items-center gap-2 text-[#58C892]">
+                <div className="flex items-center gap-2 text-[#58C892] transition-opacity duration-fast">
                   <span>✓</span>
                   <span>SEGMENTER_EXTRACT_CLAIMS (12)</span>
                 </div>
-                <div className="flex items-center gap-2 text-white/60">
-                  <span>✦</span>
+                <div className="flex items-center gap-2 text-white/70 transition-opacity duration-fast">
+                  <span className="text-accent-readable">✦</span>
                   <span>NORMALIZER_MATCH_F021 (0.4ms)</span>
                 </div>
               </div>
@@ -279,22 +346,25 @@ export function DeveloperTerminalBand() {
             {/* Bottom Command Bar with Interactive Run Button */}
             <div className="p-3 pt-0">
               <div className="flex items-center justify-between border border-white/10 bg-[#161614] px-3 py-2">
-                <span className="flex items-center gap-1.5 text-[11.5px] text-white/45 truncate">
+                <span className="flex items-center gap-1.5 text-[11.5px] text-white/50 truncate">
+                  <Terminal size={12} className="text-accent-readable shrink-0" aria-hidden="true" />
                   <span>POST /api/verify</span>
                   <span
                     aria-hidden="true"
-                    className="inline-block h-[14px] w-[6px] bg-accent-readable animate-pulse"
+                    className={`inline-block h-[14px] w-[6px] bg-accent-readable ${
+                      prefersReduced ? "opacity-100" : "animate-pulse"
+                    }`}
                   />
                 </span>
                 <button
                   type="button"
                   onClick={runLiveVerify}
                   disabled={isRunningApi}
-                  className="inline-flex items-center gap-1.5 border border-white/20 bg-white/10 px-2.5 py-1 font-mono text-[10px] uppercase text-white transition-colors hover:bg-white/20 cursor-pointer shrink-0 rounded-none"
+                  className="inline-flex items-center gap-1.5 border border-white/20 bg-white/10 px-3 py-1 font-mono text-[10px] uppercase text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] hover:bg-white/20 hover:border-white/40 active:scale-[0.97] cursor-pointer shrink-0 rounded-none disabled:opacity-50"
                 >
                   {isRunningApi ? (
                     <>
-                      <Loader2 size={11} className="animate-spin" />
+                      <Loader2 size={11} className="animate-spin text-accent-readable" />
                       <span>RUNNING</span>
                     </>
                   ) : (
@@ -360,7 +430,7 @@ export function DeveloperTerminalBand() {
 
             {/* Center Dark Hub Pill */}
             <div className="my-2.5 flex items-center justify-center">
-              <div className="inline-flex items-center gap-2 rounded-xl border border-accent-readable/45 bg-[#1e1e1e] px-7 py-2.5 shadow-[0_0_25px_rgba(212,132,122,0.18)]">
+              <div className="inline-flex items-center gap-2 rounded-xl border border-accent-readable/45 bg-[#1e1e1e] px-7 py-2.5 shadow-[0_0_25px_rgba(212,132,122,0.18)] transition-transform duration-[var(--motion-duration-fast,180ms)] hover:scale-[1.02]">
                 <span className="font-mono text-[16px] font-bold text-accent-readable">
                   [ ]
                 </span>
@@ -371,7 +441,7 @@ export function DeveloperTerminalBand() {
             </div>
 
             {/* Bottom 4 Dark Pills */}
-            <div className="flex w-full flex-col gap-1.5 rounded-2xl border border-white/10 bg-[#1e1e1e]/90 p-2 shadow-lg">
+            <div className="flex w-full flex-col gap-1.5 rounded-2xl border border-white/10 bg-[#1e1e1e]/90 p-2 shadow-lg backdrop-blur-xs">
               <div className="flex items-center justify-between rounded-md border border-white/8 bg-white/[0.02] px-3.5 py-2.5">
                 <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-white/45">
                   <Zap size={13} />
@@ -403,11 +473,11 @@ export function DeveloperTerminalBand() {
               </div>
 
               <div className="flex items-center justify-between rounded-md border border-accent-readable/35 bg-[#252322] px-3.5 py-2.5">
-                <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent-readable">
+                <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent-readable font-semibold">
                   <FileText size={13} />
                   <span>TRACE</span>
                 </div>
-                <span className="font-mono text-[12px] text-accent-readable tabular-nums">
+                <span className="font-mono text-[12px] text-accent-readable tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
                   {liveLatencyMs ? `${liveLatencyMs}ms` : "2 recorded"}
                 </span>
               </div>
@@ -430,7 +500,7 @@ export function DeveloperTerminalBand() {
                   Register · Briefings
                 </span>
               </div>
-              <span className="font-mono text-[11px] text-[#58C892]">
+              <span className="font-mono text-[11px] text-[#58C892] transition-colors duration-fast">
                 {liveLatencyMs ? `200 OK · ${liveLatencyMs}ms` : "READY"}
               </span>
             </div>
@@ -447,7 +517,10 @@ export function DeveloperTerminalBand() {
                   Click &ldquo;RUN LIVE →&rdquo; in the terminal to execute POST /api/verify
                 </p>
 
-                <pre className="mt-3 overflow-hidden whitespace-pre-wrap break-words rounded-lg border border-white/10 bg-[#141412] p-3 font-mono text-[10.5px] leading-[1.42] text-[#d7d1c9]">
+                <pre
+                  key={liveJson}
+                  className="mt-3 overflow-hidden whitespace-pre-wrap break-words rounded-lg border border-white/10 bg-[#141412] p-3 font-mono text-[10.5px] leading-[1.42] text-[#d7d1c9] json-response-enter"
+                >
                   <code>{liveJson}</code>
                 </pre>
               </div>
@@ -461,7 +534,7 @@ export function DeveloperTerminalBand() {
             type="button"
             onClick={() => setPaused(!paused)}
             aria-label={paused ? "Resume terminal trace" : "Pause terminal trace"}
-            className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-[#1e1e1e] text-white/70 transition-colors hover:border-white/30 hover:text-white cursor-pointer"
+            className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-[#1e1e1e] text-white/70 transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] hover:border-white/30 hover:text-white active:scale-95 cursor-pointer"
           >
             {paused ? <Play size={13} /> : <Pause size={13} />}
           </button>
@@ -479,7 +552,7 @@ export function DeveloperTerminalBand() {
         </div>
 
         <div className="mx-auto mt-8 max-w-[920px]">
-          {/* Sharp 0px Framework Tabs */}
+          {/* Sharp 0px Framework Tabs with Tactile Compression */}
           <div
             className="flex flex-wrap items-center justify-center gap-2"
             role="tablist"
@@ -494,9 +567,9 @@ export function DeveloperTerminalBand() {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setActiveStackTab(tab.id)}
-                  className={`border px-4 py-2 font-mono text-[13px] transition-colors cursor-pointer rounded-none ${
+                  className={`border px-4 py-2 font-mono text-[13px] transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer rounded-none active:scale-[0.97] ${
                     isSelected
-                      ? "border-white bg-white text-ink font-medium"
+                      ? "border-white bg-white text-ink font-medium shadow-sm"
                       : "border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:text-white"
                   }`}
                 >
@@ -516,24 +589,34 @@ export function DeveloperTerminalBand() {
               type="button"
               onClick={handleCopyCmd}
               aria-label="Copy command"
-              className="ml-3 inline-flex items-center gap-1.5 text-xs text-white/60 hover:text-white cursor-pointer shrink-0"
+              className="ml-3 inline-flex items-center gap-1.5 text-xs text-white/60 hover:text-white transition-transform duration-[var(--motion-duration-micro,120ms)] active:scale-95 cursor-pointer shrink-0"
             >
-              {copiedCmd ? <Check size={14} className="text-[#58C892]" /> : <Copy size={14} />}
+              <span className="sr-only" role="status">
+                {copiedCmd ? "Command copied" : ""}
+              </span>
+              {copiedCmd ? (
+                <Check size={14} className="text-[#58C892] animate-icon-pop" />
+              ) : (
+                <Copy size={14} />
+              )}
             </button>
           </div>
 
-          {/* Syntax Code Block */}
+          {/* Syntax Code Block with Jakub Krehel Materialize Crossfade */}
           <div className="relative overflow-hidden rounded-b-[8px] border border-t-0 border-white/10 bg-[#1e1e1e] p-5">
             <button
               type="button"
               onClick={handleCopyCode}
               aria-label="Copy code snippet"
-              className="absolute top-4 right-4 inline-flex items-center gap-1.5 border border-white/15 bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] text-white/70 hover:text-white cursor-pointer rounded-none"
+              className="absolute top-4 right-4 inline-flex items-center gap-1.5 border border-white/15 bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] text-white/70 hover:text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] active:scale-95 cursor-pointer rounded-none"
             >
+              <span className="sr-only" role="status">
+                {copiedCode ? "Code snippet copied" : ""}
+              </span>
               {copiedCode ? (
                 <>
-                  <Check size={12} className="text-[#58C892]" />
-                  <span>COPIED</span>
+                  <Check size={12} className="text-[#58C892] animate-icon-pop" />
+                  <span className="text-[#58C892]">COPIED</span>
                 </>
               ) : (
                 <>
@@ -542,7 +625,10 @@ export function DeveloperTerminalBand() {
                 </>
               )}
             </button>
-            <pre className="whitespace-pre-wrap break-words font-mono text-[12.5px] leading-[1.7] text-[#e6e1d6]">
+            <pre
+              key={currentStack.id}
+              className="whitespace-pre-wrap break-words font-mono text-[12.5px] leading-[1.7] text-[#e6e1d6] code-crossfade"
+            >
               <code>{currentStack.code}</code>
             </pre>
           </div>

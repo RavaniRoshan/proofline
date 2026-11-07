@@ -333,10 +333,10 @@ export function Header() {
           >
             <span
               aria-hidden="true"
-              className="inline-flex items-center gap-[2px] font-mono text-[22px] font-bold leading-none tracking-tight text-accent-brand dark:text-accent-readable transition-transform group-hover:scale-105"
+              className="inline-flex items-center gap-[2px] font-mono text-[22px] font-bold leading-none tracking-tight text-accent-brand dark:text-accent-readable logomark-lock"
             >
-              <span>[</span>
-              <span>]</span>
+              <span className="logomark-bracket-left"><span>[</span></span>
+              <span className="logomark-bracket-right"><span>]</span></span>
             </span>
             <span className="font-sans text-[18px] font-bold tracking-tight text-foreground">
               Proofline

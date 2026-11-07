@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   Search,
@@ -14,6 +14,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { resetDemo } from "@/lib/local";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 interface CommandItem {
   id: string;
@@ -25,10 +26,18 @@ interface CommandItem {
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
+
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const prefersReduced = usePrefersReducedMotion();
 
   const items: CommandItem[] = [
     {
@@ -91,32 +100,90 @@ export function CommandPalette() {
       item.sublabel.toLowerCase().includes(query.toLowerCase()),
   );
 
+  const handleOpen = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setClosing(false);
+    setMounted(true);
+    setOpen(true);
+    setQuery("");
+    setSelectedIndex(0);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setOpen(false);
+
+    if (prefersReduced) {
+      setMounted(false);
+      setClosing(false);
+      triggerRef.current?.focus();
+      return;
+    }
+
+    setClosing(true);
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    // 180ms matches --motion-duration-fast departure transition
+    closeTimerRef.current = setTimeout(() => {
+      setMounted(false);
+      setClosing(false);
+      triggerRef.current?.focus();
+    }, 180);
+  }, [prefersReduced]);
+
+  // Keyboard shortcut listener: Cmd+K / Ctrl+K and Escape
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setOpen((prev) => !prev);
+        if (open) {
+          handleClose();
+        } else {
+          handleOpen();
+        }
       } else if (e.key === "Escape" && open) {
         e.preventDefault();
-        setOpen(false);
+        handleClose();
       }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [open, handleClose, handleOpen]);
 
+  // Auto-focus input on mount
   useEffect(() => {
-    if (open) {
-      setTimeout(() => {
-        setQuery("");
-        setSelectedIndex(0);
+    if (mounted && !closing) {
+      const frame = requestAnimationFrame(() => {
         inputRef.current?.focus();
-      }, 0);
+      });
+      return () => cancelAnimationFrame(frame);
     }
-  }, [open]);
+  }, [mounted, closing]);
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+  // Scroll active item into view when navigating via keyboard
+  useEffect(() => {
+    if (listRef.current) {
+      const activeEl = listRef.current.querySelector<HTMLElement>(`[data-cmd-item="${selectedIndex}"]`);
+      if (activeEl) {
+        activeEl.scrollIntoView({ block: "nearest" });
+      }
+    }
+  }, [selectedIndex]);
 
   function handleSelect(item: CommandItem) {
-    setOpen(false);
+    handleClose();
     item.action();
   }
 
@@ -138,9 +205,10 @@ export function CommandPalette() {
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
-        onClick={() => setOpen(true)}
-        className="inline-flex h-8 items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 text-xs text-muted transition-colors hover:border-slate hover:text-foreground"
+        onClick={handleOpen}
+        className="inline-flex h-8 items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 text-xs text-muted transition-colors hover:border-slate hover:text-foreground active:scale-[0.98]"
         aria-label="Open command palette"
         data-testid="command-palette-trigger"
       >
@@ -151,16 +219,20 @@ export function CommandPalette() {
         </kbd>
       </button>
 
-      {open && (
+      {mounted && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-ink/40 p-4 pt-[15vh] backdrop-blur-xs"
-          onClick={() => setOpen(false)}
+          className={`fixed inset-0 z-50 flex items-start justify-center bg-ink/40 p-4 pt-[15vh] backdrop-blur-xs ${
+            closing ? "cmd-backdrop-exit" : "cmd-backdrop-enter"
+          }`}
+          onClick={handleClose}
           role="dialog"
           aria-modal="true"
           aria-label="Command palette"
         >
           <div
-            className="w-full max-w-lg rounded-[6px] border border-line-strong bg-paper shadow-none"
+            className={`w-full max-w-lg rounded-[6px] border border-line-strong bg-paper shadow-none ${
+              closing ? "cmd-modal-exit" : "cmd-modal-enter"
+            }`}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={handleKeyDown}
           >
@@ -182,7 +254,7 @@ export function CommandPalette() {
               </span>
             </div>
 
-            <div className="max-h-72 overflow-y-auto p-1.5">
+            <div ref={listRef} className="max-h-72 overflow-y-auto p-1.5">
               {filtered.length === 0 ? (
                 <div className="p-4 text-center text-xs text-muted">No commands found.</div>
               ) : (
@@ -193,10 +265,13 @@ export function CommandPalette() {
                     <button
                       key={item.id}
                       type="button"
+                      data-cmd-item={index}
                       onClick={() => handleSelect(item)}
                       onMouseEnter={() => setSelectedIndex(index)}
-                      className={`flex w-full items-center gap-3 rounded-[4px] px-3 py-2 text-left transition-colors ${
-                        active ? "bg-panel text-foreground" : "text-ink-soft hover:bg-panel"
+                      className={`flex w-full items-center gap-3 rounded-[4px] px-3 py-2 text-left ${
+                        active
+                          ? "bg-panel text-foreground transition-none"
+                          : "text-ink-soft hover:bg-panel transition-colors duration-120"
                       }`}
                     >
                       <Icon

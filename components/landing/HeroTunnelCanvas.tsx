@@ -23,6 +23,7 @@ export function HeroTunnelCanvas() {
     let animationFrameId = 0;
     let width = 0;
     let height = 0;
+    let isRunning = false;
 
     // Proofline spectral bar palette (no blue/neon — strictly Proofline tokens)
     const PALETTE = [
@@ -75,10 +76,22 @@ export function HeroTunnelCanvas() {
     };
 
     resize();
+
+    // ResizeObserver for dynamic container adjustments
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined" && canvas.parentElement) {
+      resizeObserver = new ResizeObserver(() => {
+        resize();
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          render(performance.now());
+        }
+      });
+      resizeObserver.observe(canvas.parentElement);
+    }
     window.addEventListener("resize", resize);
 
     let lastTime = performance.now();
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const render = (now: number) => {
       const dt = Math.min(0.05, (now - lastTime) / 1000);
@@ -144,16 +157,69 @@ export function HeroTunnelCanvas() {
         }
       }
 
-      if (!prefersReducedMotion) {
+      if (!prefersReducedMotion && !document.hidden) {
         animationFrameId = requestAnimationFrame(render);
+      } else {
+        isRunning = false;
       }
     };
 
-    animationFrameId = requestAnimationFrame(render);
+    const startLoop = () => {
+      if (isRunning || prefersReducedMotion || document.hidden) return;
+      isRunning = true;
+      lastTime = performance.now();
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    const stopLoop = () => {
+      if (!isRunning) return;
+      cancelAnimationFrame(animationFrameId);
+      isRunning = false;
+    };
+
+    // Initial render (runs once statically if reduced motion, or starts continuous loop)
+    if (prefersReducedMotion) {
+      render(performance.now());
+    } else {
+      isRunning = true;
+      animationFrameId = requestAnimationFrame(render);
+    }
+
+    // Dynamic reduced-motion preference change listener
+    const motionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleMotionChange = (e: MediaQueryListEvent | { matches: boolean }) => {
+      prefersReducedMotion = e.matches;
+      if (prefersReducedMotion) {
+        stopLoop();
+        render(performance.now());
+      } else {
+        startLoop();
+      }
+    };
+
+    if (motionMediaQuery.addEventListener) {
+      motionMediaQuery.addEventListener("change", handleMotionChange);
+    }
+
+    // Page Visibility API listener (conserve CPU/GPU when backgrounded)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopLoop();
+      } else {
+        startLoop();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
+      stopLoop();
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resize);
+      if (resizeObserver) resizeObserver.disconnect();
+      if (motionMediaQuery.removeEventListener) {
+        motionMediaQuery.removeEventListener("change", handleMotionChange);
+      }
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 

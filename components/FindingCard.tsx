@@ -109,8 +109,10 @@ export function FindingCard({
       data-index={index}
       style={{ "--index": index } as React.CSSProperties}
       onClick={() => onSelect?.(index)}
-      className={`rounded-[6px] border bg-card p-4 sm:p-5 transition-colors cursor-pointer ${
-        selected ? "border-slate ring-2 ring-slate/25" : "border-line-strong hover:border-slate/60"
+      className={`finding-card-enter rounded-[6px] border bg-card p-4 sm:p-5 transition-all duration-micro ease-arrival cursor-pointer ${
+        selected
+          ? "border-slate ring-2 ring-slate/25 shadow-sm"
+          : "border-line-strong hover:border-slate/60 hover:shadow-xs"
       }`}
       aria-label={`Finding ${index + 1}: ${finding.verdict}`}
     >
@@ -125,16 +127,16 @@ export function FindingCard({
           type="button"
           onClick={copyFindingLink}
           title="Copy link to this finding"
-          className="inline-flex items-center gap-1 rounded-[4px] border border-line-strong bg-panel px-1.5 py-0.5 text-[10px] text-muted transition-colors hover:border-slate hover:text-foreground"
+          className="btn-proofline-tactile inline-flex items-center gap-1 rounded-[4px] border border-line-strong bg-panel px-1.5 py-0.5 text-[10px] text-muted active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:border-slate hover:text-foreground"
         >
           {copied ? (
             <>
-              <CheckCheck size={11} className="text-v-supported-fg" aria-hidden="true" />
+              <CheckCheck size={11} className="text-v-supported-fg transition-transform duration-fast ease-arrival" aria-hidden="true" />
               <span>Copied</span>
             </>
           ) : (
             <>
-              <LinkIcon size={11} aria-hidden="true" />
+              <LinkIcon size={11} className="transition-transform duration-fast ease-arrival" aria-hidden="true" />
               <span>Link</span>
             </>
           )}
@@ -264,10 +266,10 @@ export function FindingCard({
                   key={d}
                   type="button"
                   data-testid={`decision-${d}`}
-                  className={`inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-[12px] font-medium text-foreground transition-colors ${
+                  className={`btn-proofline-tactile inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-[12px] font-medium text-foreground active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival ${
                     d === "approve"
-                      ? "hover:border-v-supported-fg hover:text-v-supported-fg"
-                      : "hover:border-accent hover:text-accent"
+                      ? "hover:border-v-supported-fg hover:text-v-supported-fg hover:shadow-xs"
+                      : "hover:border-accent hover:text-accent hover:shadow-xs"
                   }`}
                   onClick={() => setPending(d)}
                 >
@@ -310,13 +312,13 @@ export function FindingCard({
                 type="submit"
                 data-testid="record-decision"
                 disabled={!reasonValid}
-                className="h-9 rounded-[4px] bg-accent px-3 text-[13px] font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
+                className="btn-proofline-tactile h-9 rounded-[4px] bg-accent px-3 text-[13px] font-semibold text-white active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100"
               >
                 Record
               </button>
               <button
                 type="button"
-                className="h-9 rounded-[4px] border border-line-strong bg-panel px-3 text-[13px] text-muted hover:border-slate hover:text-foreground"
+                className="btn-proofline-tactile h-9 rounded-[4px] border border-line-strong bg-panel px-3 text-[13px] text-muted active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:border-slate hover:text-foreground"
                 onClick={() => {
                   setPending(null);
                   setReason("");

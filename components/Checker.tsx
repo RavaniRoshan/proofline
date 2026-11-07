@@ -150,7 +150,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               type="button"
               onClick={() => setDraft(sampleDraft)}
               data-testid="load-sample"
-              className="inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-xs font-medium text-ink-soft transition-colors hover:border-slate"
+              className="btn-proofline-tactile inline-flex items-center gap-1.5 rounded-[4px] border border-line-strong bg-panel px-2.5 py-1.5 text-xs font-medium text-ink-soft active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:border-slate"
             >
               <Wand2 size={13} aria-hidden="true" />
               Load sample draft
@@ -164,7 +164,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                   setStatus("idle");
                   textareaRef.current?.focus();
                 }}
-                className="inline-flex items-center gap-1 text-xs font-medium text-muted hover:text-foreground"
+                className="btn-proofline-tactile inline-flex items-center gap-1 text-xs font-medium text-muted active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:text-foreground"
                 aria-label="Clear the draft"
               >
                 <RotateCcw size={13} aria-hidden="true" />
@@ -189,7 +189,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             onClick={() => void check()}
             disabled={status === "checking"}
             data-testid="check-button"
-            className="inline-flex h-11 min-w-36 items-center justify-center gap-2 rounded-[4px] bg-accent px-6 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+            className="btn-proofline-tactile inline-flex h-11 min-w-36 items-center justify-center gap-2 rounded-[4px] bg-accent px-6 text-base font-semibold text-white active:scale-[0.97] transition-all duration-micro active:duration-press ease-arrival hover:bg-accent-hover disabled:opacity-60 disabled:active:scale-100"
           >
             {status === "checking" ? (
               <>

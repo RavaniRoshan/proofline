@@ -34,7 +34,7 @@
 
 <p align="center">
   <a href="https://github.com/RavaniRoshan/proofline/actions"><img src="https://img.shields.io/badge/build-passing-2ea44f?style=flat-square&logo=next.js" alt="Build Status" /></a>
-  <a href="tests/"><img src="https://img.shields.io/badge/tests-51%20passed-2ea44f?style=flat-square&logo=vitest" alt="Vitest Unit Tests" /></a>
+  <a href="tests/"><img src="https://img.shields.io/badge/tests-111%20passed-2ea44f?style=flat-square&logo=vitest" alt="Vitest Unit Tests" /></a>
   <a href="scripts/smoke.ts"><img src="https://img.shields.io/badge/eval-24%2F24%20passed-2ea44f?style=flat-square" alt="Smoke Evaluator" /></a>
   <a href="app/"><img src="https://img.shields.io/badge/routes-10%2F10%20compiled-2ea44f?style=flat-square" alt="Turbopack Routes" /></a>
   <a href="https://impeccable.style"><img src="https://img.shields.io/badge/impeccable-0%20anti--patterns-2ea44f?style=flat-square" alt="Impeccable Design Audit" /></a>
@@ -323,7 +323,8 @@ proofline/
 ├── components/
 │   ├── landing/                   # Modular landing page components
 │   │   ├── ProoflineHero.tsx      # Composio-precision hero with 21st.dev SunsetOrb & StageGridBackdrop
-│   │   ├── StageGridBackdrop.tsx  # Architectural blueprint SVG coordinate grid with corner registration marks
+│   │   ├── StageGridBackdrop.tsx  # Architectural blueprint SVG coordinate grid with radar scan
+│   │   ├── HeroTunnelCanvas.tsx   # 2D perspective tunnel depth canvas with reduced-motion bypass
 │   │   ├── UseCasesDualPane.tsx   # 3-column interactive connected workflow stage
 │   │   ├── AgentsAndTrustBands.tsx# 8-surface verdict grid and 3-card trust permission matrix
 │   │   ├── StickyJobsBand.tsx     # 3-step timeline with silk mesh card
@@ -340,8 +341,10 @@ proofline/
 │   ├── normalize.ts               # Currency, scalar, and date normalization
 │   ├── resolve.ts                 # Stage 1 deterministic rule resolution
 │   ├── verify.ts                  # Stage 2-4 pipeline and Evidence Gate
-│   └── seed.ts                    # 42 production-grade registered facts
-├── tests/                         # 51 Vitest unit tests
+│   ├── seed.ts                    # 42 production-grade registered facts
+│   ├── motion-tokens.ts           # Master motion tokens & physics profiles
+│   └── use-reduced-motion.ts      # SSR-safe prefers-reduced-motion hook
+├── tests/                         # 111 Vitest unit tests (51 baseline + 60 motion)
 ├── scripts/
 │   └── smoke.ts                   # 24-case benchmark evaluation suite
 └── docs/                          # Screenshots, assets, and design blueprints

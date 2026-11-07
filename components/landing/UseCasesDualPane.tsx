@@ -123,16 +123,56 @@ export function UseCasesDualPane() {
     <div className="relative mx-auto w-full max-w-[1158px]">
       {/* 3-Column Connected Stage matching 03-band2-use-cases.png 1:1 */}
       <div className="relative grid grid-cols-1 items-center gap-6 lg:grid-cols-[1fr_320px_1fr] lg:gap-0">
-        {/* Horizontal connector line on desktop */}
+        
+        {/* Subtle SVG data pulse signal flowing between active scenario tab and evidence preview cards */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 right-[28%] left-[28%] z-0 hidden h-px -translate-y-1/2 bg-ink/15 lg:block"
-        />
+          className="pointer-events-none absolute top-1/2 right-[25%] left-[25%] z-0 hidden h-6 -translate-y-1/2 overflow-visible lg:block"
+        >
+          <svg
+            className="w-full h-full overflow-visible"
+            viewBox="0 0 500 24"
+            fill="none"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="dualpane-pulse-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="var(--oxide)" stopOpacity="0" />
+                <stop offset="50%" stopColor="var(--oxide)" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="var(--oxide)" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+
+            {/* Base circuit alignment wire */}
+            <line
+              x1="0"
+              y1="12"
+              x2="500"
+              y2="12"
+              stroke="currentColor"
+              className="text-ink/15 dark:text-white/15"
+              strokeWidth="1"
+              strokeDasharray="4 4"
+            />
+
+            {/* Kinetic data packet pulse flowing left-to-right across center hub */}
+            <line
+              x1="0"
+              y1="12"
+              x2="64"
+              y2="12"
+              stroke="url(#dualpane-pulse-gradient)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              className="dualpane-signal-packet"
+            />
+          </svg>
+        </div>
 
         {/* Soft atmospheric glow behind the center hub (using Proofline oxide/parchment tokens) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[440px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-75 blur-3xl"
+          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[440px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-75 blur-3xl transition-opacity duration-deliberate"
           style={{
             background:
               "radial-gradient(circle, rgba(212, 132, 122, 0.32) 0%, rgba(110, 31, 38, 0.12) 48%, transparent 72%)",
@@ -166,10 +206,10 @@ export function UseCasesDualPane() {
                     setPaused(true);
                   }}
                   aria-label={`Select scenario ${sc.sourceLabel}`}
-                  className={`min-h-[32px] min-w-[32px] px-2.5 py-1 font-mono text-[11px] rounded-[4px] uppercase transition-colors cursor-pointer inline-flex items-center justify-center ${
+                  className={`min-h-[32px] min-w-[32px] px-2.5 py-1 font-mono text-[11px] rounded-[4px] uppercase transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer inline-flex items-center justify-center active:scale-[0.97] ${
                     i === activeIdx
-                      ? "bg-ink text-paper font-semibold"
-                      : "bg-panel text-ink-faint hover:text-ink"
+                      ? "bg-ink text-paper font-semibold shadow-xs"
+                      : "bg-panel text-ink-faint hover:text-ink hover:bg-panel/80"
                   }`}
                 >
                   0{i + 1}
@@ -178,9 +218,12 @@ export function UseCasesDualPane() {
             </div>
           </div>
 
-          {/* Center Prompt Bubble + Sequential Step Pills */}
-          <div className="flex flex-1 flex-col justify-center gap-3 px-5 py-4">
-            <div className="ml-auto max-w-[92%] rounded-2xl bg-panel px-4 py-3.5 text-[13.5px] leading-relaxed text-ink">
+          {/* Center Prompt Bubble + Sequential Step Pills (with scenario crossfade) */}
+          <div
+            key={`left-pane-${current.id}`}
+            className="flex flex-1 flex-col justify-center gap-3 px-5 py-4 scenario-pane-crossfade"
+          >
+            <div className="ml-auto max-w-[92%] rounded-2xl bg-panel px-4 py-3.5 text-[13.5px] leading-relaxed text-ink shadow-2xs">
               <p>{current.draftPrompt}</p>
               <p className="mt-2 border-t border-ink/10 pt-2 font-sans font-medium text-[13.5px] text-accent-brand dark:text-accent-readable font-semibold">
                 {current.highlightedClaim}
@@ -188,10 +231,11 @@ export function UseCasesDualPane() {
             </div>
 
             <div className="mt-1 flex flex-col items-start gap-2">
-              {current.toolSteps.map((step) => (
+              {current.toolSteps.map((step, sIdx) => (
                 <div
                   key={step.action}
-                  className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-paper px-3 py-1 text-[12px] font-mono shadow-2xs"
+                  style={{ animationDelay: `${sIdx * 35}ms` }}
+                  className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-paper px-3 py-1 text-[12px] font-mono shadow-2xs scenario-step-enter"
                 >
                   <span className="inline-flex size-4 items-center justify-center rounded-[4px] bg-accent/15 text-[10px] font-bold text-accent">
                     {step.badge}
@@ -217,9 +261,12 @@ export function UseCasesDualPane() {
               </span>
               <button
                 type="button"
-                onClick={() => setActiveIdx((activeIdx + 1) % SCENARIOS.length)}
+                onClick={() => {
+                  setActiveIdx((activeIdx + 1) % SCENARIOS.length);
+                  setPaused(true);
+                }}
                 aria-label="Run next verification scenario"
-                className="inline-flex size-9 items-center justify-center rounded-full bg-accent text-paper transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex size-9 items-center justify-center rounded-full bg-accent text-paper transition-transform duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
               >
                 <ArrowUp size={14} />
               </button>
@@ -239,7 +286,7 @@ export function UseCasesDualPane() {
                 <Search size={13} />
                 <span>RULES</span>
               </div>
-              <span className="font-mono text-[12px] font-medium text-accent">
+              <span className="font-mono text-[12px] font-medium text-accent transition-all duration-[var(--motion-duration-fast,180ms)]">
                 {current.activeToolRight}
               </span>
             </div>
@@ -288,7 +335,7 @@ export function UseCasesDualPane() {
 
           {/* Center Floating [ ] Proofline Pill */}
           <div className="my-2.5 flex items-center justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-accent/35 bg-paper px-7 py-2.5 shadow-[0_6px_20px_rgba(110,31,38,0.12)]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/35 bg-paper px-7 py-2.5 shadow-[0_6px_20px_rgba(110,31,38,0.12)] transition-transform duration-[var(--motion-duration-standard,240ms)] hover:scale-[1.02]">
               <span className="font-mono text-[16px] font-bold text-accent">
                 [ ]
               </span>
@@ -339,7 +386,7 @@ export function UseCasesDualPane() {
                 <FileText size={13} />
                 <span>LOG</span>
               </div>
-              <span className="font-mono text-[12px] font-semibold text-accent tabular-nums">
+              <span className="font-mono text-[12px] font-semibold text-accent tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
                 {current.logCount}
               </span>
             </div>
@@ -365,13 +412,16 @@ export function UseCasesDualPane() {
                 Register · Verification Brief
               </span>
             </div>
-            <span className="font-mono text-[11px] text-ink-faint tabular-nums">
+            <span className="font-mono text-[11px] text-ink-faint tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
               {current.factId}
             </span>
           </div>
 
-          {/* Document Content */}
-          <div className="flex flex-1 flex-col justify-between p-6">
+          {/* Document Content (with smooth scenario crossfade) */}
+          <div
+            key={`right-pane-${current.id}`}
+            className="flex flex-1 flex-col justify-between p-6 scenario-pane-crossfade"
+          >
             <div>
               {/* Notion-style square emblem + verdict badge */}
               <div className="flex items-center justify-between gap-2 mb-3">
@@ -379,7 +429,8 @@ export function UseCasesDualPane() {
                   P
                 </span>
                 <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 font-mono text-[11px] font-semibold uppercase ${
+                  data-verdict-badge
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 font-mono text-[11px] font-semibold uppercase transition-colors duration-[var(--motion-duration-deliberate,320ms)] ease-out ${
                     current.verdict === "CONTRADICTED"
                       ? "bg-v-contradicted-bg text-v-contradicted-fg"
                       : current.verdict === "STALE"
@@ -425,7 +476,9 @@ export function UseCasesDualPane() {
             <div className="border-t border-ink/10 pt-3.5">
               <div className="flex items-center justify-between mb-2 font-mono text-[11px]">
                 <span className="text-ink-faint uppercase">Reviewer Decision</span>
-                <span className="font-semibold text-ink">{recordedDecision}</span>
+                <span className="font-semibold text-ink transition-colors duration-[var(--motion-duration-fast,180ms)]">
+                  {recordedDecision}
+                </span>
               </div>
               <div className="grid grid-cols-3 gap-1.5">
                 {(["Approve", "Reject & Fix", "Request Edit"] as const).map((action) => (
@@ -436,10 +489,10 @@ export function UseCasesDualPane() {
                       setPaused(true);
                       setDecisionMap((prev) => ({ ...prev, [current.id]: action }));
                     }}
-                    className={`border py-1.5 font-mono text-[11px] uppercase transition-colors cursor-pointer rounded-none ${
+                    className={`border py-1.5 font-mono text-[11px] uppercase transition-all duration-[var(--motion-duration-micro,120ms)] cursor-pointer rounded-none active:scale-[0.97] ${
                       recordedDecision === action
-                        ? "border-ink bg-ink text-paper font-semibold"
-                        : "border-ink/15 bg-panel/60 text-ink hover:bg-panel"
+                        ? "border-ink bg-ink text-paper font-semibold shadow-2xs"
+                        : "border-ink/15 bg-panel/60 text-ink hover:bg-panel hover:border-ink/30"
                     }`}
                   >
                     {action}
@@ -456,7 +509,7 @@ export function UseCasesDualPane() {
         <div className="flex items-center gap-3 font-mono text-[11px] text-ink-faint">
           <span>SCENARIO 0{activeIdx + 1} / 03</span>
           <span aria-hidden="true">·</span>
-          <Link href="/check" className="underline hover:text-ink">
+          <Link href="/check" className="underline hover:text-ink transition-colors">
             Open full 12-claim sample draft in Checker →
           </Link>
         </div>
@@ -465,7 +518,7 @@ export function UseCasesDualPane() {
           type="button"
           onClick={() => setPaused(!paused)}
           aria-label={paused ? "Play demo loop" : "Pause demo loop"}
-          className="inline-flex size-8 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-ink/30 hover:text-ink cursor-pointer"
+          className="inline-flex size-8 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-all duration-[var(--motion-duration-micro,120ms)] hover:border-ink/30 hover:text-ink active:scale-95 cursor-pointer shadow-2xs"
         >
           {paused ? <Play size={13} /> : <Pause size={13} />}
         </button>

@@ -2,9 +2,11 @@
 
 import { SunsetOrb } from "@/components/ui/sunset-orb";
 import { StageGridBackdrop } from "@/components/landing/StageGridBackdrop";
+import { HeroTunnelCanvas } from "@/components/landing/HeroTunnelCanvas";
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 interface BriefTab {
   id: string;
@@ -97,19 +99,103 @@ const BRIEF_TABS: BriefTab[] = [
   },
 ];
 
+interface MetricPill {
+  id: string;
+  dotColorClass: string;
+  number: string;
+  label: string;
+}
+
+const HERO_METRICS: MetricPill[] = [
+  {
+    id: "rules",
+    dotColorClass: "bg-accent",
+    number: "78%",
+    label: "<1ms Deterministic Rules",
+  },
+  {
+    id: "facts",
+    dotColorClass: "bg-v-supported-fg",
+    number: "42",
+    label: "Seeded Flowdesk Facts",
+  },
+  {
+    id: "gate",
+    dotColorClass: "bg-v-stale-fg",
+    number: "6-Field",
+    label: "Evidence Gate",
+  },
+  {
+    id: "smoke",
+    dotColorClass: "bg-ink dark:bg-zinc-200",
+    number: "24/24",
+    label: "Smoke Eval Pass",
+  },
+];
+
 export function ProoflineHero() {
   const viewportRef = useRef<HTMLElement>(null);
   const [activeTabIdx, setActiveTabIdx] = useState(0);
+  const prefersReduced = usePrefersReducedMotion();
+
+  // Tab list container and tab button refs for sliding pill indicator
+  const tabListRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [pillStyle, setPillStyle] = useState<{ left: number; width: number; ready: boolean }>({
+    left: 0,
+    width: 0,
+    ready: false,
+  });
+
+  // Update sliding pill coordinates on active tab change and window resize
+  useEffect(() => {
+    const updatePill = () => {
+      const activeEl = tabRefs.current[activeTabIdx];
+      const containerEl = tabListRef.current;
+      if (activeEl && containerEl) {
+        setPillStyle({
+          left: activeEl.offsetLeft,
+          width: activeEl.offsetWidth,
+          ready: true,
+        });
+      }
+    };
+
+    updatePill();
+    window.addEventListener("resize", updatePill);
+    return () => window.removeEventListener("resize", updatePill);
+  }, [activeTabIdx]);
+
+  // WAI-ARIA arrow key navigation with zero animation delay
+  const handleTabKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let nextIndex = index;
+    if (e.key === "ArrowRight") {
+      nextIndex = (index + 1) % BRIEF_TABS.length;
+    } else if (e.key === "ArrowLeft") {
+      nextIndex = (index - 1 + BRIEF_TABS.length) % BRIEF_TABS.length;
+    } else if (e.key === "Home") {
+      nextIndex = 0;
+    } else if (e.key === "End") {
+      nextIndex = BRIEF_TABS.length - 1;
+    } else {
+      return;
+    }
+
+    e.preventDefault();
+    setActiveTabIdx(nextIndex);
+    tabRefs.current[nextIndex]?.focus();
+  };
 
   // Entrance animation lifecycle
+  // Standardized hook wrapping window.matchMedia("(prefers-reduced-motion: reduce)").matches
   useEffect(() => {
     const viewport = viewportRef.current;
     if (!viewport) return;
 
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+
+
 
     if (prefersReduced) {
       viewport.setAttribute("data-enter", "done");
@@ -119,10 +205,10 @@ export function ProoflineHero() {
     viewport.setAttribute("data-enter", "run");
     const timer = window.setTimeout(() => {
       viewport.setAttribute("data-enter", "done");
-    }, 1900);
+    }, 850);
 
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [prefersReduced]);
 
   const activeTab = BRIEF_TABS[activeTabIdx] ?? BRIEF_TABS[0];
 
@@ -264,12 +350,19 @@ export function ProoflineHero() {
           justify-content: center;
           gap: 8px;
           text-decoration: none;
-          transition: background-color 0.18s ease, transform 0.18s ease;
+          transition: background-color var(--motion-duration-fast, 180ms) ease-out, transform var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1));
+          user-select: none;
+          will-change: transform;
         }
 
         #viewport .pl-btn-hero:hover {
           background: var(--c-oxide);
           transform: translateY(-1px);
+        }
+
+        #viewport .pl-btn-hero:active {
+          transform: scale(0.97);
+          transition-duration: var(--motion-duration-press, 80ms);
         }
 
         #viewport .pl-btn-secondary {
@@ -288,12 +381,20 @@ export function ProoflineHero() {
           align-items: center;
           justify-content: center;
           text-decoration: none;
-          transition: background-color 0.18s ease, border-color 0.18s ease;
+          transition: background-color var(--motion-duration-fast, 180ms) ease-out, border-color var(--motion-duration-fast, 180ms) ease-out, transform var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1));
+          user-select: none;
+          will-change: transform;
         }
 
         #viewport .pl-btn-secondary:hover {
           background: #F5F5F2;
           border-color: rgba(26, 26, 24, 0.32);
+          transform: translateY(-1px);
+        }
+
+        #viewport .pl-btn-secondary:active {
+          transform: scale(0.97);
+          transition-duration: var(--motion-duration-press, 80ms);
         }
 
         /* Stage Band + Mockup Card Container — Seamless Transition into Band 2 */
@@ -424,6 +525,7 @@ export function ProoflineHero() {
 
         /* Interactive Card Tabs */
         #viewport .pl-tabs {
+          position: relative;
           margin-top: 18px;
           display: flex;
           flex-wrap: wrap;
@@ -431,12 +533,42 @@ export function ProoflineHero() {
           gap: 4px;
         }
 
+        /* Sliding active tab indicator pill */
+        #viewport .pl-tab-pill {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          background: #FFFFFF;
+          border-radius: 10px 10px 0 0;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+          pointer-events: none;
+          z-index: 1;
+          transition:
+            transform var(--motion-duration-standard, 240ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)),
+            width var(--motion-duration-standard, 240ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)),
+            opacity var(--motion-duration-micro, 120ms) ease;
+          will-change: transform, width;
+        }
+
+        #viewport .pl-tab-pill::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 12px;
+          right: 12px;
+          height: 2px;
+          background: var(--c-oxide);
+          border-radius: 9999px;
+        }
+
         #viewport .pl-tab {
           position: relative;
+          z-index: 2;
           height: 34px;
           padding: 0 16px;
           border: 0;
-          background: transparent;
+          background: transparent !important;
           border-radius: 10px 10px 0 0;
           font-family: var(--hero-sans);
           font-size: 13px;
@@ -445,7 +577,12 @@ export function ProoflineHero() {
           letter-spacing: var(--tr-tab);
           color: var(--c-muted);
           cursor: pointer;
-          transition: color 0.15s ease, background-color 0.15s ease;
+          user-select: none;
+          outline: none;
+          transition:
+            color 150ms ease,
+            transform var(--motion-duration-micro, 120ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1));
+          will-change: transform;
           white-space: nowrap;
         }
 
@@ -453,22 +590,122 @@ export function ProoflineHero() {
           color: var(--c-ink);
         }
 
+        #viewport .pl-tab:active {
+          transform: scale(0.97);
+          transition-duration: var(--motion-duration-press, 80ms);
+        }
+
+        #viewport .pl-tab:focus-visible {
+          outline: 2px solid var(--c-oxide);
+          outline-offset: -2px;
+          transition-delay: 0ms !important;
+        }
+
         #viewport .pl-tab.is-active {
-          background: #FFFFFF;
+
           color: var(--c-ink);
           font-weight: var(--fw-semibold);
           font-variation-settings: "wght" 540;
         }
 
-        #viewport .pl-tab.is-active::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 12px;
-          right: 12px;
-          height: 2px;
-          background: var(--c-oxide);
+        /* Jakub Krehel Row Materialize Enter Animation */
+        @keyframes pl-row-materialize {
+          0% {
+            opacity: 0;
+            transform: translateY(6px);
+            filter: blur(2px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+          }
         }
+
+        #viewport .pl-row-enter {
+          animation: pl-row-materialize var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+          animation-delay: min(calc(var(--row-idx, 0) * 35ms), 80ms);
+          will-change: transform, opacity, filter;
+        }
+
+        /* Heading crossfade */
+        @keyframes pl-heading-crossfade {
+          0% {
+            opacity: 0;
+            transform: translateX(-4px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        #viewport .pl-heading-crossfade {
+          animation: pl-heading-crossfade var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+        }
+
+        /* Architectural Transition Strip (Band 1 -> Band 2 Bridge) */
+        #viewport .pl-strip {
+          position: relative;
+          background: rgba(245, 245, 242, 0.65);
+          border: 1px solid rgba(26, 26, 24, 0.10);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+          transition: border-color var(--motion-duration-fast, 180ms) var(--ease-mechanical);
+        }
+
+        #viewport .pl-stat-pill {
+          position: relative;
+          border: 1px solid transparent;
+          cursor: default;
+          will-change: transform, box-shadow;
+          transition:
+            transform var(--motion-duration-micro, 120ms) var(--ease-mechanical),
+            background-color var(--motion-duration-micro, 120ms) var(--ease-mechanical),
+            border-color var(--motion-duration-micro, 120ms) var(--ease-mechanical),
+            box-shadow var(--motion-duration-micro, 120ms) var(--ease-mechanical);
+        }
+
+        #viewport .pl-stat-pill:hover {
+          transform: translateY(-1px);
+          background: #FFFFFF;
+          border-color: rgba(26, 26, 24, 0.08);
+          box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.06);
+        }
+
+        #viewport .pl-stat-num {
+          font-weight: 600;
+          color: var(--c-ink);
+          letter-spacing: -0.01em;
+        }
+
+        #viewport .pl-stat-label {
+          color: var(--c-muted);
+        }
+
+        /* Stagger Entrance for Metric Pills (Beat 3: Find) */
+        @keyframes pl-stat-enter {
+          from {
+            opacity: 0;
+            transform: translateY(6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        #viewport[data-enter="run"] .pl-stat-pill {
+          animation: pl-stat-enter var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+          animation-delay: calc(320ms + var(--stat-idx, 0) * 45ms);
+        }
+
+
+
+
+
+
+
+
 
         /* White Inner Panel */
         #viewport .pl-panel {
@@ -596,6 +833,11 @@ export function ProoflineHero() {
             text-align: center;
             justify-content: center;
           }
+
+          #viewport .pl-tab-pill::after {
+            left: 6px;
+            right: 6px;
+          }
           #viewport .pl-panel {
             border-radius: 8px 8px 12px 12px;
             padding: 13px;
@@ -609,25 +851,68 @@ export function ProoflineHero() {
           }
         }
 
-        /* Entrance Animations */
-        @keyframes pl-enter-drop {
-          from { opacity: 0; translate: 0 -10px; }
-          to   { opacity: 1; translate: 0 0; }
-        }
+        /* ===== Satori Graphics Temporal Flow & Jakub Krehel Optical Blur-Rise ===== */
         @keyframes pl-enter-rise {
-          from { opacity: 0; translate: 0 16px; }
-          to   { opacity: 1; translate: 0 0; }
+          0% {
+            opacity: 0;
+            transform: translateY(12px);
+            filter: blur(4px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+          }
         }
 
-        #viewport[data-enter="run"] .pl-nav {
-          animation: pl-enter-drop 0.55s var(--ease-settle) 0.04s both;
+
+
+
+
+
+
+
+
+        /* Beat 1 (Notice): Eyebrow Pill with Kinetic Bracket Lockup & Display H1 */
+        #viewport[data-enter="run"] .pl-eyebrow-pill {
+          animation: pl-enter-rise var(--motion-duration-hero, 420ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) 0ms backwards;
+          will-change: transform, opacity, filter;
         }
-        #viewport[data-enter="run"] .pl-hero-copy {
-          animation: pl-enter-rise 0.65s var(--ease-reveal) 0.14s both;
+
+        #viewport[data-enter="run"] .pl-hero-h1 {
+          animation: pl-enter-rise var(--motion-duration-hero, 420ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) 60ms backwards;
+          will-change: transform, opacity, filter;
         }
-        #viewport[data-enter="run"] .pl-stage-wrap {
-          animation: pl-enter-rise 0.75s var(--ease-settle) 0.26s both;
+
+        /* Beat 2 (Understand): Subtitle Copy & Verification Brief Stage Mockup */
+        #viewport[data-enter="run"] .pl-hero-sub {
+          animation: pl-enter-rise var(--motion-duration-hero, 420ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) 160ms backwards;
+          will-change: transform, opacity, filter;
         }
+
+        #viewport[data-enter="run"] .pl-stage-wrap .pl-band {
+          animation: pl-enter-rise var(--motion-duration-hero, 420ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) 220ms backwards;
+          will-change: transform, opacity, filter;
+        }
+
+        /* Beat 3 (Find afterwards): CTAs & Architectural Transition Strip */
+        #viewport[data-enter="run"] .pl-hero-actions {
+          animation: pl-enter-rise var(--motion-duration-hero, 420ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) 300ms backwards;
+          will-change: transform, opacity, filter;
+        }
+
+        #viewport[data-enter="run"] .pl-transition-strip {
+          animation: pl-enter-rise var(--motion-duration-hero, 420ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) 360ms backwards;
+          will-change: transform, opacity, filter;
+        }
+
+
+
+
+
+
+
+
 
         
         /* High-Contrast Dark Mode Overrides — Guarantees 100% Text & CTA Visibility */
@@ -653,8 +938,13 @@ export function ProoflineHero() {
 
         :where(.dark, html.dark) #viewport .pl-btn-hero:hover {
           background: #F4F4F5 !important;
-          transform: translateY(-1px) scale(1.02) !important;
+          transform: translateY(-1px) !important;
           box-shadow: 0 6px 20px rgba(255, 255, 255, 0.24) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-btn-hero:active {
+          transform: scale(0.97) !important;
+          transition-duration: var(--motion-duration-press, 80ms) !important;
         }
 
         :where(.dark, html.dark) #viewport .pl-btn-secondary {
@@ -666,6 +956,12 @@ export function ProoflineHero() {
         :where(.dark, html.dark) #viewport .pl-btn-secondary:hover {
           background: rgba(255, 255, 255, 0.14) !important;
           border-color: rgba(255, 255, 255, 0.35) !important;
+          transform: translateY(-1px) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-btn-secondary:active {
+          transform: scale(0.97) !important;
+          transition-duration: var(--motion-duration-press, 80ms) !important;
         }
 
         :where(.dark, html.dark) #viewport .pl-eyebrow-pill {
@@ -736,8 +1032,17 @@ export function ProoflineHero() {
           color: #A1A1AA !important;
         }
 
-        :where(.dark, html.dark) #viewport .pl-tab.is-active {
+        :where(.dark, html.dark) #viewport .pl-tab:hover {
+          color: #F4F4F5 !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-tab-pill {
           background: #272732 !important;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        :where(.dark, html.dark) #viewport .pl-tab.is-active {
+
           color: #FFFFFF !important;
         }
 
@@ -754,12 +1059,12 @@ export function ProoflineHero() {
           color: #A1A1AA !important;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-          #viewport *, #viewport *::before, #viewport *::after {
-            animation: none !important;
-            transition: none !important;
-          }
-        }
+
+
+
+
+
+
       `}</style>
 
       {/* 21st.dev Sunset Orb Background Shader */}
@@ -774,8 +1079,15 @@ export function ProoflineHero() {
       <div className="relative z-10 mx-auto w-full max-w-[1240px] border-x border-ink/10 px-4 pt-6 pb-10 sm:px-6 md:px-10 md:pt-9 md:pb-14">
         {/* 2. Hero Headline, Subcopy & CTA */}
         <div className="pl-hero-copy">
-          <div className="pl-eyebrow-pill">
-            <span className="shrink-0 whitespace-nowrap">[ ]</span>
+          <div className="pl-eyebrow-pill group cursor-default" tabIndex={0} role="status">
+            <span
+              aria-hidden="true"
+              className="inline-flex items-center gap-[2px] font-mono text-[13px] font-bold leading-none tracking-tight text-accent-brand dark:text-accent-readable logomark-lock"
+            >
+              <span className="logomark-bracket-left"><span>[</span></span>
+              <span className="size-1 rounded-full bg-current opacity-70 group-hover:opacity-100 transition-opacity duration-fast" />
+              <span className="logomark-bracket-right"><span>]</span></span>
+            </span>
             <span className="whitespace-nowrap">DETERMINISTIC CLAIM-EVIDENCE CHECKER</span>
           </div>
 
@@ -789,9 +1101,9 @@ export function ProoflineHero() {
           </p>
 
           <div className="pl-hero-actions">
-            <Link href="/check" className="pl-btn-hero">
+            <Link href="/check" className="pl-btn-hero group">
               <span>Get Started</span>
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true" className="inline-block transition-transform duration-micro ease-arrival group-hover:translate-x-0.5">→</span>
             </Link>
             <a href="#how-it-works" className="pl-btn-secondary">
               See how it works
@@ -802,6 +1114,7 @@ export function ProoflineHero() {
         {/* 3. Harmonized Oxblood/Ink Video Band + Full Unclipped Interactive Product Card */}
         <div className="pl-stage-wrap">
           <div className="pl-band" role="presentation">
+            <HeroTunnelCanvas />
             <StageGridBackdrop />
 
             <div className="pl-card">
@@ -834,21 +1147,39 @@ export function ProoflineHero() {
                 </div>
               </div>
 
-              {/* Interactive Tabs */}
+              {/* Interactive Tabs with Animated Sliding Pill */}
               <div
+                ref={tabListRef}
                 className="pl-tabs"
                 role="tablist"
                 aria-label="Verification brief sections"
               >
+                {/* Hardware-accelerated sliding active tab indicator pill */}
+                <div
+                  className="pl-tab-pill"
+                  aria-hidden="true"
+                  style={{
+                    transform: `translate3d(${pillStyle.left}px, 0, 0)`,
+                    width: `${pillStyle.width}px`,
+                    opacity: pillStyle.ready ? 1 : 0,
+                  }}
+                />
                 {BRIEF_TABS.map((tab, idx) => {
                   const isSelected = idx === activeTabIdx;
                   return (
                     <button
                       key={tab.id}
+                      ref={(el) => {
+                        tabRefs.current[idx] = el;
+                      }}
+                      id={`hero-tab-${tab.id}`}
                       type="button"
                       role="tab"
                       aria-selected={isSelected}
+                      aria-controls={`hero-panel-${tab.id}`}
+                      tabIndex={isSelected ? 0 : -1}
                       onClick={() => setActiveTabIdx(idx)}
+                      onKeyDown={(e) => handleTabKeyDown(e, idx)}
                       className={`pl-tab${isSelected ? " is-active" : ""}`}
                     >
                       {tab.label}
@@ -858,9 +1189,16 @@ export function ProoflineHero() {
               </div>
 
               {/* Active Tab Panel */}
-              <div className="pl-panel" role="tabpanel">
+              <div
+                id={`hero-panel-${activeTab.id}`}
+                className="pl-panel"
+                role="tabpanel"
+                aria-labelledby={`hero-tab-${activeTab.id}`}
+              >
                 <div className="pl-panel-head">
-                  <h3 className="pl-panel-heading">{activeTab.heading}</h3>
+                  <h3 key={activeTab.id} className="pl-panel-heading pl-heading-crossfade">
+                    {activeTab.heading}
+                  </h3>
                   <Link
                     href="/check"
                     className="font-mono text-[11px] uppercase tracking-wider text-accent hover:underline"
@@ -869,9 +1207,13 @@ export function ProoflineHero() {
                   </Link>
                 </div>
 
-                <div className="pl-rows">
-                  {activeTab.rows.map((row) => (
-                    <div key={row.title} className="pl-row">
+                <div key={activeTab.id} className="pl-rows">
+                  {activeTab.rows.map((row, rowIdx) => (
+                    <div
+                      key={row.title}
+                      className="pl-row pl-row-enter"
+                      style={{ "--row-idx": rowIdx } as React.CSSProperties}
+                    >
                       <div className="pl-row-left">
                         {row.status === "supported" && (
                           <svg
@@ -948,23 +1290,47 @@ export function ProoflineHero() {
           </div>
 
           {/* Architectural Transition Strip connecting Hero Band smoothly into Band 2 */}
-          <div className="mt-6 grid grid-cols-2 gap-3 rounded-2xl border border-ink/10 bg-panel/65 px-4 py-3.5 font-mono text-[11px] uppercase tracking-wider text-ink-soft sm:grid-cols-4 sm:px-6">
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-accent" />
-              <span>78% &lt;1ms Deterministic Rules</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-v-supported-fg" />
-              <span>42 Seeded Flowdesk Facts</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-v-stale-fg" />
-              <span>6-Field Evidence Gate</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-ink" />
-              <span>24/24 Smoke Eval Pass</span>
-            </div>
+          <div
+            className="pl-transition-strip pl-strip mt-6 grid grid-cols-2 gap-2 rounded-2xl border border-ink/10 bg-panel/65 p-2 font-mono text-[11px] uppercase tracking-wider text-ink-soft sm:grid-cols-4 sm:p-2.5"
+            role="region"
+            aria-label="Proofline platform architecture metrics"
+          >
+            {HERO_METRICS.map((metric, idx) => (
+              <div
+                key={metric.id}
+                className="pl-stat-pill group flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all duration-micro ease-mechanical hover:-translate-y-px hover:bg-paper hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] dark:hover:bg-panel-elevated dark:hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.4)]"
+                style={{ "--stat-idx": idx } as React.CSSProperties}
+              >
+                <span
+                  className={`size-2 shrink-0 rounded-full ${metric.dotColorClass} transition-transform duration-micro ease-mechanical group-hover:scale-125`}
+                  aria-hidden="true"
+                />
+                <div className="flex items-baseline gap-1.5 truncate">
+                  <span className="pl-stat-num font-semibold text-ink dark:text-white">
+                    {metric.number}
+                  </span>
+                  <span className="pl-stat-label text-ink-soft dark:text-zinc-400">
+                    {metric.label}
+                  </span>
+                </div>
+              </div>
+            ))}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </div>
       </div>

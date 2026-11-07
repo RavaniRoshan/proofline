@@ -46,7 +46,7 @@ export function SunsetOrb({
         className={cn(
           "absolute inset-0 transition-opacity duration-700",
           intensityOpacity,
-          animated && "animate-sunset-pulse"
+          animated && "sunset-orb-mount animate-sunset-pulse"
         )}
         style={{
           backgroundImage: [
@@ -58,7 +58,7 @@ export function SunsetOrb({
             "radial-gradient(100% 54% at 50% 68%, #fff3d7 0%, #FFF1CF 24%, #EB6101 52%, #B7282E 79%, rgba(183, 40, 46, 0) 86%)",
           ].join(", "),
           filter: "blur(28px)",
-          transform: "translate3d(0, 0, 0) scale(1.08)",
+          transform: "translate3d(0, 0, 0) scale(1.04)",
           transformOrigin: "center 68%",
         }}
       />

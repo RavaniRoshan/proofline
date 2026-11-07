@@ -30,6 +30,22 @@
   --v-unverified-fg: #4A4A45;   --v-unverified-bg: #E8E6DF;
   --v-conflicting-fg: #5A3461;  --v-conflicting-bg: #EDE5EF;
   --v-notcheckable-fg: #5F5F58; --v-notcheckable-bg: #ECEAE3;
+
+  /* =========================================================================
+     Proofline Master Motion Tokens (Milestone 1) — Mechanical Precision
+     ========================================================================= */
+  --motion-duration-instant: 0ms;
+  --motion-duration-press: 80ms;
+  --motion-duration-micro: 120ms;
+  --motion-duration-fast: 180ms;
+  --motion-duration-standard: 240ms;
+  --motion-duration-deliberate: 320ms;
+  --motion-duration-hero: 420ms;
+
+  --ease-arrival: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-departure: cubic-bezier(0.4, 0, 1, 1);
+  --ease-mechanical: cubic-bezier(0.2, 0, 0, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .dark {
@@ -111,6 +127,25 @@
   --font-sans: var(--font-plex-sans);
   --font-serif: var(--font-plex-serif);
   --font-mono: var(--font-plex-mono);
+
+  /* Motion Easing Curves (generates ease-arrival, ease-departure, ease-mechanical, ease-drawer) */
+  --ease-arrival: var(--ease-arrival);
+  --ease-departure: var(--ease-departure);
+  --ease-mechanical: var(--ease-mechanical);
+  --ease-drawer: var(--ease-drawer);
+
+  /* Motion Durations (generates duration-instant, duration-press, duration-micro, duration-fast, duration-standard, duration-deliberate, duration-hero) */
+  --duration-instant: var(--motion-duration-instant);
+  --duration-press: var(--motion-duration-press);
+  --duration-micro: var(--motion-duration-micro);
+  --duration-fast: var(--motion-duration-fast);
+  --duration-standard: var(--motion-duration-standard);
+  --duration-deliberate: var(--motion-duration-deliberate);
+  --duration-hero: var(--motion-duration-hero);
+
+  /* Default transitions */
+  --default-transition-duration: var(--motion-duration-micro);
+  --default-transition-timing-function: var(--ease-mechanical);
 }
 
 html, body {
@@ -145,20 +180,57 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 /* Motion — only where state changes, never decoration.
    Wrapped in prefers-reduced-motion: no-preference */
 @media (prefers-reduced-motion: no-preference) {
-  @keyframes finding-in {
-    from {
+  /* ===== Jakub Krehel Materialize Enter & Subtler Exit Recipes ===== */
+  @keyframes proofline-materialize-in {
+    0% {
       opacity: 0;
-      transform: translateY(6px);
+      transform: translateY(8px);
+      filter: blur(2px);
     }
-    to {
+    100% {
       opacity: 1;
       transform: translateY(0);
+      filter: blur(0px);
     }
   }
 
+  @keyframes proofline-subtle-exit {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-4px);
+      filter: blur(2px);
+    }
+  }
+
+  @keyframes finding-in {
+    0% {
+      opacity: 0;
+      transform: translateY(8px);
+      filter: blur(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+  }
+
+  .finding-card-enter,
   [data-testid="finding"] {
-    animation: finding-in 240ms ease-out forwards;
-    animation-delay: calc(var(--index, 0) * 40ms);
+    animation: proofline-materialize-in var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    animation-delay: min(calc(var(--index, 0) * 35ms), 280ms);
+    animation-delay: min(calc(var(--index, 0) * 35ms), 140ms);
+    will-change: transform, opacity, filter;
+  }
+
+  .finding-card-exit {
+    animation: proofline-subtle-exit var(--motion-duration-fast, 180ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
+    will-change: transform, opacity, filter;
   }
 
   /* Verdict badge transition over 320ms when a decision changes */
@@ -186,6 +258,278 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   button, a, input, select, textarea {
     transition: background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out, opacity 120ms ease-out;
   }
+
+  /* ===== Emil Kowalski Tactile Button Feedback ===== */
+  .btn-proofline-tactile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    box-shadow:
+      0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+      0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+      0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+    transition:
+      transform var(--motion-duration-micro, 120ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)),
+      box-shadow var(--motion-duration-micro, 120ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)),
+      background-color var(--motion-duration-micro, 120ms) ease-out,
+      border-color var(--motion-duration-micro, 120ms) ease-out,
+      color var(--motion-duration-micro, 120ms) ease-out;
+    will-change: transform;
+  }
+
+  .btn-proofline-tactile:hover {
+    box-shadow:
+      0px 0px 0px 1px rgba(0, 0, 0, 0.12),
+      0px 2px 4px -1px rgba(0, 0, 0, 0.10),
+      0px 4px 8px 0px rgba(0, 0, 0, 0.06);
+  }
+
+  .btn-proofline-tactile:active {
+    transform: scale(0.97);
+    transition-duration: var(--motion-duration-press, 80ms);
+    box-shadow:
+      0px 0px 0px 1px rgba(0, 0, 0, 0.14),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ===== Bracket Logomark Aperture Motion ===== */
+  @keyframes bracket-left-lock {
+    0% {
+      transform: translateX(-4px);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bracket-right-lock {
+    0% {
+      transform: translateX(4px);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .logomark-bracket-left,
+  .logomark-bracket-right {
+    display: inline-block;
+    will-change: transform;
+    transition: transform var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  .logomark-lock .logomark-bracket-left,
+  .animate-bracket-lock .logomark-bracket-left {
+    animation: bracket-left-lock var(--motion-duration-deliberate, 320ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+  }
+
+  .logomark-lock .logomark-bracket-right,
+  .animate-bracket-lock .logomark-bracket-right {
+    animation: bracket-right-lock var(--motion-duration-deliberate, 320ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+  }
+
+  .group:hover .logomark-bracket-left {
+    transform: translateX(-2px);
+  }
+
+  .group:hover .logomark-bracket-right {
+    transform: translateX(2px);
+  }
+
+  /* ===== Milestone 3: Feature 7 & 8 DualPane & Accordion Motion ===== */
+
+  /* Accordion Content Grid: handles grid-template-rows: 0fr -> 1fr (PROJECT.md contract line 79) */
+  .accordion-content-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--motion-duration-standard, 240ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1));
+  }
+  .accordion-content-grid[data-state="open"],
+  .accordion-content-grid.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  /* Scenario Pane Crossfade (Feature 7) */
+  @keyframes scenario-crossfade {
+    0% {
+      opacity: 0;
+      transform: translateY(4px);
+      filter: blur(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+  }
+
+  .scenario-pane-crossfade {
+    animation: scenario-crossfade var(--motion-duration-standard, 240ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    will-change: transform, opacity, filter;
+  }
+
+  /* Sequential step pill enter stagger */
+  .scenario-step-enter {
+    animation: scenario-crossfade var(--motion-duration-standard, 240ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    will-change: transform, opacity;
+  }
+
+  /* SVG Pipeline Connector Data Pulse Packet */
+  @keyframes dualpane-pulse-travel {
+    0% {
+      transform: translateX(-64px);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(500px);
+      opacity: 0;
+    }
+  }
+
+  .dualpane-signal-packet {
+    animation: dualpane-pulse-travel 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    will-change: transform, opacity;
+  }
+
+  /* ===== Feature 9: Emil Kowalski Spring Scale Modal & Backdrop Physics ===== */
+  @keyframes cmd-backdrop-fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes cmd-backdrop-fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes cmd-modal-scale-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.96) translateY(-4px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes cmd-modal-scale-out {
+    0% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.98) translateY(-2px);
+    }
+  }
+
+  .cmd-backdrop-enter {
+    animation: cmd-backdrop-fade-in var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+    will-change: opacity;
+  }
+
+  .cmd-backdrop-exit {
+    animation: cmd-backdrop-fade-out var(--motion-duration-fast, 180ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
+    will-change: opacity;
+  }
+
+  .cmd-modal-enter {
+    animation: cmd-modal-scale-in var(--motion-duration-standard, 240ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+    transform-origin: center top;
+    will-change: transform, opacity;
+  }
+
+  .cmd-modal-exit {
+    animation: cmd-modal-scale-out var(--motion-duration-fast, 180ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
+    transform-origin: center top;
+    will-change: transform, opacity;
+  }
+
+  /* Right-rail drawer slide deceleration (Vaul / Emil Kowalski) */
+  @keyframes drawer-rail-enter {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes drawer-rail-exit {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  .drawer-decelerate-enter {
+    animation: drawer-rail-enter var(--motion-duration-deliberate, 320ms) var(--ease-drawer, cubic-bezier(0.32, 0.72, 0, 1)) forwards;
+  }
+
+  .drawer-decelerate-exit {
+    animation: drawer-rail-exit var(--motion-duration-fast, 180ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
+  }
+}
+
+/* Dark mode tactile button shadow overrides */
+.dark .btn-proofline-tactile {
+  box-shadow:
+    0px 0px 0px 1px rgba(255, 255, 255, 0.08),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.5),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.dark .btn-proofline-tactile:hover {
+  box-shadow:
+    0px 0px 0px 1px rgba(255, 255, 255, 0.14),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.6),
+    0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+.dark .btn-proofline-tactile:active {
+  box-shadow:
+    0px 0px 0px 1px rgba(255, 255, 255, 0.16),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.7);
+}
+
+/* Frequency gate: Zero delay on keyboard focus and shortcut actions */
+:focus-visible,
+.btn-proofline-tactile:focus-visible,
+[data-keyboard-active] *,
+.keyboard-nav * {
+  transition-delay: 0ms !important;
+}
+
+.btn-proofline-tactile:focus-visible:not(:active) {
+  transform: none !important;
 }
 
 /* Print stylesheet */
@@ -251,24 +595,41 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 .landing .font-mono {
   font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
-@media (prefers-reduced-motion: reduce){
-  *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
-  .logoloop__track { transform:none !important; }
+/* Universal Reduced-Motion Accessibility Killswitch */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: -0.01ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+  .logoloop__track {
+    transform: none !important;
+  }
 }
 
-@keyframes sunset-pulse {
-  0%, 100% {
+/* Purposeful single-pass mount entrance for sunset orb (replaces infinite scale pulse) */
+@keyframes sunset-entrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(1.02);
+  }
+  100% {
+    opacity: 0.90;
     transform: translate3d(0, 0, 0) scale(1.04);
-    opacity: 0.88;
-  }
-  50% {
-    transform: translate3d(0, -6px, 0) scale(1.10);
-    opacity: 0.98;
   }
 }
 
+.sunset-orb-mount,
 .animate-sunset-pulse {
-  animation: sunset-pulse 10s ease-in-out infinite;
+  animation: sunset-entrance 600ms var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
 }
 
 
@@ -282,3 +643,173 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 .text-muted {
   color: var(--ink-faint);
 }
+
+/* =========================================================================
+   Milestone 4: Stage Grid Ambient Radar Scan, POI Sweeps & Terminal Connectors
+   ========================================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes stage-radar-sweep {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.85;
+    }
+    85% {
+      opacity: 0.85;
+    }
+    100% {
+      transform: translateY(1100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes stage-poi-pulse {
+    0%, 100% {
+      transform: scale(0.85);
+      opacity: 0.15;
+    }
+    50% {
+      transform: scale(1.4);
+      opacity: 0.55;
+    }
+  }
+
+  .stage-radar-sweep-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 96px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(212, 132, 122, 0.05) 45%,
+      rgba(139, 30, 39, 0.12) 50%,
+      rgba(212, 132, 122, 0.05) 55%,
+      transparent 100%
+    );
+    will-change: transform, opacity;
+    animation: stage-radar-sweep 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .stage-poi-beacon {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: var(--oxide);
+    box-shadow: 0 0 8px var(--oxide);
+    will-change: transform, opacity;
+    animation: stage-poi-pulse 4.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+
+  /* Band 7: DeveloperTerminalBand Horizontal & Vertical SVG Bus Pulses */
+  @keyframes terminal-pulse-travel {
+    0% {
+      transform: translateX(-64px);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(500px);
+      opacity: 0;
+    }
+  }
+
+  .terminal-signal-packet {
+    animation: terminal-pulse-travel 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    will-change: transform, opacity;
+  }
+
+  @keyframes terminal-conduit-travel {
+    0% {
+      transform: translateY(-24px);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(96px);
+      opacity: 0;
+    }
+  }
+
+  .terminal-conduit-packet {
+    animation: terminal-conduit-travel 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    will-change: transform, opacity;
+  }
+
+  /* Smooth JSON Response Materialize */
+  @keyframes json-materialize-in {
+    0% {
+      opacity: 0.65;
+      transform: translateY(3px);
+      filter: blur(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+  }
+
+  .json-response-enter {
+    animation: json-materialize-in var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    will-change: transform, opacity, filter;
+  }
+
+  /* Code snippet materialize crossfade on tab switch */
+  @keyframes code-crossfade {
+    0% {
+      opacity: 0.65;
+      transform: translateY(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .code-crossfade {
+    animation: code-crossfade var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    will-change: transform, opacity;
+  }
+
+  /* Copy button icon pop */
+  @keyframes icon-pop-in {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-icon-pop {
+    animation: icon-pop-in var(--motion-duration-micro, 120ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-radar-sweep-bar,
+  .stage-poi-beacon,
+  .terminal-signal-packet,
+  .terminal-conduit-packet {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
