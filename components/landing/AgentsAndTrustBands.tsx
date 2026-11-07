@@ -87,12 +87,12 @@ const EIGHT_GRID_ITEMS: GridItem[] = [
     copyPayload: `curl -X POST http://localhost:3000/api/verify -H "Content-Type: application/json" -d '{"draft":"Flowdesk starts at ₹4,999/mo."}'`,
   },
   {
-    id: "mcp",
-    title: "Any MCP Client",
+    id: "ts_engine",
+    title: "TypeScript Engine",
     badgeColor: "text-ink bg-panel",
     actionType: "copy",
-    actionLabel: "Copy MCP URL",
-    copyPayload: "http://localhost:3000/api/verify",
+    actionLabel: "Copy Import",
+    copyPayload: 'import { verifyDraft } from "@/lib/verify";',
   },
 ];
 
