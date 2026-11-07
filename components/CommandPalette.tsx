@@ -13,6 +13,7 @@ import {
   Home,
   ArrowRight,
   BookText,
+  Settings,
 } from "lucide-react";
 import { resetDemo } from "@/lib/local";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
@@ -82,6 +83,13 @@ export function CommandPalette() {
       sublabel: "Fumadocs system guide, architecture, Evidence Gate & REST API",
       icon: BookText,
       action: () => router.push("/docs"),
+    },
+    {
+      id: "settings",
+      label: "Workspace Settings",
+      sublabel: "Reviewer identity, simulated review date, Evidence Gate invariants",
+      icon: Settings,
+      action: () => router.push("/settings"),
     },
     {
       id: "home",

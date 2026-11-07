@@ -32,6 +32,7 @@ import {
   BarChart3,
   Info,
   BookText,
+  Settings,
 } from "lucide-react";
 
 const WORKSPACE_MODULES = [
@@ -41,6 +42,7 @@ const WORKSPACE_MODULES = [
   { href: "/audit", label: "Compliance Journal", icon: ScrollText, badge: "03" },
   { href: "/about", label: "Architecture Specification", icon: Info, badge: "05" },
   { href: "/docs", label: "Documentation & SDK", icon: BookText, badge: "06" },
+  { href: "/settings", label: "Workspace Settings", icon: Settings, badge: "07" },
 ];
 
 export interface BreadcrumbDropdownProps {
