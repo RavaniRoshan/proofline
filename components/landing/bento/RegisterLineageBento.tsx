@@ -102,7 +102,7 @@ export function RegisterLineageBento() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border/60 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               Fact Register Lineage
             </span>
             <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
@@ -112,7 +112,7 @@ export function RegisterLineageBento() {
               42 Seed Facts
             </span>
           </div>
-          <h3 className="mt-1 text-base sm:text-lg font-bold tracking-tight text-foreground">
+          <h3 className="mt-1 font-serif text-lg sm:text-xl font-normal tracking-[-0.03em] text-foreground">
             Version-Controlled Ground Truth with Owner Signatures
           </h3>
         </div>
@@ -277,7 +277,7 @@ export function RegisterLineageBento() {
             <button
               type="button"
               onClick={handleCopySha}
-              className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none border border-border/60 bg-muted/30 text-xs font-mono text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors cursor-pointer active:scale-[0.98]"
             >
               {copiedSha ? (
                 <>

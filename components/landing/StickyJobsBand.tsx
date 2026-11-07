@@ -204,7 +204,7 @@ export function StickyJobsBand() {
                   <div className="mt-4 pl-[27px]">
                     <Link
                       href={step.ctaHref}
-                      className="inline-flex items-center gap-2 border border-ink/20 bg-paper px-4 py-2 font-mono text-[12px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel rounded-none"
+                      className="inline-flex items-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-4 py-2 font-mono text-[12px] uppercase text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 rounded-none shadow-xs"
                     >
                       <span>{step.ctaLabel}</span>
                       <span aria-hidden="true">→</span>
@@ -221,15 +221,15 @@ export function StickyJobsBand() {
           RIGHT COLUMN: 547x680 Rounded-[32px] Mesh Card with Floating Pills & Frosted Card
           ===================================================================== */}
       <div className="lg:col-span-7 flex justify-center lg:justify-end">
-        <div className="relative flex min-h-[580px] w-full max-w-[600px] flex-col items-center justify-center overflow-hidden rounded-[32px] border border-ink/10 p-6 md:min-h-[650px] md:p-12">
+        <div className="relative flex min-h-[580px] w-full max-w-[600px] flex-col items-center justify-center overflow-hidden rounded-[32px] border border-ink/10 dark:border-white/12 p-6 md:min-h-[650px] md:p-12">
           {/* Diagonal Silk Mesh Backdrop in Proofline Tokens */}
           <MeshCardBackdrop />
 
           {/* Floating Pill 1: Prompt */}
-          <div className="relative z-10 mb-3 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-paper px-4 py-2 text-[13.5px] font-medium text-ink shadow-sm">
+          <div className="relative z-10 mb-3 inline-flex items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-paper dark:bg-card px-4 py-2 text-[13.5px] font-medium text-ink dark:text-white shadow-sm">
             <span
               aria-hidden="true"
-              className="inline-flex size-4 items-center justify-center rounded-full bg-accent/15 font-mono text-[10px] font-bold text-accent"
+              className="inline-flex size-4 items-center justify-center rounded-full bg-accent/15 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]"
             >
               *
             </span>
@@ -237,55 +237,55 @@ export function StickyJobsBand() {
           </div>
 
           {/* Floating Pill 2: Skill / Stage Loaded */}
-          <div className="relative z-10 mb-4 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-paper px-4 py-1.5 text-[13px] font-medium text-ink shadow-sm">
-            <span className="font-mono text-[12px] font-bold text-accent">
+          <div className="relative z-10 mb-4 inline-flex items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-paper dark:bg-card px-4 py-1.5 text-[13px] font-medium text-ink dark:text-white shadow-sm">
+            <span className="font-mono text-[12px] font-bold text-accent dark:text-[#E07A70]">
               [ ]
             </span>
             <span>{current.secondPillBadge}</span>
           </div>
 
           {/* Frosted Glass Outer Frame -> Inner Card (Exact 05-band4-sticky-timeline.png) */}
-          <div className="relative z-10 w-full max-w-[440px] rounded-[22px] bg-black/5 dark:bg-white/8 border border-ink/8 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.12)] backdrop-blur-md">
-            <div className="rounded-2xl border border-ink/8 bg-paper p-6">
+          <div className="relative z-10 w-full max-w-[440px] rounded-[22px] bg-black/5 dark:bg-white/8 border border-ink/8 dark:border-white/10 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.12)] backdrop-blur-md">
+            <div className="rounded-2xl border border-ink/8 dark:border-white/10 bg-paper dark:bg-card p-6">
               {/* Top File Path */}
-              <div className="flex items-center justify-between gap-2 font-mono text-[12px] text-ink-faint">
+              <div className="flex items-center justify-between gap-2 font-mono text-[12px] text-ink-soft dark:text-zinc-400">
                 <div className="flex items-center gap-2">
-                  <BookOpen size={14} className="text-accent" />
+                  <BookOpen size={14} className="text-accent dark:text-[#E07A70]" />
                   <span>{current.cardPath}</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSimulateFault(!simulateFault)}
-                  className="font-mono text-[10px] uppercase text-accent underline underline-offset-2 cursor-pointer"
+                  className="font-mono text-[10px] uppercase text-accent dark:text-[#E07A70] underline underline-offset-2 cursor-pointer"
                 >
                   {simulateFault ? "Reset Gate" : "Test Fault"}
                 </button>
               </div>
 
               {/* Card Heading */}
-              <h3 className="mt-3 font-sans text-[19px] font-semibold text-ink">
+              <h3 className="mt-3 font-sans text-[19px] font-semibold text-ink dark:text-white">
                 {current.cardHeading}
               </h3>
-              <p className="mt-0.5 text-[13px] text-ink-soft">
+              <p className="mt-0.5 text-[13px] text-ink-soft dark:text-zinc-300">
                 {current.cardSubheading}
               </p>
 
               {/* 3 Numbered Rows */}
-              <div className="mt-4 divide-y divide-ink/8 border-t border-ink/10">
+              <div className="mt-4 divide-y divide-ink/8 dark:divide-white/8 border-t border-ink/10 dark:border-white/10">
                 {current.rows.map((row) => (
                   <div
                     key={row.num}
                     className="flex items-start justify-between gap-3 py-3"
                   >
                     <div className="flex items-start gap-3">
-                      <span className="font-mono text-[12px] text-ink-faint pt-0.5 tabular-nums">
+                      <span className="font-mono text-[12px] text-ink-soft dark:text-zinc-400 pt-0.5 tabular-nums">
                         {row.num}
                       </span>
                       <div>
-                        <p className="text-[14px] font-medium text-ink leading-snug">
+                        <p className="text-[14px] font-medium text-ink dark:text-white leading-snug">
                           {row.title}
                         </p>
-                        <p className="mt-0.5 text-[12.5px] leading-relaxed text-ink-soft">
+                        <p className="mt-0.5 text-[12.5px] leading-relaxed text-ink-soft dark:text-zinc-300">
                           {row.detail}
                         </p>
                       </div>
@@ -318,11 +318,11 @@ export function StickyJobsBand() {
                   </div>
                 </div>
               ) : (
-                <div className="mt-3 flex items-start gap-2.5 rounded-xl bg-[#F7EFE6] px-3.5 py-3 text-[12px] leading-relaxed text-ink">
+                <div className="mt-3 flex items-start gap-2.5 rounded-xl bg-[#F7EFE6] dark:bg-amber-950/20 px-3.5 py-3 text-[12px] leading-relaxed text-ink dark:text-amber-200">
                   <span className="shrink-0 font-semibold text-v-stale-fg">
                     {current.watchOutLabel}
                   </span>
-                  <span className="text-ink-soft">{current.watchOutText}</span>
+                  <span className="text-ink-soft dark:text-zinc-300">{current.watchOutText}</span>
                 </div>
               )}
             </div>

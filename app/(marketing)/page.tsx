@@ -118,15 +118,17 @@ export default function LandingPage() {
               register, and an Evidence Gate that already works, so claims ship right the first
               time.
             </p>
-            <Link
-              href="/check"
-              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none shadow-xs"
-            >
-              <span>TRY IT IN THE CHECKER</span>
-              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                →
-              </span>
-            </Link>
+            <MagneticButton pullStrength={0.2}>
+              <Link
+                href="/check"
+                className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+              >
+                <span>TRY IT IN THE CHECKER</span>
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </MagneticButton>
           </div>
 
           {/* 3-Column Connected Interactive Flow Stage */}
@@ -192,27 +194,29 @@ export default function LandingPage() {
               Approve product facts, validity windows, and disclaimers once. Every reviewer’s check
               gets them automatically.
             </p>
-            <Link
-              href="/facts"
-              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none shadow-xs"
-            >
-              <span>EXPLORE 42 SEEDED FACTS</span>
-              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                →
-              </span>
-            </Link>
+            <MagneticButton pullStrength={0.2}>
+              <Link
+                href="/facts"
+                className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+              >
+                <span>EXPLORE 42 SEEDED FACTS</span>
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </MagneticButton>
           </div>
 
           {/* 3 Equal Cards (375x368 geometry) + Floating Overlap Notification Pill */}
           <div className="relative mx-auto max-w-[1158px]">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
               {/* Card 1: Shared Fact Register (Shared Accounts equivalent) */}
-              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
                 <div>
-                  <h3 className="font-sans text-[18px] font-medium text-ink">
+                  <h3 className="font-sans text-[18px] font-medium text-ink dark:text-white">
                     Shared Fact Register
                   </h3>
-                  <p className="mt-0.5 text-[13.5px] text-ink-faint">
+                  <p className="mt-0.5 text-[13.5px] text-ink-soft dark:text-zinc-400">
                     Ready for every reviewer
                   </p>
 
@@ -220,13 +224,13 @@ export default function LandingPage() {
                     {[
                       { badge: "₹", badgeBg: "bg-v-contradicted-bg text-v-contradicted-fg", label: "flowdesk.starter_price (v4)" },
                       { badge: "₹", badgeBg: "bg-v-contradicted-bg text-v-contradicted-fg", label: "flowdesk.pro_price (v4)" },
-                      { badge: "F", badgeBg: "bg-ink text-paper", label: "Flowdesk Enterprise SLA" },
+                      { badge: "F", badgeBg: "bg-ink text-paper dark:bg-white dark:text-zinc-950", label: "Flowdesk Enterprise SLA" },
                       { badge: "M", badgeBg: "bg-v-supported-bg text-v-supported-fg", label: "mumbai.data_residency" },
                       { badge: "S", badgeBg: "bg-v-stale-bg text-v-stale-fg", label: "legacy.growth_sunset" },
                     ].map((row) => (
                       <div
                         key={row.label}
-                        className="flex items-center gap-3 rounded-xl bg-panel/80 px-3.5 py-2.5 text-[13px] text-ink"
+                        className="flex items-center gap-3 rounded-xl bg-panel/80 dark:bg-zinc-800/80 px-3.5 py-2.5 text-[13px] text-ink dark:text-zinc-200"
                       >
                         <span
                           className={`inline-flex size-5 shrink-0 items-center justify-center rounded-[4px] font-mono text-[10px] font-bold ${row.badgeBg}`}
@@ -241,12 +245,12 @@ export default function LandingPage() {
               </section>
 
               {/* Card 2: Shared Rules & Lineage (Shared Skills equivalent) */}
-              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
                 <div>
-                  <h3 className="font-sans text-[18px] font-medium text-ink">
+                  <h3 className="font-sans text-[18px] font-medium text-ink dark:text-white">
                     Shared Verification Rules
                   </h3>
-                  <p className="mt-0.5 text-[13.5px] text-ink-faint">
+                  <p className="mt-0.5 text-[13.5px] text-ink-soft dark:text-zinc-400">
                     For every campaign &amp; launch
                   </p>
 
@@ -255,12 +259,12 @@ export default function LandingPage() {
                       { label: "Check Q2 Pricing Draft", tag: "P", tagClass: "bg-v-conflicting-bg text-v-conflicting-fg" },
                       { label: "Audit Renewal Emails", tag: "M", tagClass: "bg-v-stale-bg text-v-stale-fg" },
                       { label: "Verify Security Whitepaper", tag: "D", tagClass: "bg-v-supported-bg text-v-supported-fg" },
-                      { label: "Flag Seat Tier Conflicts", tag: "S", tagClass: "bg-panel text-ink-soft" },
+                      { label: "Flag Seat Tier Conflicts", tag: "S", tagClass: "bg-panel dark:bg-zinc-800 text-ink-soft dark:text-zinc-400" },
                       { label: "Enforce Uptime Disclaimer", tag: "L", tagClass: "bg-v-contradicted-bg text-v-contradicted-fg" },
                     ].map((row) => (
                       <div
                         key={row.label}
-                        className="flex items-center justify-between gap-2 rounded-xl bg-panel/80 px-3.5 py-2.5 text-[13px] text-ink"
+                        className="flex items-center justify-between gap-2 rounded-xl bg-panel/80 dark:bg-zinc-800/80 px-3.5 py-2.5 text-[13px] text-ink dark:text-zinc-200"
                       >
                         <span className="truncate">{row.label}</span>
                         <span
@@ -275,18 +279,18 @@ export default function LandingPage() {
               </section>
 
               {/* Card 3: Deterministic Budget (Shared Budget equivalent with bottom dark card) */}
-              <section className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+              <section className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
                 <MeshCardBackdrop className="opacity-45" />
                 <div className="relative z-10 p-6 pb-3">
-                  <h3 className="font-sans text-[18px] font-medium text-ink">
+                  <h3 className="font-sans text-[18px] font-medium text-ink dark:text-white">
                     Deterministic Budget
                   </h3>
-                  <p className="mt-0.5 text-[13.5px] text-ink-faint tabular-nums">
+                  <p className="mt-0.5 text-[13.5px] text-ink-soft dark:text-zinc-400 tabular-nums">
                     78% resolved with 0 model tokens
                   </p>
 
                   {/* Segmented Progress Bar */}
-                  <div className="mt-4 flex h-2 w-full gap-1 overflow-hidden rounded-full bg-ink/10">
+                  <div className="mt-4 flex h-2 w-full gap-1 overflow-hidden rounded-full bg-ink/10 dark:bg-white/10">
                     <div className="h-full w-[56%] rounded-l-full bg-accent" />
                     <div className="h-full w-[22%] bg-accent/65" />
                     <div className="h-full w-[14%] bg-accent/35" />
@@ -301,16 +305,16 @@ export default function LandingPage() {
                     ].map((r) => (
                       <div
                         key={r.name}
-                        className="flex items-center justify-between rounded-xl bg-paper/90 border border-ink/6 px-3.5 py-2 text-[13px] shadow-2xs"
+                        className="flex items-center justify-between rounded-xl bg-paper/90 dark:bg-zinc-800/90 border border-ink/6 dark:border-white/6 px-3.5 py-2 text-[13px] shadow-2xs"
                       >
                         <div className="flex items-center gap-2">
                           <span className={`size-1.5 rounded-full ${r.dot}`} />
-                          <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-ink text-paper font-mono text-[9px] font-bold">
+                          <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-ink text-paper dark:bg-white dark:text-zinc-950 font-mono text-[9px] font-bold">
                             {r.icon}
                           </span>
-                          <span className="text-ink">{r.name}</span>
+                          <span className="text-ink dark:text-zinc-200">{r.name}</span>
                         </div>
-                        <span className="font-mono text-[12px] text-ink-soft tabular-nums">
+                        <span className="font-mono text-[12px] text-ink-soft dark:text-zinc-400 tabular-nums">
                           {r.val}
                         </span>
                       </div>
@@ -342,15 +346,15 @@ export default function LandingPage() {
             </div>
 
             {/* Floating Bottom-Center Overlap Toast Card (Exact 06-band5-permissions-diagram.png) */}
-            <div className="mx-auto mt-8 relative z-20 flex w-fit items-center gap-3 rounded-2xl border border-ink/15 dark:border-white/12 bg-paper px-6 py-4 shadow-[0_16px_40px_rgba(26,26,24,0.1)]">
+            <div className="mx-auto mt-8 relative z-20 flex w-fit items-center gap-3 rounded-2xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card px-6 py-4 shadow-[0_16px_40px_rgba(26,26,24,0.1)]">
               <span className="inline-flex size-7 items-center justify-center rounded-full bg-v-supported-bg text-v-supported-fg">
                 <CheckCircle2 size={15} />
               </span>
               <div className="text-left">
-                <p className="text-[13.5px] font-medium text-ink leading-tight">
+                <p className="text-[13.5px] font-medium text-ink dark:text-white leading-tight">
                   Pricing sheet v4 approved in register
                 </p>
-                <p className="text-[12px] text-ink-faint">
+                <p className="text-[12px] text-ink-soft dark:text-zinc-400">
                   Facts, byte spans, and validity windows ready for every check
                 </p>
               </div>
@@ -425,40 +429,44 @@ export default function LandingPage() {
 
             {/* Dual Sharp 0px Enterprise CTAs */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center justify-center gap-2 bg-ink px-5 py-3 font-mono text-[13px] uppercase text-paper transition-colors hover:bg-ink/85 active:scale-[0.98] rounded-none shadow-xs"
-              >
-                <span>OPEN REGISTER DASHBOARD</span>
-                <span aria-hidden="true">→</span>
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none shadow-xs"
-              >
-                <span>READ ROUND 1 → 2 SPEC</span>
-              </Link>
+              <MagneticButton pullStrength={0.25}>
+                <Link
+                  href="/dashboard"
+                  className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+                >
+                  <span>OPEN REGISTER DASHBOARD</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </MagneticButton>
+              <MagneticButton pullStrength={0.2}>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
+                >
+                  <span>READ ROUND 1 → 2 SPEC</span>
+                </Link>
+              </MagneticButton>
             </div>
           </div>
 
           {/* 2-Column Enterprise Governance Cards */}
           <div className="mx-auto grid max-w-[1158px] grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-            <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+            <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
               <div>
-                <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent">
+                <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent dark:text-[#E07A70]">
                   <Lock size={14} />
                   <span>LOCAL-FIRST ISOLATION</span>
                 </div>
-                <h3 className="font-sans text-[20px] font-medium text-ink">
+                <h3 className="font-sans text-[20px] font-medium text-ink dark:text-white">
                   Zero server draft retention &amp; incognito ready
                 </h3>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">
+                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft dark:text-zinc-300">
                   Drafts are verified statelessly in memory. Reviewer sign-offs, fact version
                   approvals, and the append-only decision journal persist strictly in{" "}
-                  <code className="font-mono text-[12.5px] text-ink">localStorage (proofline.v1)</code>.
+                  <code className="font-mono text-[12.5px] text-ink dark:text-zinc-200">localStorage (proofline.v1)</code>.
                 </p>
               </div>
-              <div className="mt-6 grid grid-cols-2 gap-2 border-t border-ink/10 pt-4 font-mono text-[11.5px] text-ink-soft">
+              <div className="mt-6 grid grid-cols-2 gap-2 border-t border-ink/10 dark:border-white/10 pt-4 font-mono text-[11.5px] text-ink-soft dark:text-zinc-400">
                 <span>· Zero Auth Wall</span>
                 <span>· Zero Tracking Cookies</span>
                 <span>· 1-Click Reset Demo</span>
@@ -466,21 +474,21 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+            <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
               <div>
-                <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent">
+                <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent dark:text-[#E07A70]">
                   <FileCheck2 size={14} />
                   <span>VERIFIED ENGINEERING GATES</span>
                 </div>
-                <h3 className="font-sans text-[20px] font-medium text-ink">
+                <h3 className="font-sans text-[20px] font-medium text-ink dark:text-white">
                   Certified Round 2 benchmark controls
                 </h3>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">
+                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft dark:text-zinc-300">
                   Every commit is gated by seed schema validation, 51 unit tests across all
                   normalization and resolution modules, and a 24-case evaluation smoke harness.
                 </p>
               </div>
-              <div className="mt-6 grid grid-cols-2 gap-2 border-t border-ink/10 pt-4 font-mono text-[11.5px] text-ink-soft tabular-nums">
+              <div className="mt-6 grid grid-cols-2 gap-2 border-t border-ink/10 dark:border-white/10 pt-4 font-mono text-[11.5px] text-ink-soft dark:text-zinc-400 tabular-nums">
                 <span>· 78% Deterministic Split</span>
                 <span>· 24/24 Smoke Eval Pass</span>
                 <span>· 51/51 Vitest Suite</span>
@@ -530,7 +538,7 @@ export default function LandingPage() {
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-paper/80 dark:bg-white/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
                   [08] GET STARTED IN SECONDS
                 </span>
-                <h2 className="max-w-[20ch] text-balance font-sans text-[32px] md:text-[46px] font-normal tracking-[-0.042em] leading-[1.08] text-ink dark:text-white">
+                <h2 className="max-w-[20ch] text-balance font-serif text-[32px] md:text-[46px] font-normal tracking-[-0.04em] leading-[1.08] text-ink dark:text-white">
                   Give your team what it needs to{" "}
                   <span className="text-accent dark:text-[#E07A70]">tell the truth</span>
                 </h2>

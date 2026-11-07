@@ -191,14 +191,14 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 1: "Your register, your rules" (07-band6-trust-security.png left)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
         {/* Top Visual Area */}
-        <div className="flex flex-col border-b border-ink/8">
+        <div className="flex flex-col border-b border-ink/8 dark:border-white/10">
           {/* Silk Mesh Header with Floating Pill */}
-          <div className="relative flex h-[126px] items-center justify-center overflow-hidden border-b border-ink/8 px-4">
+          <div className="relative flex h-[126px] items-center justify-center overflow-hidden border-b border-ink/8 dark:border-white/10 px-4">
             <MeshCardBackdrop />
-            <div className="relative z-10 inline-flex items-center gap-2.5 rounded-full border border-ink/10 bg-paper px-5 py-2.5 text-[13.5px] font-medium text-ink shadow-md">
-              <span className="inline-flex size-5 items-center justify-center rounded-full bg-accent/15 font-mono text-[11px] font-bold text-accent">
+            <div className="relative z-10 inline-flex items-center gap-2.5 rounded-full border border-ink/10 dark:border-white/15 bg-paper dark:bg-card px-5 py-2.5 text-[13.5px] font-medium text-ink dark:text-white shadow-md">
+              <span className="inline-flex size-5 items-center justify-center rounded-full bg-accent/15 font-mono text-[11px] font-bold text-accent dark:text-[#E07A70]">
                 P
               </span>
               <span>Connect Fact Register v4</span>
@@ -206,7 +206,7 @@ export function TrustSecurityCards() {
           </div>
 
           {/* 3 Interactive Permission Rows */}
-          <div className="divide-y divide-ink/8 px-5">
+          <div className="divide-y divide-ink/8 dark:divide-white/8 px-5">
             {[
               { label: "Verify numeric & price claims", badge: "F" },
               { label: "Flag expired validity windows", badge: "F" },
@@ -218,23 +218,23 @@ export function TrustSecurityCards() {
                   key={row.label}
                   className="flex items-center justify-between py-3 text-[13px]"
                 >
-                  <div className="flex items-center gap-2.5 text-ink">
-                    <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[10px] font-bold text-accent">
+                  <div className="flex items-center gap-2.5 text-ink dark:text-zinc-200">
+                    <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]">
                       {row.badge}
                     </span>
                     <span className="truncate">{row.label}</span>
                   </div>
 
                   {/* 3-State Segmented Control (Allow / Review / Block) */}
-                  <div className="flex items-center gap-0.5 rounded-lg border border-ink/10 bg-panel/60 p-0.5">
+                  <div className="flex items-center gap-0.5 rounded-lg border border-ink/10 dark:border-white/15 bg-panel/60 dark:bg-zinc-800/60 p-0.5">
                     <button
                       type="button"
                       aria-label={`Allow ${row.label}`}
                       onClick={() => setRowMode(idx, "allow")}
                       className={`inline-flex size-6 items-center justify-center rounded-md transition-colors cursor-pointer ${
                         mode === "allow"
-                          ? "bg-paper text-v-supported-fg shadow-2xs"
-                          : "text-ink-faint hover:text-ink"
+                          ? "bg-paper dark:bg-zinc-700 text-v-supported-fg shadow-2xs"
+                          : "text-ink-soft dark:text-zinc-400 hover:text-ink dark:hover:text-white"
                       }`}
                     >
                       <CheckCircle2 size={13} />
@@ -245,8 +245,8 @@ export function TrustSecurityCards() {
                       onClick={() => setRowMode(idx, "review")}
                       className={`inline-flex size-6 items-center justify-center rounded-md transition-colors cursor-pointer ${
                         mode === "review"
-                          ? "bg-paper text-v-stale-fg shadow-2xs"
-                          : "text-ink-faint hover:text-ink"
+                          ? "bg-paper dark:bg-zinc-700 text-v-stale-fg shadow-2xs"
+                          : "text-ink-soft dark:text-zinc-400 hover:text-ink dark:hover:text-white"
                       }`}
                     >
                       <Hand size={13} />
@@ -257,8 +257,8 @@ export function TrustSecurityCards() {
                       onClick={() => setRowMode(idx, "block")}
                       className={`inline-flex size-6 items-center justify-center rounded-md transition-colors cursor-pointer ${
                         mode === "block"
-                          ? "bg-paper text-v-contradicted-fg shadow-2xs"
-                          : "text-ink-faint hover:text-ink"
+                          ? "bg-paper dark:bg-zinc-700 text-v-contradicted-fg shadow-2xs"
+                          : "text-ink-soft dark:text-zinc-400 hover:text-ink dark:hover:text-white"
                       }`}
                     >
                       <Ban size={13} />
@@ -272,10 +272,10 @@ export function TrustSecurityCards() {
 
         {/* Bottom Copy Area */}
         <div className="p-6">
-          <h3 className="text-[18px] font-medium text-ink">
+          <h3 className="text-[18px] font-medium text-ink dark:text-white">
             Your register, your rules
           </h3>
-          <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft text-pretty">
+          <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft dark:text-zinc-300 text-pretty">
             Proofline never crawls unverified web pages. You choose which approved facts and
             validity windows govern every check.
           </p>
@@ -285,18 +285,18 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 2: "Hallucinated citations get blocked" (07-band6-trust-security.png center)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
         {/* Top Visual Area: Skeleton Lines + Red Blocked Callout */}
-        <div className="flex flex-1 flex-col justify-center border-b border-ink/8 p-6">
+        <div className="flex flex-1 flex-col justify-center border-b border-ink/8 dark:border-white/10 p-6">
           <div className="flex items-center gap-2 mb-3">
-            <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[10px] font-bold text-accent">
+            <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]">
               M
             </span>
-            <div className="h-2.5 w-24 rounded-full bg-ink/10" />
+            <div className="h-2.5 w-24 rounded-full bg-ink/10 dark:bg-white/10" />
           </div>
           <div className="space-y-2 mb-4">
-            <div className="h-2.5 w-full rounded-full bg-ink/8" />
-            <div className="h-2.5 w-4/5 rounded-full bg-ink/8" />
+            <div className="h-2.5 w-full rounded-full bg-ink/8 dark:bg-white/8" />
+            <div className="h-2.5 w-4/5 rounded-full bg-ink/8 dark:bg-white/8" />
           </div>
 
           {/* Red-Bordered Blocked Injection / Citation Box */}
@@ -311,17 +311,17 @@ export function TrustSecurityCards() {
           </div>
 
           <div className="mt-4 space-y-2">
-            <div className="h-2.5 w-3/4 rounded-full bg-ink/8" />
-            <div className="h-2.5 w-1/2 rounded-full bg-ink/8" />
+            <div className="h-2.5 w-3/4 rounded-full bg-ink/8 dark:bg-white/8" />
+            <div className="h-2.5 w-1/2 rounded-full bg-ink/8 dark:bg-white/8" />
           </div>
         </div>
 
         {/* Bottom Copy Area */}
         <div className="p-6">
-          <h3 className="text-[18px] font-medium text-ink">
+          <h3 className="text-[18px] font-medium text-ink dark:text-white">
             Unbacked accusations get blocked
           </h3>
-          <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft text-pretty">
+          <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft dark:text-zinc-300 text-pretty">
             The runtime Evidence Gate intercepts any contradiction missing a document ID, byte
             span, or date window before a reviewer ever sees it.
           </p>
@@ -331,24 +331,24 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 3: "Every decision on record" (07-band6-trust-security.png right)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
         {/* Top Visual Area: 4-Node Horizontal Timeline + Approved Action Card */}
-        <div className="flex flex-1 flex-col justify-center border-b border-ink/8 p-6">
+        <div className="flex flex-1 flex-col justify-center border-b border-ink/8 dark:border-white/10 p-6">
           <div className="relative flex items-center justify-between px-2">
             {/* Horizontal connecting line */}
             <div
               aria-hidden="true"
-              className="absolute top-5 right-6 left-6 h-px bg-ink/15"
+              className="absolute top-5 right-6 left-6 h-px bg-ink/15 dark:bg-white/15"
             />
             {[
-              { icon: "S", time: "9:41", active: false, bg: "bg-panel text-ink" },
+              { icon: "S", time: "9:41", active: false, bg: "bg-panel dark:bg-zinc-800 text-ink dark:text-zinc-200" },
               {
                 icon: "F",
                 time: "9:41",
                 active: false,
                 bg: "bg-v-contradicted-bg text-v-contradicted-fg",
               },
-              { icon: "P", time: "9:42", active: false, bg: "bg-ink text-paper" },
+              { icon: "P", time: "9:42", active: false, bg: "bg-ink text-paper dark:bg-white dark:text-zinc-950" },
               {
                 icon: "✓",
                 time: "9:44",
@@ -361,10 +361,10 @@ export function TrustSecurityCards() {
                 className="relative z-10 flex flex-col items-center gap-2"
               >
                 <div
-                  className={`flex size-10 items-center justify-center rounded-full border bg-paper shadow-2xs ${
+                  className={`flex size-10 items-center justify-center rounded-full border bg-paper dark:bg-card shadow-2xs ${
                     node.active
                       ? "border-2 border-v-stale-fg/60 ring-4 ring-v-stale-bg/60"
-                      : "border-ink/12"
+                      : "border-ink/12 dark:border-white/12"
                   }`}
                 >
                   <span
@@ -373,7 +373,7 @@ export function TrustSecurityCards() {
                     {node.icon}
                   </span>
                 </div>
-                <span className="font-mono text-[11px] text-ink-faint tabular-nums">
+                <span className="font-mono text-[11px] text-ink-soft dark:text-zinc-400 tabular-nums">
                   {node.time}
                 </span>
               </div>
@@ -381,8 +381,8 @@ export function TrustSecurityCards() {
           </div>
 
           {/* Bottom Timeline Event Card */}
-          <div className="mt-5 flex items-center justify-between rounded-2xl border border-ink/10 bg-paper px-4 py-3.5 shadow-sm">
-            <span className="text-[13.5px] font-medium text-ink">
+          <div className="mt-5 flex items-center justify-between rounded-2xl border border-ink/10 dark:border-white/10 bg-paper dark:bg-zinc-800/80 px-4 py-3.5 shadow-sm">
+            <span className="text-[13.5px] font-medium text-ink dark:text-white">
               Updated starter price to ₹6,499
             </span>
             <span className="rounded-full bg-v-stale-bg px-2.5 py-0.5 font-mono text-[11px] font-semibold text-v-stale-fg">
@@ -393,10 +393,10 @@ export function TrustSecurityCards() {
 
         {/* Bottom Copy Area */}
         <div className="p-6">
-          <h3 className="text-[18px] font-medium text-ink">
+          <h3 className="text-[18px] font-medium text-ink dark:text-white">
             Every decision on record
           </h3>
-          <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft text-pretty">
+          <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft dark:text-zinc-300 text-pretty">
             See every claim Proofline checked, which source document backed it, and every human
             sign-off in the append-only audit log.
           </p>

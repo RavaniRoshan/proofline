@@ -34,11 +34,11 @@ export function Faq6({
       <div className="grid grid-cols-1 md:grid-cols-12 relative">
         <div className="md:col-span-4 lg:col-span-5 p-8 md:p-12 border-b border-dashed border-border md:border-b-0 md:border-r flex flex-col justify-start">
           {badge && (
-            <span className="text-muted-foreground mb-4 text-xs font-semibold uppercase tracking-widest font-mono">
+            <span className="text-accent dark:text-[#E07A70] mb-4 text-[11px] font-semibold uppercase tracking-wider font-mono">
               {badge}
             </span>
           )}
-          <h2 className="text-foreground text-3xl font-medium tracking-tight md:text-5xl lg:text-6xl">
+          <h2 className="text-foreground text-3xl font-serif font-normal tracking-[-0.04em] md:text-5xl lg:text-5xl leading-[1.08]">
             {title}
           </h2>
         </div>

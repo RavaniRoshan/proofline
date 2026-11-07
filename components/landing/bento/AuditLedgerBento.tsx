@@ -93,7 +93,7 @@ export function AuditLedgerBento() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border/60 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               SOC 2 Compliance Ledger
             </span>
             <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
@@ -103,7 +103,7 @@ export function AuditLedgerBento() {
               Zero Server Retention
             </span>
           </div>
-          <h3 className="mt-1 text-base sm:text-lg font-bold tracking-tight text-foreground">
+          <h3 className="mt-1 font-serif text-lg sm:text-xl font-normal tracking-[-0.03em] text-foreground">
             Immutable Verification Ledger &amp; Exportable Compliance Trail
           </h3>
         </div>
@@ -111,7 +111,7 @@ export function AuditLedgerBento() {
         <button
           type="button"
           onClick={handleDownload}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-foreground px-3 py-1.5 text-xs font-semibold text-background transition-colors hover:bg-foreground/90 cursor-pointer self-start sm:self-auto"
+          className="inline-flex items-center gap-2 rounded-none border border-border bg-foreground px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold text-background transition-all hover:opacity-90 active:scale-[0.98] cursor-pointer self-start sm:self-auto shadow-xs"
         >
           {downloaded ? (
             <>

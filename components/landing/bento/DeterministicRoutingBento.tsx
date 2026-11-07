@@ -96,14 +96,14 @@ export function DeterministicRoutingBento() {
         <div>
           <div className="flex items-center gap-2">
             <span className="inline-flex size-2 rounded-full bg-[#1F5C43]" />
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               Stage 1 Deterministic Router
             </span>
             <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
               TypeScript 0.4ms
             </span>
           </div>
-          <h3 className="mt-1 text-base sm:text-lg font-bold tracking-tight text-foreground">
+          <h3 className="mt-1 font-serif text-lg sm:text-xl font-normal tracking-[-0.03em] text-foreground">
             78% of Claims Resolved Deterministically Before Any Model Call
           </h3>
         </div>

@@ -22,7 +22,7 @@ export function EvidenceGateInspectorBento() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border/60 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
               Runtime Evidence Gate
             </span>
             <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
@@ -38,7 +38,7 @@ export function EvidenceGateInspectorBento() {
               {tampered ? "UNVERIFIED FALLBACK" : "VERDICT COMMITTED"}
             </span>
           </div>
-          <h3 className="mt-1 text-base sm:text-lg font-bold tracking-tight text-foreground">
+          <h3 className="mt-1 font-serif text-lg sm:text-xl font-normal tracking-[-0.03em] text-foreground">
             Zero Hallucinated Citations: All 6 Proof Pins Enforced at Runtime
           </h3>
         </div>

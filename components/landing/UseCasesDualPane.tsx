@@ -182,17 +182,17 @@ export function UseCasesDualPane() {
         {/* =====================================================================
             LEFT PANE: Draft Input & Tool Call Stream (rounded-[24px])
             ===================================================================== */}
-        <div className="relative z-10 flex h-[458px] flex-col justify-between rounded-[24px] border border-ink/10 bg-paper shadow-[0_8px_30px_rgba(26,26,24,0.04)] overflow-hidden">
+        <div className="relative z-10 flex h-[458px] flex-col justify-between rounded-[24px] border border-ink/10 dark:border-white/12 bg-paper dark:bg-card shadow-[0_8px_30px_rgba(26,26,24,0.04)] overflow-hidden">
           {/* Top Bar */}
-          <div className="flex items-center justify-between border-b border-ink/10 px-4 py-3">
+          <div className="flex items-center justify-between border-b border-ink/10 dark:border-white/10 px-4 py-3">
             <div className="flex items-center gap-2">
               <span
                 aria-hidden="true"
-                className="inline-flex size-5 items-center justify-center rounded-full bg-accent/12 font-mono text-[10px] font-bold text-accent"
+                className="inline-flex size-5 items-center justify-center rounded-full bg-accent/12 dark:bg-accent/20 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]"
               >
                 *
               </span>
-              <span className="font-sans text-[14px] font-medium text-ink">
+              <span className="font-sans text-[14px] font-medium text-ink dark:text-white">
                 {current.sourceLabel}
               </span>
             </div>
@@ -208,8 +208,8 @@ export function UseCasesDualPane() {
                   aria-label={`Select scenario ${sc.sourceLabel}`}
                   className={`min-h-[32px] min-w-[32px] px-2.5 py-1 font-mono text-[11px] rounded-[4px] uppercase transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer inline-flex items-center justify-center active:scale-[0.97] ${
                     i === activeIdx
-                      ? "bg-ink text-paper font-semibold shadow-xs"
-                      : "bg-panel text-ink-faint hover:text-ink hover:bg-panel/80"
+                      ? "bg-ink text-paper dark:bg-white dark:text-zinc-950 font-semibold shadow-xs"
+                      : "bg-panel dark:bg-zinc-800 text-ink-soft dark:text-zinc-400 hover:text-ink dark:hover:text-white hover:bg-panel/80 dark:hover:bg-zinc-700"
                   }`}
                 >
                   0{i + 1}
@@ -223,9 +223,9 @@ export function UseCasesDualPane() {
             key={`left-pane-${current.id}`}
             className="flex flex-1 flex-col justify-center gap-3 px-5 py-4 scenario-pane-crossfade"
           >
-            <div className="ml-auto max-w-[92%] rounded-2xl bg-panel px-4 py-3.5 text-[13.5px] leading-relaxed text-ink shadow-2xs">
+            <div className="ml-auto max-w-[92%] rounded-2xl bg-panel dark:bg-zinc-800/80 px-4 py-3.5 text-[13.5px] leading-relaxed text-ink dark:text-zinc-100 shadow-2xs">
               <p>{current.draftPrompt}</p>
-              <p className="mt-2 border-t border-ink/10 pt-2 font-sans font-medium text-[13.5px] text-accent-brand dark:text-accent-readable font-semibold">
+              <p className="mt-2 border-t border-ink/10 dark:border-white/10 pt-2 font-sans font-medium text-[13.5px] text-accent-brand dark:text-accent-readable font-semibold">
                 {current.highlightedClaim}
               </p>
             </div>
@@ -396,23 +396,23 @@ export function UseCasesDualPane() {
         {/* =====================================================================
             RIGHT PANE: Live Verification Brief Window (rounded-[24px])
             ===================================================================== */}
-        <div className="relative z-10 flex h-[458px] flex-col justify-between rounded-[24px] border border-ink/10 bg-paper shadow-[0_8px_30px_rgba(26,26,24,0.04)] overflow-hidden">
+        <div className="relative z-10 flex h-[458px] flex-col justify-between rounded-[24px] border border-ink/10 dark:border-white/12 bg-paper dark:bg-card shadow-[0_8px_30px_rgba(26,26,24,0.04)] overflow-hidden">
           {/* Window Chrome Bar */}
-          <div className="flex items-center justify-between border-b border-ink/10 px-4 py-3">
+          <div className="flex items-center justify-between border-b border-ink/10 dark:border-white/10 px-4 py-3">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1.5" aria-hidden="true">
-                <span className="size-2.5 rounded-full bg-ink/15" />
-                <span className="size-2.5 rounded-full bg-ink/15" />
-                <span className="size-2.5 rounded-full bg-ink/15" />
+                <span className="size-2.5 rounded-full bg-ink/15 dark:bg-white/20" />
+                <span className="size-2.5 rounded-full bg-ink/15 dark:bg-white/20" />
+                <span className="size-2.5 rounded-full bg-ink/15 dark:bg-white/20" />
               </div>
-              <span className="ml-1 inline-flex size-4 items-center justify-center rounded-[3px] border border-ink/30 font-mono text-[10px] font-bold text-ink">
+              <span className="ml-1 inline-flex size-4 items-center justify-center rounded-[3px] border border-ink/30 dark:border-white/30 font-mono text-[10px] font-bold text-ink dark:text-white">
                 P
               </span>
-              <span className="font-sans text-[13px] text-ink-soft">
+              <span className="font-sans text-[13px] text-ink-soft dark:text-zinc-400">
                 Register · Verification Brief
               </span>
             </div>
-            <span className="font-mono text-[11px] text-ink-faint tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
+            <span className="font-mono text-[11px] text-ink-soft dark:text-zinc-400 tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
               {current.factId}
             </span>
           </div>
@@ -425,7 +425,7 @@ export function UseCasesDualPane() {
             <div>
               {/* Notion-style square emblem + verdict badge */}
               <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="inline-flex size-9 sm:size-10 items-center justify-center rounded-[6px] border-2 border-ink font-mono text-[15px] font-bold text-ink">
+                <span className="inline-flex size-9 sm:size-10 items-center justify-center rounded-[6px] border-2 border-ink dark:border-white font-mono text-[15px] font-bold text-ink dark:text-white">
                   P
                 </span>
                 <span
@@ -445,27 +445,27 @@ export function UseCasesDualPane() {
                 </span>
               </div>
 
-              <h3 className="font-sans text-[22px] font-semibold tracking-tight text-ink">
+              <h3 className="font-sans text-[22px] font-semibold tracking-tight text-ink dark:text-white">
                 {current.docTitle}
               </h3>
-              <p className="mt-1 font-mono text-[12px] text-ink-faint tabular-nums">
+              <p className="mt-1 font-mono text-[12px] text-ink-soft dark:text-zinc-400 tabular-nums">
                 Fact {current.factId} · {current.factVersion} · {current.spanRange}
               </p>
 
-              <div className="mt-4 space-y-2.5 border-t border-ink/10 pt-3.5 text-[13px]">
+              <div className="mt-4 space-y-2.5 border-t border-ink/10 dark:border-white/10 pt-3.5 text-[13px]">
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink-faint block">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink-soft dark:text-zinc-400 block">
                     APPROVED REGISTER VALUE
                   </span>
-                  <span className="font-medium text-ink">
+                  <span className="font-medium text-ink dark:text-zinc-200">
                     {current.approvedValue}
                   </span>
                 </div>
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink-faint block">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink-soft dark:text-zinc-400 block">
                     RECOMMENDED ACTION
                   </span>
-                  <span className="font-medium text-accent">
+                  <span className="font-medium text-accent dark:text-[#E07A70]">
                     {current.suggestedFix}
                   </span>
                 </div>
@@ -473,10 +473,10 @@ export function UseCasesDualPane() {
             </div>
 
             {/* Interactive Reviewer Decision Strip */}
-            <div className="border-t border-ink/10 pt-3.5">
+            <div className="border-t border-ink/10 dark:border-white/10 pt-3.5">
               <div className="flex items-center justify-between mb-2 font-mono text-[11px]">
-                <span className="text-ink-faint uppercase">Reviewer Decision</span>
-                <span className="font-semibold text-ink transition-colors duration-[var(--motion-duration-fast,180ms)]">
+                <span className="text-ink-soft dark:text-zinc-400 uppercase">Reviewer Decision</span>
+                <span className="font-semibold text-ink dark:text-white transition-colors duration-[var(--motion-duration-fast,180ms)]">
                   {recordedDecision}
                 </span>
               </div>
@@ -491,8 +491,8 @@ export function UseCasesDualPane() {
                     }}
                     className={`border py-1.5 font-mono text-[11px] uppercase transition-all duration-[var(--motion-duration-micro,120ms)] cursor-pointer rounded-none active:scale-[0.97] ${
                       recordedDecision === action
-                        ? "border-ink bg-ink text-paper font-semibold shadow-2xs"
-                        : "border-ink/15 bg-panel/60 text-ink hover:bg-panel hover:border-ink/30"
+                        ? "border-ink bg-ink text-paper font-semibold shadow-2xs dark:border-white dark:bg-white dark:text-zinc-950"
+                        : "border-ink/15 dark:border-white/15 bg-panel/60 dark:bg-zinc-800/60 text-ink dark:text-zinc-200 hover:bg-panel dark:hover:bg-zinc-800 hover:border-ink/30 dark:hover:border-white/30"
                     }`}
                   >
                     {action}
@@ -506,10 +506,10 @@ export function UseCasesDualPane() {
 
       {/* Circular Pause/Play Demo Control at bottom-right matching 03-band2-use-cases.png */}
       <div className="mt-4 flex items-center justify-between">
-        <div className="flex items-center gap-3 font-mono text-[11px] text-ink-faint">
+        <div className="flex items-center gap-3 font-mono text-[11px] text-ink-soft dark:text-zinc-400">
           <span>SCENARIO 0{activeIdx + 1} / 03</span>
           <span aria-hidden="true">·</span>
-          <Link href="/check" className="underline hover:text-ink transition-colors">
+          <Link href="/check" className="underline hover:text-ink dark:hover:text-white transition-colors">
             Open full 12-claim sample draft in Checker →
           </Link>
         </div>
@@ -518,7 +518,7 @@ export function UseCasesDualPane() {
           type="button"
           onClick={() => setPaused(!paused)}
           aria-label={paused ? "Play demo loop" : "Pause demo loop"}
-          className="inline-flex size-8 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-all duration-[var(--motion-duration-micro,120ms)] hover:border-ink/30 hover:text-ink active:scale-95 cursor-pointer shadow-2xs"
+          className="inline-flex size-8 items-center justify-center rounded-full border border-ink/15 dark:border-white/15 bg-paper dark:bg-zinc-800 text-ink-soft dark:text-zinc-300 transition-all duration-[var(--motion-duration-micro,120ms)] hover:border-ink/30 dark:hover:border-white/30 hover:text-ink dark:hover:text-white active:scale-95 cursor-pointer shadow-2xs"
         >
           {paused ? <Play size={13} /> : <Pause size={13} />}
         </button>
