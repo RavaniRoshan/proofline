@@ -49,7 +49,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/CommandPalette"; 
 import { useState, useCallback, useEffect, useRef } from "react"; 
-import { MagneticButton } from "@/components/motion/MagneticButton";
 import { gsap, GSAP_EASING, useGsapReducedMotion } from "@/lib/motion/gsap-config";
 
 const cloud: {
@@ -573,11 +572,9 @@ export function Header() {
             <Link href="/facts">Fact Register</Link>
           </Button>
 
-          <MagneticButton maxDistance={4}>
-            <Button asChild size="sm" className="bg-foreground text-background hover:bg-foreground/90 font-medium text-xs px-3.5 h-8">
-              <Link href="/check">Check a Draft →</Link>
-            </Button>
-          </MagneticButton>
+          <Button asChild size="sm" className="bg-foreground text-background hover:bg-foreground/90 font-medium text-xs px-3.5 h-8">
+            <Link href="/check">Check a Draft →</Link>
+          </Button>
 
           {/* User / Workspace Dropdown */}
           <DropdownMenu>

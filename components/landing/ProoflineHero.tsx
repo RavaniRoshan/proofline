@@ -7,7 +7,6 @@ import { StageWallpaperBackdrop } from "@/components/landing/StageWallpaperBackd
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
-import { MagneticButton } from "@/components/motion/MagneticButton";
 
 interface BriefTab {
   id: string;
@@ -1102,17 +1101,13 @@ export function ProoflineHero() {
           </p>
 
           <div className="pl-hero-actions">
-            <MagneticButton pullStrength={0.25}>
-              <Link href="/check" className="pl-btn-hero group">
-                <span>Get Started</span>
-                <span aria-hidden="true" className="inline-block transition-transform duration-micro ease-arrival group-hover:translate-x-0.5">→</span>
-              </Link>
-            </MagneticButton>
-            <MagneticButton pullStrength={0.2}>
-              <a href="#how-it-works" className="pl-btn-secondary">
-                See how it works
-              </a>
-            </MagneticButton>
+            <Link href="/check" className="pl-btn-hero group">
+              <span>Get Started</span>
+              <span aria-hidden="true" className="inline-block transition-transform duration-micro ease-arrival group-hover:translate-x-0.5">→</span>
+            </Link>
+            <a href="#how-it-works" className="pl-btn-secondary">
+              See how it works
+            </a>
           </div>
         </div>
 

@@ -228,7 +228,7 @@ Proofline's motion architecture embodies **Mechanical Precision & Editorial Rest
 
 ### GSAP Core Integration & Motion Primitives
 - **[`ScrollReveal`](components/motion/ScrollReveal.tsx):** High-performance scroll-triggered blur-rise materialization with directional offsets and hardware-accelerated transforms.
-- **[`MagneticButton`](components/motion/MagneticButton.tsx):** Cursor-tracking magnetic pull physics for high-priority CTA interactions.
+- **GSAP Easing Curves:** Punchy arrival (`--ease-arrival`), mechanical state transitions, and critically damped spring dynamics.
 - **Telemetry Counter Animations:** Smooth numeric value lerping from 0 to 78% on intersection.
 - **Telemetry Height Reveals:** Staggered vertical scale reveals across preflight latency benchmarks.
 
@@ -432,8 +432,7 @@ proofline/
 │   │   ├── AgentsAndTrustBands.tsx# Trust and security permission cards
 │   │   └── StickyJobsBand.tsx     # 3-step timeline with silk mesh card
 │   ├── motion/                    # GSAP Core motion components
-│   │   ├── ScrollReveal.tsx       # Blur-rise scroll trigger wrapper
-│   │   └── MagneticButton.tsx     # Cursor magnetic pull interaction
+│   │   └── ScrollReveal.tsx       # Blur-rise scroll trigger wrapper
 │   ├── ui/                        # UI atoms (vercel-navbar, footer-15, bento, faq)
 │   ├── Checker.tsx                # Interactive draft checker
 │   ├── FindingCard.tsx            # Claim finding card with blur-rise stagger

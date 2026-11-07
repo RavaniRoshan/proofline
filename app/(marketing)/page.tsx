@@ -12,7 +12,6 @@ import { Footer15 } from "@/components/ui/footer-15";
 import { FaArrowRight } from "react-icons/fa6";
 import { CheckCircle2, Lock, FileCheck2 } from "lucide-react";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { MagneticButton } from "@/components/motion/MagneticButton";
 
 const FOOTER_LINKS = [
   {
@@ -118,17 +117,15 @@ export default function LandingPage() {
               register, and an Evidence Gate that already works, so claims ship right the first
               time.
             </p>
-            <MagneticButton pullStrength={0.2}>
-              <Link
-                href="/check"
-                className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
-              >
-                <span>TRY IT IN THE CHECKER</span>
-                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                  →
-                </span>
-              </Link>
-            </MagneticButton>
+            <Link
+              href="/check"
+              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+            >
+              <span>TRY IT IN THE CHECKER</span>
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                →
+              </span>
+            </Link>
           </div>
 
           {/* 3-Column Connected Interactive Flow Stage */}
@@ -196,17 +193,15 @@ export default function LandingPage() {
               Approve product facts, validity windows, and disclaimers once. Every reviewer’s check
               gets them automatically.
             </p>
-            <MagneticButton pullStrength={0.2}>
-              <Link
-                href="/facts"
-                className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
-              >
-                <span>EXPLORE 42 SEEDED FACTS</span>
-                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                  →
-                </span>
-              </Link>
-            </MagneticButton>
+            <Link
+              href="/facts"
+              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+            >
+              <span>EXPLORE 42 SEEDED FACTS</span>
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                →
+              </span>
+            </Link>
           </div>
 
           {/* 3 Equal Cards (375x368 geometry) + Floating Overlap Notification Pill */}
@@ -433,23 +428,19 @@ export default function LandingPage() {
 
             {/* Dual Sharp 0px Enterprise CTAs */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <MagneticButton pullStrength={0.25}>
-                <Link
-                  href="/dashboard"
-                  className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-xs font-semibold"
-                >
-                  <span>OPEN REGISTER DASHBOARD</span>
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </MagneticButton>
-              <MagneticButton pullStrength={0.2}>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
-                >
-                  <span>READ ROUND 1 → 2 SPEC</span>
-                </Link>
-              </MagneticButton>
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+              >
+                <span>OPEN REGISTER DASHBOARD</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
+              >
+                <span>READ ROUND 1 → 2 SPEC</span>
+              </Link>
             </div>
           </div>
 
@@ -555,23 +546,19 @@ export default function LandingPage() {
 
                 {/* Dual Sharp 0px Buttons — High-contrast across both Light and Dark modes */}
                 <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-                  <MagneticButton pullStrength={0.25}>
-                    <Link
-                      href="/check"
-                      className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-md font-semibold"
-                    >
-                      <span>CHECK A DRAFT</span>
-                      <span aria-hidden="true">→</span>
-                    </Link>
-                  </MagneticButton>
-                  <MagneticButton pullStrength={0.2}>
-                    <a
-                      href="#how-it-works"
-                      className="inline-flex items-center justify-center border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
-                    >
-                      SEE IT WORK
-                    </a>
-                  </MagneticButton>
+                  <Link
+                    href="/check"
+                    className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-md font-semibold"
+                  >
+                    <span>CHECK A DRAFT</span>
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                  <a
+                    href="#how-it-works"
+                    className="inline-flex items-center justify-center border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
+                  >
+                    SEE IT WORK
+                  </a>
                 </div>
               </div>
             </div>
