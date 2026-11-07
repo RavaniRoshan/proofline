@@ -1067,18 +1067,18 @@ export function ProoflineHero() {
 
       `}</style>
 
-      {/* 21st.dev Sunset Orb Background Shader */}
-      <SunsetOrb
-        className="absolute inset-0 h-full w-full pointer-events-none"
-        intensity="medium"
-        animated={true}
-        grain={true}
-      />
-
       {/* Framed inside the continuous 1240px border-x page rails so the hero flows directly into Band 2 */}
-      <div className="relative z-10 mx-auto w-full max-w-[1240px] border-x border-ink/10 px-4 pt-6 pb-10 sm:px-6 md:px-10 md:pt-9 md:pb-14">
+      <div className="relative z-10 mx-auto w-full max-w-[1240px] border-x border-ink/10 px-4 pt-6 pb-10 sm:px-6 md:px-10 md:pt-9 md:pb-14 overflow-hidden">
+        {/* 21st.dev Sunset Orb Background Shader — Contained strictly within the container side lines */}
+        <SunsetOrb
+          className="absolute inset-0 h-full w-full pointer-events-none z-0"
+          intensity="medium"
+          animated={true}
+          grain={true}
+        />
+
         {/* 2. Hero Headline, Subcopy & CTA */}
-        <div className="pl-hero-copy">
+        <div className="pl-hero-copy relative z-10">
           <div className="pl-eyebrow-pill group cursor-default" tabIndex={0} role="status">
             <span
               aria-hidden="true"
