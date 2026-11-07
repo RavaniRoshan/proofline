@@ -148,18 +148,9 @@ export function Footer15({
 }: Footer15Props) {
   return (
     <footer className="w-full overflow-hidden rounded-t-3xl border-t border-ink/15 bg-[#F5F2EC] font-sans antialiased sm:rounded-t-[2.5rem] md:rounded-t-[3rem] dark:bg-[#0A0908] dark:border-white/12 transition-colors duration-200">
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        className="px-6 pt-10 pb-0 sm:px-10 sm:pt-14 lg:px-14 lg:pt-16 xl:px-20"
-      >
+      <div className="px-6 pt-10 pb-0 sm:px-10 sm:pt-14 lg:px-14 lg:pt-16 xl:px-20">
         <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 lg:flex-row lg:gap-16 xl:gap-20">
-          <motion.div
-            variants={riseItem}
-            className="flex shrink-0 flex-col gap-5 lg:max-w-[280px] xl:max-w-[320px]"
-          >
+          <div className="flex shrink-0 flex-col gap-5 lg:max-w-[280px] xl:max-w-[320px]">
             <div className="flex items-center gap-2.5">
               <span className="shrink-0">
                 {logoIcon ?? (
@@ -177,7 +168,7 @@ export function Footer15({
               {description}
             </p>
 
-            <motion.div variants={ctaVariant}>
+            <div>
               <Link
                 href={ctaHref}
                 className="group mt-1 inline-flex w-fit items-center gap-3 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-5 shadow-[0_1px_3px_rgba(0,0,0,0.2),0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-200 hover:bg-[#8B1E27]/90 hover:shadow-[0_4px_16px_rgba(139,30,39,0.35)] active:scale-[0.98]"
@@ -189,48 +180,38 @@ export function Footer15({
                   <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
                 </span>
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.nav
-            variants={navStagger}
+          <nav
             aria-label="Footer navigation"
             className="grid w-full max-w-[620px] grid-cols-2 gap-y-8 sm:grid-cols-4"
           >
             {columns.map((col) => (
-              <motion.div key={col.title} variants={riseItem}>
+              <div key={col.title}>
                 <h3 className="font-mono text-xs font-semibold tracking-wider uppercase text-[#141211] dark:text-[#F3EFE6]">
                   {col.title}
                 </h3>
-                <motion.ul
-                  variants={linkStagger}
-                  className="mt-3.5 flex flex-col gap-2.5"
-                >
+                <ul className="mt-3.5 flex flex-col gap-1.5 sm:gap-2.5">
                   {col.links.map((link) => (
-                    <motion.li key={link.label} variants={linkItem}>
+                    <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="inline-block text-xs font-medium text-[#5C564E] transition-colors duration-200 hover:text-[#141211] dark:text-[#9A9489] dark:hover:text-[#FAF7F2]"
+                        className="inline-flex items-center min-h-[36px] sm:min-h-0 py-1 sm:py-0 text-xs font-medium text-[#5C564E] transition-colors duration-200 hover:text-[#141211] dark:text-[#9A9489] dark:hover:text-[#FAF7F2]"
                       >
                         {link.label}
                       </Link>
-                    </motion.li>
+                    </li>
                   ))}
-                </motion.ul>
-              </motion.div>
+                </ul>
+              </div>
             ))}
-          </motion.nav>
+          </nav>
         </div>
-      </motion.div>
+      </div>
 
       {/* Panoramic Bottom Brandmark */}
-      <motion.div
-        variants={heroBrandVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        className="relative flex items-end justify-center overflow-hidden px-4 pt-10 sm:px-6 sm:pt-14 md:pt-20"
-      >
+      <div className="relative flex items-end justify-center overflow-hidden px-4 pt-10 sm:px-6 sm:pt-14 md:pt-20">
         <svg
           className="h-auto w-full translate-y-2 select-none md:translate-y-6"
           viewBox={`0 0 ${Math.max(heroBrandName.length * 90, 400)} 110`}
@@ -250,7 +231,7 @@ export function Footer15({
             {heroBrandName}
           </text>
         </svg>
-      </motion.div>
+      </div>
     </footer>
   );
 }

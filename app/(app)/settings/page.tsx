@@ -115,7 +115,7 @@ export default function SettingsPage() {
               >
                 <option value="Compliance Lead">Sarah Chen (Compliance Lead)</option>
                 <option value="Legal Counsel">Alex Mercer (Legal Counsel)</option>
-                <option value="Product Marketing">Priya Sharma (Product Marketing)</option>
+                <option value="Product Marketing">Devon Vance (Product Marketing)</option>
               </select>
               <p className="text-[11px] text-muted-foreground">
                 Authority key stamped onto SHA-256 Merkle audit decision records.

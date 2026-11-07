@@ -49,7 +49,7 @@ const AUDIT_FEED: AuditEntry[] = [
     id: "AUD-8019",
     timestamp: "2026-11-04 18:45",
     draftTitle: "Pricing Page Comparison Matrix",
-    reviewer: "Priya Sharma",
+    reviewer: "Devon Vance",
     reviewerRole: "Product Marketing",
     decision: "NEEDS_EDIT",
     stats: "1 SLA Latency Flagged",

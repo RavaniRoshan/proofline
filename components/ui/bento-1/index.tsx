@@ -358,7 +358,7 @@ export default function Bento1({ className }: Bento1Props) {
                   {
                     id: "AUD-8019",
                     title: "Pricing Page Comparison Matrix",
-                    reviewer: "Priya Sharma",
+                    reviewer: "Devon Vance",
                     role: "Product Marketing",
                     verdict: "NEEDS_EDIT",
                     verdictClass:

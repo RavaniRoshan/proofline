@@ -266,3 +266,53 @@ header.fd-nav {
   border-color: rgba(139, 30, 39, 0.4) !important;
   background-color: var(--color-fd-muted) !important;
 }
+
+/* =========================================================================
+   Taste Skill Foundations: High-Contrast Syntax & Accessible Focus Rings
+   ========================================================================= */
+
+/* Code block syntax comments: high-contrast WCAG AAA (>5.5:1 on #121214) */
+.proofline-docs pre code span[style*="color:#6a737d"],
+.proofline-docs pre code span[style*="color:#6A737D"],
+.proofline-docs pre code span[style*="106, 115, 125"],
+.proofline-docs .shiki .comment,
+.proofline-docs pre code .token.comment {
+  color: #9CA3AF !important; /* Zinc-400 */
+}
+
+/* Accessible focus-visible indicator */
+.proofline-docs :focus-visible,
+.proofline-docs a:focus-visible,
+.proofline-docs button:focus-visible,
+.proofline-docs input:focus-visible {
+  outline: 2px solid #8B1E27 !important;
+  outline-offset: 2px !important;
+}
+
+.dark .proofline-docs :focus-visible,
+.dark .proofline-docs a:focus-visible,
+.dark .proofline-docs button:focus-visible,
+.dark .proofline-docs input:focus-visible {
+  outline-color: #E07A70 !important;
+}
+
+/* Visible Skip to Content link on tab navigation */
+.proofline-docs a.sr-only:focus,
+.proofline-docs a.sr-only:focus-visible {
+  position: fixed !important;
+  top: 1rem !important;
+  left: 1rem !important;
+  z-index: 9999 !important;
+  width: auto !important;
+  height: auto !important;
+  clip: auto !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 9999px !important;
+  background-color: #8B1E27 !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-plex-mono), monospace !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}

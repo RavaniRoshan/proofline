@@ -975,7 +975,7 @@ export function ProoflineHero() {
           className="absolute inset-0 h-full w-full pointer-events-none z-0"
           intensity="medium"
           animated={true}
-          grain={true}
+          grain={false}
         />
 
         {/* 2. Hero Headline, Subcopy & CTA */}

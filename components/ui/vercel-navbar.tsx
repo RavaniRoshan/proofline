@@ -344,7 +344,7 @@ export function Header() {
         scrolled ? "border-b border-border shadow-xs" : "border-b border-transparent"
       }`}
     >
-      <div className="flex items-center justify-between w-full mx-auto max-w-7xl">
+      <div className="flex items-center justify-between w-full mx-auto max-w-[1240px]">
         <div className="flex h-14 items-center justify-center">
           {/* Authentic Proofline Logomark [ ] */}
           <Link
