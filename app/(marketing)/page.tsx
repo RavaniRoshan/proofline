@@ -164,9 +164,7 @@ export default function LandingPage() {
             </div>
 
             <ScrollReveal direction="up" distance={24} blur={6}>
-              <div className="overflow-hidden rounded-[28px] border border-ink/15 dark:border-white/12 bg-card shadow-[0_8px_32px_-8px_rgba(26,26,24,0.08)]">
-                <Bento1 />
-              </div>
+              <Bento1 />
             </ScrollReveal>
           </div>
         </div>
