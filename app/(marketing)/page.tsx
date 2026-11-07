@@ -8,7 +8,7 @@ import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
 import { DeveloperTerminalBand } from "@/components/landing/DeveloperTerminalBand";
 import { ApiPlayground } from "@/components/landing/ApiPlayground";
 import { FaqAccordion } from "@/components/landing/FaqAccordion";
-import { ArchifySystemExplorer } from "@/components/landing/ArchifySystemExplorer";
+import Bento1 from "@/components/ui/bento-1";
 import { ProoflineFooter } from "@/components/landing/ProoflineFooter";
 import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
 import { RegisterLineageBento } from "@/components/landing/bento/RegisterLineageBento";
@@ -112,9 +112,9 @@ export default function LandingPage() {
             <DeterministicRoutingBento />
           </div>
 
-          {/* Interactive Archify Source-Backed Codebase Topology Explorer */}
-          <div className="mt-8">
-            <ArchifySystemExplorer />
+          {/* Interactive Bento Suite */}
+          <div className="mt-12 overflow-hidden rounded-[24px] border border-ink/10 bg-card">
+            <Bento1 />
           </div>
         </div>
       </section>
