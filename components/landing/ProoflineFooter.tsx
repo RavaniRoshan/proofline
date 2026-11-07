@@ -796,9 +796,9 @@ export function ProoflineFooter() {
                   </Link>
                 </li>
                 <li>
-                  <a href="#verdicts" className="plf-nav-link">
+                  <Link href="/audit" className="plf-nav-link">
                     Six Verdicts
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

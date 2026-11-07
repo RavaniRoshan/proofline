@@ -3,12 +3,11 @@ import { Header } from "@/components/ui/vercel-navbar";
 import { ProoflineHero } from "@/components/landing/ProoflineHero";
 import { MeshCardBackdrop } from "@/components/landing/HeroTunnelCanvas";
 import { UseCasesDualPane } from "@/components/landing/UseCasesDualPane";
-import { EightSurfaceGrid, TrustSecurityCards } from "@/components/landing/AgentsAndTrustBands";
+import { TrustSecurityCards } from "@/components/landing/AgentsAndTrustBands";
 import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
 import { DeveloperTerminalBand } from "@/components/landing/DeveloperTerminalBand";
 import { ApiPlayground } from "@/components/landing/ApiPlayground";
 import { FaqAccordion } from "@/components/landing/FaqAccordion";
-import { VerdictCard } from "@/components/landing/VerdictCard";
 import { ArchifySystemExplorer } from "@/components/landing/ArchifySystemExplorer";
 import { ProoflineFooter } from "@/components/landing/ProoflineFooter";
 import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
@@ -91,48 +90,6 @@ export default function LandingPage() {
 
           {/* 3-Column Connected Interactive Flow Stage */}
           <UseCasesDualPane />
-        </div>
-      </section>
-
-      {/* =========================================================================
-          BAND 3 (#verdicts / #agents): 8-Card Surface Grid + 6 Verdict Matrix
-          (Exact match to 04-band3-agents-grid.png with border-x border-t page rails)
-          ========================================================================= */}
-      <section id="verdicts" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-14 md:px-10 md:py-20">
-          <div className="mx-auto mb-10 flex max-w-[680px] flex-col items-center text-center">
-            <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
-              Six verdicts, <span className="text-accent">any workflow</span>
-            </h2>
-            <p className="mt-3 text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft">
-              Setup takes zero configuration.{" "}
-              <a
-                href="#verdict-matrix"
-                className="text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-ink"
-              >
-                See the specification for each
-              </a>
-            </p>
-          </div>
-
-          {/* 8-Card 4x2 Grid matching 04-band3-agents-grid.png */}
-          <EightSurfaceGrid />
-
-          {/* Detailed 6 Canonical Verdict Cards for Judges */}
-          <div id="verdict-matrix" className="mt-14 pt-12 border-t border-ink/10 scroll-mt-24">
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-              <span>SPECIFICATION MATRIX · SIX CANONICAL VERDICT STATES (SORTED BY SEVERITY)</span>
-              <span>COLOUR IS SEMANTIC INFORMATION ONLY</span>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <VerdictCard type="CONTRADICTED" />
-              <VerdictCard type="STALE" />
-              <VerdictCard type="CONFLICTING" />
-              <VerdictCard type="UNVERIFIED" />
-              <VerdictCard type="SUPPORTED" />
-              <VerdictCard type="NOT_CHECKABLE" />
-            </div>
-          </div>
         </div>
       </section>
 
