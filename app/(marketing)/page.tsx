@@ -9,7 +9,7 @@ import Features4 from "@/components/ui/features-4";
 import { ApiPlayground } from "@/components/landing/ApiPlayground";
 import Faq6 from "@/components/ui/faq-6";
 import Bento1 from "@/components/ui/bento-1";
-import { Footer7 } from "@/components/ui/footer-7";
+import { Footer15 } from "@/components/ui/footer-15";
 import { FaArrowRight } from "react-icons/fa6";
 import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
 import { RegisterLineageBento } from "@/components/landing/bento/RegisterLineageBento";
@@ -550,18 +550,14 @@ export default function LandingPage() {
       </section>
 
       {/* =========================================================================
-          FOOTER: High-Impact Panoramic Footer (Footer7)
+          FOOTER: High-Impact Panoramic Footer (Footer15)
           ========================================================================= */}
-      <Footer7
-        logo={<span className="font-mono text-base font-bold text-[#8B1E27]">[ ]</span>}
+      <Footer15
         brandName="Proofline"
-        badgeText="Zero Hallucination · 100% Deterministic Ground Truth"
-        headline="Stay ahead of claim drift, pricing changes, and compliance updates."
-        inputPlaceholder="Enter your work email"
-        buttonText="Subscribe"
-        buttonIcon={<FaArrowRight />}
-        linkGroups={FOOTER_LINKS}
-        brandWatermark="PROOFLINE"
+        heroBrandName="PROOFLINE"
+        description="Deterministic claim governance for high-stakes marketing, pricing, and product copy. Zero hallucination, 100% verifiable ground truth."
+        ctaLabel="Check a Draft"
+        ctaHref="/check"
       />
     </main>
   );
