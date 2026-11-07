@@ -2,7 +2,9 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Plus, Search, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Calendar as CalendarIcon, ChevronDown, Plus, Search } from 'lucide-react';
+import { format } from 'date-fns';
+import type { DateRange } from 'react-day-picker';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -15,12 +17,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar3 } from '@/components/ui/calendar-03';
 
-export function DashboardTopbar() {
+export interface DashboardTopbarProps {
+  dateRange?: DateRange;
+  onDateRangeChange?: (range: DateRange | undefined) => void;
+}
+
+export function DashboardTopbar({
+  dateRange: controlledDateRange,
+  onDateRangeChange,
+}: DashboardTopbarProps = {}) {
   const [scope, setScope] = React.useState('flowdesk');
+  const [internalDateRange, setInternalDateRange] = React.useState<DateRange | undefined>({
+    from: new Date(2026, 3, 1),
+    to: new Date(2026, 10, 7),
+  });
+
+  const dateRange = controlledDateRange !== undefined ? controlledDateRange : internalDateRange;
+  const setDateRange = (range: DateRange | undefined) => {
+    setInternalDateRange(range);
+    onDateRangeChange?.(range);
+  };
 
   return (
-    <header className="flex min-h-16 items-center justify-between gap-4 py-2 border-b border-border/60 mb-5">
+    <header className="flex min-h-16 flex-wrap items-center justify-between gap-3 py-2 border-b border-border/60 mb-5">
       <div className="flex w-full max-w-sm items-center gap-2">
         <SidebarTrigger className="shrink-0 lg:hidden" />
         <div className="relative flex-1">
@@ -33,9 +55,10 @@ export function DashboardTopbar() {
         </div>
       </div>
 
-      <div className="hidden items-center gap-2.5 md:flex">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+        {/* Scope Selector */}
         <Select value={scope} onValueChange={setScope}>
-          <SelectTrigger className="bg-muted/50 min-h-9 w-[220px] gap-2 text-xs font-mono">
+          <SelectTrigger className="bg-muted/50 min-h-9 w-[190px] gap-2 text-xs font-mono">
             <SelectValue placeholder="Select Scope" />
           </SelectTrigger>
           <SelectContent className="text-xs font-mono">
@@ -66,15 +89,59 @@ export function DashboardTopbar() {
           </SelectContent>
         </Select>
 
-        <Button asChild variant="outline" className="h-9 font-mono text-xs gap-1.5">
+        {/* Calendar-03 Date Range Popover */}
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className="h-9 font-mono text-xs gap-2 border-border bg-muted/40 hover:bg-muted text-foreground"
+            >
+              <CalendarIcon className="size-3.5 text-[#8B1E27] dark:text-[#D4847A]" />
+              <span className="hidden sm:inline">
+                {dateRange?.from
+                  ? dateRange.to
+                    ? `${format(dateRange.from, 'LLL d, yyyy')} – ${format(dateRange.to, 'LLL d, yyyy')}`
+                    : format(dateRange.from, 'LLL d, yyyy')
+                  : 'Temporal Window'}
+              </span>
+              <span className="sm:hidden">
+                {dateRange?.from ? format(dateRange.from, 'LLL d') : 'Window'}
+              </span>
+              <ChevronDown className="size-3 text-muted-foreground" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-3.5" align="end">
+            <div className="mb-2 px-1 flex items-center justify-between border-b border-border/60 pb-2">
+              <div>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-muted-foreground block">
+                  Temporal Validity Filter
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  Select start &amp; end dates for verification telemetry
+                </span>
+              </div>
+              <Badge variant="outline" className="font-mono text-[10px]">
+                Active Range
+              </Badge>
+            </div>
+            <Calendar3
+              value={dateRange}
+              onChange={setDateRange}
+              caption="Filter assertions and rule efficacy within this date range"
+            />
+          </PopoverContent>
+        </Popover>
+
+        {/* Navigation Quick Actions */}
+        <Button asChild variant="outline" className="h-9 font-mono text-xs gap-1.5 hidden md:inline-flex">
           <Link href="/facts">
             <span>Browse Facts</span>
             <ArrowUpRight className="size-3.5" />
           </Link>
         </Button>
-        <Button asChild className="h-9 px-4 font-mono text-xs gap-1.5 bg-[#8B1E27] hover:bg-[#8B1E27]/90 text-white">
+        <Button asChild className="h-9 px-3.5 font-mono text-xs gap-1.5 bg-[#8B1E27] hover:bg-[#8B1E27]/90 text-white">
           <Link href="/check">
-            <span>Check a Draft</span>
+            <span>Check Draft</span>
             <Plus className="size-3.5" />
           </Link>
         </Button>

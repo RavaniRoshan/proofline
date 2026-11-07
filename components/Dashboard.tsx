@@ -19,6 +19,8 @@ import type { RegisterStats } from "@/lib/register";
 import { DECISION_LABEL, type DecisionValue } from "@/lib/local";
 import { useProoflineState } from "@/lib/use-proofline";
 import type { Verdict } from "@/lib/types";
+import { format } from "date-fns";
+import type { DateRange } from "react-day-picker";
 import {
   Card,
   CardHeader,
@@ -50,10 +52,20 @@ export function Dashboard({
   model: number;
 }) {
   const state = useProoflineState();
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: new Date(2026, 3, 1),
+    to: new Date(2026, 10, 7),
+  });
   const totalClaims = deterministic + model;
   const rulesPct = totalClaims > 0 ? Math.round((deterministic / totalClaims) * 100) : 78;
 
   const totalUserDecisions = state.audit.length;
+
+  const windowLabel = dateRange?.from
+    ? dateRange.to
+      ? `${format(dateRange.from, "yyyy-MM-dd")} → ${format(dateRange.to, "yyyy-MM-dd")}`
+      : `${format(dateRange.from, "yyyy-MM-dd")} → Active`
+    : `${reviewDate} → Active`;
 
   return (
     <div className="space-y-5">
@@ -83,7 +95,7 @@ export function Dashboard({
             {/* Active Window */}
             <div className="hidden md:flex items-center gap-1.5">
               <span className="text-muted-foreground">Active Window:</span>
-              <span className="font-mono text-foreground">{reviewDate} → Active</span>
+              <span className="font-mono text-foreground">{windowLabel}</span>
             </div>
 
             {/* Health */}
@@ -105,9 +117,9 @@ export function Dashboard({
       </Card>
 
       {/* =========================================================================
-          2. DASHBOARD TOPBAR WITH SCOPE SELECTOR & SEARCH
+          2. DASHBOARD TOPBAR WITH SCOPE SELECTOR, SEARCH & CALENDAR WINDOW
           ========================================================================= */}
-      <DashboardTopbar />
+      <DashboardTopbar dateRange={dateRange} onDateRangeChange={setDateRange} />
 
       {/* =========================================================================
           3. STAT GRID (4 Tone-Badged High-Density KPI Cards)
