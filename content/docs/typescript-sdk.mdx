@@ -1,0 +1,73 @@
+---
+title: TypeScript SDK & CI/CD
+description: In-process verification with @proofline/engine, release gates, and testing workflows.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+The `@proofline/engine` package provides direct in-process access to the 3-stage verification pipeline without HTTP round-trips.
+
+## Installation
+
+```bash
+npm install @proofline/engine
+```
+
+## Basic In-Process Verification
+
+```typescript
+import { verifyDraft } from "@proofline/engine";
+
+const report = await verifyDraft({
+  draft: "Flowdesk Starter tier is ₹6,499 per month with 250 GB encrypted storage.",
+  brandId: "B-flowdesk",
+  reviewDate: "2026-11-06",
+});
+
+if (report.summary.verdicts.CONTRADICTED > 0) {
+  console.error("Release blocked: Draft contains contradicted statements.");
+  process.exit(1);
+}
+```
+
+## CI/CD GitHub Actions Gate
+
+Integrate Proofline directly into your pull-request workflows to block marketing or documentation PRs containing stale rates:
+
+```yaml
+name: Verify Marketing Copy
+on: [pull_request]
+
+jobs:
+  fact-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Run Proofline Preflight Release Gate
+        run: npx tsx scripts/verify-release-copy.ts
+```
+
+## Vitest Unit Test Assertion
+
+You can assert against marketing copy directly in your unit test suites:
+
+```typescript
+import { describe, it, expect } from "vitest";
+import { verifyDraft } from "@/lib/verify";
+
+describe("Landing Page Copy Gate", () => {
+  it("never ships contradicted pricing claims", async () => {
+    const copy = "Flowdesk Starter begins at ₹6,499 per month.";
+    const result = await verifyDraft(copy, "B-flowdesk", "2026-11-06");
+    
+    expect(result.summary.verdicts.CONTRADICTED).toBe(0);
+    expect(result.findings[0].verdict).toBe("SUPPORTED");
+  });
+});
+```

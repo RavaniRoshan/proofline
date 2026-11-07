@@ -1,6 +1,6 @@
 import { RootProvider } from "fumadocs-ui/provider/next";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
-import { docsTree } from "@/lib/docs/page-tree";
+import { source } from "@/lib/source";
 import Link from "next/link";
 import "fumadocs-ui/style.css";
 
@@ -24,7 +24,7 @@ export default function RootDocsLayout({
         }}
       >
         <DocsLayout
-          tree={docsTree}
+          tree={source.pageTree}
           nav={{
             title: (
               <div className="flex items-center gap-2 font-mono font-bold tracking-tight">

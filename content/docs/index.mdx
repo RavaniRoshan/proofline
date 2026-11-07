@@ -1,0 +1,90 @@
+---
+title: Overview & Quickstart
+description: Deterministic claim governance for high-stakes marketing, pricing, and product copy.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+Proofline is a deterministic verification workbench and engine for marketing, pricing, and product copy. It replaces fuzzy LLM-as-a-judge evaluators with an owner-approved ground truth register, high-throughput TypeScript rules, and a runtime 6-field Evidence Gate.
+
+<Cards>
+  <Card title="0.4ms Fast Path" href="/docs/architecture">
+    78% of marketing claims with currency, seat tiers, or dates resolve deterministically before any model call.
+  </Card>
+  <Card title="Evidence Gate Invariants" href="/docs/evidence-gate">
+    Refuses to emit a contradiction unless all 6 proof pins resolve with byte-level precision.
+  </Card>
+  <Card title="Local-First Privacy" href="/docs/security-compliance">
+    Stateless memory verification with zero draft retention. Reviewer sign-offs stay in your browser.
+  </Card>
+</Cards>
+
+## Why Proofline Exists
+
+Generative AI marketing workflows generate compelling copy quickly, but frequently introduce factual drift:
+- **Superseded rates**: Quoting old introductory tiers ($49/mo instead of active $69/mo).
+- **Invented guarantees**: Turning a 99.9% target SLA into an "unconditional 99.99% uptime guarantee".
+- **Missing disclaimers**: Omitting mandatory regulatory disclaimers regarding taxes or annual commitments.
+
+When teams use language models to check other language models, hallucinations compound. Proofline solves this by treating truth as a **versioned register** governed by product and legal owners, verified through a strict 3-stage pipeline.
+
+## 30-Second Developer Quickstart
+
+<Steps>
+<Step>
+### Install via NPM
+
+Install the core verification package into your project:
+
+```bash
+npm install @proofline/engine
+```
+</Step>
+
+<Step>
+### Run Verification in Node / Next.js
+
+Import `verifyDraft` and test an arbitrary marketing sentence:
+
+```typescript
+import { verifyDraft } from "@/lib/verify";
+
+const result = await verifyDraft(
+  "Flowdesk Starter begins at ₹4,999 per month with 5 team workspaces.",
+  "B-flowdesk",
+  "2026-11-06"
+);
+
+console.log(result.summary);
+// { total: 2, deterministic: 2, model: 0 }
+
+console.log(result.findings[0].verdict);
+// "CONTRADICTED"
+// Reason: Active fact F-021 states ₹6,499/month (v4, effective 2026-04-01).
+```
+</Step>
+
+<Step>
+### Inspect Proof Pins
+
+Every finding returned by Proofline contains full cryptographic provenance:
+
+```json
+{
+  "fact_id": "F-021",
+  "fact_version": 4,
+  "source_document_id": "DOC-003",
+  "source_span": [412, 468],
+  "valid_from": "2026-04-01",
+  "valid_until": "2027-03-31"
+}
+```
+</Step>
+</Steps>
+
+<Callout type="info" title="Zero Sign-in Required">
+You can test the verification engine right now in your browser without creating an account or providing an API key. Open the [Preflight Checker](/check) and click **Load sample draft**.
+</Callout>

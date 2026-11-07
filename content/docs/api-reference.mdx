@@ -1,0 +1,82 @@
+---
+title: REST API Reference
+description: Headless POST /api/verify endpoint documentation, request/response schemas, and live playground.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { ApiPlayground } from '@/components/landing/ApiPlayground';
+
+Proofline provides a stateless, headless JSON API for integrating factual verification into CI/CD release pipelines, CMS publishing gates, and automated marketing agents.
+
+<div className="not-prose my-8">
+  <ApiPlayground />
+</div>
+
+## POST /api/verify
+
+Evaluates candidate marketing text against the ground truth fact register.
+
+### Endpoint Specification
+
+- **Method**: `POST`
+- **Path**: `/api/verify`
+- **Headers**:
+  - `Content-Type: application/json`
+- **Execution**: Stateless in-memory (`<1ms` on scalar rules, zero database writes).
+
+### Request Payload
+
+```json
+{
+  "draft": "Flowdesk Starter begins at ₹4,999 per month with 5 team workspaces.",
+  "brand_id": "B-flowdesk",
+  "review_date": "2026-11-06"
+}
+```
+
+#### Request Schema (Zod)
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `draft` | `string` | **Yes** | Raw copy text to be parsed and verified. |
+| `brand_id` | `string` | **Yes** | Catalog brand scope (e.g. `B-flowdesk`). |
+| `review_date` | `string` | No | Evaluation anchor date (`YYYY-MM-DD`). Defaults to current date. |
+
+---
+
+### Response Payload
+
+```json
+{
+  "summary": {
+    "total": 2,
+    "deterministic": 2,
+    "model": 0,
+    "verdicts": {
+      "CONTRADICTED": 1,
+      "SUPPORTED": 1
+    }
+  },
+  "findings": [
+    {
+      "claim_text": "Flowdesk Starter begins at ₹4,999 per month",
+      "char_span": [0, 43],
+      "verdict": "CONTRADICTED",
+      "claim_type": "numeric",
+      "fact_id": "F-021",
+      "fact_version": "v4.0",
+      "source_doc": "DOC-003",
+      "source_span": [412, 468],
+      "valid_from": "2026-04-01",
+      "valid_until": "2027-03-31",
+      "ground_truth": "₹6,499 per month",
+      "explanation": "Flowdesk Starter tier was increased from ₹4,999 to ₹6,499 effective Q2 2026."
+    }
+  ]
+}
+```
+
+<Callout type="info" title="Zero Auth Wall">
+The `/api/verify` endpoint runs fully local in development and accepts requests without external authentication keys when testing against the seed catalog.
+</Callout>

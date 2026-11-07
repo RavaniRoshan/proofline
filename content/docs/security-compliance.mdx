@@ -1,0 +1,52 @@
+---
+title: Security & Zero Server Retention
+description: Stateless verification architecture, browser-only persistence, and SHA-256 Merkle audit trail.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import { AuditLedgerBento } from '@/components/landing/bento/AuditLedgerBento';
+
+High-stakes product marketing and pre-announcement press releases frequently contain confidential, embargoed information. Traditional SaaS fact-checking tools require uploading unreleased drafts to external cloud databases, creating significant IP leakage risks.
+
+Proofline is engineered with a **zero server draft retention architecture**.
+
+<div className="not-prose my-8">
+  <AuditLedgerBento />
+</div>
+
+## Architectural Invariants
+
+### 1. In-Memory Stateless Execution
+When a user or CI pipeline submits copy to `/check` or `/api/verify`:
+- The raw draft text is parsed in memory.
+- Predicates are normalized and checked against the local catalog.
+- The response is emitted back to the client.
+- **The draft text is immediately garbage-collected.** No server-side relational database, object store, or vector database ever records the draft content.
+
+### 2. Browser-Only Local State
+All reviewer actions—approving claims, recording overrides, or resetting demo states—persist strictly in the reviewer's browser via `localStorage`:
+
+```typescript
+// LocalStorage key namespace
+const STORAGE_KEY = "proofline.v1";
+```
+
+You can evaluate Proofline in an Incognito / Private browsing window with 100% functionality and zero trace left behind when the window closes.
+
+### 3. SHA-256 Merkle Audit Chain
+For SOC 2 Type II governance, every sign-off committed by a human reviewer generates a tamper-evident audit record:
+
+```typescript
+export interface AuditRecord {
+  audit_id: string;             // e.g. "AUD-8021"
+  timestamp: string;            // ISO 8601 UTC
+  reviewer_name: string;
+  reviewer_role: string;
+  verdict: "APPROVED" | "REJECTED_STALE" | "NEEDS_EDIT";
+  parent_hash: string;          // Previous block SHA-256
+  decision_hash: string;        // SHA-256(audit_id + timestamp + verdict + parent_hash)
+}
+```
+
+The entire audit journal can be exported at any time via the `/audit` dashboard as cryptographically verifiable JSON.

@@ -1,0 +1,67 @@
+---
+title: Evidence Gate Invariants
+description: The 6-field citation contract, runtime proof pins, and zero-hallucination guarantees.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { EvidenceGateInspectorBento } from '@/components/landing/bento/EvidenceGateInspectorBento';
+
+The core vulnerability in automated verification systems is the **hallucinated citation**: a model asserts a claim is wrong or right, but fabricates the quote, points to an imaginary paragraph, or references a non-existent document.
+
+Proofline's **Evidence Gate** (`lib/verdict.ts`) mathematically prevents this class of failure by enforcing a 6-field citation invariant in code before any verdict can be serialized.
+
+<div className="not-prose my-8">
+  <EvidenceGateInspectorBento />
+</div>
+
+## The 6-Field Citation Invariant
+
+Every finding emitted by Proofline must satisfy all 6 proof pins:
+
+| # | Field | Type | Description |
+|---|---|---|---|
+| `1` | `fact_id` | `string` | Unique identifier in the registered catalog (e.g., `F-021`). |
+| `2` | `fact_version` | `string` | Explicit version identifier (e.g., `v4.0`). |
+| `3` | `source_document_id` | `string` | Unique catalog document ID (e.g., `DOC-003`). |
+| `4` | `source_span` | `[number, number]` | Exact character offset `[start, end]` in the source document. |
+| `5` | `valid_from` | `string (ISO)` | Temporal start date of commercial validity. |
+| `6` | `valid_until` | `string (ISO)` | Temporal expiration date of commercial validity. |
+
+```typescript
+// Runtime gate invariant enforced in lib/verdict.ts
+export function assertEvidenceGate(finding: VerificationFinding): boolean {
+  if (finding.verdict === "CONTRADICTED" || finding.verdict === "SUPPORTED") {
+    const { fact_id, fact_version, source_doc, source_span, valid_from, valid_until } = finding;
+    return !!(
+      fact_id &&
+      fact_version &&
+      source_doc &&
+      Array.isArray(source_span) &&
+      source_span.length === 2 &&
+      valid_from &&
+      valid_until
+    );
+  }
+  return true;
+}
+```
+
+## Automatic Downgrade Invariant
+
+If **any** of the 6 proof pins fails to resolve—for instance, if an LLM asserts a contradiction but the referenced character span does not match the byte-for-byte text in the source document—Proofline automatically intercepts the verdict:
+
+<Callout type="error" title="Downgrade Guarantee">
+A `CONTRADICTED` or `SUPPORTED` finding with an unresolved citation is **never** emitted to the user. It is immediately downgraded to `UNVERIFIED` with the reason code `MISSING_EVIDENCE_PIN`.
+</Callout>
+
+This guarantees that human reviewers are never misled by confident-sounding but unprovable automated judgments.
+
+## Byte-Level Span Verification
+
+When a claim quotes source material:
+1. Proofline resolves `DOC-003` from `seed/documents/`.
+2. Slices `content.slice(source_span[0], source_span[1])`.
+3. Verifies that the normalized substring exactly aligns with the ground truth statement.
+4. Returns the exact character offsets to the UI for inline visual highlighting.

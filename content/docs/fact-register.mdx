@@ -1,0 +1,52 @@
+---
+title: Fact Register & Lineage Schema
+description: Version-controlled ground truth, designated owner sign-offs, and amendment lineages.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import { RegisterLineageBento } from '@/components/landing/bento/RegisterLineageBento';
+
+Proofline rejects unstructured vector search over arbitrary scrapings. Instead, organizational truth is modeled as a **structured, owner-signed catalog** of atomic facts stored in `seed/facts.json`.
+
+<div className="not-prose my-8">
+  <RegisterLineageBento />
+</div>
+
+## The Atomic Fact Schema
+
+Every registered fact is strictly validated against `DATA.md §1` before it can be committed to the catalog:
+
+```typescript
+export interface RegisteredFact {
+  fact_id: string;               // e.g. "F-021"
+  fact_version: string;           // e.g. "v4.0"
+  brand_id: string;              // e.g. "B-flowdesk"
+  category: "PRICING" | "SLA" | "QUOTA" | "COMPLIANCE" | "DISCLAIMER";
+  statement: string;             // Canonical truth assertion
+  scalar_value?: number;         // Normalizable integer for Stage 1 fast-path
+  currency_code?: string;        // e.g. "INR", "USD"
+  source_document_id: string;    // e.g. "DOC-003"
+  source_character_span: [number, number]; // [start, end] byte offset
+  valid_from: string;            // ISO Date: "2026-04-01"
+  valid_until: string;           // ISO Date: "2027-03-31"
+  designated_owner: {
+    name: string;
+    role: string;
+    email: string;
+  };
+  supersedes?: string;           // Previous version: e.g. "F-021.v3"
+}
+```
+
+## Lineage & Supersession Semantics
+
+Marketing copy frequently drifts because teams continue quoting outdated promotional rates or retired service agreements. Proofline models the explicit lineage of every change:
+
+1. **Active Record**: When an owner approves `v4.0`, it becomes the active truth record.
+2. **Superseded Records**: `v3.0` and `v2.0` remain immutably archived with explicit validity end dates.
+3. **Temporal Awareness**: When a draft is reviewed with `review_date = 2026-11-06`, Proofline tests against the active validity window. If a draft cites `₹4,999/mo`, Proofline flags `CONTRADICTED` and points directly to the `v3.0 -> v4.0` supersession amendment.
+
+<Callout type="info" title="Offline Seed Validation">
+Run `python3 scripts/validate_seed.py` in your development environment to guarantee that every fact references an existing source document with byte-accurate character spans.
+</Callout>
