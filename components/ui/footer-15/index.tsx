@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { FaArrowRight } from 'react-icons/fa6';
 import Link from 'next/link';
+import { MagneticButton } from '@/components/motion/MagneticButton';
 
 export interface Footer15Link {
   label: string;
@@ -178,17 +179,19 @@ export function Footer15({
             </p>
 
             <motion.div variants={ctaVariant}>
-              <Link
-                href={ctaHref}
-                className="group mt-1 inline-flex w-fit items-center gap-3 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-5 shadow-[0_1px_3px_rgba(0,0,0,0.2),0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-200 hover:bg-[#8B1E27]/90 hover:shadow-[0_4px_16px_rgba(139,30,39,0.35)] active:scale-[0.98]"
-              >
-                <span className="font-mono text-xs font-semibold text-white tracking-wide">
-                  {ctaLabel}
-                </span>
-                <span className="flex size-8 items-center justify-center rounded-full bg-black/20 text-white">
-                  <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
-                </span>
-              </Link>
+              <MagneticButton pullStrength={0.2}>
+                <Link
+                  href={ctaHref}
+                  className="group mt-1 inline-flex w-fit items-center gap-3 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-5 shadow-[0_1px_3px_rgba(0,0,0,0.2),0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-200 hover:bg-[#8B1E27]/90 hover:shadow-[0_4px_16px_rgba(139,30,39,0.35)] active:scale-[0.98]"
+                >
+                  <span className="font-mono text-xs font-semibold text-white tracking-wide">
+                    {ctaLabel}
+                  </span>
+                  <span className="flex size-8 items-center justify-center rounded-full bg-black/20 text-white">
+                    <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </MagneticButton>
             </motion.div>
           </motion.div>
 

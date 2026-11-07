@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/base-ui/card';
 import {
@@ -16,8 +16,43 @@ import {
   TrendingUp,
   FileCheck,
 } from 'lucide-react';
+import { gsap, useGsapReducedMotion } from '@/lib/motion/gsap-config';
 
 export default function Features4() {
+  const [telemetryPct, setTelemetryPct] = useState(78);
+  const chartRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useGsapReducedMotion();
+
+  useEffect(() => {
+    if (reducedMotion || !chartRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const counterObj = { val: 0 };
+          gsap.to(counterObj, {
+            val: 78,
+            duration: 1.1,
+            ease: "power2.out",
+            onUpdate: () => setTelemetryPct(Math.round(counterObj.val)),
+          });
+
+          gsap.fromTo(
+            chartRef.current!.querySelectorAll('.telemetry-bar-fill'),
+            { scaleY: 0, transformOrigin: 'bottom center' },
+            { scaleY: 1, duration: 0.65, stagger: 0.04, ease: 'power2.out' }
+          );
+
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(chartRef.current);
+    return () => observer.disconnect();
+  }, [reducedMotion]);
+
   return (
     <div className="flex w-full flex-col items-center justify-center font-sans">
       {/* Centered Section Header */}
@@ -66,8 +101,8 @@ export default function Features4() {
               </div>
 
               <div className="mt-4 flex items-baseline justify-between">
-                <div className="text-3xl font-mono font-bold tracking-tight text-ink dark:text-white">
-                  78%
+                <div className="text-3xl font-mono font-bold tracking-tight text-ink dark:text-white tabular-nums">
+                  {telemetryPct}%
                 </div>
                 <div className="text-xs font-mono font-semibold text-[#1F5C43] dark:text-[#4ADE80]">
                   $0.00 Token Cost
@@ -75,7 +110,7 @@ export default function Features4() {
               </div>
 
               {/* 7 Latency Distribution Bars */}
-              <div className="mt-4 flex h-16 items-end gap-1.5">
+              <div ref={chartRef} className="mt-4 flex h-16 items-end gap-1.5">
                 {[
                   { h: 42, label: "0.34ms" },
                   { h: 65, label: "0.38ms" },
@@ -87,7 +122,7 @@ export default function Features4() {
                 ].map((bar, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center gap-1">
                     <div
-                      className="w-full rounded-xs bg-[#8B1E27]/80 dark:bg-[#E07A70]/80 transition-all hover:bg-[#8B1E27]"
+                      className="telemetry-bar-fill w-full rounded-xs bg-[#8B1E27]/80 dark:bg-[#E07A70]/80 transition-colors hover:bg-[#8B1E27]"
                       style={{ height: `${bar.h}%` }}
                     />
                   </div>

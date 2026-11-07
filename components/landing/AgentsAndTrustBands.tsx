@@ -17,6 +17,7 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import { MeshCardBackdrop } from "@/components/landing/HeroTunnelCanvas";
+import { gsap, useGsapReducedMotion } from "@/lib/motion/gsap-config";
 
 interface GridItem {
   id: string;
@@ -176,6 +177,7 @@ export function EightSurfaceGrid() {
  * 3 Cards where the visual illustration is at the top and the title + description are at the bottom.
  */
 export function TrustSecurityCards() {
+  const reducedMotion = useGsapReducedMotion();
   const [ruleModes, setRuleModes] = useState<("allow" | "review" | "block")[]>([
     "allow",
     "review",
@@ -184,6 +186,16 @@ export function TrustSecurityCards() {
 
   const setRowMode = (rowIdx: number, mode: "allow" | "review" | "block") => {
     setRuleModes((prev) => prev.map((m, i) => (i === rowIdx ? mode : m)));
+    if (mode === "block" && !reducedMotion) {
+      const box = document.getElementById("blocked-citation-box");
+      if (box) {
+        gsap.fromTo(
+          box,
+          { x: -3 },
+          { x: 0, duration: 0.35, ease: "elastic.out(1, 0.3)", clearProps: "x" }
+        );
+      }
+    }
   };
 
   return (
@@ -300,7 +312,7 @@ export function TrustSecurityCards() {
           </div>
 
           {/* Red-Bordered Blocked Injection / Citation Box */}
-          <div className="rounded-2xl border border-v-contradicted-fg/30 bg-v-contradicted-bg/35 p-4 shadow-2xs">
+          <div id="blocked-citation-box" className="rounded-2xl border border-v-contradicted-fg/30 bg-v-contradicted-bg/35 p-4 shadow-2xs">
             <div className="inline-flex items-center gap-1.5 rounded-full bg-v-contradicted-bg px-2.5 py-0.5 font-mono text-[11px] font-semibold text-v-contradicted-fg">
               <ShieldAlert size={12} />
               <span>Blocked</span>
