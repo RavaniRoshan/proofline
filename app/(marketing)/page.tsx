@@ -9,12 +9,43 @@ import Features4 from "@/components/ui/features-4";
 import { ApiPlayground } from "@/components/landing/ApiPlayground";
 import { FaqAccordion } from "@/components/landing/FaqAccordion";
 import Bento1 from "@/components/ui/bento-1";
-import { ProoflineFooter } from "@/components/landing/ProoflineFooter";
+import { Footer7 } from "@/components/ui/footer-7";
+import { FaArrowRight } from "react-icons/fa6";
 import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
 import { RegisterLineageBento } from "@/components/landing/bento/RegisterLineageBento";
 import { EvidenceGateInspectorBento } from "@/components/landing/bento/EvidenceGateInspectorBento";
 import { AuditLedgerBento } from "@/components/landing/bento/AuditLedgerBento";
 import { CheckCircle2, Lock, FileCheck2 } from "lucide-react";
+
+const FOOTER_LINKS = [
+  {
+    title: "PRODUCT",
+    links: [
+      { label: "Preflight Checker", href: "/check" },
+      { label: "Ground Truth Facts", href: "/facts" },
+      { label: "Operational Telemetry", href: "/dashboard" },
+      { label: "Decision Journal", href: "/audit" },
+    ],
+  },
+  {
+    title: "ARCHITECTURE",
+    links: [
+      { label: "Deterministic Split (78/22)", href: "/about#pipeline" },
+      { label: "Evidence Gate Specification", href: "/about#gate" },
+      { label: "Verdict Taxonomy Matrix", href: "/audit" },
+      { label: "REST API Endpoint", href: "/api/verify" },
+    ],
+  },
+  {
+    title: "GOVERNANCE & TRUST",
+    links: [
+      { label: "Architecture RFC", href: "/about" },
+      { label: "24 Smoke Evals", href: "https://github.com/RavaniRoshan/proofline" },
+      { label: "Zero Server Storage", href: "/about#privacy" },
+      { label: "GitHub Repository", href: "https://github.com/RavaniRoshan/proofline" },
+    ],
+  },
+];
 
 const FAQ_ITEMS = [
   {
@@ -514,9 +545,19 @@ export default function LandingPage() {
       </section>
 
       {/* =========================================================================
-          FOOTER: Full-Bleed Aurora & Vertical Wordmark Stage (ProoflineFooter)
+          FOOTER: High-Impact Panoramic Footer (Footer7)
           ========================================================================= */}
-      <ProoflineFooter />
+      <Footer7
+        logo={<span className="font-mono text-base font-bold text-[#8B1E27]">[ ]</span>}
+        brandName="Proofline"
+        badgeText="Zero Hallucination · 100% Deterministic Ground Truth"
+        headline="Stay ahead of claim drift, pricing changes, and compliance updates."
+        inputPlaceholder="Enter your work email"
+        buttonText="Subscribe"
+        buttonIcon={<FaArrowRight />}
+        linkGroups={FOOTER_LINKS}
+        brandWatermark="PROOFLINE"
+      />
     </main>
   );
 }
