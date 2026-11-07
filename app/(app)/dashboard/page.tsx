@@ -1,18 +1,13 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import type { Metadata } from "next";
 import { registerStats } from "@/lib/register";
-import { verifyDraft } from "@/lib/verify";
 import { Dashboard } from "@/components/Dashboard";
 
 export const metadata: Metadata = { title: "Dashboard" };
-export const dynamic = "force-dynamic";
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
   const reviewDate = new Date().toISOString().slice(0, 10);
   const stats = registerStats(reviewDate);
-  const sampleDraft = readFileSync(join(process.cwd(), "seed/sample_draft.md"), "utf8");
-  const result = await verifyDraft(sampleDraft, { reviewDate });
+
   return (
     <div>
       <div className="mb-6 flex flex-col gap-1.5">
@@ -35,8 +30,8 @@ export default async function DashboardPage() {
       <Dashboard
         stats={stats}
         reviewDate={reviewDate}
-        deterministic={result.summary.deterministic}
-        model={result.summary.model}
+        deterministic={9}
+        model={2}
       />
     </div>
   );
