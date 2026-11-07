@@ -4,29 +4,38 @@ import React, { useState } from "react";
 import Link from "next/link";
 import {
   BadgeCheck,
-  ShieldCheck,
-  CheckCircle2,
-  XCircle,
-  AlertTriangle,
-  ArrowRight,
   TrendingUp,
   Zap,
-  Clock,
-  Layers,
-  FileText,
+  XCircle,
   Calendar,
-  Filter,
-  BarChart3,
-  ChevronRight,
   Info,
-  ExternalLink,
+  ArrowUpRight,
+  FileText,
+  ShieldCheck,
+  ChevronRight,
 } from "lucide-react";
 import type { RegisterStats } from "@/lib/register";
 import { DECISION_LABEL, type DecisionValue } from "@/lib/local";
 import { useProoflineState } from "@/lib/use-proofline";
 import type { Verdict } from "@/lib/types";
-import { ALL_VERDICTS } from "@/lib/types";
-import { VERDICT_MAP } from "@/lib/verdicts";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface TelemetryPoint {
   date: string;
@@ -192,12 +201,12 @@ export function Dashboard({
   return (
     <div className="space-y-6">
       {/* =========================================================================
-          1. TOP ENTERPRISE STATUS RIBBON (Fingerprint / Linear Style)
+          1. TOP ENTERPRISE STATUS RIBBON (Fingerprint / Linear Style with Shadcn Card)
           ========================================================================= */}
-      <div className="rounded-xl border border-border/80 bg-card/95 p-3.5 sm:p-4 shadow-xs">
+      <Card className="p-3.5 sm:p-4 shadow-xs">
         <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            {/* Status */}
+            {/* Status Indicator */}
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-[#1F5C43] animate-pulse" />
               <span className="font-semibold text-foreground">Status:</span>
@@ -223,21 +232,20 @@ export function Dashboard({
             {/* Health */}
             <div className="flex items-center gap-1.5">
               <span className="text-muted-foreground">Health:</span>
-              <span className="rounded bg-muted/60 px-2 py-0.5 font-mono text-[11px] font-semibold text-foreground">
+              <Badge variant="outline" className="font-mono text-[11px] font-semibold">
                 {stats.conflictingGroups === 0 ? "No Drift Detected" : `${stats.conflictingGroups} Conflicts`}
-              </span>
+              </Badge>
             </div>
           </div>
 
-          <Link
-            href="/facts"
-            className="inline-flex items-center gap-1 font-mono text-xs font-medium text-accent-brand dark:text-accent-readable hover:underline"
-          >
-            <span>Browse Full Register</span>
-            <ChevronRight size={13} />
-          </Link>
+          <Button asChild variant="ghost" size="sm" className="h-7 gap-1 font-mono text-xs text-accent-brand dark:text-accent-readable">
+            <Link href="/facts">
+              <span>Browse Full Register</span>
+              <ChevronRight size={13} />
+            </Link>
+          </Button>
         </div>
-      </div>
+      </Card>
 
       {/* =========================================================================
           2. INSIGHTS HEADER & CONTROLS BAR
@@ -253,14 +261,14 @@ export function Dashboard({
         </div>
 
         <div className="flex items-center gap-2 self-start sm:self-auto">
-          {/* Environment dropdown */}
-          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1 text-xs font-mono text-foreground shadow-xs">
+          {/* Environment dropdown badge */}
+          <div className="flex items-center gap-1.5 rounded-md border border-line-strong bg-card px-2.5 py-1 text-xs font-mono text-foreground shadow-xs">
             <span className="size-1.5 rounded-full bg-emerald-500" />
             <span>Production (Local)</span>
           </div>
 
           {/* Time Range */}
-          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1 text-xs font-mono text-muted-foreground shadow-xs">
+          <div className="flex items-center gap-1.5 rounded-md border border-line-strong bg-card px-2.5 py-1 text-xs font-mono text-muted-foreground shadow-xs">
             <Calendar size={12} />
             <span>Apr 1, 2026 – Today</span>
           </div>
@@ -268,106 +276,112 @@ export function Dashboard({
       </div>
 
       {/* =========================================================================
-          3. FOUR HIGH-DENSITY METRIC CARDS (Fingerprint Image 4 Style)
+          3. FOUR HIGH-DENSITY METRIC CARDS (Shadcn dashboard-01 Card Structure)
           ========================================================================= */}
-      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Card 1: Total Verifications */}
-        <div className="rounded-xl border border-border/80 bg-card p-4 shadow-xs">
-          <div className="flex items-center justify-between text-muted-foreground">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider">
+        <Card className="shadow-xs">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Total Evaluated
-            </span>
-            <TrendingUp size={15} className="text-[#1F5C43]" />
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
-              1,284
-            </span>
-            <span className="font-mono text-xs font-semibold text-[#1F5C43]">
-              +18.4%
-            </span>
-          </div>
-          <p className="mt-1 text-[11.5px] text-muted-foreground">
-            Assertions evaluated across all drafts
-          </p>
-        </div>
+            </CardTitle>
+            <TrendingUp size={16} className="text-[#1F5C43]" />
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
+                1,284
+              </span>
+              <span className="font-mono text-xs font-semibold text-[#1F5C43]">
+                +18.4%
+              </span>
+            </div>
+            <p className="mt-1 text-[11.5px] text-muted-foreground">
+              Assertions evaluated across all drafts
+            </p>
+          </CardContent>
+        </Card>
 
         {/* Card 2: Deterministic Ratio */}
-        <div className="rounded-xl border border-border/80 bg-card p-4 shadow-xs">
-          <div className="flex items-center justify-between text-muted-foreground">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider">
+        <Card className="shadow-xs">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Deterministic Ratio
-            </span>
-            <Zap size={15} className="text-[#D4847A]" />
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
-              {rulesPct}%
-            </span>
-            <span className="font-mono text-xs text-muted-foreground">
-              0.4ms avg
-            </span>
-          </div>
-          <p className="mt-1 text-[11.5px] text-muted-foreground">
-            Resolved in Stage 1 TypeScript at $0 token cost
-          </p>
-        </div>
+            </CardTitle>
+            <Zap size={16} className="text-[#D4847A]" />
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
+                {rulesPct}%
+              </span>
+              <span className="font-mono text-xs text-muted-foreground">
+                0.4ms avg
+              </span>
+            </div>
+            <p className="mt-1 text-[11.5px] text-muted-foreground">
+              Resolved in Stage 1 TypeScript at $0 LLM cost
+            </p>
+          </CardContent>
+        </Card>
 
         {/* Card 3: Intercepted Contradictions */}
-        <div className="rounded-xl border border-border/80 bg-card p-4 shadow-xs">
-          <div className="flex items-center justify-between text-muted-foreground">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider">
+        <Card className="shadow-xs">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Contradictions Intercepted
-            </span>
-            <XCircle size={15} className="text-[#8B1E27]" />
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
-              190
-            </span>
-            <span className="font-mono text-xs font-semibold text-[#8B1E27]">
-              14.8% rate
-            </span>
-          </div>
-          <p className="mt-1 text-[11.5px] text-muted-foreground">
-            Stale pricing and SLA claims blocked before publish
-          </p>
-        </div>
+            </CardTitle>
+            <XCircle size={16} className="text-[#8B1E27]" />
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
+                190
+              </span>
+              <span className="font-mono text-xs font-semibold text-[#8B1E27]">
+                14.8% rate
+              </span>
+            </div>
+            <p className="mt-1 text-[11.5px] text-muted-foreground">
+              Stale pricing and SLA claims blocked before publish
+            </p>
+          </CardContent>
+        </Card>
 
         {/* Card 4: Reviewer Consensus */}
-        <div className="rounded-xl border border-border/80 bg-card p-4 shadow-xs">
-          <div className="flex items-center justify-between text-muted-foreground">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider">
+        <Card className="shadow-xs">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Reviewer Consensus
-            </span>
-            <BadgeCheck size={15} className="text-[#1F5C43]" />
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
-              96.2%
-            </span>
-            <span className="font-mono text-xs text-muted-foreground">
-              {totalUserDecisions > 0 ? `${totalUserDecisions} logged` : "182/189"}
-            </span>
-          </div>
-          <p className="mt-1 text-[11.5px] text-muted-foreground">
-            Human reviewers approved automated finding
-          </p>
-        </div>
+            </CardTitle>
+            <BadgeCheck size={16} className="text-[#1F5C43]" />
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
+                96.2%
+              </span>
+              <span className="font-mono text-xs text-muted-foreground">
+                {totalUserDecisions > 0 ? `${totalUserDecisions} logged` : "182/189"}
+              </span>
+            </div>
+            <p className="mt-1 text-[11.5px] text-muted-foreground">
+              Human reviewers approved automated finding
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
       {/* =========================================================================
-          4. INTERACTIVE TIME-SERIES TELEMETRY AREA CHART (Fingerprint Image 4)
+          4. INTERACTIVE TIME-SERIES TELEMETRY AREA CHART (Shadcn Card Structure)
           ========================================================================= */}
-      <div className="rounded-xl border border-border/80 bg-card p-4 sm:p-6 shadow-xs">
+      <Card className="shadow-xs overflow-hidden">
         {/* Chart Header & Granularity Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border/60 pb-4">
+        <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-line pb-4">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Verification Volume &amp; Verdict Ratio
-              </span>
-            </div>
+            <CardTitle className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              Verification Volume &amp; Verdict Ratio
+            </CardTitle>
             <div className="mt-1 flex items-baseline gap-3">
               <span className="text-2xl font-bold tabular-nums text-foreground">
                 {currentHoverPoint.verifications}
@@ -396,7 +410,7 @@ export function Dashboard({
             </div>
 
             {/* Granularity Tabs (Hourly / Daily / Monthly) */}
-            <div className="flex items-center rounded-lg border border-border bg-muted/40 p-0.5 font-mono text-xs">
+            <div className="flex items-center rounded-lg border border-line-strong bg-panel p-0.5 font-mono text-xs">
               {(["Hourly", "Daily", "Monthly"] as const).map((grain) => (
                 <button
                   key={grain}
@@ -413,226 +427,233 @@ export function Dashboard({
               ))}
             </div>
           </div>
-        </div>
+        </CardHeader>
 
         {/* SVG Area & Dual-Line Chart */}
-        <div className="relative mt-4 w-full overflow-hidden select-none">
-          <svg
-            viewBox={`0 0 ${chartW} ${chartH}`}
-            className="w-full h-auto"
-            style={{ maxHeight: "260px" }}
-          >
-            <defs>
-              <linearGradient id="telemetry-area" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#D4847A" stopOpacity="0.25" />
-                <stop offset="85%" stopColor="#D4847A" stopOpacity="0.02" />
-                <stop offset="100%" stopColor="#D4847A" stopOpacity="0.0" />
-              </linearGradient>
-            </defs>
-
-            {/* Horizontal Grid Lines */}
-            {[0, 50, 100, 150, 200].map((val) => (
-              <g key={val}>
-                <line
-                  x1={padL}
-                  y1={getY(val)}
-                  x2={chartW - padR}
-                  y2={getY(val)}
-                  stroke="currentColor"
-                  strokeWidth="0.75"
-                  className="text-border/40"
-                  strokeDasharray="3 3"
-                />
-                <text
-                  x={padL - 6}
-                  y={getY(val) + 3}
-                  textAnchor="end"
-                  fontFamily="monospace"
-                  fontSize="9"
-                  className="fill-muted-foreground/60"
-                >
-                  {val}
-                </text>
-              </g>
-            ))}
-
-            {/* Area Fill for Verifications */}
-            <path d={areaVerifications} fill="url(#telemetry-area)" />
-
-            {/* Line 1: Total Verifications (Coral) */}
-            <path
-              d={pathVerifications}
-              fill="none"
-              stroke="#D4847A"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-
-            {/* Line 2: Contradictions (Oxide) */}
-            <path
-              d={pathContradictions}
-              fill="none"
-              stroke="#8B1E27"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-
-            {/* Data Points and Hover Target Zones */}
-            {TELEMETRY_DAILY.map((d, i) => {
-              const x = getX(i);
-              const yV = getY(d.verifications);
-              const isHovered = activeHoverIdx === i;
-
-              return (
-                <g key={d.date}>
-                  {/* Vertical Guide Line on Hover */}
-                  {isHovered && (
-                    <line
-                      x1={x}
-                      y1={padT}
-                      x2={x}
-                      y2={padT + innerH}
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      strokeDasharray="2 2"
-                      className="text-foreground/40"
-                    />
-                  )}
-
-                  {/* Dot on Verifications */}
-                  <circle
-                    cx={x}
-                    cy={yV}
-                    r={isHovered ? 4.5 : 2.5}
-                    fill="#D4847A"
-                    stroke="var(--card)"
-                    strokeWidth="1.5"
-                  />
-
-                  {/* Dot on Contradictions */}
-                  <circle
-                    cx={x}
-                    cy={getY(d.contradictions)}
-                    r={isHovered ? 4 : 2}
-                    fill="#8B1E27"
-                    stroke="var(--card)"
-                    strokeWidth="1.5"
-                  />
-
-                  {/* X Axis Label */}
-                  <text
-                    x={x}
-                    y={chartH - 8}
-                    textAnchor="middle"
-                    fontFamily="monospace"
-                    fontSize="9.5"
-                    className={
-                      isHovered
-                        ? "fill-foreground font-bold"
-                        : "fill-muted-foreground/70"
-                    }
-                  >
-                    {d.date}
-                  </text>
-
-                  {/* Transparent Hover Hitbox */}
-                  <rect
-                    x={x - innerW / (TELEMETRY_DAILY.length * 2)}
-                    y={padT}
-                    width={innerW / TELEMETRY_DAILY.length}
-                    height={innerH + padB}
-                    fill="transparent"
-                    className="cursor-pointer"
-                    onMouseEnter={() => setActiveHoverIdx(i)}
-                  />
-                </g>
-              );
-            })}
-          </svg>
-
-          {/* Interactive Tooltip Card (Fingerprint Image 4 Style) */}
-          {activeHoverIdx !== null && (
-            <div
-              className="pointer-events-none absolute top-4 rounded-lg border border-border/80 bg-popover/95 p-3 font-mono text-xs shadow-xl backdrop-blur-md transition-all duration-75"
-              style={{
-                left: `${Math.min(
-                  Math.max(
-                    (activeHoverIdx / (TELEMETRY_DAILY.length - 1)) * 80 + 5,
-                    5
-                  ),
-                  72
-                )}%`,
-              }}
+        <CardContent className="pt-4">
+          <div className="relative w-full overflow-hidden select-none">
+            <svg
+              viewBox={`0 0 ${chartW} ${chartH}`}
+              className="w-full h-auto"
+              style={{ maxHeight: "260px" }}
             >
-              <div className="font-semibold text-foreground border-b border-border/40 pb-1.5">
-                {currentHoverPoint.date}, 2026
-              </div>
-              <div className="mt-1.5 space-y-1">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="flex items-center gap-1.5 text-muted-foreground">
-                    <span className="size-1.5 rounded-full bg-[#D4847A]" />
-                    Verifications:
-                  </span>
-                  <span className="font-bold text-foreground">
-                    {currentHoverPoint.verifications}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="flex items-center gap-1.5 text-muted-foreground">
-                    <span className="size-1.5 rounded-full bg-[#8B1E27]" />
-                    Contradictions:
-                  </span>
-                  <span className="font-bold text-[#8B1E27] dark:text-[#D4847A]">
-                    {currentHoverPoint.contradictions}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-4 pt-1 border-t border-border/40 text-[10.5px]">
-                  <span className="text-muted-foreground">Deterministic:</span>
-                  <span className="text-foreground">
-                    {currentHoverPoint.deterministicRatio}%
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+              <defs>
+                <linearGradient id="telemetry-area" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#D4847A" stopOpacity="0.25" />
+                  <stop offset="85%" stopColor="#D4847A" stopOpacity="0.02" />
+                  <stop offset="100%" stopColor="#D4847A" stopOpacity="0.0" />
+                </linearGradient>
+              </defs>
 
-        {/* Bottom Chart Note */}
-        <div className="mt-3 flex items-center gap-2 rounded-lg border border-border/60 bg-muted/20 px-3 py-2 text-xs text-muted-foreground">
-          <Info size={14} className="shrink-0 text-muted-foreground" />
-          <span>
-            Spikes in contradiction volume indicate marketing drafts submitted with superseded pricing from v2/v3 fact versions.
-          </span>
-        </div>
-      </div>
+              {/* Horizontal Grid Lines */}
+              {[0, 50, 100, 150, 200].map((val) => (
+                <g key={val}>
+                  <line
+                    x1={padL}
+                    y1={getY(val)}
+                    x2={chartW - padR}
+                    y2={getY(val)}
+                    stroke="currentColor"
+                    strokeWidth="0.75"
+                    className="text-line"
+                    strokeDasharray="3 3"
+                  />
+                  <text
+                    x={padL - 6}
+                    y={getY(val) + 3}
+                    textAnchor="end"
+                    fontFamily="monospace"
+                    fontSize="9"
+                    className="fill-muted-foreground/60"
+                  >
+                    {val}
+                  </text>
+                </g>
+              ))}
+
+              {/* Area Fill for Verifications */}
+              <path d={areaVerifications} fill="url(#telemetry-area)" />
+
+              {/* Line 1: Total Verifications (Coral) */}
+              <path
+                d={pathVerifications}
+                fill="none"
+                stroke="#D4847A"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              {/* Line 2: Contradictions (Oxide) */}
+              <path
+                d={pathContradictions}
+                fill="none"
+                stroke="#8B1E27"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              {/* Data Points and Hover Target Zones */}
+              {TELEMETRY_DAILY.map((d, i) => {
+                const x = getX(i);
+                const yV = getY(d.verifications);
+                const isHovered = activeHoverIdx === i;
+
+                return (
+                  <g key={d.date}>
+                    {/* Vertical Guide Line on Hover */}
+                    {isHovered && (
+                      <line
+                        x1={x}
+                        y1={padT}
+                        x2={x}
+                        y2={padT + innerH}
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        strokeDasharray="2 2"
+                        className="text-foreground/40"
+                      />
+                    )}
+
+                    {/* Dot on Verifications */}
+                    <circle
+                      cx={x}
+                      cy={yV}
+                      r={isHovered ? 4.5 : 2.5}
+                      fill="#D4847A"
+                      stroke="var(--card)"
+                      strokeWidth="1.5"
+                    />
+
+                    {/* Dot on Contradictions */}
+                    <circle
+                      cx={x}
+                      cy={getY(d.contradictions)}
+                      r={isHovered ? 4 : 2}
+                      fill="#8B1E27"
+                      stroke="var(--card)"
+                      strokeWidth="1.5"
+                    />
+
+                    {/* X Axis Label */}
+                    <text
+                      x={x}
+                      y={chartH - 8}
+                      textAnchor="middle"
+                      fontFamily="monospace"
+                      fontSize="9.5"
+                      className={
+                        isHovered
+                          ? "fill-foreground font-bold"
+                          : "fill-muted-foreground/70"
+                      }
+                    >
+                      {d.date}
+                    </text>
+
+                    {/* Transparent Hover Hitbox */}
+                    <rect
+                      x={x - innerW / (TELEMETRY_DAILY.length * 2)}
+                      y={padT}
+                      width={innerW / TELEMETRY_DAILY.length}
+                      height={innerH + padB}
+                      fill="transparent"
+                      className="cursor-pointer"
+                      onMouseEnter={() => setActiveHoverIdx(i)}
+                    />
+                  </g>
+                );
+              })}
+            </svg>
+
+            {/* Interactive Tooltip Card (Fingerprint Image 4 Style) */}
+            {activeHoverIdx !== null && (
+              <div
+                className="pointer-events-none absolute top-4 rounded-lg border border-line-strong bg-popover/95 p-3 font-mono text-xs shadow-xl backdrop-blur-md transition-all duration-75"
+                style={{
+                  left: `${Math.min(
+                    Math.max(
+                      (activeHoverIdx / (TELEMETRY_DAILY.length - 1)) * 80 + 5,
+                      5
+                    ),
+                    72
+                  )}%`,
+                }}
+              >
+                <div className="font-semibold text-foreground border-b border-line pb-1.5">
+                  {currentHoverPoint.date}, 2026
+                </div>
+                <div className="mt-1.5 space-y-1">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="flex items-center gap-1.5 text-muted-foreground">
+                      <span className="size-1.5 rounded-full bg-[#D4847A]" />
+                      Verifications:
+                    </span>
+                    <span className="font-bold text-foreground">
+                      {currentHoverPoint.verifications}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="flex items-center gap-1.5 text-muted-foreground">
+                      <span className="size-1.5 rounded-full bg-[#8B1E27]" />
+                      Contradictions:
+                    </span>
+                    <span className="font-bold text-[#8B1E27] dark:text-[#D4847A]">
+                      {currentHoverPoint.contradictions}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-4 pt-1 border-t border-line text-[10.5px]">
+                    <span className="text-muted-foreground">Deterministic:</span>
+                    <span className="text-foreground">
+                      {currentHoverPoint.deterministicRatio}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Bottom Chart Note */}
+          <div className="mt-3 flex items-center gap-2 rounded-lg border border-line bg-panel/50 px-3 py-2 text-xs text-muted-foreground">
+            <Info size={14} className="shrink-0 text-muted-foreground" />
+            <span>
+              Spikes in contradiction volume indicate marketing drafts submitted with superseded pricing from v2/v3 fact versions.
+            </span>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* =========================================================================
-          5. THREE DEEP BREAKDOWN TABLES (Fingerprint Image 4 Bottom Row)
+          5. THREE DEEP BREAKDOWN TABLES (Shadcn dashboard-01 Card + Table Layout)
           ========================================================================= */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* Table 1: Top Contradicted Claims & Attributes */}
-        <div className="rounded-xl border border-border/80 bg-card p-4 shadow-xs flex flex-col justify-between">
+        <Card className="shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
-              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Top Contradictions
-              </span>
-              <span className="font-mono text-[11px] text-muted-foreground">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-line">
+              <div>
+                <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Top Contradictions
+                </CardTitle>
+                <CardDescription className="text-[11px] mt-0.5">
+                  Frequently drifted marketing attributes
+                </CardDescription>
+              </div>
+              <Badge variant="outline" className="font-mono text-[10px]">
                 By Frequency
-              </span>
-            </div>
+              </Badge>
+            </CardHeader>
 
-            <div className="mt-3 space-y-2">
+            <CardContent className="pt-3 space-y-2">
               {TOP_CONTRADICTED_FACTS.map((item) => (
                 <div
                   key={item.factId}
-                  className="relative overflow-hidden rounded-md border border-border/40 p-2.5 bg-card/60"
+                  className="relative overflow-hidden rounded-md border border-line p-2.5 bg-card/60"
                 >
                   {/* Subtle proportional horizontal background bar */}
                   <div
-                    className="pointer-events-none absolute inset-y-0 left-0 bg-[#8B1E27]/5 dark:bg-[#D4847A]/5"
+                    className="pointer-events-none absolute inset-y-0 left-0 bg-[#8B1E27]/8 dark:bg-[#D4847A]/10"
                     style={{ width: `${item.pct}%` }}
                   />
 
@@ -662,139 +683,156 @@ export function Dashboard({
                   </div>
                 </div>
               ))}
-            </div>
+            </CardContent>
           </div>
 
-          <Link
-            href="/check"
-            className="mt-3 pt-2.5 border-t border-border/60 inline-flex items-center justify-between text-xs font-medium text-accent-brand dark:text-accent-readable hover:underline"
-          >
-            <span>Test a Draft Against These Facts</span>
-            <ArrowRight size={12} />
-          </Link>
-        </div>
+          <CardFooter className="pt-3">
+            <Button asChild variant="ghost" size="sm" className="w-full justify-between text-xs text-accent-brand dark:text-accent-readable">
+              <Link href="/check">
+                <span>Test a Draft Against These Facts</span>
+                <ArrowUpRight size={13} />
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
 
-        {/* Table 2: Deterministic Rule Efficacy Ledger */}
-        <div className="rounded-xl border border-border/80 bg-card p-4 shadow-xs flex flex-col justify-between">
+        {/* Table 2: Deterministic Rule Efficacy Ledger with Shadcn Table */}
+        <Card className="shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
-              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Rule Efficacy Ledger
-              </span>
-              <span className="font-mono text-[11px] text-muted-foreground">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-line">
+              <div>
+                <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Rule Efficacy Ledger
+                </CardTitle>
+                <CardDescription className="text-[11px] mt-0.5">
+                  Sub-millisecond TypeScript rule checks
+                </CardDescription>
+              </div>
+              <Badge variant="outline" className="font-mono text-[10px]">
                 Stage 1 TS
-              </span>
-            </div>
+              </Badge>
+            </CardHeader>
 
-            <div className="mt-3 space-y-2">
-              {RULE_EFFICACY_LEDGER.map((rule) => (
-                <div
-                  key={rule.rule}
-                  className="rounded-md border border-border/40 p-2.5 bg-card/60 text-xs"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono font-semibold text-foreground truncate max-w-[170px]">
-                      {rule.rule}
-                    </span>
-                    <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                      {rule.stage}
-                    </span>
-                  </div>
-
-                  <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-muted-foreground">
-                    <span>{rule.evals} calls</span>
-                    <span className="text-foreground font-medium">
-                      {rule.avgLatency}
-                    </span>
-                    <span className="text-[#1F5C43] font-semibold">
-                      {rule.accuracy}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <CardContent className="pt-3">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="text-[10px] h-7 px-2 font-mono">RULE</TableHead>
+                    <TableHead className="text-[10px] h-7 px-2 text-center font-mono">CALLS</TableHead>
+                    <TableHead className="text-[10px] h-7 px-2 text-center font-mono">LATENCY</TableHead>
+                    <TableHead className="text-[10px] h-7 px-2 text-right font-mono">ACC</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {RULE_EFFICACY_LEDGER.map((rule) => (
+                    <TableRow key={rule.rule} className="text-xs">
+                      <TableCell className="font-mono font-medium py-2 px-2 text-[11px] truncate max-w-[110px]" title={rule.rule}>
+                        {rule.rule}
+                      </TableCell>
+                      <TableCell className="font-mono text-center py-2 px-2 text-[11px] text-muted-foreground">
+                        {rule.evals}
+                      </TableCell>
+                      <TableCell className="font-mono text-center py-2 px-2 text-[11px] text-foreground font-semibold">
+                        {rule.avgLatency}
+                      </TableCell>
+                      <TableCell className="font-mono text-right py-2 px-2 text-[11px] text-[#1F5C43] dark:text-emerald-400 font-bold">
+                        {rule.accuracy}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
           </div>
 
-          <Link
-            href="/about#pipeline"
-            className="mt-3 pt-2.5 border-t border-border/60 inline-flex items-center justify-between text-xs font-medium text-accent-brand dark:text-accent-readable hover:underline"
-          >
-            <span>Inspect Rule Implementation</span>
-            <ArrowRight size={12} />
-          </Link>
-        </div>
+          <CardFooter className="pt-3">
+            <Button asChild variant="ghost" size="sm" className="w-full justify-between text-xs text-accent-brand dark:text-accent-readable">
+              <Link href="/about#pipeline">
+                <span>Inspect Rule Implementation</span>
+                <ArrowUpRight size={13} />
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
 
-        {/* Table 3: Session Audit Log & Review Decisions (Linear Style) */}
-        <div className="rounded-xl border border-border/80 bg-card p-4 shadow-xs flex flex-col justify-between">
+        {/* Table 3: Session Audit Trail & Review Decisions (Linear Style) */}
+        <Card className="shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
-              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Session Audit Trail
-              </span>
-              <span className="font-mono text-[11px] text-muted-foreground">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-line">
+              <div>
+                <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Session Audit Trail
+                </CardTitle>
+                <CardDescription className="text-[11px] mt-0.5">
+                  Live human reviewer decisions
+                </CardDescription>
+              </div>
+              <Badge variant="outline" className="font-mono text-[10px]">
                 {totalUserDecisions} Actions
-              </span>
-            </div>
+              </Badge>
+            </CardHeader>
 
-            {totalUserDecisions === 0 ? (
-              <div className="mt-4 rounded-lg border border-dashed border-border/80 p-5 text-center">
-                <FileText size={22} className="mx-auto text-muted-foreground/60" />
-                <p className="mt-2 text-xs font-semibold text-foreground">
-                  No Local Decisions Logged Yet
-                </p>
-                <p className="mt-1 text-[11px] text-muted-foreground">
-                  Verify a draft in the Preflight Checker to record decisions with SHA-256 signatures.
-                </p>
-                <Link
-                  href="/check"
-                  className="mt-3 inline-flex items-center gap-1 rounded bg-foreground px-3 py-1 font-mono text-xs font-semibold text-background hover:bg-foreground/90"
-                >
-                  Open Checker →
-                </Link>
-              </div>
-            ) : (
-              <div className="mt-3 space-y-2">
-                {state.audit.slice(-4).reverse().map((entry) => (
-                  <div
-                    key={entry.id}
-                    className="rounded-md border border-border/40 p-2.5 bg-card/60 text-xs"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[10px] text-muted-foreground">
-                        {entry.id}
-                      </span>
-                      <span
-                        className={`rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold uppercase ${
-                          entry.decision === "approve"
-                            ? "bg-v-supported-bg text-v-supported-fg"
-                            : entry.decision === "reject"
-                            ? "bg-v-contradicted-bg text-v-contradicted-fg"
-                            : "bg-v-stale-bg text-v-stale-fg"
-                        }`}
-                      >
-                        {DECISION_LABEL[entry.decision]}
-                      </span>
+            <CardContent className="pt-3">
+              {totalUserDecisions === 0 ? (
+                <div className="rounded-lg border border-dashed border-line-strong p-5 text-center">
+                  <FileText size={22} className="mx-auto text-muted-foreground/60" />
+                  <p className="mt-2 text-xs font-semibold text-foreground">
+                    No Local Decisions Logged Yet
+                  </p>
+                  <p className="mt-1 text-[11px] text-muted-foreground">
+                    Verify a draft in the Preflight Checker to record decisions with SHA-256 signatures.
+                  </p>
+                  <Button asChild size="sm" className="mt-3 font-mono text-xs">
+                    <Link href="/check">
+                      Open Checker →
+                    </Link>
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {state.audit.slice(-4).reverse().map((entry) => (
+                    <div
+                      key={entry.id}
+                      className="rounded-md border border-line p-2.5 bg-card/60 text-xs"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] text-muted-foreground">
+                          {entry.id}
+                        </span>
+                        <span
+                          className={`rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold uppercase ${
+                            entry.decision === "approve"
+                              ? "bg-v-supported-bg text-v-supported-fg"
+                              : entry.decision === "reject"
+                              ? "bg-v-contradicted-bg text-v-contradicted-fg"
+                              : "bg-v-stale-bg text-v-stale-fg"
+                          }`}
+                        >
+                          {DECISION_LABEL[entry.decision]}
+                        </span>
+                      </div>
+                      <p className="mt-1 font-medium text-foreground truncate">
+                        {entry.claim || (entry.verdict ? entry.verdict.replace("_", " ") : "Draft Claim")}
+                      </p>
+                      <p className="text-[10px] text-muted-foreground font-mono">
+                        {new Date(entry.at).toLocaleTimeString()}
+                      </p>
                     </div>
-                    <p className="mt-1 font-medium text-foreground truncate">
-                      {entry.claim || (entry.verdict ? entry.verdict.replace("_", " ") : "Draft Claim")}
-                    </p>
-                    <p className="text-[10px] text-muted-foreground font-mono">
-                      {new Date(entry.at).toLocaleTimeString()}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
+            </CardContent>
           </div>
 
-          <Link
-            href="/audit"
-            className="mt-3 pt-2.5 border-t border-border/60 inline-flex items-center justify-between text-xs font-medium text-accent-brand dark:text-accent-readable hover:underline"
-          >
-            <span>Open Decision Journal</span>
-            <ArrowRight size={12} />
-          </Link>
-        </div>
+          <CardFooter className="pt-3">
+            <Button asChild variant="ghost" size="sm" className="w-full justify-between text-xs text-accent-brand dark:text-accent-readable">
+              <Link href="/audit">
+                <span>Open Decision Journal</span>
+                <ArrowUpRight size={13} />
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   );
