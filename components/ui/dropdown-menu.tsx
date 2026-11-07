@@ -8,7 +8,29 @@ import { cn } from "@/lib/utils"
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+const DropdownMenuTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger> & {
+    render?: React.ReactElement<any>;
+  }
+>(({ render, children, ...props }, ref) => {
+  if (React.isValidElement(render)) {
+    const renderProps = render.props as Record<string, any>;
+    return (
+      <DropdownMenuPrimitive.Trigger ref={ref} asChild {...props}>
+        {React.cloneElement(render as React.ReactElement<any>, {
+          children: children ?? renderProps?.children,
+        })}
+      </DropdownMenuPrimitive.Trigger>
+    );
+  }
+  return (
+    <DropdownMenuPrimitive.Trigger ref={ref} {...props}>
+      {children}
+    </DropdownMenuPrimitive.Trigger>
+  );
+});
+DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName;
 
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
