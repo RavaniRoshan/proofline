@@ -23,6 +23,7 @@ import type { VerifyResult, Verdict, Finding } from "@/lib/types";
 import { ALL_VERDICTS } from "@/lib/types";
 import { FindingCard } from "@/components/FindingCard";
 import { MarkedDraft } from "@/components/MarkedDraft";
+import { FaArrowRight } from "react-icons/fa6";
 import { EvidenceDrawer } from "@/components/EvidenceDrawer";
 import { useProoflineState } from "@/lib/use-proofline";
 import { cn } from "@/lib/utils";
@@ -211,7 +212,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
               variant="outline"
               size="sm"
               onClick={() => setDraft(sampleDraft)}
-              className="h-7 gap-1 font-mono text-xs text-foreground"
+              className="h-8 gap-1.5 rounded-full px-4 font-mono text-xs text-foreground hover:border-foreground/40 transition-colors"
             >
               <Wand2 size={12} />
               <span>Load Sample Draft</span>
@@ -374,17 +375,20 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                 onClick={() => void check()}
                 disabled={status === "checking"}
                 data-testid="check-button"
-                className="btn-proofline-tactile h-10 min-w-36 gap-2 font-mono text-xs font-semibold bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-all cursor-pointer"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98] cursor-pointer"
               >
                 {status === "checking" ? (
                   <>
-                    <Loader2 size={16} className="animate-spin" aria-hidden="true" />
+                    <Loader2 size={15} className="animate-spin text-white" aria-hidden="true" />
                     <span>Executing Pipeline…</span>
                   </>
                 ) : (
                   <>
-                    <ShieldCheck size={16} aria-hidden="true" />
+                    <ShieldCheck size={15} className="text-white" aria-hidden="true" />
                     <span>Run Preflight Check</span>
+                    <span className="flex size-6 items-center justify-center rounded-full bg-black/20 text-white">
+                      <FaArrowRight className="size-2.5 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </span>
                   </>
                 )}
               </Button>

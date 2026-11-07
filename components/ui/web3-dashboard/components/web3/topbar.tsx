@@ -94,7 +94,7 @@ export function DashboardTopbar({
           <PopoverTrigger asChild>
             <Button
               variant="outline"
-              className="h-9 font-mono text-xs gap-2 border-border bg-muted/40 hover:bg-muted text-foreground"
+              className="h-9 font-mono text-xs gap-2 border-border bg-muted/40 hover:bg-muted text-foreground rounded-full px-3.5 transition-all"
             >
               <CalendarIcon className="size-3.5 text-[#8B1E27] dark:text-[#D4847A]" />
               <span className="hidden sm:inline">
@@ -133,13 +133,13 @@ export function DashboardTopbar({
         </Popover>
 
         {/* Navigation Quick Actions */}
-        <Button asChild variant="outline" className="h-9 font-mono text-xs gap-1.5 hidden md:inline-flex">
+        <Button asChild variant="outline" className="h-9 font-mono text-xs gap-1.5 hidden md:inline-flex rounded-full px-4 border-border hover:bg-muted active:scale-[0.98] transition-all">
           <Link href="/facts">
             <span>Browse Facts</span>
             <ArrowUpRight className="size-3.5" />
           </Link>
         </Button>
-        <Button asChild className="h-9 px-3.5 font-mono text-xs gap-1.5 bg-[#8B1E27] hover:bg-[#8B1E27]/90 text-white">
+        <Button asChild className="h-9 px-4 font-mono text-xs gap-1.5 bg-[#8B1E27] hover:bg-[#8B1E27]/90 text-white rounded-full shadow-xs active:scale-[0.98] transition-all">
           <Link href="/check">
             <span>Check Draft</span>
             <Plus className="size-3.5" />

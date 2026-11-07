@@ -23,6 +23,7 @@ import { useProoflineState } from "@/lib/use-proofline";
 import type { Verdict } from "@/lib/types";
 import { ALL_VERDICTS } from "@/lib/types";
 import { VerdictBadge, Badge } from "@/components/ui/badge";
+import { FaArrowRight } from "react-icons/fa6";
 import {
   Card,
   CardHeader,
@@ -168,9 +169,9 @@ export function AuditLog() {
               size="sm"
               onClick={download}
               disabled={allEntries.length === 0}
-              className="h-7 gap-1 font-mono text-xs text-foreground"
+              className="h-8 gap-1.5 rounded-full px-3.5 font-mono text-xs text-foreground hover:border-foreground/40 transition-colors"
             >
-              <Download size={12} />
+              <Download size={13} />
               <span>Export JSON</span>
             </Button>
           </div>
@@ -344,10 +345,12 @@ export function AuditLog() {
             Check a draft in the Preflight Checker and record a decision on a finding — every judgment you make
             appears here stamped with timestamp, evidence span, and SHA-256 fingerprint.
           </p>
-          <Button asChild className="mt-4 font-mono text-xs bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90">
+          <Button asChild className="group mt-4 inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]">
             <Link href="/check">
               <span>Go check a draft</span>
-              <ArrowRight size={13} className="ml-1.5" />
+              <span className="flex size-6 items-center justify-center rounded-full bg-black/20 text-white">
+                <FaArrowRight className="size-2.5 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+              </span>
             </Link>
           </Button>
         </Card>
@@ -366,7 +369,7 @@ export function AuditLog() {
               setVerdictFilter("all");
               setSearchQuery("");
             }}
-            className="mt-3 font-mono text-xs"
+            className="mt-3 font-mono text-xs rounded-full px-3.5"
           >
             Reset filters
           </Button>

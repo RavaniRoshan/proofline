@@ -157,9 +157,9 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
               variant="outline"
               size="sm"
               onClick={downloadJSON}
-              className="h-7 gap-1 font-mono text-xs text-foreground"
+              className="h-8 gap-1.5 rounded-full px-3.5 font-mono text-xs text-foreground hover:border-foreground/40 transition-colors"
             >
-              <Download size={12} />
+              <Download size={13} />
               <span>Export JSON</span>
             </Button>
           </div>
@@ -294,16 +294,16 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                   aria-pressed={active}
                   onClick={() => setFilter(id)}
                   data-testid={`filter-${id}`}
-                  className={`btn-proofline-tactile inline-flex h-8 items-center gap-1.5 rounded-md border px-2.5 text-xs font-medium transition-colors cursor-pointer ${
+                  className={`btn-proofline-tactile inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs font-medium transition-colors cursor-pointer ${
                     active
-                      ? "border-[#8B1E27] bg-[#8B1E27] text-white dark:border-[#D4847A] dark:bg-[#D4847A] dark:text-slate-950 font-semibold"
+                      ? "border-[#8B1E27] bg-[#8B1E27] text-white dark:border-[#D4847A] dark:bg-[#D4847A] dark:text-slate-950 font-semibold shadow-xs"
                       : "border-border bg-card text-muted-foreground hover:border-foreground/30 hover:text-foreground"
                   }`}
                 >
                   <Icon size={13} aria-hidden="true" />
                   <span>{label}</span>
                   <span
-                    className={`ml-1 font-mono text-[10px] rounded px-1.5 py-0.2 ${
+                    className={`ml-1 font-mono text-[10px] rounded-full px-1.5 py-0.5 ${
                       active
                         ? "bg-white/20 text-white dark:bg-black/20 dark:text-slate-950"
                         : "bg-muted text-muted-foreground"

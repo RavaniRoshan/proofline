@@ -186,11 +186,11 @@ export function Dashboard({
             </div>
 
             {/* Tab switchers */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-muted/40 rounded-lg border border-border text-xs font-mono">
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-muted/40 rounded-full border border-border text-xs font-mono">
               <button
                 type="button"
                 onClick={() => setActiveEngineTab("deterministic")}
-                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
                   activeEngineTab === "deterministic"
                     ? "bg-foreground text-background font-semibold shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
@@ -201,7 +201,7 @@ export function Dashboard({
               <button
                 type="button"
                 onClick={() => setActiveEngineTab("lineage")}
-                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
                   activeEngineTab === "lineage"
                     ? "bg-foreground text-background font-semibold shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
@@ -212,7 +212,7 @@ export function Dashboard({
               <button
                 type="button"
                 onClick={() => setActiveEngineTab("gate")}
-                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
                   activeEngineTab === "gate"
                     ? "bg-foreground text-background font-semibold shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
@@ -223,7 +223,7 @@ export function Dashboard({
               <button
                 type="button"
                 onClick={() => setActiveEngineTab("api")}
-                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
                   activeEngineTab === "api"
                     ? "bg-foreground text-background font-semibold shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
@@ -234,7 +234,7 @@ export function Dashboard({
               <button
                 type="button"
                 onClick={() => setActiveEngineTab("audit")}
-                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
                   activeEngineTab === "audit"
                     ? "bg-foreground text-background font-semibold shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
@@ -303,9 +303,12 @@ export function Dashboard({
               <p className="mt-1 text-[11px] text-muted-foreground">
                 Verify a draft in the Preflight Checker to record decisions with SHA-256 signatures.
               </p>
-              <Button asChild size="sm" className="mt-3 font-mono text-xs bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90">
+              <Button asChild size="sm" className="group mt-4 inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-xs transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]">
                 <Link href="/check">
-                  Open Preflight Checker →
+                  <span>Open Preflight Checker</span>
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:translate-x-0.5">
+                    <ArrowRight className="h-3 w-3 text-white" />
+                  </span>
                 </Link>
               </Button>
             </div>

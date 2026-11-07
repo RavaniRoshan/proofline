@@ -262,7 +262,7 @@ export default function SettingsPage() {
               size="sm"
               onClick={handleReset}
               disabled={resetting}
-              className="gap-1.5 font-mono text-xs border-border hover:border-[#8B1E27]/40 hover:text-[#8B1E27] shrink-0"
+              className="gap-1.5 font-mono text-xs rounded-full px-4 border-border hover:border-[#8B1E27]/40 hover:text-[#8B1E27] shrink-0 active:scale-[0.98] transition-all"
             >
               <RotateCcw size={13} className={resetting ? "animate-spin" : ""} />
               <span>{resetting ? "Resetting…" : "Reset Session Demo"}</span>
@@ -275,11 +275,11 @@ export default function SettingsPage() {
             type="button"
             size="sm"
             onClick={handleSave}
-            className="font-mono text-xs gap-1.5 bg-foreground text-background hover:bg-foreground/90 cursor-pointer"
+            className="font-mono text-xs gap-1.5 rounded-full px-5 bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-all cursor-pointer shadow-xs"
           >
             {saved ? (
               <>
-                <Check size={13} className="text-[#1F5C43]" />
+                <Check size={13} className="text-white" />
                 <span>Preferences Saved</span>
               </>
             ) : (
@@ -287,8 +287,8 @@ export default function SettingsPage() {
             )}
           </Button>
 
-          <Button asChild variant="ghost" size="sm" className="font-mono text-xs text-accent-brand dark:text-accent-readable">
-            <Link href="/dashboard" className="gap-1">
+          <Button asChild variant="ghost" size="sm" className="font-mono text-xs text-accent-brand dark:text-accent-readable rounded-full px-3">
+            <Link href="/dashboard" className="gap-1.5">
               <span>Back to Dashboard</span>
               <ArrowRight size={13} />
             </Link>

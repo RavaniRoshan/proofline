@@ -89,7 +89,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button asChild variant="outline" size="sm" className="h-7 gap-1 font-mono text-xs text-foreground">
+            <Button asChild variant="outline" size="sm" className="h-7 gap-1.5 font-mono text-xs text-foreground rounded-full px-3 border-border hover:bg-muted">
               <a href={REPO} target="_blank" rel="noreferrer">
                 <Code size={12} />
                 <span>GitHub Repo</span>
@@ -282,12 +282,14 @@ export default function AboutPage() {
       <div className="flex flex-wrap items-center gap-3">
         <Button
           asChild
-          className="btn-proofline-tactile h-9 gap-2 font-mono text-xs bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+          className="group inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-3 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-xs transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
         >
           <Link href="/check">
             <ShieldCheck size={14} />
             <span>Check a Draft</span>
-            <ArrowRight size={13} />
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:translate-x-0.5">
+              <ArrowRight className="h-3 w-3 text-white" />
+            </span>
           </Link>
         </Button>
 
@@ -295,7 +297,7 @@ export default function AboutPage() {
           asChild
           variant="outline"
           data-testid="round1-pdf"
-          className="btn-proofline-tactile h-9 gap-2 font-mono text-xs text-foreground active:scale-[0.98]"
+          className="btn-proofline-tactile h-9 rounded-full px-4 gap-2 font-mono text-xs text-foreground border-border hover:bg-muted active:scale-[0.98] transition-all"
         >
           <a href={ROUND1_PDF} target="_blank" rel="noreferrer">
             <FileText size={14} className="text-[#8B1E27] dark:text-[#D4847A]" />
@@ -307,7 +309,7 @@ export default function AboutPage() {
         <Button
           asChild
           variant="outline"
-          className="btn-proofline-tactile h-9 gap-2 font-mono text-xs text-foreground active:scale-[0.98]"
+          className="btn-proofline-tactile h-9 rounded-full px-4 gap-2 font-mono text-xs text-foreground border-border hover:bg-muted active:scale-[0.98] transition-all"
         >
           <a href={REPO} target="_blank" rel="noreferrer">
             <Code size={14} />
