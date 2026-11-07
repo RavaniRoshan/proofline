@@ -587,24 +587,21 @@ assert(
   "Row entrance delay uses 35ms stagger capped at 80ms"
 );
 
-// 6.5 Architectural Transition Strip
+// 6.5 Architectural Transition Strip Clean Decommissioning
 assert(
-  heroCode.includes("HERO_METRICS") &&
-  heroCode.includes("<1ms Deterministic Rules") &&
-  heroCode.includes("Seeded Flowdesk Facts") &&
-  heroCode.includes("Evidence Gate") &&
-  heroCode.includes("Smoke Eval Pass"),
+  !heroCode.includes("pl-transition-strip") &&
+  !heroCode.includes("pl-strip mt-6 grid"),
   "Invariants",
-  "HERO_METRICS array and labels",
-  "HERO_METRICS correctly declared with all 4 architectural metrics"
+  "Transition strip decommissioned",
+  "Hero cleanly omits the transition strip metrics bar"
 );
 
 assert(
-  heroCode.includes("pl-stat-pill") &&
-  heroCode.includes("group-hover:scale-125"),
+  heroCode.includes("pl-stage-wrap") &&
+  heroCode.includes("StageWallpaperBackdrop"),
   "Invariants",
-  "Metrics hover micro-interactions",
-  "Stat pill features dot scale reaction (scale-125) and hover elevation"
+  "Stage Wallpaper backdrop preserved",
+  "Unclipped stage container and ambient wallpaper remain intact"
 );
 
 // =========================================================================

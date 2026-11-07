@@ -99,39 +99,7 @@ const BRIEF_TABS: BriefTab[] = [
   },
 ];
 
-interface MetricPill {
-  id: string;
-  dotColorClass: string;
-  number: string;
-  label: string;
-}
 
-const HERO_METRICS: MetricPill[] = [
-  {
-    id: "rules",
-    dotColorClass: "bg-accent",
-    number: "78%",
-    label: "<1ms Deterministic Rules",
-  },
-  {
-    id: "facts",
-    dotColorClass: "bg-v-supported-fg",
-    number: "42",
-    label: "Seeded Flowdesk Facts",
-  },
-  {
-    id: "gate",
-    dotColorClass: "bg-v-stale-fg",
-    number: "6-Field",
-    label: "Evidence Gate",
-  },
-  {
-    id: "smoke",
-    dotColorClass: "bg-ink dark:bg-zinc-200",
-    number: "24/24",
-    label: "Smoke Eval Pass",
-  },
-];
 
 export function ProoflineHero() {
   const viewportRef = useRef<HTMLElement>(null);
@@ -644,60 +612,7 @@ export function ProoflineHero() {
           animation: pl-heading-crossfade var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
         }
 
-        /* Architectural Transition Strip (Band 1 -> Band 2 Bridge) */
-        #viewport .pl-strip {
-          position: relative;
-          background: rgba(245, 245, 242, 0.65);
-          border: 1px solid rgba(26, 26, 24, 0.10);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-          transition: border-color var(--motion-duration-fast, 180ms) var(--ease-mechanical);
-        }
 
-        #viewport .pl-stat-pill {
-          position: relative;
-          border: 1px solid transparent;
-          cursor: default;
-          will-change: transform, box-shadow;
-          transition:
-            transform var(--motion-duration-micro, 120ms) var(--ease-mechanical),
-            background-color var(--motion-duration-micro, 120ms) var(--ease-mechanical),
-            border-color var(--motion-duration-micro, 120ms) var(--ease-mechanical),
-            box-shadow var(--motion-duration-micro, 120ms) var(--ease-mechanical);
-        }
-
-        #viewport .pl-stat-pill:hover {
-          transform: translateY(-1px);
-          background: #FFFFFF;
-          border-color: rgba(26, 26, 24, 0.08);
-          box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.06);
-        }
-
-        #viewport .pl-stat-num {
-          font-weight: 600;
-          color: var(--c-ink);
-          letter-spacing: -0.01em;
-        }
-
-        #viewport .pl-stat-label {
-          color: var(--c-muted);
-        }
-
-        /* Stagger Entrance for Metric Pills (Beat 3: Find) */
-        @keyframes pl-stat-enter {
-          from {
-            opacity: 0;
-            transform: translateY(6px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        #viewport[data-enter="run"] .pl-stat-pill {
-          animation: pl-stat-enter var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
-          animation-delay: calc(320ms + var(--stat-idx, 0) * 45ms);
-        }
 
 
 
@@ -901,10 +816,7 @@ export function ProoflineHero() {
           will-change: transform, opacity, filter;
         }
 
-        #viewport[data-enter="run"] .pl-transition-strip {
-          animation: pl-enter-rise var(--motion-duration-hero, 420ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) 360ms backwards;
-          will-change: transform, opacity, filter;
-        }
+
 
 
 
@@ -1046,18 +958,7 @@ export function ProoflineHero() {
           color: #FFFFFF !important;
         }
 
-        :where(.dark, html.dark) #viewport .pl-strip {
-          background: #141418 !important;
-          border-color: rgba(255, 255, 255, 0.1) !important;
-        }
 
-        :where(.dark, html.dark) #viewport .pl-stat-num {
-          color: #FFFFFF !important;
-        }
-
-        :where(.dark, html.dark) #viewport .pl-stat-label {
-          color: #A1A1AA !important;
-        }
 
 
 
@@ -1288,49 +1189,6 @@ export function ProoflineHero() {
             </div>
           </div>
 
-          {/* Architectural Transition Strip connecting Hero Band smoothly into Band 2 */}
-          <div
-            className="pl-transition-strip pl-strip mt-6 grid grid-cols-2 gap-2 rounded-2xl border border-ink/10 bg-panel/65 p-2 font-mono text-[11px] uppercase tracking-wider text-ink-soft sm:grid-cols-4 sm:p-2.5"
-            role="region"
-            aria-label="Proofline platform architecture metrics"
-          >
-            {HERO_METRICS.map((metric, idx) => (
-              <div
-                key={metric.id}
-                className="pl-stat-pill group flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all duration-micro ease-mechanical hover:-translate-y-px hover:bg-paper hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] dark:hover:bg-panel-elevated dark:hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.4)]"
-                style={{ "--stat-idx": idx } as React.CSSProperties}
-              >
-                <span
-                  className={`size-2 shrink-0 rounded-full ${metric.dotColorClass} transition-transform duration-micro ease-mechanical group-hover:scale-125`}
-                  aria-hidden="true"
-                />
-                <div className="flex items-baseline gap-1.5 truncate">
-                  <span className="pl-stat-num font-semibold text-ink dark:text-white">
-                    {metric.number}
-                  </span>
-                  <span className="pl-stat-label text-ink-soft dark:text-zinc-400">
-                    {metric.label}
-                  </span>
-                </div>
-              </div>
-            ))}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          </div>
         </div>
       </div>
     </section>
