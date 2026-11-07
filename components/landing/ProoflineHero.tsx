@@ -838,7 +838,7 @@ export function ProoflineHero() {
         }
 
         :where(.dark, html.dark) #viewport .pl-hero-sub {
-          color: #A1A1AA !important;
+          color: #E4E4E7 !important;
         }
 
         :where(.dark, html.dark) #viewport .pl-btn-hero {
@@ -917,7 +917,7 @@ export function ProoflineHero() {
         }
 
         :where(.dark, html.dark) #viewport .pl-eyebrow {
-          color: #A1A1AA !important;
+          color: #D4D4D8 !important;
         }
 
         :where(.dark, html.dark) #viewport .pl-panel {
