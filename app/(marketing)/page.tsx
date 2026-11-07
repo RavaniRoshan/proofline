@@ -119,11 +119,11 @@ export default function LandingPage() {
             </p>
             <Link
               href="/check"
-              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+              className="group mt-6 inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
             >
-              <span>TRY IT IN THE CHECKER</span>
-              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                →
+              <span>Try it in the checker</span>
+              <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
+                <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
               </span>
             </Link>
           </div>
@@ -193,11 +193,11 @@ export default function LandingPage() {
             </p>
             <Link
               href="/facts"
-              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+              className="group mt-6 inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
             >
-              <span>EXPLORE 42 SEEDED FACTS</span>
-              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                →
+              <span>Explore 42 seeded facts</span>
+              <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
+                <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
               </span>
             </Link>
           </div>
@@ -424,20 +424,25 @@ export default function LandingPage() {
               strict local-first privacy and deterministic audit rules.
             </p>
 
-            {/* Dual Sharp 0px Enterprise CTAs */}
+            {/* Pill CTAs matching Hero and Footer */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/dashboard"
-                className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-xs font-semibold"
+                className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
               >
-                <span>OPEN REGISTER DASHBOARD</span>
-                <span aria-hidden="true">→</span>
+                <span>Open Register Dashboard</span>
+                <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
+                  <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                </span>
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
+                className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-5 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
               >
-                <span>READ ROUND 1 → 2 SPEC</span>
+                <span>Read Round 1 → 2 Spec</span>
+                <span className="flex size-7 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
+                  <FaArrowRight className="size-3 text-ink dark:text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                </span>
               </Link>
             </div>
           </div>
@@ -542,20 +547,25 @@ export default function LandingPage() {
                   seconds.
                 </p>
 
-                {/* Dual Sharp 0px Buttons — High-contrast across both Light and Dark modes */}
-                <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
+                {/* Pill Buttons — Matching Hero and Footer */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
                   <Link
                     href="/check"
-                    className="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] rounded-none shadow-md font-semibold"
+                    className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-6 font-mono text-[13px] font-semibold uppercase tracking-wider text-white shadow-md transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
                   >
-                    <span>CHECK A DRAFT</span>
-                    <span aria-hidden="true">→</span>
+                    <span>Check a Draft</span>
+                    <span className="flex size-8 items-center justify-center rounded-full bg-black/20 text-white">
+                      <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </span>
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="inline-flex items-center justify-center border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-6 py-3.5 font-mono text-[13px] uppercase tracking-wider text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98] rounded-none font-medium"
+                    className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-2 pr-2.5 pl-6 font-mono text-[13px] font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
                   >
-                    SEE IT WORK
+                    <span>See it Work</span>
+                    <span className="flex size-8 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
+                      <FaArrowRight className="size-3 text-ink dark:text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </span>
                   </a>
                 </div>
               </div>

@@ -489,7 +489,7 @@ export function UseCasesDualPane() {
                       setPaused(true);
                       setDecisionMap((prev) => ({ ...prev, [current.id]: action }));
                     }}
-                    className={`border py-1.5 font-mono text-[11px] uppercase transition-all duration-[var(--motion-duration-micro,120ms)] cursor-pointer rounded-none active:scale-[0.97] ${
+                    className={`border py-1.5 font-mono text-[11px] uppercase transition-all duration-[var(--motion-duration-micro,120ms)] cursor-pointer rounded-full active:scale-[0.97] ${
                       recordedDecision === action
                         ? "border-ink bg-ink text-paper font-semibold shadow-2xs dark:border-white dark:bg-white dark:text-zinc-950"
                         : "border-ink/15 dark:border-white/15 bg-panel/60 dark:bg-zinc-800/60 text-ink dark:text-zinc-200 hover:bg-panel dark:hover:bg-zinc-800 hover:border-ink/30 dark:hover:border-white/30"

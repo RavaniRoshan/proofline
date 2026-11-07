@@ -208,7 +208,7 @@ export function ApiPlayground() {
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none border border-white/20 bg-white/[0.04] text-[11px] font-mono uppercase tracking-wider text-white/90 hover:text-white hover:border-white/40 hover:bg-white/[0.08] active:scale-[0.98] transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/[0.04] text-[11px] font-mono uppercase tracking-wider text-white/90 hover:text-white hover:border-white/40 hover:bg-white/[0.08] active:scale-[0.98] transition-all cursor-pointer"
                 >
                   {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
                   <span>{copied ? "Copied" : "Copy cURL"}</span>
@@ -217,7 +217,7 @@ export function ApiPlayground() {
                   type="button"
                   onClick={handleRunLive}
                   disabled={isRunning}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-none bg-[#8B1E27] text-white text-[11px] font-mono uppercase tracking-wider font-semibold hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#8B1E27] text-white text-[11px] font-mono uppercase tracking-wider font-semibold hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 shadow-xs"
                 >
                   <Play size={11} aria-hidden="true" />
                   <span>{isRunning ? "Running..." : "Execute Live"}</span>

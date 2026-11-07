@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import type { ReactElement } from "react";
 import { useTheme } from "next-themes";
+import { FaArrowRight } from "react-icons/fa6";
 
 import {
   NavigationMenu,
@@ -572,9 +573,15 @@ export function Header() {
             <Link href="/facts">Fact Register</Link>
           </Button>
 
-          <Button asChild size="sm" className="bg-foreground text-background hover:bg-foreground/90 font-medium text-xs px-3.5 h-8">
-            <Link href="/check">Check a Draft →</Link>
-          </Button>
+          <Link
+            href="/check"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+          >
+            <span>Check a Draft</span>
+            <span className="flex size-5 items-center justify-center rounded-full bg-black/20 text-white">
+              <FaArrowRight className="size-2.5 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+            </span>
+          </Link>
 
           {/* User / Workspace Dropdown */}
           <DropdownMenu>

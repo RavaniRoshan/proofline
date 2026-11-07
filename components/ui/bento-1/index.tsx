@@ -22,6 +22,7 @@ import {
   Code2,
 } from "lucide-react";
 import { motion } from "motion/react";
+import { FaArrowRight } from "react-icons/fa6";
 
 interface Bento1Props {
   className?: string;
@@ -306,16 +307,21 @@ export default function Bento1({ className }: Bento1Props) {
               <div className="mt-2 flex flex-wrap items-center gap-3">
                 <Link
                   href="/check"
-                  className="inline-flex items-center gap-2 bg-ink text-paper dark:bg-white dark:text-zinc-950 px-5 py-2.5 font-mono text-xs uppercase tracking-wider transition-all hover:opacity-90 active:scale-[0.98] font-semibold rounded-none"
+                  className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
                 >
                   <span>Open Preflight Checker</span>
-                  <ArrowRight size={13} />
+                  <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
+                    <FaArrowRight className="size-3 text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </span>
                 </Link>
                 <Link
                   href="/audit"
-                  className="inline-flex items-center gap-2 border border-ink/20 dark:border-white/20 px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-ink dark:text-white hover:bg-panel transition-colors rounded-none"
+                  className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-5 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
                 >
-                  Inspect Audit Log
+                  <span>Inspect Audit Log</span>
+                  <span className="flex size-7 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
+                    <FaArrowRight className="size-3 text-ink dark:text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </span>
                 </Link>
               </div>
             </div>

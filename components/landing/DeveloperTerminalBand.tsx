@@ -357,7 +357,7 @@ export function DeveloperTerminalBand() {
                   type="button"
                   onClick={runLiveVerify}
                   disabled={isRunningApi}
-                  className="inline-flex items-center gap-1.5 border border-white/20 bg-white/10 px-3 py-1 font-mono text-[10px] uppercase text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] hover:bg-white/20 hover:border-white/40 active:scale-[0.97] cursor-pointer shrink-0 rounded-none disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 border border-white/20 bg-white/10 px-3 py-1 font-mono text-[10px] uppercase text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] hover:bg-white/20 hover:border-white/40 active:scale-[0.97] cursor-pointer shrink-0 rounded-full disabled:opacity-50"
                 >
                   {isRunningApi ? (
                     <>
@@ -564,7 +564,7 @@ export function DeveloperTerminalBand() {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setActiveStackTab(tab.id)}
-                  className={`border px-4 py-2 font-mono text-[13px] transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer rounded-none active:scale-[0.97] ${
+                  className={`border px-4 py-2 font-mono text-[13px] transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer rounded-full active:scale-[0.97] ${
                     isSelected
                       ? "border-white bg-white text-ink font-medium shadow-sm"
                       : "border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:text-white"
@@ -605,7 +605,7 @@ export function DeveloperTerminalBand() {
               type="button"
               onClick={handleCopyCode}
               aria-label="Copy code snippet"
-              className="absolute top-4 right-4 inline-flex items-center gap-1.5 border border-white/15 bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] text-white/70 hover:text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] active:scale-95 cursor-pointer rounded-none"
+              className="absolute top-4 right-4 inline-flex items-center gap-1.5 border border-white/15 bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] text-white/70 hover:text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] active:scale-95 cursor-pointer rounded-full"
             >
               <span className="sr-only" role="status">
                 {copiedCode ? "Code snippet copied" : ""}

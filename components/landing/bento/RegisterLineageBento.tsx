@@ -277,7 +277,7 @@ export function RegisterLineageBento() {
             <button
               type="button"
               onClick={handleCopySha}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none border border-border/60 bg-muted/30 text-xs font-mono text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors cursor-pointer active:scale-[0.98]"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-border/60 bg-muted/30 text-xs font-mono text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors cursor-pointer active:scale-[0.98]"
             >
               {copiedSha ? (
                 <>

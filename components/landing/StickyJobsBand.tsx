@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BookOpen, Box, Zap, ShieldAlert } from "lucide-react";
+import { FaArrowRight } from "react-icons/fa6";
 import { MeshCardBackdrop } from "@/components/landing/HeroTunnelCanvas";
 
 interface JobStep {
@@ -204,10 +205,12 @@ export function StickyJobsBand() {
                   <div className="mt-4 pl-[27px]">
                     <Link
                       href={step.ctaHref}
-                      className="inline-flex items-center gap-2 border border-ink/20 dark:border-white/20 bg-paper dark:bg-white/5 px-4 py-2 font-mono text-[12px] uppercase text-ink dark:text-white transition-all hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 rounded-none shadow-xs"
+                      className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-4 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
                     >
                       <span>{step.ctaLabel}</span>
-                      <span aria-hidden="true">→</span>
+                      <span className="flex size-6 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
+                        <FaArrowRight className="size-2.5 text-ink dark:text-white transition-transform duration-200 group-hover:translate-x-0.5" />
+                      </span>
                     </Link>
                   </div>
                 )}

@@ -111,7 +111,7 @@ export function AuditLedgerBento() {
         <button
           type="button"
           onClick={handleDownload}
-          className="inline-flex items-center gap-2 rounded-none border border-border bg-foreground px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold text-background transition-all hover:opacity-90 active:scale-[0.98] cursor-pointer self-start sm:self-auto shadow-xs"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold text-background transition-all hover:opacity-90 active:scale-[0.98] cursor-pointer self-start sm:self-auto shadow-xs"
         >
           {downloaded ? (
             <>
