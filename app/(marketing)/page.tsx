@@ -102,10 +102,16 @@ export default function LandingPage() {
           BAND 2 (#how-it-works / #use-cases): Interactive Dual-Pane Use Cases
           (Exact match to 03-band2-use-cases.png with border-x border-t page rails)
           ========================================================================= */}
-      <section id="how-it-works" className="bg-paper text-ink">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-14 md:px-10 md:py-20">
+      <section id="how-it-works" className="relative bg-paper text-ink">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          {/* Subtle gradient hairline highlight across the top border */}
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+
           {/* Centered Section Header + Sharp 0px Mono CTA */}
-          <div className="mx-auto mb-12 flex max-w-[680px] flex-col items-center text-center">
+          <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+              [01] INTERACTIVE VERIFICATION WORKFLOWS
+            </span>
             <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
               Make your copy{" "}
               <span className="text-accent">provably accurate</span>
@@ -117,7 +123,7 @@ export default function LandingPage() {
             </p>
             <Link
               href="/check"
-              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none"
+              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none shadow-xs"
             >
               <span>TRY IT IN THE CHECKER</span>
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
@@ -136,15 +142,30 @@ export default function LandingPage() {
           + Interactive Archify System Topology & Deterministic Split Diagram
           (Exact match to 05-band4-sticky-timeline.png)
           ========================================================================= */}
-      <section id="pipeline" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-14 md:px-10 md:py-20">
+      <section id="pipeline" className="relative bg-paper text-ink scroll-mt-20">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+
           {/* 2-Column Sticky Timeline + 547x680 Rounded-[32px] Silk Mesh Card */}
           <StickyJobsBand />
 
+          {/* Interactive Bento Suite with generous spacing and dedicated showcase header */}
+          <div className="mt-28 md:mt-36 border-t border-ink/15 dark:border-white/12 pt-20">
+            <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
+              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/12 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+                [02.2] ARCHITECTURAL SPECIFICATION
+              </span>
+              <h3 className="max-w-[24ch] text-balance font-sans text-[28px] md:text-[38px] font-normal tracking-[-0.04em] leading-[1.12] text-ink">
+                Unified Claim Verification <span className="text-accent">Engine</span>
+              </h3>
+              <p className="mt-3.5 max-w-[52ch] text-[15px] md:text-[16.5px] tracking-[-0.02em] leading-[1.5] text-ink-soft">
+                Interactive topology of high-throughput deterministic rules, local citation verification, and zero-token scalar pipelines.
+              </p>
+            </div>
 
-          {/* Interactive Bento Suite */}
-          <div className="mt-12 overflow-hidden rounded-[24px] border border-ink/10 bg-card">
-            <Bento1 />
+            <div className="overflow-hidden rounded-[28px] border border-ink/15 dark:border-white/12 bg-card shadow-[0_8px_32px_-8px_rgba(26,26,24,0.08)]">
+              <Bento1 />
+            </div>
           </div>
         </div>
       </section>
@@ -153,21 +174,26 @@ export default function LandingPage() {
           BAND 5 (#register / #teams): 3-Column Shared Team Cards + Floating Toast
           (Exact match to 06-band5-permissions-diagram.png)
           ========================================================================= */}
-      <section id="register" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-14 md:px-10 md:py-20">
+      <section id="register" className="relative bg-paper text-ink scroll-mt-20">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+
           {/* Centered Header + Sharp 0px Button */}
-          <div className="mx-auto mb-12 flex max-w-[680px] flex-col items-center text-center">
+          <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+              [03] COLLABORATIVE TRUTH REGISTER
+            </span>
             <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
               One register for{" "}
               <span className="text-accent">your whole team</span>
             </h2>
-            <p className="mt-3 max-w-[52ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft">
+            <p className="mt-3.5 max-w-[52ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft">
               Approve product facts, validity windows, and disclaimers once. Every reviewer’s check
               gets them automatically.
             </p>
             <Link
               href="/facts"
-              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none"
+              className="group mt-6 inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none shadow-xs"
             >
               <span>EXPLORE 42 SEEDED FACTS</span>
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
@@ -177,10 +203,10 @@ export default function LandingPage() {
           </div>
 
           {/* 3 Equal Cards (375x368 geometry) + Floating Overlap Notification Pill */}
-          <div className="relative mx-auto max-w-[1158px] pb-8">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="relative mx-auto max-w-[1158px]">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
               {/* Card 1: Shared Fact Register (Shared Accounts equivalent) */}
-              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/10 bg-paper p-6">
+              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
                 <div>
                   <h3 className="font-sans text-[18px] font-medium text-ink">
                     Shared Fact Register
@@ -214,7 +240,7 @@ export default function LandingPage() {
               </section>
 
               {/* Card 2: Shared Rules & Lineage (Shared Skills equivalent) */}
-              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/10 bg-paper p-6">
+              <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
                 <div>
                   <h3 className="font-sans text-[18px] font-medium text-ink">
                     Shared Verification Rules
@@ -248,7 +274,7 @@ export default function LandingPage() {
               </section>
 
               {/* Card 3: Deterministic Budget (Shared Budget equivalent with bottom dark card) */}
-              <section className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/10 bg-paper">
+              <section className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
                 <MeshCardBackdrop className="opacity-45" />
                 <div className="relative z-10 p-6 pb-3">
                   <h3 className="font-sans text-[18px] font-medium text-ink">
@@ -315,7 +341,7 @@ export default function LandingPage() {
             </div>
 
             {/* Floating Bottom-Center Overlap Toast Card (Exact 06-band5-permissions-diagram.png) */}
-            <div className="mx-auto -mt-4 relative z-20 flex w-fit items-center gap-3 rounded-2xl border border-ink/10 bg-paper px-5 py-3.5 shadow-[0_12px_32px_rgba(26,26,24,0.08)]">
+            <div className="mx-auto mt-8 relative z-20 flex w-fit items-center gap-3 rounded-2xl border border-ink/15 dark:border-white/12 bg-paper px-6 py-4 shadow-[0_16px_40px_rgba(26,26,24,0.1)]">
               <span className="inline-flex size-7 items-center justify-center rounded-full bg-v-supported-bg text-v-supported-fg">
                 <CheckCircle2 size={15} />
               </span>
@@ -337,9 +363,14 @@ export default function LandingPage() {
           BAND 6 (#trust): 3 Trust & Security Cards + 5-Pin Evidence Gate Diagram
           (Exact match to 07-band6-trust-security.png)
           ========================================================================= */}
-      <section id="trust" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-14 md:px-10 md:py-20">
-          <div className="mx-auto mb-12 flex max-w-[680px] flex-col items-center text-center">
+      <section id="trust" className="relative bg-paper text-ink scroll-mt-20">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+
+          <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+              [04] DETERMINISTIC PROOF &amp; EVIDENCE
+            </span>
             <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
               Deterministic proof,{" "}
               <span className="block text-accent">always in your control</span>
@@ -359,8 +390,9 @@ export default function LandingPage() {
       {/* =========================================================================
           BAND 7 (#build): 5-Card Proofline Verification Architecture Mosaic
           ========================================================================= */}
-      <section id="build" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-4 py-10 md:px-7 md:py-14">
+      <section id="build" className="relative bg-paper text-ink scroll-mt-20">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
           <Features4 />
         </div>
       </section>
@@ -369,9 +401,14 @@ export default function LandingPage() {
           BAND 9 & 10 (#enterprise): Enterprise Governance & Zero Server Storage
           (Exact match to bands-extraction.json sections 14 & 15)
           ========================================================================= */}
-      <section id="enterprise" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-14 md:px-10 md:py-20">
-          <div className="mx-auto mb-12 flex max-w-[680px] flex-col items-center text-center">
+      <section id="enterprise" className="relative bg-paper text-ink scroll-mt-20">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+
+          <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+              [06] ENTERPRISE GOVERNANCE &amp; PRIVACY
+            </span>
             <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
               One place to govern{" "}
               <span className="text-accent">every claim in your company.</span>
@@ -385,14 +422,14 @@ export default function LandingPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/dashboard"
-                className="inline-flex items-center justify-center gap-2 bg-ink px-5 py-3 font-mono text-[13px] uppercase text-paper transition-colors hover:bg-ink/85 active:scale-[0.98] rounded-none"
+                className="inline-flex items-center justify-center gap-2 bg-ink px-5 py-3 font-mono text-[13px] uppercase text-paper transition-colors hover:bg-ink/85 active:scale-[0.98] rounded-none shadow-xs"
               >
                 <span>OPEN REGISTER DASHBOARD</span>
                 <span aria-hidden="true">→</span>
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none"
+                className="inline-flex items-center justify-center gap-2 border border-ink/20 bg-paper px-5 py-3 font-mono text-[13px] uppercase text-ink transition-colors hover:border-ink/40 hover:bg-panel active:scale-[0.98] rounded-none shadow-xs"
               >
                 <span>READ ROUND 1 → 2 SPEC</span>
               </Link>
@@ -400,8 +437,8 @@ export default function LandingPage() {
           </div>
 
           {/* 2-Column Enterprise Governance Cards */}
-          <div className="mx-auto grid max-w-[1158px] grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="flex flex-col justify-between rounded-3xl border border-ink/10 bg-paper p-7">
+          <div className="mx-auto grid max-w-[1158px] grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
+            <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
               <div>
                 <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent">
                   <Lock size={14} />
@@ -424,7 +461,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between rounded-3xl border border-ink/10 bg-paper p-7">
+            <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
               <div>
                 <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent">
                   <FileCheck2 size={14} />
@@ -453,10 +490,11 @@ export default function LandingPage() {
       {/* =========================================================================
           BAND 11 (#faq): Frequently Asked Questions (Faq6 Primitive)
           ========================================================================= */}
-      <section id="faq" className="bg-paper text-ink scroll-mt-20">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-4 py-12 md:px-8 md:py-16">
+      <section id="faq" className="relative bg-paper text-ink scroll-mt-20">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
           <Faq6
-            badge="FAQ & GOVERNANCE"
+            badge="[07] FREQUENTLY ASKED QUESTIONS"
             title={
               <>
                 Frequently
@@ -473,13 +511,17 @@ export default function LandingPage() {
           BAND 12 (#start): 1158x462 Rounded-[32px] Bottom CTA Silk Mesh Card
           (Exact match to 10-band12-bottom-cta.png)
           ========================================================================= */}
-      <section id="start" className="bg-paper text-ink">
-        <div className="mx-auto w-full max-w-[1240px] border-x border-t border-ink/10 px-5 py-12 md:px-10 md:py-16">
-          <div className="relative flex min-h-[400px] flex-col items-center justify-center overflow-hidden rounded-[32px] border border-ink/10 p-8 text-center md:min-h-[460px] md:p-16">
+      <section id="start" className="relative bg-paper text-ink">
+        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
+          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+          <div className="relative flex min-h-[420px] flex-col items-center justify-center overflow-hidden rounded-[32px] border border-ink/15 dark:border-white/12 p-8 text-center md:min-h-[480px] md:p-16 shadow-[0_16px_48px_-12px_rgba(26,26,24,0.12)]">
             {/* Diagonal Silk Mesh Backdrop in Proofline Tokens */}
             <MeshCardBackdrop />
 
             <div className="relative z-10 flex max-w-2xl flex-col items-center gap-4">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-paper/80 dark:bg-white/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+                [08] GET STARTED IN SECONDS
+              </span>
               <h2 className="max-w-[20ch] text-balance font-sans text-[32px] md:text-[46px] font-normal tracking-[-0.042em] leading-[1.08] text-ink dark:text-white">
                 Give your team what it needs to{" "}
                 <span className="text-accent dark:text-[#E07A70]">tell the truth</span>

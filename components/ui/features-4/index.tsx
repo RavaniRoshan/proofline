@@ -13,18 +13,24 @@ import {
 
 export default function Features4() {
   return (
-    <section className="flex w-full flex-col items-center justify-center px-6 py-16">
-      <h1 className="text-foreground text-center text-4xl font-semibold tracking-tight md:text-5xl">
-        Understand faster, act smarter
-      </h1>
+    <div className="flex w-full flex-col items-center justify-center">
+      <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
+        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+          [05] CORE VERIFICATION MOSAIC
+        </span>
+        <h2 className="max-w-[22ch] text-balance font-sans text-[32px] md:text-[44px] font-normal tracking-[-0.042em] leading-[1.08] text-ink">
+          Understand faster,{" "}
+          <span className="text-accent">act smarter</span>
+        </h2>
 
-      <p className="text-muted-foreground mt-4 max-w-2xl text-center">
-        Get clarity on performance, uncover patterns, and take action with
-        insights that actually move things forward.
-      </p>
+        <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.022em] leading-[1.45] text-ink-soft text-pretty">
+          Get clarity on performance, uncover patterns, and take action with
+          insights that actually move things forward.
+        </p>
+      </div>
 
-      <div className="mt-12 grid w-full max-w-6xl items-stretch gap-6 md:grid-cols-3">
-        <Card className="bg-muted/40 flex h-full flex-col rounded-[40px] p-0">
+      <div className="grid w-full max-w-6xl items-stretch gap-6 md:grid-cols-3 lg:gap-8">
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[32px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
           <CardContent className="flex h-full flex-col gap-8 p-4">
             <div className="text-center">
               <h3 className="text-foreground text-2xl font-semibold">
@@ -86,7 +92,7 @@ export default function Features4() {
           </CardContent>
         </Card>
 
-        <Card className="bg-muted/40 flex h-full flex-col rounded-4xl p-0">
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[32px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
           <CardContent className="flex h-full flex-col gap-8 p-4">
             <div className="text-center">
               <h3 className="text-foreground text-2xl font-semibold">
@@ -143,7 +149,7 @@ export default function Features4() {
           </CardContent>
         </Card>
 
-        <Card className="bg-muted/40 flex h-full flex-col rounded-4xl p-0">
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[32px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
           <CardContent className="flex h-full flex-col gap-8 p-4">
             <div className="text-center">
               <h3 className="text-foreground text-2xl font-semibold">
@@ -200,6 +206,6 @@ export default function Features4() {
           </CardContent>
         </Card>
       </div>
-    </section>
+    </div>
   );
 }

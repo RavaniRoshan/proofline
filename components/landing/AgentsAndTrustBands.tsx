@@ -187,11 +187,11 @@ export function TrustSecurityCards() {
   };
 
   return (
-    <div className="mx-auto grid w-full max-w-[1158px] grid-cols-1 gap-4 md:grid-cols-3">
+    <div className="mx-auto grid w-full max-w-[1158px] grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
       {/* =====================================================================
           CARD 1: "Your register, your rules" (07-band6-trust-security.png left)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-2xl border border-ink/10 bg-paper">
+      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
         {/* Top Visual Area */}
         <div className="flex flex-col border-b border-ink/8">
           {/* Silk Mesh Header with Floating Pill */}
@@ -285,7 +285,7 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 2: "Hallucinated citations get blocked" (07-band6-trust-security.png center)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-2xl border border-ink/10 bg-paper">
+      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
         {/* Top Visual Area: Skeleton Lines + Red Blocked Callout */}
         <div className="flex flex-1 flex-col justify-center border-b border-ink/8 p-6">
           <div className="flex items-center gap-2 mb-3">
@@ -331,7 +331,7 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 3: "Every decision on record" (07-band6-trust-security.png right)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-2xl border border-ink/10 bg-paper">
+      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
         {/* Top Visual Area: 4-Node Horizontal Timeline + Approved Action Card */}
         <div className="flex flex-1 flex-col justify-center border-b border-ink/8 p-6">
           <div className="relative flex items-center justify-between px-2">
