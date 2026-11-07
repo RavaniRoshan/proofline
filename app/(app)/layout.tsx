@@ -23,8 +23,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </main>
 
           {/* Editorial App Footer */}
-          <footer className="border-t border-border/60 bg-panel/30 mt-auto">
-            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-4 sm:px-6 text-xs text-muted-foreground">
+          <footer className="border-t border-ink/15 dark:border-white/12 bg-[#F5F2EC] dark:bg-[#0A0908] mt-auto transition-colors duration-200">
+            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-4 sm:px-6 text-xs text-[#5C564E] dark:text-[#9A9489]">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <span className="font-mono text-accent-brand dark:text-accent-readable font-semibold">[ ] Proofline</span>
                 <span aria-hidden="true" className="text-border">·</span>

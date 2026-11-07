@@ -147,7 +147,7 @@ export function Footer15({
   heroBrandName = 'PROOFLINE',
 }: Footer15Props) {
   return (
-    <footer className="w-full overflow-hidden rounded-t-3xl border-t border-border/80 bg-[#141211] font-sans antialiased sm:rounded-t-[2.5rem] md:rounded-t-[3rem] dark:bg-[#0A0908] dark:border-border/60">
+    <footer className="w-full overflow-hidden rounded-t-3xl border-t border-ink/15 bg-[#F5F2EC] font-sans antialiased sm:rounded-t-[2.5rem] md:rounded-t-[3rem] dark:bg-[#0A0908] dark:border-white/12 transition-colors duration-200">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -163,24 +163,24 @@ export function Footer15({
             <div className="flex items-center gap-2.5">
               <span className="shrink-0">
                 {logoIcon ?? (
-                  <span className="font-mono text-2xl font-bold text-[#8B1E27] dark:text-[#D4847A] select-none">
+                  <span className="font-mono text-2xl font-bold text-[#8B1E27] dark:text-[#E07A70] select-none">
                     [ ]
                   </span>
                 )}
               </span>
-              <span className="font-mono text-lg font-bold uppercase tracking-wider text-[#E8E2D8] dark:text-[#F3EFE6] select-none">
+              <span className="font-mono text-lg font-bold uppercase tracking-wider text-[#141211] dark:text-[#F3EFE6] select-none">
                 {brandName}
               </span>
             </div>
 
-            <p className="text-sm leading-[1.6] font-light text-pretty whitespace-pre-line text-[#A29C91] dark:text-[#9A9489]">
+            <p className="text-sm leading-[1.6] font-normal text-pretty whitespace-pre-line text-[#5C564E] dark:text-[#9A9489]">
               {description}
             </p>
 
             <motion.div variants={ctaVariant}>
               <Link
                 href={ctaHref}
-                className="group mt-1 inline-flex w-fit items-center gap-3 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-5 shadow-[0_1px_3px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-200 hover:bg-[#8B1E27]/90 hover:shadow-[0_4px_16px_rgba(139,30,39,0.35)] active:scale-[0.98]"
+                className="group mt-1 inline-flex w-fit items-center gap-3 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-5 shadow-[0_1px_3px_rgba(0,0,0,0.2),0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-200 hover:bg-[#8B1E27]/90 hover:shadow-[0_4px_16px_rgba(139,30,39,0.35)] active:scale-[0.98]"
               >
                 <span className="font-mono text-xs font-semibold text-white tracking-wide">
                   {ctaLabel}
@@ -199,7 +199,7 @@ export function Footer15({
           >
             {columns.map((col) => (
               <motion.div key={col.title} variants={riseItem}>
-                <h3 className="font-mono text-xs font-semibold tracking-wider uppercase text-[#E8E2D8] dark:text-[#F3EFE6]">
+                <h3 className="font-mono text-xs font-semibold tracking-wider uppercase text-[#141211] dark:text-[#F3EFE6]">
                   {col.title}
                 </h3>
                 <motion.ul
@@ -210,7 +210,7 @@ export function Footer15({
                     <motion.li key={link.label} variants={linkItem}>
                       <Link
                         href={link.href}
-                        className="inline-block text-xs font-light text-[#A29C91] transition-colors duration-200 hover:text-[#E8E2D8] dark:text-[#9A9489] dark:hover:text-[#FAF7F2]"
+                        className="inline-block text-xs font-medium text-[#5C564E] transition-colors duration-200 hover:text-[#141211] dark:text-[#9A9489] dark:hover:text-[#FAF7F2]"
                       >
                         {link.label}
                       </Link>
@@ -244,7 +244,7 @@ export function Footer15({
             textAnchor="middle"
             textLength="96%"
             lengthAdjust="spacing"
-            className="fill-[#E8E2D8] dark:fill-[#F3EFE6] font-mono font-bold tracking-tight select-none opacity-90"
+            className="fill-[#141211] dark:fill-[#F3EFE6] font-mono font-bold tracking-tight select-none opacity-85 dark:opacity-90 transition-colors duration-200"
             fontSize="155"
           >
             {heroBrandName}
