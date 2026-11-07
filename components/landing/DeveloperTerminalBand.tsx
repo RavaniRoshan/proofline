@@ -103,22 +103,19 @@ export function assertEvidenceGate(finding: CandidateFinding): VerifiedFinding {
 }`,
   },
   {
-    id: "mcp",
-    label: "MCP Tool",
-    installCmd: "npx proofline-mcp --register ./seed/facts.json",
-    code: `server.tool(
-  "verify_marketing_draft",
-  { draft: z.string(), review_date: z.string().default("2026-11-05") },
-  async ({ draft, review_date }) => {
-    const report = await verifyDraft({ draft, reviewDate: review_date });
-    return {
-      content: [{
-        type: "text",
-        text: JSON.stringify(report.findings, null, 2),
-      }],
-    };
-  }
-);`,
+    id: "smoke",
+    label: "Smoke Gate",
+    installCmd: "npm run smoke",
+    code: `// 24 deterministic test cases across pricing, SLA latencies, and quota bounds
+import { verifyDraft } from "@/lib/verify";
+
+const report = await verifyDraft(draftProse, {
+  reviewDate: "2026-11-05",
+});
+
+// Intercepts contradictory claims in Stage 1 TypeScript rules (0.4ms)
+console.log(report.summary.contradicted); // 3 contradicted claims intercepted
+console.log(report.summary.deterministic_ratio); // 0.78 (78% rules, 0 token cost)`,
   },
 ];
 
@@ -455,10 +452,10 @@ export function DeveloperTerminalBand() {
               <div className="flex items-center justify-between rounded-md border border-white/8 bg-white/[0.02] px-3.5 py-2.5">
                 <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-white/45">
                   <Box size={13} />
-                  <span>SANDBOX</span>
+                  <span>RULES ENGINE</span>
                 </div>
                 <span className="font-sans text-[12px] text-white/45">
-                  Runs code
+                  Pure TypeScript
                 </span>
               </div>
 

@@ -218,11 +218,11 @@ Proofline delivers a unified, synchronized frontend architecture across marketin
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-1. **Landing Stage (`/`)**: 12-Band Composio-grade presentation featuring the 21st.dev SunsetOrb shader, 2D perspective depth tunnel canvas, and static SVG coordinate grid with ambient radar scan.
+1. **Landing Stage (`/`)**: 12-Band enterprise presentation featuring the contained SunsetOrb header shader, static architectural macOS-style topographic wallpaper, and 4 high-density Bento feature assets (Deterministic Claim Router, Version Lineage Ledger, 6-Pin Citation Gate, and SOC 2 Audit Ledger).
 2. **Preflight Checker (`/check`)**: Interactive draft workbench. Paste marketing copy, run verification, inspect character spans, and record reviewer decisions (`Approve`, `Reject`, `Needs Edit`) with keyboard shortcuts (`a`, `r`, `e`, `j`, `k`).
 3. **Fact Register (`/facts`)**: Searchable, versioned ground-truth register covering 42 facts. Filter by All, Stale, or Conflicting claims to test governance pathways.
 4. **Decision Journal (`/audit`)**: Append-only compliance log. View every reviewer decision with cited fact IDs, reasons, and timestamps. One-click JSON export for SOC 2 audits.
-5. **Operational Telemetry (`/dashboard`)**: Register health metrics, deterministic rule efficacy ratios (78% vs 22%), and verdict distribution progress bars.
+5. **Operational Telemetry (`/dashboard`)**: Fingerprint-grade enterprise analytics suite featuring real-time verification volume area charts, dual-line verdict telemetry, contradiction breakdown tables, and deterministic rule efficacy ledgers.
 6. **Architecture Specification (`/about`)**: In-depth thesis, core invariants, system non-goals, and link to the Round 1 plan PDF.
 7. **Command Palette (`⌘K`)**: Universal search modal accessible from every page, enabling instant keyboard navigation across all views.
 

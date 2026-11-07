@@ -11,10 +11,10 @@ import { FaqAccordion } from "@/components/landing/FaqAccordion";
 import { VerdictCard } from "@/components/landing/VerdictCard";
 import { ArchifySystemExplorer } from "@/components/landing/ArchifySystemExplorer";
 import { ProoflineFooter } from "@/components/landing/ProoflineFooter";
-import { EvidenceGateDiagram } from "@/components/landing/assets/EvidenceGateDiagram";
-import { RegisterLockupDiagram } from "@/components/landing/assets/RegisterLockupDiagram";
-import { DeterministicSplitDiagram } from "@/components/landing/assets/DeterministicSplitDiagram";
-import { EnterpriseSecurityDiagram } from "@/components/landing/assets/EnterpriseSecurityDiagram";
+import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
+import { RegisterLineageBento } from "@/components/landing/bento/RegisterLineageBento";
+import { EvidenceGateInspectorBento } from "@/components/landing/bento/EvidenceGateInspectorBento";
+import { AuditLedgerBento } from "@/components/landing/bento/AuditLedgerBento";
 import { CheckCircle2, Lock, FileCheck2 } from "lucide-react";
 
 const FAQ_ITEMS = [
@@ -152,7 +152,7 @@ export default function LandingPage() {
               <span>STAGE 1 DETERMINISTIC RULES (78%) VS STAGE 3 BOUNDED MODEL ROUTING (22%)</span>
               <span className="tabular-nums">&lt;1ms LATENCY · $0.00 TOKEN COST ON SCALARS</span>
             </div>
-            <DeterministicSplitDiagram />
+            <DeterministicRoutingBento />
           </div>
 
           {/* Interactive Archify Source-Backed Codebase Topology Explorer */}
@@ -349,7 +349,7 @@ export default function LandingPage() {
               <span>VERSIONED REGISTER LINEAGE · F-021 (V3 SUPERSEDED → V4 ACTIVE)</span>
               <span>VALIDATED BY SCRIPTS/VALIDATE_SEED.PY</span>
             </div>
-            <RegisterLockupDiagram />
+            <RegisterLineageBento />
           </div>
         </div>
       </section>
@@ -380,7 +380,7 @@ export default function LandingPage() {
               <span>RUNTIME EVIDENCE GATE ASSERTION (SPEC.MD §2.4 · LIB/VERDICT.TS)</span>
               <span>BLOCKS CONTRADICTED UNLESS 100% OF FIELDS RESOLVE</span>
             </div>
-            <EvidenceGateDiagram />
+            <EvidenceGateInspectorBento />
           </div>
         </div>
       </section>
@@ -487,7 +487,7 @@ export default function LandingPage() {
               <span>END-TO-END CHAIN OF CUSTODY &amp; ZERO SERVER RETENTION ARCHITECTURE</span>
               <span>AUDITABLE IN /AUDIT &amp; /DASHBOARD</span>
             </div>
-            <EnterpriseSecurityDiagram />
+            <AuditLedgerBento />
           </div>
         </div>
       </section>

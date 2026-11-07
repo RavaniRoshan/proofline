@@ -60,19 +60,25 @@ const cloud: {
     title: "Preflight Checker",
     href: "/check",
     icon: <ScanText strokeWidth={2} />,
-    description: "Deterministic in-browser copy verification",
+    description: "Interactive draft copy verification workbench",
   },
   {
     title: "Fact Register",
     href: "/facts",
     icon: <BookText strokeWidth={2} />,
-    description: "Owner-approved, versioned ground truth",
+    description: "42 owner-approved, versioned ground truth facts",
   },
   {
     title: "Decision Journal",
     href: "/audit",
     icon: <Layers strokeWidth={2} />,
-    description: "Auditable verdict trail for compliance",
+    description: "Append-only audit trail with cryptographic hashes",
+  },
+  {
+    title: "Operational Telemetry",
+    href: "/dashboard",
+    icon: <ChartNoAxesColumnIncreasing strokeWidth={2} />,
+    description: "Register health, rule ratios, and drift metrics",
   },
 ];
 
@@ -83,28 +89,28 @@ const core: {
   description: string;
 }[] = [
   {
-    title: "Deterministic Regex",
-    href: "/check",
+    title: "Deterministic Engine",
+    href: "/about#pipeline",
     icon: <Code strokeWidth={2} />,
-    description: "Pure TypeScript rule execution",
+    description: "0.4ms TypeScript regex and boundary rules",
   },
   {
     title: "Evidence Gate",
-    href: "#pipeline",
+    href: "/about#pipeline",
     icon: <Shield strokeWidth={2} />,
-    description: "Strict citation & ground truth checks",
+    description: "Strict 6-field citation & byte span verification",
   },
   {
-    title: "Normalizer Engine",
-    href: "#pipeline",
+    title: "Scalar Normalizer",
+    href: "/about#pipeline",
     icon: <Cpu strokeWidth={2} />,
-    description: "Format-agnostic scalar resolution",
+    description: "Format-agnostic currency, quota & date resolution",
   },
   {
-    title: "Observability",
+    title: "Decision Ledger",
     href: "/audit",
-    icon: <ChartNoAxesColumnIncreasing strokeWidth={2} />,
-    description: "Audit every assertion and verdict diff",
+    icon: <Layers strokeWidth={2} />,
+    description: "Immutable decision tracking with reviewer actions",
   },
 ];
 
@@ -116,27 +122,27 @@ const security: {
 }[] = [
   {
     title: "Zero Retention",
-    href: "#architecture",
+    href: "/about#architecture",
     icon: <Shield strokeWidth={2} />,
-    description: "Local execution, zero training leaks",
+    description: "In-memory evaluation, zero training on customer prose",
   },
   {
     title: "Release Gates",
-    href: "#pipeline",
+    href: "/about#pipeline",
     icon: <Bot strokeWidth={2} />,
-    description: "Block CI builds on stale claims",
+    description: "Block deployment pipelines on contradicted claims",
   },
   {
-    title: "SOC 2 Audit Export",
+    title: "Audit JSON Export",
     href: "/audit",
     icon: <BriefcaseBusiness strokeWidth={2} />,
-    description: "Immutable JSON logs for auditors",
+    description: "Cryptographic SHA-256 evidence logs for compliance",
   },
   {
-    title: "Deterministic Privacy",
-    href: "#architecture",
+    title: "Local-First Execution",
+    href: "/check",
     icon: <Globe strokeWidth={2} />,
-    description: "Zero auth required, client-first",
+    description: "Zero auth required, runs entirely in client runtime",
   },
 ];
 
@@ -147,34 +153,34 @@ const company: {
   description: string;
 }[] = [
   {
-    title: "Preflight Checker",
-    href: "/check",
-    icon: <ScanText strokeWidth={2} />,
-    description: "Interactive draft evaluation workbench",
+    title: "Architecture & Invariants",
+    href: "/about",
+    icon: <BriefcaseBusiness strokeWidth={2} />,
+    description: "In-depth system design & correctness proofs",
   },
   {
-    title: "Fact Register",
+    title: "Fact Register Catalog",
     href: "/facts",
     icon: <BookText strokeWidth={2} />,
-    description: "Ground truth claims & verified sources",
+    description: "42 approved ground truth facts & source docs",
   },
   {
-    title: "Audit Journal",
+    title: "Decision Audit Journal",
     href: "/audit",
     icon: <Layers strokeWidth={2} />,
-    description: "History of reviewed claims & verdicts",
+    description: "History of reviewed claims & reviewer verdicts",
   },
   {
-    title: "Architecture RFC",
-    href: "https://github.com/RavaniRoshan/proofline#readme",
-    icon: <BriefcaseBusiness strokeWidth={2} />,
-    description: "Deterministic pipeline design specifications",
+    title: "Telemetry Dashboard",
+    href: "/dashboard",
+    icon: <ChartNoAxesColumnIncreasing strokeWidth={2} />,
+    description: "Register health and deterministic efficacy",
   },
   {
-    title: "GitHub Releases",
+    title: "GitHub Repository",
     href: "https://github.com/RavaniRoshan/proofline",
     icon: <Code strokeWidth={2} />,
-    description: "Release changelog and commit ledger",
+    description: "Open-source codebase, tests, and changelog",
   },
 ];
 
@@ -188,25 +194,25 @@ const open: {
     title: "TypeScript SDK",
     href: "https://github.com/RavaniRoshan/proofline",
     icon: <Code strokeWidth={2} />,
-    description: "Headless pure functions for claim parsing",
+    description: "Headless verifyDraft() pure function library",
+  },
+  {
+    title: "Headless REST API",
+    href: "/api/verify",
+    icon: <Network strokeWidth={2} />,
+    description: "POST /api/verify direct JSON verification endpoint",
   },
   {
     title: "Zod Schema Gate",
     href: "https://github.com/RavaniRoshan/proofline",
     icon: <Component strokeWidth={2} />,
-    description: "Strict runtime verification schemas",
+    description: "Strict runtime verification schemas & contracts",
   },
   {
-    title: "GitHub Actions Action",
+    title: "24-Case Smoke Suite",
     href: "https://github.com/RavaniRoshan/proofline",
     icon: <Codepen strokeWidth={2} />,
-    description: "Fail PRs automatically on claim drift",
-  },
-  {
-    title: "MCP Server",
-    href: "https://github.com/RavaniRoshan/proofline",
-    icon: <Network strokeWidth={2} />,
-    description: "Model Context Protocol for Claude & Cursor",
+    description: "npm run smoke test suite for pricing & SLA claims",
   },
 ];
 
@@ -217,34 +223,34 @@ const tools: {
   description: string;
 }[] = [
   {
-    title: "Getting Started",
-    href: "https://github.com/RavaniRoshan/proofline#readme",
-    icon: <Code strokeWidth={2} />,
-    description: "Validate seed facts in under 5 seconds",
+    title: "Architecture RFC",
+    href: "/about",
+    icon: <Network strokeWidth={2} />,
+    description: "Deterministic split pipeline documentation",
   },
   {
     title: "Verdict Taxonomy",
-    href: "#verdicts",
+    href: "/audit",
     icon: <Component strokeWidth={2} />,
     description: "6 rigorous verdicts from Supported to Contradicted",
   },
   {
-    title: "Smoke Suite",
+    title: "24 Smoke Tests",
     href: "https://github.com/RavaniRoshan/proofline",
     icon: <Codepen strokeWidth={2} />,
-    description: "24 deterministic ground-truth test cases",
+    description: "Automated ground-truth test cases and validation",
   },
   {
-    title: "Architecture RFC",
-    href: "#architecture",
-    icon: <Network strokeWidth={2} />,
-    description: "Deterministic split pipeline documentation",
+    title: "REST API Reference",
+    href: "/api/verify",
+    icon: <Code strokeWidth={2} />,
+    description: "Typed request and response specifications",
   },
   {
     title: "GitHub Repository",
     href: "https://github.com/RavaniRoshan/proofline",
     icon: <PenTool strokeWidth={2} />,
-    description: "Star, fork, and inspect open-source code",
+    description: "Inspect commits, issues, and contributing guide",
   },
 ];
 
@@ -256,33 +262,27 @@ const cases: {
 }[] = [
   {
     title: "Marketing Release Gates",
-    href: "#how-it-works",
+    href: "/#how-it-works",
     icon: <LayoutGrid strokeWidth={2} />,
-    description: "Block unverified claims before publication",
+    description: "Block unverified claims before copy goes live",
   },
   {
     title: "Legal & Compliance Audit",
     href: "/audit",
     icon: <BriefcaseBusiness strokeWidth={2} />,
-    description: "Instant proof trails for factual claims",
-  },
-  {
-    title: "AI Agent Guardrails",
-    href: "#pipeline",
-    icon: <Bot strokeWidth={2} />,
-    description: "Ground AI-generated marketing copy in ground truth",
+    description: "Instant citation trails for legal defense",
   },
   {
     title: "SaaS Pricing Precision",
-    href: "#how-it-works",
+    href: "/#how-it-works",
     icon: <ScreenShare strokeWidth={2} />,
-    description: "Eliminate stale seat, tier, and storage numbers",
+    description: "Eliminate stale seat, tier, and pricing errors",
   },
   {
     title: "Continuous Verification",
-    href: "#pipeline",
+    href: "/about#pipeline",
     icon: <AppWindow strokeWidth={2} />,
-    description: "Deterministic CI/CD testing for text copy",
+    description: "Deterministic CI/CD testing for product copy",
   },
 ];
 
@@ -293,16 +293,22 @@ const users: {
   description: string;
 }[] = [
   {
-    title: "Growth & Product Marketers",
+    title: "Product & Growth Marketers",
     href: "/check",
     icon: <Layers strokeWidth={2} />,
-    description: "Verify landing page copy before push",
+    description: "Verify landing page copy before publication",
   },
   {
     title: "Legal & General Counsel",
     href: "/audit",
     icon: <Shield strokeWidth={2} />,
-    description: "Zero liability from false marketing claims",
+    description: "Ensure zero liability from false claims",
+  },
+  {
+    title: "Compliance Officers",
+    href: "/dashboard",
+    icon: <ChartNoAxesColumnIncreasing strokeWidth={2} />,
+    description: "Track register freshness and drift across releases",
   },
 ];
 

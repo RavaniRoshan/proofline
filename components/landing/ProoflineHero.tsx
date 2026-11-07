@@ -2,7 +2,7 @@
 
 import { SunsetOrb } from "@/components/ui/sunset-orb";
 import { StageGridBackdrop } from "@/components/landing/StageGridBackdrop";
-import { HeroTunnelCanvas } from "@/components/landing/HeroTunnelCanvas";
+import { StageWallpaperBackdrop } from "@/components/landing/StageWallpaperBackdrop";
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -1114,8 +1114,7 @@ export function ProoflineHero() {
         {/* 3. Harmonized Oxblood/Ink Video Band + Full Unclipped Interactive Product Card */}
         <div className="pl-stage-wrap">
           <div className="pl-band" role="presentation">
-            <HeroTunnelCanvas />
-            <StageGridBackdrop />
+            <StageWallpaperBackdrop />
 
             <div className="pl-card">
               <div className="pl-card-header">
