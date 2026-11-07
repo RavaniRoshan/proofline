@@ -1,0 +1,268 @@
+@import "fumadocs-ui/style.css";
+
+/* =========================================================================
+   Proofline x Fumadocs Unified Theming Engine
+   Mirrors the Landing Page & Dashboard design system:
+   Light: Warm eggshell paper (#FFFFFF / #F5F5F2), ink (#1A1A18), oxblood (#8B1E27)
+   Dark: Deep obsidian (#09090B / #131316), soft ink (#F4F4F5), oxblood (#8B1E27 / #E07A70)
+   Typography: IBM Plex Serif headings, IBM Plex Sans body, IBM Plex Mono code/pills
+   ========================================================================= */
+
+:root,
+html.light,
+.proofline-docs {
+  --color-fd-background: #FFFFFF;
+  --color-fd-foreground: #1A1A18;
+  --color-fd-muted: #F5F5F2;
+  --color-fd-muted-foreground: #4F4F4A;
+  --color-fd-popover: #FFFFFF;
+  --color-fd-popover-foreground: #1A1A18;
+  --color-fd-card: #F5F5F2;
+  --color-fd-card-foreground: #1A1A18;
+  --color-fd-border: #DEDED8;
+  --color-fd-primary: #8B1E27;
+  --color-fd-primary-foreground: #FFFFFF;
+  --color-fd-secondary: #EFECE6;
+  --color-fd-secondary-foreground: #1A1A18;
+  --color-fd-accent: rgba(139, 30, 39, 0.08);
+  --color-fd-accent-foreground: #8B1E27;
+  --color-fd-ring: #8B1E27;
+  --color-fd-overlay: rgba(26, 26, 24, 0.4);
+
+  --fd-sidebar-width: 280px;
+}
+
+.dark,
+html.dark,
+.dark .proofline-docs,
+.proofline-docs.dark {
+  --color-fd-background: #09090B;
+  --color-fd-foreground: #F4F4F5;
+  --color-fd-muted: #131316;
+  --color-fd-muted-foreground: #A1A1AA;
+  --color-fd-popover: #1A1A1F;
+  --color-fd-popover-foreground: #F4F4F5;
+  --color-fd-card: #131316;
+  --color-fd-card-foreground: #F4F4F5;
+  --color-fd-border: #222226;
+  --color-fd-primary: #8B1E27;
+  --color-fd-primary-foreground: #FFFFFF;
+  --color-fd-secondary: #18181B;
+  --color-fd-secondary-foreground: #F4F4F5;
+  --color-fd-accent: rgba(139, 30, 39, 0.22);
+  --color-fd-accent-foreground: #E07A70;
+  --color-fd-ring: #8B1E27;
+  --color-fd-overlay: rgba(0, 0, 0, 0.65);
+}
+
+/* =========================================================================
+   Typography & Structural Elements
+   ========================================================================= */
+
+.proofline-docs {
+  font-family: var(--font-plex-sans), system-ui, -apple-system, sans-serif;
+  color: var(--color-fd-foreground);
+  background-color: var(--color-fd-background);
+  min-height: 100vh;
+}
+
+/* Editorial Serif Headings matching Landing Page */
+.proofline-docs h1,
+.proofline-docs [data-slot="title"],
+.proofline-docs article h1 {
+  font-family: var(--font-plex-serif), Georgia, serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.035em !important;
+  color: var(--color-fd-foreground) !important;
+  line-height: 1.15 !important;
+}
+
+.proofline-docs h2,
+.proofline-docs article h2 {
+  font-family: var(--font-plex-sans), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-fd-foreground);
+  border-bottom: 1px solid var(--color-fd-border);
+  padding-bottom: 0.5rem;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.proofline-docs h3,
+.proofline-docs article h3 {
+  font-family: var(--font-plex-sans), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--color-fd-foreground);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Description lead paragraph */
+.proofline-docs [data-slot="description"],
+.proofline-docs .fd-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-fd-muted-foreground);
+  margin-bottom: 2rem;
+}
+
+/* Monospace Badges & Code Blocks */
+.proofline-docs code:not(pre code) {
+  font-family: var(--font-plex-mono), monospace !important;
+  font-size: 0.85em !important;
+  padding: 0.2em 0.45em !important;
+  border-radius: 6px !important;
+  background-color: var(--color-fd-muted) !important;
+  border: 1px solid var(--color-fd-border) !important;
+  color: var(--color-fd-foreground) !important;
+}
+
+.proofline-docs pre {
+  border: 1px solid var(--color-fd-border) !important;
+  border-radius: 14px !important;
+  background-color: #121214 !important;
+  font-family: var(--font-plex-mono), monospace !important;
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.proofline-docs pre code {
+  color: #ECECED !important;
+  font-size: 0.875rem !important;
+  line-height: 1.65 !important;
+}
+
+/* =========================================================================
+   Sidebar Layout & Active States
+   ========================================================================= */
+
+#nd-sidebar {
+  border-right: 1px solid var(--color-fd-border) !important;
+  background-color: var(--color-fd-background) !important;
+}
+
+/* Category header styling */
+#nd-sidebar [data-slot="category-title"],
+#nd-sidebar button[aria-expanded] {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-fd-muted-foreground);
+}
+
+/* Active sidebar item with brand Oxblood highlight */
+#nd-sidebar a[aria-current="page"],
+#nd-sidebar a[data-active="true"] {
+  background-color: rgba(139, 30, 39, 0.1) !important;
+  color: #8B1E27 !important;
+  font-weight: 600 !important;
+  border-left: 2px solid #8B1E27 !important;
+  border-radius: 0 8px 8px 0 !important;
+}
+
+.dark #nd-sidebar a[aria-current="page"],
+.dark #nd-sidebar a[data-active="true"] {
+  background-color: rgba(139, 30, 39, 0.22) !important;
+  color: #E07A70 !important;
+  border-left-color: #E07A70 !important;
+}
+
+/* Hover sidebar item */
+#nd-sidebar a:hover:not([aria-current="page"]):not([data-active="true"]) {
+  background-color: var(--color-fd-muted) !important;
+  color: var(--color-fd-foreground) !important;
+}
+
+/* =========================================================================
+   Top Navigation Header
+   ========================================================================= */
+
+#nd-subnav,
+header.fd-nav {
+  border-bottom: 1px solid var(--color-fd-border) !important;
+  background-color: var(--color-fd-background) !important;
+  backdrop-filter: blur(16px);
+}
+
+/* Breadcrumbs */
+.proofline-docs [aria-label="Breadcrumb"] {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-fd-muted-foreground);
+}
+
+/* =========================================================================
+   Cards, Callouts & Steps
+   ========================================================================= */
+
+.proofline-docs [data-slot="card"],
+.proofline-docs .fd-card {
+  border-radius: 16px !important;
+  border: 1px solid var(--color-fd-border) !important;
+  background-color: var(--color-fd-card) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.proofline-docs [data-slot="card"]:hover,
+.proofline-docs .fd-card:hover {
+  border-color: rgba(139, 30, 39, 0.4) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+}
+
+.dark .proofline-docs [data-slot="card"]:hover,
+.dark .proofline-docs .fd-card:hover {
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4);
+}
+
+.proofline-docs [data-slot="callout"],
+.proofline-docs .fd-callout {
+  border-radius: 14px !important;
+  border-left-width: 4px !important;
+  border-left-color: #8B1E27 !important;
+  background-color: var(--color-fd-card) !important;
+}
+
+/* Step numbering */
+.proofline-docs .fd-steps [data-step] {
+  border-color: var(--color-fd-border) !important;
+}
+
+.proofline-docs .fd-step-number {
+  background-color: #8B1E27 !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-plex-mono), monospace !important;
+  font-weight: 600 !important;
+}
+
+/* Table of Contents (TOC) */
+#nd-toc a[data-active="true"] {
+  color: #8B1E27 !important;
+  font-weight: 600;
+  border-left: 2px solid #8B1E27;
+}
+
+.dark #nd-toc a[data-active="true"] {
+  color: #E07A70 !important;
+  border-left-color: #E07A70;
+}
+
+/* Next / Previous Page Navigation Cards */
+.proofline-docs a[data-slot="nav-item"],
+.proofline-docs [data-slot="page-nav"] a {
+  border-radius: 14px !important;
+  border: 1px solid var(--color-fd-border) !important;
+  background-color: var(--color-fd-card) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.proofline-docs a[data-slot="nav-item"]:hover,
+.proofline-docs [data-slot="page-nav"] a:hover {
+  border-color: rgba(139, 30, 39, 0.4) !important;
+  background-color: var(--color-fd-muted) !important;
+}

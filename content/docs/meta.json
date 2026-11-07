@@ -2,14 +2,14 @@
   "title": "Proofline Documentation",
   "pages": [
     "index",
-    "---Core Architecture---",
+    "---Explanation---",
     "architecture",
+    "security-compliance",
+    "---Reference---",
     "evidence-gate",
-    "fact-register",
-    "---Developer Integration---",
     "api-reference",
     "typescript-sdk",
-    "---Enterprise & Security---",
-    "security-compliance"
+    "---How-To Guides---",
+    "fact-register"
   ]
 }
