@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape-4k">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=3840, height=2160" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ground: #fafafa;
+        --ink: #1a1a1a;
+        --muted: #555;
+        --dim: #888;
+        --oxblood: #8B1E27;
+        --card: #f4f4f5;
+        --border: #e4e4e7;
+        --font-display: "Inter", system-ui, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0; width: 3840px; height: 2160px; overflow: hidden;
+        background: var(--ground); font-family: var(--font-display);
+      }
+      #s1 { opacity: 1; }
+      #root {
+        width: 100%; height: 100%; position: relative;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .scene {
+        position: absolute; inset: 0;
+        opacity: 0;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 24px; padding: 0 240px;
+      }
+      .title { font-size: 120px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+      .headline { font-size: 72px; font-weight: 700; color: var(--ink); text-align: center; line-height: 1.15; }
+      .headline.ox { color: var(--oxblood); }
+      .sub { font-size: 40px; color: var(--muted); text-align: center; }
+      .small { font-size: 32px; color: var(--dim); text-align: center; }
+      .badge {
+        font-size: 80px; font-weight: 800; color: #fff; background: var(--oxblood);
+        padding: 12px 36px; border-radius: 16px; letter-spacing: 0.02em; opacity: 0;
+        transform: scale(0.94); filter: blur(8px);
+      }
+      .card {
+        background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+        padding: 28px 36px; width: 820px; font-size: 24px; color: #333; line-height: 1.6;
+        opacity: 0; transform: translateY(12px); filter: blur(6px);
+      }
+      .card .label { font-weight: 700; margin-bottom: 10px; color: var(--ink); font-size: 28px; }
+      .card .row { display: block; }
+      .card .accent { color: var(--oxblood); font-weight: 600; margin-top: 10px; }
+      .claim {
+        font-size: 56px; font-weight: 600; color: var(--ink); max-width: 1500px;
+        text-align: center; line-height: 1.3; opacity: 0; transform: translateY(12px); filter: blur(8px);
+      }
+      .hl { background: rgba(139,30,39,0.12); border-bottom: 3px solid var(--oxblood); padding: 0 6px; border-radius: 4px; }
+      .big { font-size: 160px; font-weight: 800; color: var(--ink); line-height: 1; opacity: 0; }
+      .closing { font-size: 96px; font-weight: 800; color: var(--ink); opacity: 0; transform: scale(0.96); filter: blur(8px); }
+      .url { font-size: 36px; color: var(--dim); opacity: 0; }
+      .emoji { font-size: 80px; opacity: 0; transform: scale(0.6) rotate(-20deg); }
+      .emoji.sm { font-size: 64px; }
+      .swapwrap { display: inline-grid; font-size: 52px; font-weight: 600; color: var(--muted); }
+      .swapwrap span { grid-area: 1/1; opacity: 0; filter: blur(8px); white-space: nowrap; }
+      .note { font-size: 28px; color: var(--dim); opacity: 0; }
+      .stat { font-size: 64px; font-weight: 800; color: var(--ink); opacity: 0; }
+      .stat.ox { color: var(--oxblood); }
+      .bar { height: 18px; background: var(--oxblood); border-radius: 9px; width: 0; opacity: 0; }
+      .rowbar { display: flex; align-items: center; gap: 24px; width: 1100px; opacity: 0; }
+      .rowbar .name { width: 260px; font-size: 32px; color: var(--ink); text-align: right; }
+      .rowbar .track { flex: 1; height: 18px; background: #e4e4e7; border-radius: 9px; overflow: hidden; }
+      .rowbar .fill { height: 100%; background: var(--oxblood); width: 0; border-radius: 9px; }
+      .rowbar .pct { width: 90px; font-size: 32px; font-weight: 700; color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45" data-width="3840" data-height="2160" data-fps="60" data-layout-allow-overlap>
+      <!-- Scene 1: Title (0-4) -->
+      <section class="scene" data-hold id="s1" data-layout-allow-overlap>
+        <div class="title" id="s1-title" data-layout-allow-overlap data-layout-ignore>Proofline</div>
+        <div class="sub" id="s1-tag" data-layout-allow-overlap data-layout-ignore>claim-evidence preflight for marketing copy</div>
+        <div class="small" id="s1-sub" data-layout-allow-overlap data-layout-ignore>a faceless explainer</div>
+        <div class="emoji" id="s1-emoji" data-layout-allow-overlap>🎯</div>
+      </section>
+      <!-- Scene 2: Problem (4-9) -->
+      <section class="scene" data-hold id="s2" data-layout-allow-overlap>
+        <div class="headline" id="s2-a" data-layout-allow-overlap data-layout-ignore>Your draft makes claims.</div>
+        <div class="headline ox" id="s2-b" data-layout-allow-overlap data-layout-ignore>Most ship unchecked.</div>
+        <div class="small" id="s2-stat" data-layout-allow-overlap data-layout-ignore>1 in 3 marketing claims is unverifiable</div>
+      </section>
+      <!-- Scene 3: Claim (9-14) -->
+      <section class="scene" data-hold id="s3" data-layout-allow-overlap>
+        <div class="small" id="s3-label" data-layout-allow-overlap data-layout-ignore>A real claim from a real draft:</div>
+        <div class="claim" id="s3-claim" data-layout-allow-overlap data-layout-ignore>&ldquo;Cut costs by <span class="hl" data-layout-ignore>40% with Acme Pro</span>.&rdquo;</div>
+      </section>
+      <!-- Scene 4: Verdict (14-20) -->
+      <section class="scene" data-hold id="s4" data-layout-allow-overlap>
+        <div class="badge" id="s4-badge" data-layout-allow-overlap data-layout-ignore>CONTRADICTED</div>
+        <div class="card" id="s4-card" data-layout-allow-overlap>
+          <div class="label" data-layout-ignore>Evidence record</div>
+          <div class="row" data-layout-ignore>source: <b>pricing_sheet_v3.pdf</b></div>
+          <div class="row" data-layout-ignore>span: <b>&ldquo;Acme Pro saves 25%&rdquo;</b> (chars 412–431)</div>
+          <div class="row" data-layout-ignore>version: <b>v3</b> · valid 2026-01-01 → 2026-09-30</div>
+          <div class="accent" data-layout-ignore>claim said 40% · source says 25%</div>
+        </div>
+      </section>
+      <!-- Scene 5: Guarantee (20-26) -->
+      <section class="scene" data-hold id="s5" data-layout-allow-overlap>
+        <div class="headline" id="s5-a" data-layout-allow-overlap data-layout-ignore>No verdict without evidence.</div>
+        <div class="swapwrap" id="s5-swap" data-layout-allow-overlap>
+          <span id="s5-x" data-layout-allow-overlap>CONTRADICTED</span>
+          <span id="s5-y" data-layout-allow-overlap>UNVERIFIED</span>
+        </div>
+        <div class="small" id="s5-note" data-layout-allow-overlap data-layout-ignore>missing evidence downgrades the verdict</div>
+      </section>
+      <!-- Scene 6: How it works (26-34) -->
+      <section class="scene" data-hold id="s6" data-layout-allow-overlap>
+        <div class="headline" id="s6-title" data-layout-allow-overlap data-layout-ignore>How Proofline decides</div>
+        <div class="rowbar" id="r1" data-layout-allow-overlap><div class="name" data-layout-ignore>Segment</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="pct" data-layout-ignore>1</div></div>
+        <div class="rowbar" id="r2" data-layout-allow-overlap><div class="name" data-layout-ignore>Classify</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="pct" data-layout-ignore>2</div></div>
+        <div class="rowbar" id="r3" data-layout-allow-overlap><div class="name" data-layout-ignore>Resolve</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="pct" data-layout-ignore>3</div></div>
+        <div class="rowbar" id="r4" data-layout-allow-overlap><div class="name" data-layout-ignore>Verdict</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="pct" data-layout-ignore>4</div></div>
+        <div class="small" id="s6-note" data-layout-allow-overlap data-layout-ignore>deterministic TypeScript decides · model proposes fact IDs only</div>
+      </section>
+      <!-- Scene 7: Speed (34-40) -->
+      <section class="scene" data-hold id="s7" data-layout-allow-overlap>
+        <div class="big" id="s7-num" data-layout-allow-overlap data-layout-ignore>0%</div>
+        <div class="headline" id="s7-sub" data-layout-allow-overlap data-layout-ignore>resolve in 0.4ms.</div>
+        <div class="small" id="s7-note" data-layout-allow-overlap data-layout-ignore>Zero model cost · 78% of claims</div>
+      </section>
+      <!-- Scene 8: Closing (40-45) -->
+      <section class="scene" data-hold id="s8" data-layout-allow-overlap>
+        <div class="closing" id="s8-line" data-layout-allow-overlap data-layout-ignore>Ship claims you can prove.</div>
+        <div class="url" id="s8-url" data-layout-allow-overlap data-layout-ignore>proofline-sigma.vercel.app</div>
+        <div class="emoji sm" id="s8-emoji" data-layout-allow-overlap>✅</div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Scene 1: Title (0-4)
+      tl.fromTo("#s1-title", { opacity: 1, scale: 0.98, filter: "blur(4px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.out" }, 0);
+      tl.fromTo("#s1-tag", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "power4.out" }, 0.3);
+      tl.fromTo("#s1-sub", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power4.out" }, 0.6);
+      tl.fromTo("#s1-emoji", { opacity: 0, scale: 0.6, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(1.6)" }, 0.7);
+
+      // Scene 2 arrives over scene 1 at 4
+      tl.set("#s2", { opacity: 0 }, 3.95);
+      tl.to("#s2", { opacity: 1, duration: 0.35, ease: "power4.out" }, 4.0);
+      tl.fromTo("#s2-a", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, 4.0);
+      tl.fromTo("#s2-b", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, 4.5);
+      tl.fromTo("#s2-stat", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power4.out" }, 5.0);
+      tl.set("#s1", { opacity: 0 }, 4.35);
+
+      // Scene 3
+      tl.set("#s3", { opacity: 0 }, 8.95);
+      tl.to("#s3", { opacity: 1, duration: 0.35, ease: "power4.out" }, 9.0);
+      tl.fromTo("#s3-label", { opacity: 0, y: 8, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 9.0);
+      tl.fromTo("#s3-claim", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, 9.2);
+      tl.set("#s2", { opacity: 0 }, 9.35);
+
+      // Scene 4: verdict
+      tl.set("#s4", { opacity: 0 }, 13.95);
+      tl.to("#s4", { opacity: 1, duration: 0.35, ease: "power4.out" }, 14.0);
+      tl.fromTo("#s4-badge", { opacity: 0, scale: 0.94, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "power4.out" }, 14.0);
+      tl.fromTo("#s4-card", { opacity: 0, y: 12, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, 14.4);
+      tl.set("#s3", { opacity: 0 }, 14.35);
+
+      // Scene 5: guarantee
+      tl.set("#s5", { opacity: 0 }, 19.95);
+      tl.to("#s5", { opacity: 1, duration: 0.35, ease: "power4.out" }, 20.0);
+      tl.fromTo("#s5-a", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "power4.out" }, 20.0);
+      tl.fromTo("#s5-x", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, 22.0);
+      tl.fromTo("#s5-y", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 22.0);
+      tl.fromTo("#s5-note", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power4.out" }, 20.4);
+      tl.set("#s4", { opacity: 0 }, 20.35);
+
+      // Scene 6: how it works (26-34)
+      tl.set("#s6", { opacity: 0 }, 25.95);
+      tl.to("#s6", { opacity: 1, duration: 0.35, ease: "power4.out" }, 26.0);
+      tl.fromTo("#s6-title", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "power4.out" }, 26.0);
+      const rows = ["#r1","#r2","#r3","#r4"];
+      rows.forEach((r, i) => {
+        tl.fromTo(r, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease: "power4.out" }, 26.6 + i*0.25);
+        tl.fromTo(r + " .fill", { width: 0 }, { width: "100%", duration: 0.6, ease: "power2.out" }, 26.6 + i*0.25);
+      });
+      tl.fromTo("#s6-note", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power4.out" }, 27.8);
+      tl.set("#s5", { opacity: 0 }, 26.35);
+
+      // Scene 7: speed (34-40)
+      tl.set("#s7", { opacity: 0 }, 33.95);
+      tl.to("#s7", { opacity: 1, duration: 0.35, ease: "power4.out" }, 34.0);
+      const counter = { v: 0 };
+      tl.to(counter, { v: 78, duration: 1.2, ease: "power2.out",
+        onUpdate: () => { document.getElementById("s7-num").textContent = Math.round(counter.v) + "%"; }
+      }, 34.0);
+      tl.fromTo("#s7-sub", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "power4.out" }, 34.4);
+      tl.fromTo("#s7-note", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power4.out" }, 35.0);
+      tl.set("#s6", { opacity: 0 }, 34.35);
+
+      // Scene 8: closing (40-45)
+      tl.set("#s8", { opacity: 0 }, 39.95);
+      tl.to("#s8", { opacity: 1, duration: 0.35, ease: "power4.out" }, 40.0);
+      tl.fromTo("#s8-line", { opacity: 0, scale: 0.96, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "power4.out" }, 40.0);
+      tl.fromTo("#s8-url", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power4.out" }, 41.0);
+      tl.fromTo("#s8-emoji", { opacity: 0, scale: 0.6, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(1.6)" }, 41.4);
+      tl.set("#s7", { opacity: 0 }, 40.35);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+        <audio id="a-bed" src="audio/bed.wav" data-start="0" data-duration="45" data-track-index="1" data-volume="0.4" data-layout-allow-overlap></audio>
+    <audio id="a-whisper" src="audio/cue_whisper.wav" data-start="0.7" data-duration="0.22" data-track-index="2" data-volume="0.8" data-layout-allow-overlap></audio>
+    <audio id="a-confirm" src="audio/cue_confirm.wav" data-start="14.0" data-duration="0.18" data-track-index="2" data-volume="0.8" data-layout-allow-overlap></audio>
+    <audio id="a-sparkle" src="audio/cue_sparkle.wav" data-start="41.4" data-duration="0.25" data-track-index="2" data-volume="0.8" data-layout-allow-overlap></audio>
+  </body>
+</html>
