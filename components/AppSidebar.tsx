@@ -44,7 +44,7 @@ const WORKSPACE_ITEMS: SidebarItem[] = [
     label: "Check",
     icon: ShieldCheck,
     badge: "Preflight",
-    badgeColor: "bg-[#8B1E27]/10 text-[#8B1E27] dark:bg-[#E07A70]/15 dark:text-[#E07A70]",
+    badgeColor: "bg-[#8B1E27]/10 text-[#8B1E27] dark:bg-accent-readable/15 dark:text-accent-readable",
   },
   {
     href: "/facts",
@@ -182,7 +182,7 @@ export function AppSidebar() {
                   <span className="truncate text-xs font-semibold text-foreground tracking-tight">
                     Flowdesk Workspace
                   </span>
-                  <span className="flex items-center gap-1 font-mono text-[10px] text-muted-foreground">
+                  <span className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground">
                     <span className="size-1.5 rounded-full bg-[#1F5C43] animate-pulse" />
                     v4.0 · 42 Facts
                   </span>
@@ -283,7 +283,7 @@ export function AppSidebar() {
                         <TooltipContent side="right">
                           <span className="font-medium">{item.label}</span>
                           {item.badge && (
-                            <span className="ml-1.5 text-[10px] text-muted-foreground">
+                            <span className="ml-1.5 text-[11px] text-muted-foreground">
                               ({item.badge})
                             </span>
                           )}
@@ -364,7 +364,7 @@ export function AppSidebar() {
                         <TooltipContent side="right">
                           <span className="font-medium">{item.label}</span>
                           {item.badge && (
-                            <span className="ml-1.5 text-[10px] text-muted-foreground">
+                            <span className="ml-1.5 text-[11px] text-muted-foreground">
                               ({item.badge})
                             </span>
                           )}
@@ -428,7 +428,7 @@ export function AppSidebar() {
                 <RotateCcw size={13} className={resetting ? "animate-spin" : ""} />
                 <span>{resetting ? "Resetting…" : "Reset Demo"}</span>
               </div>
-              <span className="text-[10px] text-muted-foreground/60">1-click</span>
+              <span className="text-[11px] text-muted-foreground/60">1-click</span>
             </button>
           )}
 

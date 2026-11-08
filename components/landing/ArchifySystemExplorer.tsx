@@ -53,7 +53,7 @@ const ARCH_NODES: ArchNode[] = [
     invariants: [
       "Collapses single newlines 1:1 so byte offsets never drift",
       "Markdown headings (#, ##) are never classified as claims",
-      "Deterministic pure function — <1ms latency",
+      "Deterministic pure function, <1ms latency",
     ],
     codeExcerpt: `// lib/segment.ts
 export function segmentDraft(draft: string): SegmentedClaim[] {
@@ -129,8 +129,8 @@ if (active.length > 1 && hasDistinctValues(active)) {
     summary:
       "Scores approved active facts by lexical token overlap on (attribute + entity + value), sending at most 5 candidates to the Zod-locked model.",
     invariants: [
-      "No vector DB or embeddings — deterministic token overlap over <=200 facts",
-      "Model returns matched_fact_id only — never authors citations or spans",
+      "No vector DB or embeddings, deterministic token overlap over <=200 facts",
+      "Model returns matched_fact_id only, never authors citations or spans",
     ],
     codeExcerpt: `// lib/retrieve.ts
 export function retrieveTopCandidates(claim: string, facts: Fact[]): Fact[] {
@@ -331,7 +331,7 @@ export function ArchifySystemExplorer() {
                   if (lens.id === "semantic") setSelectedNodeId("retrieve");
                   if (lens.id === "downgrade") setSelectedNodeId("gate");
                 }}
-                className={`px-2.5 py-1 rounded-[4px] text-[11px] font-mono transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] ${
+                className={`px-2.5 py-1 rounded-[4px] text-[11px] font-mono transition-colors transition-transform cursor-pointer whitespace-nowrap active:scale-[0.98] ${
                   active
                     ? "bg-ink text-paper font-semibold"
                     : "text-ink-soft hover:text-ink hover:bg-panel"
@@ -509,7 +509,7 @@ export function ArchifySystemExplorer() {
                   <text
                     x="12"
                     y="42"
-                    fontFamily="var(--font-figtree), 'Figtree', sans-serif"
+                    fontFamily="var(--font-plex-sans), system-ui, sans-serif"
                     fontSize="13"
                     fill={isSelected ? "#FFFFFF" : "#1A1A18"}
                     fontWeight="600"
@@ -623,7 +623,7 @@ export function ArchifySystemExplorer() {
             </pre>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/50">
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/70">
             <span>Click any node in the diagram above to trace its contract</span>
             <span className="tabular-nums">51/51 unit tests passing</span>
           </div>

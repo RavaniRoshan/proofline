@@ -104,7 +104,7 @@ export function BreadcrumbDropdown({
                         <Icon size={14} className="text-[#8B1E27] dark:text-[#D4847A]" />
                         <span>{label}</span>
                       </div>
-                      <span className="text-[10px] text-muted-foreground font-semibold">[{badge}]</span>
+                      <span className="text-[11px] text-muted-foreground font-semibold">[{badge}]</span>
                     </Link>
                   </DropdownMenuItem>
                 ))}

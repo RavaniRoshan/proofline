@@ -8,10 +8,11 @@ import { StickyJobsBand } from "@/components/landing/StickyJobsBand";
 import Features4 from "@/components/ui/features-4";
 import Faq6 from "@/components/ui/faq-6";
 import Bento1 from "@/components/ui/bento-1";
-import { Footer15 } from "@/components/ui/footer-15";
+import Footer21 from "@/components/ui/footer-21";
 import { FaArrowRight } from "react-icons/fa6";
 import { CheckCircle2, Lock, FileCheck2 } from "lucide-react";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { Band } from "@/components/landing/Band";
 
 const FOOTER_LINKS = [
   {
@@ -87,7 +88,7 @@ const PROOFLINE_FAQS = FAQ_ITEMS.map((item, idx) => ({
 
 export default function LandingPage() {
   return (
-    <main id="main-content" className="landing min-h-screen flex flex-col bg-paper text-ink overflow-x-hidden">
+    <main id="main-content" className="landing min-h-dvh flex flex-col bg-paper text-ink overflow-x-hidden">
       {/* =========================================================================
           HERO SECTION: Full-Viewport Proofline Stage
           ========================================================================= */}
@@ -98,10 +99,7 @@ export default function LandingPage() {
           BAND 2 (#how-it-works / #use-cases): Interactive Dual-Pane Use Cases
           (Exact match to 03-band2-use-cases.png with border-x border-t page rails)
           ========================================================================= */}
-      <section id="how-it-works" className="relative bg-paper text-ink">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          {/* Subtle gradient hairline highlight across the top border */}
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="how-it-works">
 
           {/* Centered Section Header + Sharp 0px Mono CTA */}
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
@@ -119,7 +117,7 @@ export default function LandingPage() {
             </p>
             <Link
               href="/check"
-              className="group mt-6 inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+              className="group mt-6 inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
             >
               <span>Try it in the checker</span>
               <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
@@ -132,17 +130,14 @@ export default function LandingPage() {
           <ScrollReveal direction="up" distance={20} blur={4}>
             <UseCasesDualPane />
           </ScrollReveal>
-        </div>
-      </section>
+      </Band>
 
       {/* =========================================================================
           BAND 4 (#pipeline / #harder-jobs): Sticky 3-Step Timeline + Silk Mesh Card
           + Interactive Archify System Topology & Deterministic Split Diagram
           (Exact match to 05-band4-sticky-timeline.png)
           ========================================================================= */}
-      <section id="pipeline" className="relative bg-paper text-ink scroll-mt-20">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="pipeline">
 
           {/* 2-Column Sticky Timeline + 547x680 Rounded-[32px] Silk Mesh Card */}
           <ScrollReveal direction="up" distance={20} blur={4}>
@@ -167,16 +162,13 @@ export default function LandingPage() {
               <Bento1 />
             </ScrollReveal>
           </div>
-        </div>
-      </section>
+      </Band>
 
       {/* =========================================================================
           BAND 5 (#register / #teams): 3-Column Shared Team Cards + Floating Toast
           (Exact match to 06-band5-permissions-diagram.png)
           ========================================================================= */}
-      <section id="register" className="relative bg-paper text-ink scroll-mt-20">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="register">
 
           {/* Centered Header + Sharp 0px Button */}
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
@@ -193,7 +185,7 @@ export default function LandingPage() {
             </p>
             <Link
               href="/facts"
-              className="group mt-6 inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+              className="group mt-6 inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
             >
               <span>Explore 42 seeded facts</span>
               <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
@@ -207,7 +199,7 @@ export default function LandingPage() {
             <div className="relative mx-auto max-w-[1158px]">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
                 {/* Card 1: Shared Fact Register (Shared Accounts equivalent) */}
-                <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+                <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
                   <div>
                     <h3 className="font-sans text-[18px] font-medium text-ink dark:text-white">
                       Shared Fact Register
@@ -241,7 +233,7 @@ export default function LandingPage() {
                 </section>
 
                 {/* Card 2: Shared Rules & Lineage (Shared Skills equivalent) */}
-                <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+                <section className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-6 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
                   <div>
                     <h3 className="font-sans text-[18px] font-medium text-ink dark:text-white">
                       Shared Verification Rules
@@ -275,7 +267,7 @@ export default function LandingPage() {
                 </section>
 
                 {/* Card 3: Deterministic Budget (Shared Budget equivalent with bottom dark card) */}
-                <section className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+                <section className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
                   <MeshCardBackdrop className="opacity-45" />
                   <div className="relative z-10 p-6 pb-3">
                     <h3 className="font-sans text-[18px] font-medium text-ink dark:text-white">
@@ -358,16 +350,13 @@ export default function LandingPage() {
             </div>
           </ScrollReveal>
 
-        </div>
-      </section>
+      </Band>
 
       {/* =========================================================================
           BAND 6 (#trust): 3 Trust & Security Cards + 5-Pin Evidence Gate Diagram
           (Exact match to 07-band6-trust-security.png)
           ========================================================================= */}
-      <section id="trust" className="relative bg-paper text-ink scroll-mt-20">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="trust">
 
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
             <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
@@ -388,28 +377,22 @@ export default function LandingPage() {
             <TrustSecurityCards />
           </ScrollReveal>
 
-        </div>
-      </section>
+      </Band>
 
       {/* =========================================================================
           BAND 7 (#build): 5-Card Proofline Verification Architecture Mosaic
           ========================================================================= */}
-      <section id="build" className="relative bg-paper text-ink scroll-mt-20">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="build">
           <ScrollReveal direction="up" distance={20} blur={4}>
             <Features4 />
           </ScrollReveal>
-        </div>
-      </section>
+      </Band>
 
       {/* =========================================================================
           BAND 9 & 10 (#enterprise): Enterprise Governance & Zero Server Storage
           (Exact match to bands-extraction.json sections 14 & 15)
           ========================================================================= */}
-      <section id="enterprise" className="relative bg-paper text-ink scroll-mt-20">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="enterprise">
 
           <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
             <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
@@ -428,7 +411,7 @@ export default function LandingPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/dashboard"
-                className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+                className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
               >
                 <span>Open Register Dashboard</span>
                 <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
@@ -437,7 +420,7 @@ export default function LandingPage() {
               </Link>
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-5 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
+                className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-5 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-colors transition-transform duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
               >
                 <span>Read Round 1 → 2 Spec</span>
                 <span className="flex size-7 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
@@ -450,7 +433,7 @@ export default function LandingPage() {
           {/* 2-Column Enterprise Governance Cards */}
           <ScrollReveal direction="up" distance={20} blur={4}>
             <div className="mx-auto grid max-w-[1158px] grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-              <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+              <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
                 <div>
                   <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent dark:text-[#E07A70]">
                     <Lock size={14} />
@@ -473,7 +456,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+              <div className="flex flex-col justify-between rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card p-8 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
                 <div>
                   <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent dark:text-[#E07A70]">
                     <FileCheck2 size={14} />
@@ -497,15 +480,12 @@ export default function LandingPage() {
             </div>
           </ScrollReveal>
 
-        </div>
-      </section>
+      </Band>
 
       {/* =========================================================================
           BAND 11 (#faq): Frequently Asked Questions (Faq6 Primitive)
           ========================================================================= */}
-      <section id="faq" className="relative bg-paper text-ink scroll-mt-20">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="faq">
           <ScrollReveal direction="up" distance={20} blur={4}>
             <Faq6
               badge="[07] FREQUENTLY ASKED QUESTIONS"
@@ -519,16 +499,13 @@ export default function LandingPage() {
               faqs={PROOFLINE_FAQS}
             />
           </ScrollReveal>
-        </div>
-      </section>
+      </Band>
 
       {/* =========================================================================
           BAND 12 (#start): 1158x462 Rounded-[32px] Bottom CTA Silk Mesh Card
           (Exact match to 10-band12-bottom-cta.png)
           ========================================================================= */}
-      <section id="start" className="relative bg-paper text-ink">
-        <div className="relative mx-auto w-full max-w-[1240px] border-x border-t border-ink/15 dark:border-white/12 shadow-[0_-1px_0_rgba(0,0,0,0.04)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.06)] px-5 py-20 md:px-10 md:py-28 lg:py-32">
-          <div aria-hidden="true" className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/25 dark:via-white/25 to-transparent" />
+      <Band id="start">
           <ScrollReveal direction="up" distance={20} blur={4}>
             <div className="relative flex min-h-[420px] flex-col items-center justify-center overflow-hidden rounded-[32px] border border-ink/15 dark:border-white/12 p-8 text-center md:min-h-[480px] md:p-16 shadow-[0_16px_48px_-12px_rgba(26,26,24,0.12)]">
               {/* Diagonal Silk Mesh Backdrop in Proofline Tokens */}
@@ -547,11 +524,11 @@ export default function LandingPage() {
                   seconds.
                 </p>
 
-                {/* Pill Buttons — Matching Hero and Footer */}
+                {/* Pill Buttons: matching hero and footer */}
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
                   <Link
                     href="/check"
-                    className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-6 font-mono text-[13px] font-semibold uppercase tracking-wider text-white shadow-md transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+                    className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-6 font-mono text-[13px] font-semibold uppercase tracking-wider text-white shadow-md transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
                   >
                     <span>Check a Draft</span>
                     <span className="flex size-8 items-center justify-center rounded-full bg-black/20 text-white">
@@ -560,7 +537,7 @@ export default function LandingPage() {
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-2 pr-2.5 pl-6 font-mono text-[13px] font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
+                    className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-2 pr-2.5 pl-6 font-mono text-[13px] font-medium uppercase tracking-wider text-ink dark:text-white transition-colors transition-transform duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
                   >
                     <span>See it Work</span>
                     <span className="flex size-8 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
@@ -571,18 +548,14 @@ export default function LandingPage() {
               </div>
             </div>
           </ScrollReveal>
-        </div>
-      </section>
+      </Band>
 
-      {/* =========================================================================
-          FOOTER: High-Impact Panoramic Footer (Footer15)
-          ========================================================================= */}
-      <Footer15
+      <Footer21
         brandName="Proofline"
-        heroBrandName="PROOFLINE"
         description="Deterministic claim governance for high-stakes marketing, pricing, and product copy. Zero hallucination, 100% verifiable ground truth."
-        ctaLabel="Check a Draft"
-        ctaHref="/check"
+        buttonText="Check a Draft"
+        buttonLink="/check"
+        copyright="Proofline 2026 @ All rights reserved"
       />
     </main>
   );

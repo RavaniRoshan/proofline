@@ -96,10 +96,10 @@ export function DeterministicRoutingBento() {
         <div>
           <div className="flex items-center gap-2">
             <span className="inline-flex size-2 rounded-full bg-[#1F5C43]" />
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
               Stage 1 Deterministic Router
             </span>
-            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
               TypeScript 0.4ms
             </span>
           </div>
@@ -165,7 +165,7 @@ export function DeterministicRoutingBento() {
                 <div
                   key={item.id}
                   onClick={() => setActiveClaimId(item.id)}
-                  className={`group flex items-center justify-between gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                  className={`group flex items-center justify-between gap-3 p-3 rounded-lg border transition-colors transition-transform cursor-pointer ${
                     isSelected
                       ? "border-foreground/40 bg-muted/50 shadow-xs"
                       : "border-border/60 bg-card hover:border-border hover:bg-muted/20"
@@ -185,11 +185,11 @@ export function DeterministicRoutingBento() {
 
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] text-muted-foreground">
+                        <span className="font-mono text-[11px] text-muted-foreground">
                           {item.id}
                         </span>
                         <span
-                          className={`font-mono text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded ${
+                          className={`font-mono text-[11px] font-semibold uppercase px-1.5 py-0.5 rounded ${
                             isContradicted
                               ? "bg-v-contradicted-bg text-v-contradicted-fg border border-v-contradicted-border"
                               : isSupported
@@ -207,7 +207,7 @@ export function DeterministicRoutingBento() {
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 font-mono text-[11px] text-muted-foreground">
-                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-muted/40 text-[10px]">
+                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-muted/40 text-[11px]">
                       {item.rule}
                     </span>
                     <span className="tabular-nums font-semibold text-foreground">
@@ -234,7 +234,7 @@ export function DeterministicRoutingBento() {
 
             <div className="mt-3 space-y-3 font-mono text-xs">
               <div>
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Evaluated Claim
                 </span>
                 <p className="font-sans text-xs font-medium text-foreground mt-0.5">
@@ -244,7 +244,7 @@ export function DeterministicRoutingBento() {
 
               <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/40">
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Execution Path
                   </span>
                   <span className="font-semibold text-foreground">
@@ -254,7 +254,7 @@ export function DeterministicRoutingBento() {
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Rule Identifier
                   </span>
                   <span className="text-foreground">{activeClaim.rule}</span>
@@ -263,7 +263,7 @@ export function DeterministicRoutingBento() {
 
               <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/40">
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Register Fact ID
                   </span>
                   <span className="font-bold text-accent-brand dark:text-accent-readable">
@@ -271,7 +271,7 @@ export function DeterministicRoutingBento() {
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Execution Time
                   </span>
                   <span className="font-semibold text-foreground">
@@ -281,7 +281,7 @@ export function DeterministicRoutingBento() {
               </div>
 
               <div className="pt-1 border-t border-border/40">
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Ground Truth Resolution
                 </span>
                 <p className="mt-0.5 text-xs text-foreground font-sans">

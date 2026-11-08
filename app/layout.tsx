@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono, Figtree } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const plexSans  = IBM_Plex_Sans({  variable: "--font-plex-sans",  subsets: ["latin"], weight: ["400","500","600"] });
 const plexSerif = IBM_Plex_Serif({ variable: "--font-plex-serif", subsets: ["latin"], weight: ["400","600"] });
 const plexMono  = IBM_Plex_Mono({  variable: "--font-plex-mono",  subsets: ["latin"], weight: ["400","500","600"] });
-const figtree   = Figtree({        variable: "--font-figtree",    subsets: ["latin"], weight: "variable", display: "block" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://proofline.app"),
   title: {
-    default: "Proofline — Convert marketing drafts into clear, verified claims",
+    default: "Proofline, Convert marketing drafts into clear, verified claims",
     template: "%s · Proofline",
   },
   description:
@@ -23,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plexSans.variable} ${plexSerif.variable} ${plexMono.variable} ${figtree.variable} h-full antialiased dark`}
+      className={`${plexSans.variable} ${plexSerif.variable} ${plexMono.variable} h-full antialiased dark`}
     >
       <head>
         <script

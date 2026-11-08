@@ -23,30 +23,32 @@ export const MOTION_TOKENS = {
   durations: {
     instant: "0ms",
     micro: "120ms",
-    fast: "180ms",
-    standard: "240ms",
-    deliberate: "320ms",
-    hero: "420ms",
+    fast: "150ms",
+    standard: "350ms",
+    deliberate: "350ms",
+    hero: "350ms",
+    close: "240ms",
   },
   durationMs: {
     instant: 0,
     micro: 120,
-    fast: 180,
-    standard: 240,
-    deliberate: 320,
-    hero: 420,
+    fast: 150,
+    standard: 350,
+    deliberate: 350,
+    hero: 350,
+    close: 240,
   },
   easings: {
-    arrival: "cubic-bezier(0.16, 1, 0.3, 1)",
+    arrival: "cubic-bezier(0.22, 1, 0.36, 1)",
     departure: "cubic-bezier(0.4, 0, 1, 1)",
     mechanical: "cubic-bezier(0.2, 0, 0, 1)",
-    drawer: "cubic-bezier(0.32, 0.72, 0, 1)",
+    drawer: "cubic-bezier(0.22, 1, 0.36, 1)",
   },
   bezierControlPoints: {
-    arrival: [0.16, 1, 0.3, 1] as const,
+    arrival: [0.22, 1, 0.36, 1] as const,
     departure: [0.4, 0, 1, 1] as const,
     mechanical: [0.2, 0, 0, 1] as const,
-    drawer: [0.32, 0.72, 0, 1] as const,
+    drawer: [0.22, 1, 0.36, 1] as const,
   },
   springs: {
     standard: { stiffness: 380, damping: 30, mass: 1, bounce: 0 },
@@ -108,23 +110,24 @@ describe("Tier 1: Feature Coverage", () => {
       const { instant, micro, fast, standard, deliberate, hero } = MOTION_TOKENS.durationMs;
       expect(instant).toBe(0);
       expect(micro).toBe(120);
-      expect(fast).toBe(180);
-      expect(standard).toBe(240);
-      expect(deliberate).toBe(320);
-      expect(hero).toBe(420);
-      expect(instant < micro && micro < fast && fast < standard && standard < deliberate && deliberate < hero).toBe(true);
+      expect(fast).toBe(150);
+      expect(standard).toBe(350);
+      expect(deliberate).toBe(350);
+      expect(hero).toBe(350);
+      expect(MOTION_TOKENS.durationMs.close).toBe(240);
+      expect(instant < micro && micro < fast && fast < standard && deliberate <= standard && hero <= standard && MOTION_TOKENS.durationMs.close < standard).toBe(true);
     });
 
     it("1.1.2 validates arrival cubic-bezier profile exhibits fast initial arrival and gentle deceleration", () => {
       const [p1x, p1y, p2x, p2y] = MOTION_TOKENS.bezierControlPoints.arrival;
-      expect(p1x).toBe(0.16);
+      expect(p1x).toBe(0.22);
       expect(p1y).toBe(1);
-      expect(p2x).toBe(0.3);
+      expect(p2x).toBe(0.36);
       expect(p2y).toBe(1);
 
-      // Initial slope dy/dx = p1y / p1x = 1 / 0.16 = 6.25 (punchy explosive arrival)
+      // Initial slope dy/dx = p1y / p1x = 1 / 0.22 = 4.55 (smooth-out: fast head, gentle tail)
       const initialSlope = p1y / p1x;
-      expect(initialSlope).toBeCloseTo(6.25, 2);
+      expect(initialSlope).toBeCloseTo(4.55, 2);
 
       // Midpoint progress: at t = 0.2, y should already exceed 0.45
       const sample = evaluateBezier(p1x, p1y, p2x, p2y, 0.2);
@@ -289,8 +292,8 @@ describe("Tier 1: Feature Coverage", () => {
       expect(globalsCss).toMatch(/button,\s*a,\s*input,\s*select,\s*textarea\s*\{[\s\S]*?120ms/);
     });
 
-    it("1.5.3 verifies verdict badge color transition duration of 320ms for state updates", () => {
-      expect(globalsCss).toMatch(/\[data-verdict-badge\]\s*\{[\s\S]*?transition:[\s\S]*?320ms/);
+    it("1.5.3 verifies verdict badge color transition duration of 240ms for state updates (Space Motion: close cadence)", () => {
+      expect(globalsCss).toMatch(/\[data-verdict-badge\]\s*\{[\s\S]*?transition:[\s\S]*?var\(--motion-duration-close,\s*240ms\)/);
     });
 
     it("1.5.4 calculates active press scale factor (0.97) preserves tactile compression", () => {
@@ -724,10 +727,10 @@ describe("Tier 4: Application Scenarios", () => {
     const heroStatus = reducedMotionActive ? "done" : "run";
     expect(heroStatus).toBe("done");
 
-    // Toggle back to standard
+    // Toggle back to standard (Space Motion: arrivals 350ms)
     reducedMotionActive = false;
     const restoredDurationMs = reducedMotionActive ? 0.01 : MOTION_TOKENS.durationMs.standard;
-    expect(restoredDurationMs).toBe(240);
+    expect(restoredDurationMs).toBe(350);
   });
 
   it("4.5 Scenario 5: Deterministic verification engine preserves zero regression on ground truth", async () => {

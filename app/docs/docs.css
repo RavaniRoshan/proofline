@@ -11,22 +11,22 @@
 :root,
 html.light,
 .proofline-docs {
-  --color-fd-background: #FFFFFF;
-  --color-fd-foreground: #1A1A18;
-  --color-fd-muted: #F5F5F2;
-  --color-fd-muted-foreground: #4F4F4A;
-  --color-fd-popover: #FFFFFF;
-  --color-fd-popover-foreground: #1A1A18;
-  --color-fd-card: #F5F5F2;
-  --color-fd-card-foreground: #1A1A18;
-  --color-fd-border: #DEDED8;
-  --color-fd-primary: #8B1E27;
-  --color-fd-primary-foreground: #FFFFFF;
-  --color-fd-secondary: #EFECE6;
-  --color-fd-secondary-foreground: #1A1A18;
-  --color-fd-accent: rgba(139, 30, 39, 0.08);
-  --color-fd-accent-foreground: #8B1E27;
-  --color-fd-ring: #8B1E27;
+  --color-fd-background: var(--paper);
+  --color-fd-foreground: var(--ink);
+  --color-fd-muted: var(--panel);
+  --color-fd-muted-foreground: var(--ink-faint);
+  --color-fd-popover: var(--panel-elevated);
+  --color-fd-popover-foreground: var(--ink);
+  --color-fd-card: var(--panel);
+  --color-fd-card-foreground: var(--ink);
+  --color-fd-border: var(--line);
+  --color-fd-primary: var(--oxide);
+  --color-fd-primary-foreground: var(--paper);
+  --color-fd-secondary: var(--panel);
+  --color-fd-secondary-foreground: var(--ink);
+  --color-fd-accent: color-mix(in srgb, var(--oxide) 8%, transparent);
+  --color-fd-accent-foreground: var(--oxide);
+  --color-fd-ring: var(--oxide);
   --color-fd-overlay: rgba(26, 26, 24, 0.4);
 
   --fd-sidebar-width: 280px;
@@ -36,22 +36,22 @@ html.light,
 html.dark,
 .dark .proofline-docs,
 .proofline-docs.dark {
-  --color-fd-background: #09090B;
-  --color-fd-foreground: #F4F4F5;
-  --color-fd-muted: #131316;
-  --color-fd-muted-foreground: #A1A1AA;
-  --color-fd-popover: #1A1A1F;
-  --color-fd-popover-foreground: #F4F4F5;
-  --color-fd-card: #131316;
-  --color-fd-card-foreground: #F4F4F5;
-  --color-fd-border: #222226;
-  --color-fd-primary: #8B1E27;
-  --color-fd-primary-foreground: #FFFFFF;
-  --color-fd-secondary: #18181B;
-  --color-fd-secondary-foreground: #F4F4F5;
-  --color-fd-accent: rgba(139, 30, 39, 0.22);
-  --color-fd-accent-foreground: #E07A70;
-  --color-fd-ring: #8B1E27;
+  --color-fd-background: var(--paper);
+  --color-fd-foreground: var(--ink);
+  --color-fd-muted: var(--panel);
+  --color-fd-muted-foreground: var(--ink-faint);
+  --color-fd-popover: var(--panel-elevated);
+  --color-fd-popover-foreground: var(--ink);
+  --color-fd-card: var(--panel);
+  --color-fd-card-foreground: var(--ink);
+  --color-fd-border: var(--line);
+  --color-fd-primary: var(--oxide);
+  --color-fd-primary-foreground: var(--paper);
+  --color-fd-secondary: var(--panel);
+  --color-fd-secondary-foreground: var(--ink);
+  --color-fd-accent: color-mix(in srgb, var(--oxide) 22%, transparent);
+  --color-fd-accent-foreground: var(--oxide-hover);
+  --color-fd-ring: var(--oxide);
   --color-fd-overlay: rgba(0, 0, 0, 0.65);
 }
 
@@ -63,7 +63,7 @@ html.dark,
   font-family: var(--font-plex-sans), system-ui, -apple-system, sans-serif;
   color: var(--color-fd-foreground);
   background-color: var(--color-fd-background);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* Editorial Serif Headings matching Landing Page */
@@ -121,10 +121,9 @@ html.dark,
 
 .proofline-docs pre {
   border: 1px solid var(--color-fd-border) !important;
-  border-radius: 14px !important;
+  border-radius: 6px !important;
   background-color: #121214 !important;
   font-family: var(--font-plex-mono), monospace !important;
-  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.2) !important;
 }
 
 .proofline-docs pre code {
@@ -156,18 +155,18 @@ html.dark,
 /* Active sidebar item with brand Oxblood highlight */
 #nd-sidebar a[aria-current="page"],
 #nd-sidebar a[data-active="true"] {
-  background-color: rgba(139, 30, 39, 0.1) !important;
-  color: #8B1E27 !important;
+  background-color: color-mix(in srgb, var(--oxide) 12%, transparent) !important;
+  color: var(--oxide) !important;
   font-weight: 600 !important;
-  border-left: 2px solid #8B1E27 !important;
-  border-radius: 0 8px 8px 0 !important;
+  box-shadow: inset 2px 0 0 var(--oxide) !important;
+  border-radius: 4px !important;
 }
 
 .dark #nd-sidebar a[aria-current="page"],
 .dark #nd-sidebar a[data-active="true"] {
-  background-color: rgba(139, 30, 39, 0.22) !important;
-  color: #E07A70 !important;
-  border-left-color: #E07A70 !important;
+  background-color: color-mix(in srgb, var(--oxide) 22%, transparent) !important;
+  color: var(--oxide-hover) !important;
+  box-shadow: inset 2px 0 0 var(--oxide) !important;
 }
 
 /* Hover sidebar item */
@@ -205,26 +204,20 @@ header.fd-nav {
   border-radius: 16px !important;
   border: 1px solid var(--color-fd-border) !important;
   background-color: var(--color-fd-card) !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: border-color 0.2s ease-out, background-color 0.2s ease-out !important;
 }
 
 .proofline-docs [data-slot="card"]:hover,
 .proofline-docs .fd-card:hover {
-  border-color: rgba(139, 30, 39, 0.4) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
-}
-
-.dark .proofline-docs [data-slot="card"]:hover,
-.dark .proofline-docs .fd-card:hover {
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4);
+  border-color: color-mix(in srgb, var(--oxide) 40%, transparent) !important;
+  background-color: var(--color-fd-muted) !important;
 }
 
 .proofline-docs [data-slot="callout"],
 .proofline-docs .fd-callout {
   border-radius: 14px !important;
   border-left-width: 4px !important;
-  border-left-color: #8B1E27 !important;
+  border-left-color: var(--oxide) !important;
   background-color: var(--color-fd-card) !important;
 }
 
@@ -234,22 +227,22 @@ header.fd-nav {
 }
 
 .proofline-docs .fd-step-number {
-  background-color: #8B1E27 !important;
-  color: #FFFFFF !important;
+  background-color: var(--oxide) !important;
+  color: var(--paper) !important;
   font-family: var(--font-plex-mono), monospace !important;
   font-weight: 600 !important;
 }
 
 /* Table of Contents (TOC) */
 #nd-toc a[data-active="true"] {
-  color: #8B1E27 !important;
+  color: var(--oxide) !important;
   font-weight: 600;
-  border-left: 2px solid #8B1E27;
+  border-left: 2px solid var(--oxide);
 }
 
 .dark #nd-toc a[data-active="true"] {
-  color: #E07A70 !important;
-  border-left-color: #E07A70;
+  color: var(--oxide-hover) !important;
+  border-left-color: var(--oxide);
 }
 
 /* Next / Previous Page Navigation Cards */
@@ -258,12 +251,12 @@ header.fd-nav {
   border-radius: 14px !important;
   border: 1px solid var(--color-fd-border) !important;
   background-color: var(--color-fd-card) !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .proofline-docs a[data-slot="nav-item"]:hover,
 .proofline-docs [data-slot="page-nav"] a:hover {
-  border-color: rgba(139, 30, 39, 0.4) !important;
+  border-color: color-mix(in srgb, var(--oxide) 40%, transparent) !important;
   background-color: var(--color-fd-muted) !important;
 }
 
@@ -285,7 +278,7 @@ header.fd-nav {
 .proofline-docs a:focus-visible,
 .proofline-docs button:focus-visible,
 .proofline-docs input:focus-visible {
-  outline: 2px solid #8B1E27 !important;
+  outline: 2px solid var(--oxide) !important;
   outline-offset: 2px !important;
 }
 
@@ -293,7 +286,7 @@ header.fd-nav {
 .dark .proofline-docs a:focus-visible,
 .dark .proofline-docs button:focus-visible,
 .dark .proofline-docs input:focus-visible {
-  outline-color: #E07A70 !important;
+  outline-color: var(--oxide-hover) !important;
 }
 
 /* Visible Skip to Content link on tab navigation */
@@ -308,8 +301,8 @@ header.fd-nav {
   clip: auto !important;
   padding: 0.5rem 1rem !important;
   border-radius: 9999px !important;
-  background-color: #8B1E27 !important;
-  color: #FFFFFF !important;
+  background-color: var(--oxide) !important;
+  color: var(--paper) !important;
   font-family: var(--font-plex-mono), monospace !important;
   font-size: 0.75rem !important;
   text-transform: uppercase !important;

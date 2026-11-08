@@ -178,7 +178,7 @@ export function ApiPlayground() {
                   setLiveResult(null);
                   setMeasuredMs(null);
                 }}
-                className={`px-3.5 py-1.5 rounded-[4px] font-mono text-[12px] transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-[4px] font-mono text-[12px] transition-colors transition-transform cursor-pointer whitespace-nowrap ${
                   active
                     ? "bg-paper text-ink font-semibold"
                     : "text-white/70 hover:text-white hover:bg-white/[0.06]"
@@ -190,7 +190,7 @@ export function ApiPlayground() {
           })}
         </div>
 
-        <p className="text-[13px] font-mono text-white/65">{current.description}</p>
+        <p className="text-[13px] font-mono text-white/85">{current.description}</p>
       </div>
 
       {/* Dual Terminal Split */}
@@ -202,13 +202,13 @@ export function ApiPlayground() {
               <div className="flex items-center gap-2">
                 <Terminal size={14} className="text-accent-readable" aria-hidden="true" />
                 <span className="font-semibold text-white">POST /api/verify</span>
-                <span className="text-white/40">· Zod-validated input</span>
+                <span className="text-white/70">· Zod-validated input</span>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/[0.04] text-[11px] font-mono uppercase tracking-wider text-white/90 hover:text-white hover:border-white/40 hover:bg-white/[0.08] active:scale-[0.98] transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/[0.04] text-[11px] font-mono uppercase tracking-wider text-white/90 hover:text-white hover:border-white/40 hover:bg-white/[0.08] active:scale-[0.98] transition-colors transition-transform cursor-pointer"
                 >
                   {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
                   <span>{copied ? "Copied" : "Copy cURL"}</span>
@@ -217,7 +217,7 @@ export function ApiPlayground() {
                   type="button"
                   onClick={handleRunLive}
                   disabled={isRunning}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#8B1E27] text-white text-[11px] font-mono uppercase tracking-wider font-semibold hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#8B1E27] text-white text-[11px] font-mono uppercase tracking-wider font-semibold hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-colors transition-transform cursor-pointer disabled:opacity-50 shadow-xs"
                 >
                   <Play size={11} aria-hidden="true" />
                   <span>{isRunning ? "Running..." : "Execute Live"}</span>
@@ -230,7 +230,7 @@ export function ApiPlayground() {
             </pre>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/55">
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/75">
             <span>Stateless execution · Zero database writes</span>
             <span className="tabular-nums">Schema: DATA.md §4</span>
           </div>
@@ -242,7 +242,7 @@ export function ApiPlayground() {
             <div className="flex items-center justify-between pb-3.5 border-b border-white/10 mb-4 text-white/70">
               <div className="flex items-center gap-2 tabular-nums">
                 <span className="text-emerald-400 font-semibold">{current.status}</span>
-                <span className="text-white/30">·</span>
+                <span className="text-white/60">·</span>
                 <span className="text-white/80">
                   {measuredMs !== null ? `${measuredMs}ms (live server)` : `${current.latencyMs}ms (deterministic)`}
                 </span>
@@ -259,9 +259,9 @@ export function ApiPlayground() {
             </pre>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/55">
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/75">
             <span>Evidence Gate enforced in code before serialization</span>
-            <span className="text-emerald-400">✓ Citations verified</span>
+            <span className="text-emerald-400">Citations verified</span>
           </div>
         </div>
       </div>

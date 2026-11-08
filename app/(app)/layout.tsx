@@ -5,7 +5,13 @@ import { BreadcrumbDropdown } from "@/components/ui/breadcrumb-dropdown";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
+    <div className="min-h-dvh flex flex-col bg-background text-foreground">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:font-semibold focus:uppercase focus:tracking-wider focus:text-white"
+      >
+        Skip to main content
+      </a>
       {/* Universal Vercel-Style Master Header */}
       <Header />
 
@@ -15,7 +21,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
         <div className="flex flex-1 flex-col min-w-0 overflow-y-auto">
           {/* Main Content Stage */}
-          <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-4 sm:px-6 sm:py-6">
+          <main id="main-content" className="mx-auto w-full max-w-7xl flex-1 px-4 py-4 sm:px-6 sm:py-6">
             <div className="mb-4">
               <BreadcrumbDropdown />
             </div>

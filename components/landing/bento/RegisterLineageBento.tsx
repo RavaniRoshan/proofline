@@ -102,13 +102,13 @@ export function RegisterLineageBento() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border/60 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
               Fact Register Lineage
             </span>
-            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
               Fact ID: F-021
             </span>
-            <span className="rounded bg-accent-brand/10 dark:bg-accent-readable/10 px-1.5 py-0.5 font-mono text-[10px] text-accent-brand dark:text-accent-readable font-semibold">
+            <span className="rounded bg-accent-brand/10 dark:bg-accent-readable/10 px-1.5 py-0.5 font-mono text-[11px] text-accent-brand dark:text-accent-readable font-semibold">
               42 Seed Facts
             </span>
           </div>
@@ -141,7 +141,7 @@ export function RegisterLineageBento() {
                 <div
                   key={v.version}
                   onClick={() => setSelectedVer(v.version)}
-                  className={`group flex items-center justify-between gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                  className={`group flex items-center justify-between gap-3 p-3 rounded-lg border transition-colors transition-transform cursor-pointer ${
                     isSelected
                       ? "border-foreground/40 bg-muted/50 shadow-xs"
                       : "border-border/60 bg-card hover:border-border hover:bg-muted/20"
@@ -196,7 +196,7 @@ export function RegisterLineageBento() {
                 Record Specification
               </span>
               <span
-                className={`font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded ${
+                className={`font-mono text-[11px] font-semibold uppercase px-2 py-0.5 rounded ${
                   isActive
                     ? "bg-v-supported-bg text-v-supported-fg border border-v-supported-border"
                     : "bg-muted text-muted-foreground"
@@ -208,7 +208,7 @@ export function RegisterLineageBento() {
 
             <div className="mt-3 space-y-3 font-mono text-xs">
               <div>
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Ground Truth Value
                 </span>
                 <p className="text-sm font-bold text-foreground mt-0.5">
@@ -218,7 +218,7 @@ export function RegisterLineageBento() {
 
               <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/40">
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Version Key
                   </span>
                   <span className="font-semibold text-foreground">
@@ -226,7 +226,7 @@ export function RegisterLineageBento() {
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Document
                   </span>
                   <span className="text-foreground truncate block">
@@ -236,11 +236,11 @@ export function RegisterLineageBento() {
               </div>
 
               <div className="pt-1 border-t border-border/40">
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Designated Approver
                 </span>
                 <div className="mt-1 flex items-center gap-1.5 font-sans">
-                  <div className="size-4 rounded-full bg-accent-brand/20 dark:bg-accent-readable/20 flex items-center justify-center text-[10px] font-bold text-accent-brand dark:text-accent-readable">
+                  <div className="size-4 rounded-full bg-accent-brand/20 dark:bg-accent-readable/20 flex items-center justify-center text-[11px] font-bold text-accent-brand dark:text-accent-readable">
                     VP
                   </div>
                   <span className="text-xs font-medium text-foreground">
@@ -251,7 +251,7 @@ export function RegisterLineageBento() {
               </div>
 
               <div className="pt-1 border-t border-border/40">
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Source Character Span
                 </span>
                 <span className="text-xs text-foreground">
@@ -260,7 +260,7 @@ export function RegisterLineageBento() {
               </div>
 
               <div className="pt-1 border-t border-border/40">
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Validity Window
                 </span>
                 <span className="text-[11px] text-foreground">

@@ -21,13 +21,13 @@ export function ScrollReveal({
   children,
   className = "",
   delay = 0,
-  yOffset = 20,
+  yOffset = 12,
   distance,
   direction = "up",
-  blur = 4,
-  duration = 0.55,
+  blur = 8,
+  duration = 0.35,
   staggerChildren = false,
-  staggerInterval = 0.08,
+  staggerInterval = 0.04,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = useGsapReducedMotion();

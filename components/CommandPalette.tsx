@@ -230,7 +230,7 @@ export function CommandPalette() {
       >
         <Search size={12} aria-hidden="true" />
         <span className="hidden sm:inline">Search</span>
-        <kbd className="rounded border border-line bg-paper px-1 py-0.5 font-mono text-[10px] text-muted">
+        <kbd className="rounded border border-line bg-paper px-1 py-0.5 font-mono text-[11px] text-muted">
           ⌘K
         </kbd>
       </button>
@@ -265,7 +265,7 @@ export function CommandPalette() {
                 placeholder="Type a command or search..."
                 className="w-full bg-transparent text-sm text-foreground placeholder:text-muted focus:outline-none"
               />
-              <span className="rounded border border-line bg-panel px-1.5 py-0.5 font-mono text-[10px] text-muted">
+              <span className="rounded border border-line bg-panel px-1.5 py-0.5 font-mono text-[11px] text-muted">
                 ESC
               </span>
             </div>
@@ -306,7 +306,7 @@ export function CommandPalette() {
               )}
             </div>
 
-            <div className="flex items-center justify-between border-t border-line px-3 py-1.5 text-[10px] text-muted">
+            <div className="flex items-center justify-between border-t border-line px-3 py-1.5 text-[11px] text-muted">
               <span>Navigate with ↑↓ and Enter</span>
               <span>Proofline</span>
             </div>

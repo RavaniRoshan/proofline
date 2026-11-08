@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Proofline tokens — Round 1 PDF identity & Composio-grade High-Tech Mode.
+/* Proofline tokens, Round 1 PDF identity & Composio-grade High-Tech Mode.
    Light: White paper, slate structure, archival oxblood accent.
    Dark: Deep obsidian canvas, precision charcoal cards, luminescent voltage.
    Colour is information: the six verdicts are the only saturated values. */
@@ -32,20 +32,23 @@
   --v-notcheckable-fg: #5F5F58; --v-notcheckable-bg: #ECEAE3;
 
   /* =========================================================================
-     Proofline Master Motion Tokens (Milestone 1) — Mechanical Precision
+     Proofline Master Motion Tokens (Space Motion)
+     Arrivals ~350ms smooth-out; close at 0.6-0.7x open with no delay.
      ========================================================================= */
   --motion-duration-instant: 0ms;
   --motion-duration-press: 80ms;
   --motion-duration-micro: 120ms;
-  --motion-duration-fast: 180ms;
-  --motion-duration-standard: 240ms;
-  --motion-duration-deliberate: 320ms;
-  --motion-duration-hero: 420ms;
+  --motion-duration-fast: 150ms;
+  --motion-duration-standard: 350ms;
+  --motion-duration-deliberate: 350ms;
+  --motion-duration-hero: 350ms;
+  --motion-duration-close: 240ms;
 
-  --ease-arrival: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-arrival: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-departure: cubic-bezier(0.4, 0, 1, 1);
   --ease-mechanical: cubic-bezier(0.2, 0, 0, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-drawer: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark {
@@ -53,8 +56,8 @@
   --panel: #131316;
   --panel-elevated: #1A1A1F;
   --ink: #F4F4F5;
-  --ink-soft: #A1A1AA;
-  --ink-faint: #71717A;
+  --ink-soft: #C9C9D1;
+  --ink-faint: #A1A1AA;
   --slate: #242428;
   --slate-deep: #18181B;
   --oxide: #D4847A;
@@ -75,7 +78,7 @@
 }
 
 @theme inline {
-  /* existing utility names — repointed, never renamed */
+  /* existing utility names, repointed, never renamed */
   --color-background: var(--paper);
   --color-foreground: var(--ink);
   --color-muted: var(--panel);
@@ -128,13 +131,14 @@
   --font-serif: var(--font-plex-serif);
   --font-mono: var(--font-plex-mono);
 
-  /* Motion Easing Curves (generates ease-arrival, ease-departure, ease-mechanical, ease-drawer) */
+  /* Motion Easing Curves (generates ease-arrival, ease-departure, ease-mechanical, ease-drawer, ease-expo) */
   --ease-arrival: var(--ease-arrival);
   --ease-departure: var(--ease-departure);
   --ease-mechanical: var(--ease-mechanical);
   --ease-drawer: var(--ease-drawer);
+  --ease-expo: var(--ease-expo);
 
-  /* Motion Durations (generates duration-instant, duration-press, duration-micro, duration-fast, duration-standard, duration-deliberate, duration-hero) */
+  /* Motion Durations (generates duration-instant, duration-press, duration-micro, duration-fast, duration-standard, duration-deliberate, duration-hero, duration-close) */
   --duration-instant: var(--motion-duration-instant);
   --duration-press: var(--motion-duration-press);
   --duration-micro: var(--motion-duration-micro);
@@ -142,6 +146,7 @@
   --duration-standard: var(--motion-duration-standard);
   --duration-deliberate: var(--motion-duration-deliberate);
   --duration-hero: var(--motion-duration-hero);
+  --duration-close: var(--motion-duration-close);
 
   /* Default transitions */
   --default-transition-duration: var(--motion-duration-micro);
@@ -177,7 +182,13 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 
 :focus-visible { outline: 2px solid var(--oxide); outline-offset: 2px; }
 
-/* Motion — only where state changes, never decoration.
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: var(--oxide);
+}
+
+/* Motion, only where state changes, never decoration.
    Wrapped in prefers-reduced-motion: no-preference */
 @media (prefers-reduced-motion: no-preference) {
   /* ===== Jakub Krehel Materialize Enter & Subtler Exit Recipes ===== */
@@ -223,8 +234,7 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   .finding-card-enter,
   [data-testid="finding"] {
     animation: proofline-materialize-in var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
-    animation-delay: min(calc(var(--index, 0) * 35ms), 280ms);
-    animation-delay: min(calc(var(--index, 0) * 35ms), 140ms);
+    animation-delay: min(calc(var(--index, 0) * 40ms), 300ms);
     will-change: transform, opacity, filter;
   }
 
@@ -233,9 +243,9 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
     will-change: transform, opacity, filter;
   }
 
-  /* Verdict badge transition over 320ms when a decision changes */
+  /* Verdict badge transition on decision change: 240ms, no delay */
   [data-verdict-badge] {
-    transition: background-color 320ms ease-out, border-color 320ms ease-out, color 320ms ease-out;
+    transition: background-color var(--motion-duration-close, 240ms) ease-out, border-color var(--motion-duration-close, 240ms) ease-out, color var(--motion-duration-close, 240ms) ease-out;
   }
 
   /* Dashboard bar fill transition on load */
@@ -327,12 +337,12 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 
   .logomark-lock .logomark-bracket-left,
   .animate-bracket-lock .logomark-bracket-left {
-    animation: bracket-left-lock var(--motion-duration-deliberate, 320ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    animation: bracket-left-lock var(--motion-duration-deliberate, 350ms) var(--ease-arrival, cubic-bezier(0.22, 1, 0.36, 1)) backwards;
   }
 
   .logomark-lock .logomark-bracket-right,
   .animate-bracket-lock .logomark-bracket-right {
-    animation: bracket-right-lock var(--motion-duration-deliberate, 320ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    animation: bracket-right-lock var(--motion-duration-deliberate, 350ms) var(--ease-arrival, cubic-bezier(0.22, 1, 0.36, 1)) backwards;
   }
 
   .group:hover .logomark-bracket-left {
@@ -400,7 +410,7 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   }
 
   .dualpane-signal-packet {
-    animation: dualpane-pulse-travel 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: dualpane-pulse-travel 3.6s cubic-bezier(0.4, 0, 0.2, 1) 1;
     will-change: transform, opacity;
   }
 
@@ -456,13 +466,13 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   }
 
   .cmd-modal-enter {
-    animation: cmd-modal-scale-in var(--motion-duration-standard, 240ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+    animation: cmd-modal-scale-in var(--motion-duration-standard, 350ms) var(--ease-arrival, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
     transform-origin: center top;
     will-change: transform, opacity;
   }
 
   .cmd-modal-exit {
-    animation: cmd-modal-scale-out var(--motion-duration-fast, 180ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
+    animation: cmd-modal-scale-out var(--motion-duration-close, 240ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
     transform-origin: center top;
     will-change: transform, opacity;
   }
@@ -491,11 +501,11 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   }
 
   .drawer-decelerate-enter {
-    animation: drawer-rail-enter var(--motion-duration-deliberate, 320ms) var(--ease-drawer, cubic-bezier(0.32, 0.72, 0, 1)) forwards;
+    animation: drawer-rail-enter var(--motion-duration-deliberate, 350ms) var(--ease-drawer, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
   }
 
   .drawer-decelerate-exit {
-    animation: drawer-rail-exit var(--motion-duration-fast, 180ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
+    animation: drawer-rail-exit var(--motion-duration-close, 240ms) var(--ease-departure, cubic-bezier(0.4, 0, 1, 1)) forwards;
   }
 }
 
@@ -555,8 +565,8 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 /* ===== Landing page unified font & layout system ===== */
 .landing {
   --max-w-page: 1240px;
-  --font-sans: var(--font-figtree), 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-figtree), 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-plex-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-plex-serif), Georgia, serif;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -629,11 +639,11 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
 
 .sunset-orb-mount,
 .animate-sunset-pulse {
-  animation: sunset-entrance 600ms var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+  animation: sunset-entrance var(--motion-duration-standard, 350ms) var(--ease-arrival, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
 
 
-/* High-contrast brand typography overrides — guaranteed WCAG AAA across Light & Dark modes */
+/* High-contrast brand typography overrides, guaranteed WCAG AAA across Light & Dark modes */
 .text-accent,
 .brand-highlight,
 .text-accent-brand {
@@ -691,7 +701,7 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
       transparent 100%
     );
     will-change: transform, opacity;
-    animation: stage-radar-sweep 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: stage-radar-sweep 8s cubic-bezier(0.4, 0, 0.2, 1) 1;
   }
 
   .stage-poi-beacon {
@@ -702,7 +712,7 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
     background-color: var(--oxide);
     box-shadow: 0 0 8px var(--oxide);
     will-change: transform, opacity;
-    animation: stage-poi-pulse 4.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    animation: stage-poi-pulse 4.8s cubic-bezier(0.16, 1, 0.3, 1) 1;
   }
 
   /* Band 7: DeveloperTerminalBand Horizontal & Vertical SVG Bus Pulses */
@@ -724,7 +734,7 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   }
 
   .terminal-signal-packet {
-    animation: terminal-pulse-travel 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: terminal-pulse-travel 3.8s cubic-bezier(0.4, 0, 0.2, 1) 1;
     will-change: transform, opacity;
   }
 
@@ -746,7 +756,7 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   }
 
   .terminal-conduit-packet {
-    animation: terminal-conduit-travel 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: terminal-conduit-travel 2.8s cubic-bezier(0.4, 0, 0.2, 1) 1;
     will-change: transform, opacity;
   }
 
@@ -789,7 +799,7 @@ h1, h2 { font-family: var(--font-plex-serif), Georgia, serif; letter-spacing: -0
   /* Copy button icon pop */
   @keyframes icon-pop-in {
     0% {
-      transform: scale(0.8);
+      transform: scale(0.95);
       opacity: 0;
     }
     100% {

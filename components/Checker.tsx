@@ -37,24 +37,24 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AssetBadge } from "@/components/ui/web3-dashboard/components/web3/asset-badge";
+import { AssetBadge } from "@/components/ui/proofline-badge/asset-badge";
 
 const COLLAPSED_VERDICTS: Verdict[] = ["SUPPORTED", "NOT_CHECKABLE"];
 
 function getVerdictAssetBadge(verdict: Verdict) {
   switch (verdict) {
     case "CONTRADICTED":
-      return { symbol: "C", color: "bg-[#8B1E27]" };
+      return { symbol: "C", verdictBg: "bg-v-contradicted-bg", verdictFg: "text-v-contradicted-fg" };
     case "STALE":
-      return { symbol: "S", color: "bg-amber-600" };
+      return { symbol: "S", verdictBg: "bg-v-stale-bg", verdictFg: "text-v-stale-fg" };
     case "CONFLICTING":
-      return { symbol: "X", color: "bg-purple-600" };
+      return { symbol: "X", verdictBg: "bg-v-conflicting-bg", verdictFg: "text-v-conflicting-fg" };
     case "UNVERIFIED":
-      return { symbol: "U", color: "bg-slate-600" };
+      return { symbol: "U", verdictBg: "bg-v-unverified-bg", verdictFg: "text-v-unverified-fg" };
     case "SUPPORTED":
-      return { symbol: "V", color: "bg-[#1F5C43]" };
+      return { symbol: "V", verdictBg: "bg-v-supported-bg", verdictFg: "text-v-supported-fg" };
     case "NOT_CHECKABLE":
-      return { symbol: "N", color: "bg-gray-500" };
+      return { symbol: "N", verdictBg: "bg-v-notcheckable-bg", verdictFg: "text-v-notcheckable-fg" };
   }
 }
 
@@ -87,7 +87,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
   const check = useCallback(async () => {
     const text = draft.trim();
     if (text.length < 3) {
-      setError("Write or load a draft first — there is nothing to check.");
+      setError("Write or load a draft first, there is nothing to check.");
       setStatus("error");
       return;
     }
@@ -332,7 +332,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="font-mono text-[10px]">
+            <Badge variant="outline" className="font-mono text-[11px]">
               {draft.trim() ? `${draft.trim().split(/\s+/).length} words` : "Empty buffer"}
             </Badge>
             {draft && (
@@ -363,8 +363,9 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             spellCheck={false}
-            placeholder="Paste candidate copy here: e.g. Flowdesk pricing starts at $4,999/mo with 99.99% uptime..."
-            className="h-44 w-full resize-y rounded-lg border border-border bg-background p-4 font-sans text-sm leading-relaxed placeholder:text-muted-foreground focus:border-[#8B1E27] dark:focus:border-[#D4847A] focus:outline-none transition-colors sm:h-52"
+            maxLength={4000}
+            placeholder="Paste candidate copy here: e.g. Flowdesk pricing starts at $4,999/mo with 99.99% uptime…"
+            className="h-44 w-full resize-y rounded-lg border border-border bg-background p-4 font-sans text-sm leading-relaxed placeholder:text-muted-foreground focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent transition-colors sm:h-52"
             data-testid="draft-input"
           />
 
@@ -375,7 +376,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                 onClick={() => void check()}
                 disabled={status === "checking"}
                 data-testid="check-button"
-                className="group inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98] cursor-pointer"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98] cursor-pointer"
               >
                 {status === "checking" ? (
                   <>
@@ -393,7 +394,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                 )}
               </Button>
 
-              <kbd className="hidden sm:inline-flex items-center rounded border border-border bg-muted/60 px-2 py-1 font-mono text-[10px] text-muted-foreground">
+              <kbd className="hidden sm:inline-flex items-center rounded border border-border bg-muted/60 px-2 py-1 font-mono text-[11px] text-muted-foreground">
                 ⌘↵ to check · j / k to navigate
               </kbd>
             </div>
@@ -490,7 +491,7 @@ export function Checker({ sampleDraft }: { sampleDraft: string }) {
                       key={v}
                       className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/60 px-2 py-0.5 font-mono text-[11px] font-medium text-foreground"
                     >
-                      <AssetBadge symbol={asset.symbol} color={asset.color} size="sm" />
+                      <AssetBadge symbol={asset.symbol} verdictBg={asset.verdictBg} verdictFg={asset.verdictFg} size="sm" />
                       <span>{count} {v.replace("_", " ")}</span>
                     </span>
                   );

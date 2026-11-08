@@ -98,12 +98,15 @@ export function MarkedDraft({
           const config = VERDICT_MAP[f.verdict];
 
           return (
-            <mark
+            <button
               key={seg.key}
+              type="button"
               onClick={() => onSelectFinding(f)}
               title={`${f.verdict}: ${f.reason}`}
+              aria-pressed={isSelected}
+              aria-label={`Claim: ${seg.text.trim()}, ${f.verdict.replace("_", " ")}. ${f.reason}`}
               className={cn(
-                "inline cursor-pointer rounded-none border-b-2 px-1 py-0.5 transition-all duration-100",
+                "inline cursor-pointer rounded-none border-b-2 px-1 py-0.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
                 config.badgeClasses,
                 isSelected
                   ? "ring-2 ring-slate ring-offset-1 font-semibold"
@@ -111,10 +114,10 @@ export function MarkedDraft({
               )}
             >
               {seg.text}
-              <span className="ml-1 inline-block text-[10px] font-mono opacity-75">
+              <span className="ml-1 inline-block text-[11px] font-mono opacity-75">
                 [{f.verdict.slice(0, 4)}]
               </span>
-            </mark>
+            </button>
           );
         })}
       </div>

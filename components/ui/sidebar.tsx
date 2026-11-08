@@ -77,7 +77,7 @@ export const SidebarProvider = React.forwardRef<
         <div
           ref={ref}
           style={style}
-          className={cn("flex min-h-screen w-full", className)}
+          className={cn("flex min-h-dvh w-full", className)}
           {...props}
         >
           {children}
@@ -102,7 +102,7 @@ export const Sidebar = React.forwardRef<
       data-collapsible={collapsible}
       data-state={open ? "expanded" : "collapsed"}
       className={cn(
-        "bg-card text-card-foreground group peer hidden md:flex md:flex-col border-r transition-all duration-200 ease-in-out shrink-0",
+        "bg-card text-card-foreground group peer hidden md:flex md:flex-col border-r transition-[width] duration-200 ease-arrival shrink-0",
         open ? "w-64" : "w-16",
         className
       )}

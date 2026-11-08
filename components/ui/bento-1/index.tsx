@@ -47,11 +47,11 @@ export default function Bento1({ className }: Bento1Props) {
             onMouseLeave={() => setHoveredCard(null)}
           >
             {/* Visual Stage Container with Ambient Glow Backdrop */}
-            <div className="relative flex min-h-[440px] flex-col items-center justify-center overflow-hidden rounded-[28px] border border-ink/10 dark:border-white/12 p-6 md:p-8 transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] bg-gradient-to-b from-[#e0f2fe]/70 via-[#f0f9ff]/50 to-paper/30 dark:from-[#0d121a] dark:via-[#0c0e12] dark:to-[#0c0e12]">
+            <div className="relative flex min-h-[440px] flex-col items-center justify-center overflow-hidden rounded-[28px] border border-ink/10 dark:border-white/12 p-6 md:p-8 transition-colors transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] bg-gradient-to-b from-[#e0f2fe]/70 via-[#f0f9ff]/50 to-paper/30 dark:from-[#0d121a] dark:via-[#0c0e12] dark:to-[#0c0e12]">
               {/* Luminous Ambient Glow Radial Mesh */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 size-72 rounded-full bg-[#38bdf8]/20 dark:bg-[#E07A70]/15 blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-70"
+                className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 size-72 rounded-full bg-[#38bdf8]/20 dark:bg-accent-readable/15 blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-70"
               />
 
               {/* Floating Prompt Pill (Top Context Trigger) */}
@@ -60,7 +60,7 @@ export default function Bento1({ className }: Bento1Props) {
                 animate={hoveredCard === 1 ? { y: -2 } : { y: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Sparkles className="size-3 text-accent dark:text-[#E07A70]" />
+                <Sparkles className="size-3 text-accent dark:text-accent-readable" />
                 <span>Verify Flowdesk Q2 marketing draft</span>
               </motion.div>
 
@@ -71,10 +71,10 @@ export default function Bento1({ className }: Bento1Props) {
               </div>
 
               {/* Main Floating Document Card (High-Precision Spec Window) */}
-              <div className="relative z-10 w-full max-w-[400px] rounded-2xl border border-ink/10 dark:border-white/12 bg-paper/98 dark:bg-[#13161c] p-5 shadow-[0_16px_40px_-8px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 group-hover:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.12)]">
+              <div className="relative z-10 w-full max-w-[400px] rounded-2xl border border-ink/10 dark:border-white/12 bg-paper/98 dark:bg-[#13161c] p-5 shadow-[0_16px_40px_-8px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] transition-colors transition-transform duration-300 group-hover:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.12)]">
                 {/* Header Row */}
                 <div className="flex items-center gap-1.5 font-mono text-[11px] text-ink-soft dark:text-zinc-400">
-                  <BookOpen className="size-3 text-accent dark:text-[#E07A70]" />
+                  <BookOpen className="size-3 text-accent dark:text-accent-readable" />
                   <span>pipeline / STAGES.md</span>
                 </div>
 
@@ -130,16 +130,16 @@ export default function Bento1({ className }: Bento1Props) {
                   </div>
 
                   {/* Step 3 */}
-                  <div className="group/item flex items-start gap-3 rounded-xl border border-accent/20 dark:border-[#E07A70]/25 bg-accent/5 dark:bg-[#E07A70]/10 p-2.5">
-                    <span className="font-mono text-[11px] font-bold text-accent dark:text-[#E07A70] pt-0.5">
+                  <div className="group/item flex items-start gap-3 rounded-xl border border-accent/20 dark:border-[#E07A70]/25 bg-accent/5 dark:bg-accent-readable/10 p-2.5">
+                    <span className="font-mono text-[11px] font-bold text-accent dark:text-accent-readable pt-0.5">
                       3
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-[12px] font-semibold text-accent dark:text-[#E07A70]">
+                        <span className="text-[12px] font-semibold text-accent dark:text-accent-readable">
                           Stage 3 · Bounded Model Tier
                         </span>
-                        <span className="rounded bg-[#8B1E27]/15 dark:bg-[#E07A70]/20 px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#8B1E27] dark:text-[#E07A70]">
+                        <span className="rounded bg-[#8B1E27]/15 dark:bg-accent-readable/20 px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#8B1E27] dark:text-accent-readable">
                           CONTRADICTED
                         </span>
                       </div>
@@ -153,7 +153,7 @@ export default function Bento1({ className }: Bento1Props) {
                 {/* Bottom Callout Pill (Exact match to Composio Watch Out callout) */}
                 <div className="mt-3.5 flex items-center justify-between rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-2 font-mono text-[11px] text-amber-900 dark:text-amber-200">
                   <span className="font-semibold text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
-                    <span>⚡</span> 78% Deterministic Split
+                    78% Deterministic Split
                   </span>
                   <span className="font-bold tabular-nums">
                     $0.00 Token Cost on Scalars
@@ -164,11 +164,11 @@ export default function Bento1({ className }: Bento1Props) {
 
             {/* Typography Section (Positioned Cleanly Below Visual Stage) */}
             <div className="mt-5 text-left">
-              <div className="flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+              <div className="flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
                 <span>01 · 3-STAGE PIPELINE</span>
               </div>
               <h3 className="mt-1.5 flex items-center gap-2 text-[20px] md:text-[22px] font-medium tracking-tight text-ink dark:text-white">
-                <Layers className="size-5 text-accent dark:text-[#E07A70]" />
+                <Layers className="size-5 text-accent dark:text-accent-readable" />
                 <span>Deterministic Verification Pipeline</span>
               </h3>
               <p className="mt-2 text-[14.5px] md:text-[15px] leading-relaxed text-ink-soft dark:text-zinc-400">
@@ -186,7 +186,7 @@ export default function Bento1({ className }: Bento1Props) {
             onMouseLeave={() => setHoveredCard(null)}
           >
             {/* Visual Stage Container with Ambient Glow Backdrop */}
-            <div className="relative flex min-h-[440px] flex-col items-center justify-center overflow-hidden rounded-[28px] border border-ink/10 dark:border-white/12 p-6 md:p-8 transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] bg-gradient-to-b from-[#e0e7ff]/70 via-[#f5f3ff]/50 to-paper/30 dark:from-[#0d121a] dark:via-[#0c0e12] dark:to-[#0c0e12]">
+            <div className="relative flex min-h-[440px] flex-col items-center justify-center overflow-hidden rounded-[28px] border border-ink/10 dark:border-white/12 p-6 md:p-8 transition-colors transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] bg-gradient-to-b from-[#e0e7ff]/70 via-[#f5f3ff]/50 to-paper/30 dark:from-[#0d121a] dark:via-[#0c0e12] dark:to-[#0c0e12]">
               {/* Luminous Ambient Glow Radial Mesh */}
               <div
                 aria-hidden="true"
@@ -199,7 +199,7 @@ export default function Bento1({ className }: Bento1Props) {
                 animate={hoveredCard === 2 ? { y: -2 } : { y: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Sparkles className="size-3 text-accent dark:text-[#E07A70]" />
+                <Sparkles className="size-3 text-accent dark:text-accent-readable" />
                 <span>Enforce 6 citation pins on CONTRADICTED</span>
               </motion.div>
 
@@ -210,15 +210,15 @@ export default function Bento1({ className }: Bento1Props) {
               </div>
 
               {/* Main Floating Terminal Card (High-Precision Invariant Table) */}
-              <div className="relative z-10 w-full max-w-[400px] rounded-2xl border border-ink/10 dark:border-white/12 bg-paper/98 dark:bg-[#13161c] p-5 shadow-[0_16px_40px_-8px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 group-hover:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.12)] font-mono text-[11px]">
+              <div className="relative z-10 w-full max-w-[400px] rounded-2xl border border-ink/10 dark:border-white/12 bg-paper/98 dark:bg-[#13161c] p-5 shadow-[0_16px_40px_-8px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] transition-colors transition-transform duration-300 group-hover:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.12)] font-mono text-[11px]">
                 {/* Header Bar matching Composio Computer Terminal */}
                 <div className="flex items-center justify-between border-b border-ink/8 dark:border-white/10 pb-2 mb-3">
                   <span className="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-ink-soft dark:text-zinc-400 flex items-center gap-1.5">
-                    <Code2 className="size-3 text-accent dark:text-[#E07A70]" />
+                    <Code2 className="size-3 text-accent dark:text-accent-readable" />
                     <span>EVIDENCE GATE · SHEAR LINE</span>
                   </span>
                   <span className="font-mono text-[10.5px] font-bold text-[#1F5C43] dark:text-[#4ADE80]">
-                    ✓ 6/6 VALID
+                    6/6 VALID
                   </span>
                 </div>
 
@@ -253,7 +253,7 @@ export default function Bento1({ className }: Bento1Props) {
                 </div>
 
                 {/* Downgrade Invariant Callout */}
-                <div className="mt-3 rounded-xl border border-[#8B1E27]/25 dark:border-[#E07A70]/30 bg-[#8B1E27]/5 dark:bg-[#E07A70]/10 p-2.5 text-[10.5px] leading-snug text-[#8B1E27] dark:text-[#E07A70]">
+                <div className="mt-3 rounded-xl border border-[#8B1E27]/25 dark:border-[#E07A70]/30 bg-[#8B1E27]/5 dark:bg-accent-readable/10 p-2.5 text-[10.5px] leading-snug text-[#8B1E27] dark:text-accent-readable">
                   <span className="font-bold uppercase">Downgrade Rule: </span>
                   Missing byte span or dates downgrades CONTRADICTED → UNVERIFIABLE automatically.
                 </div>
@@ -268,7 +268,7 @@ export default function Bento1({ className }: Bento1Props) {
 
             {/* Typography Section (Positioned Cleanly Below Visual Stage) */}
             <div className="mt-5 text-left">
-              <div className="flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+              <div className="flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
                 <span>02 · PROOF INVARIANTS</span>
               </div>
               <h3 className="mt-1.5 flex items-center gap-2 text-[20px] md:text-[22px] font-medium tracking-tight text-ink dark:text-white">
@@ -291,10 +291,10 @@ export default function Bento1({ className }: Bento1Props) {
           onMouseLeave={() => setHoveredCard(null)}
         >
           {/* Visual Stage Container */}
-          <div className="relative flex min-h-[280px] flex-col lg:flex-row items-center justify-between gap-8 overflow-hidden rounded-[28px] border border-ink/10 dark:border-white/12 p-6 md:p-8 transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] bg-gradient-to-r from-panel/70 via-paper/90 to-panel/70 dark:from-[#0d121a] dark:via-[#0c0e12] dark:to-[#0d121a]">
+          <div className="relative flex min-h-[280px] flex-col lg:flex-row items-center justify-between gap-8 overflow-hidden rounded-[28px] border border-ink/10 dark:border-white/12 p-6 md:p-8 transition-colors transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] bg-gradient-to-r from-panel/70 via-paper/90 to-panel/70 dark:from-[#0d121a] dark:via-[#0c0e12] dark:to-[#0d121a]">
             {/* Left Context & Action Controls */}
             <div className="flex flex-1 flex-col items-start justify-center gap-3">
-              <div className="flex items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-paper/80 dark:bg-zinc-800/80 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+              <div className="flex items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-paper/80 dark:bg-zinc-800/80 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
                 <Lock size={12} />
                 <span>03 · IMMUTABLE DECISION LEDGER</span>
               </div>
@@ -307,7 +307,7 @@ export default function Bento1({ className }: Bento1Props) {
               <div className="mt-2 flex flex-wrap items-center gap-3">
                 <Link
                   href="/check"
-                  className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+                  className="group inline-flex items-center gap-3 rounded-full bg-[#8B1E27] py-1.5 pr-2 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
                 >
                   <span>Open Preflight Checker</span>
                   <span className="flex size-7 items-center justify-center rounded-full bg-black/20 text-white">
@@ -316,7 +316,7 @@ export default function Bento1({ className }: Bento1Props) {
                 </Link>
                 <Link
                   href="/audit"
-                  className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-5 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
+                  className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-5 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-colors transition-transform duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
                 >
                   <span>Inspect Audit Log</span>
                   <span className="flex size-7 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
@@ -328,7 +328,7 @@ export default function Bento1({ className }: Bento1Props) {
 
             {/* Right Live Decision Stream Card */}
             <div className="w-full lg:max-w-md rounded-2xl border border-ink/10 dark:border-white/12 bg-paper/98 dark:bg-[#13161c] p-4 shadow-sm font-mono text-xs">
-              <div className="flex items-center justify-between border-b border-ink/8 dark:border-white/10 pb-2 mb-2 text-[10px] uppercase tracking-wider text-ink-soft dark:text-zinc-400">
+              <div className="flex items-center justify-between border-b border-ink/8 dark:border-white/10 pb-2 mb-2 text-[11px] uppercase tracking-wider text-ink-soft dark:text-zinc-400">
                 <span>Verified Decision Record</span>
                 <span>Reviewer Authority</span>
               </div>
@@ -372,7 +372,7 @@ export default function Bento1({ className }: Bento1Props) {
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] font-semibold text-ink-soft dark:text-zinc-400">
+                        <span className="font-mono text-[11px] font-semibold text-ink-soft dark:text-zinc-400">
                           {entry.id}
                         </span>
                         <span

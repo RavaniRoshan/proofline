@@ -65,7 +65,7 @@ export function FaqAccordion({ items }: { items: Item[] }) {
                 {/* 45-degree rotating indicator icon (+ -> x) with motion-duration-fast & ease-arrival */}
                 <span
                   aria-hidden="true"
-                  className={`inline-flex size-6 shrink-0 items-center justify-center rounded-full border font-mono text-[15px] leading-none mt-0.5 transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] ${
+                  className={`inline-flex size-6 shrink-0 items-center justify-center rounded-full border font-mono text-[15px] leading-none mt-0.5 transition-colors transition-transform duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] ${
                     isOpen
                       ? "border-accent-brand bg-accent-brand dark:bg-accent-readable dark:border-accent-readable text-white dark:text-black"
                       : "border-ink/15 bg-panel/70 text-ink-soft group-hover:border-ink/35 group-hover:text-ink"
@@ -94,7 +94,7 @@ export function FaqAccordion({ items }: { items: Item[] }) {
               >
                 <div className="overflow-hidden min-h-0">
                   <div
-                    className={`pb-6 pr-4 md:pr-10 transition-all duration-[var(--motion-duration-standard,240ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] ${
+                    className={`pb-6 pr-4 md:pr-10 transition-colors transition-transform duration-[var(--motion-duration-standard,240ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] ${
                       isOpen
                         ? "opacity-100 blur-0 translate-y-0"
                         : "opacity-0 blur-[2px] -translate-y-1"

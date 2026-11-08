@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   XCircle,
   Lock,
-  Unlock,
   AlertTriangle,
   ArrowRight,
   ExternalLink,
@@ -22,14 +21,14 @@ export function EvidenceGateInspectorBento() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border/60 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
               Runtime Evidence Gate
             </span>
-            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
               6-Field Citation Invariant
             </span>
             <span
-              className={`rounded px-1.5 py-0.5 font-mono text-[10px] font-bold ${
+              className={`rounded px-1.5 py-0.5 font-mono text-[11px] font-bold ${
                 tampered
                   ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
                   : "bg-v-supported-bg text-v-supported-fg border border-v-supported-border"
@@ -82,7 +81,7 @@ export function EvidenceGateInspectorBento() {
                   DOC-003 · Pricing-SLA-Q2-2026.pdf
                 </span>
               </div>
-              <span className="font-mono text-[10px] text-muted-foreground">
+              <span className="font-mono text-[11px] text-muted-foreground">
                 Page 4 · chars 390–520
               </span>
             </div>
@@ -95,7 +94,7 @@ export function EvidenceGateInspectorBento() {
               <p className="mt-1.5">
                 Effective fiscal Q2, the base license for the{" "}
                 <span
-                  className={`inline-block px-1.5 py-0.5 rounded font-semibold transition-all ${
+                  className={`inline-block px-1.5 py-0.5 rounded font-semibold transition-colors transition-transform ${
                     tampered
                       ? "bg-muted text-muted-foreground line-through"
                       : "bg-[#8B1E27]/15 dark:bg-[#D4847A]/20 text-[#8B1E27] dark:text-[#D4847A] border border-[#8B1E27]/30"
@@ -113,7 +112,7 @@ export function EvidenceGateInspectorBento() {
 
             {tampered ? (
               <div className="mt-3 rounded border border-amber-500/30 bg-amber-500/10 p-2.5 text-xs text-amber-700 dark:text-amber-300 font-mono">
-                ⚠ SIMULATION: The model proposed fact F-021 but failed to provide
+                SIMULATION: The model proposed fact F-021 but failed to provide
                 the exact byte span [412, 468]. The Evidence Gate blocks the
                 verdict and marks it UNVERIFIED instead of blindly accepting it.
               </div>
@@ -121,7 +120,7 @@ export function EvidenceGateInspectorBento() {
               <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-muted-foreground">
                 <span>Exact Byte Span: [412, 468]</span>
                 <span className="text-[#1F5C43] font-semibold">
-                  ✓ Byte-level match verified
+                  Byte-level match verified
                 </span>
               </div>
             )}
@@ -229,7 +228,6 @@ export function EvidenceGateInspectorBento() {
             <span className="flex items-center gap-1.5 text-muted-foreground">
               {tampered ? (
                 <>
-                  <Unlock size={12} className="text-amber-500" />
                   Gate Disengaged
                 </>
               ) : (

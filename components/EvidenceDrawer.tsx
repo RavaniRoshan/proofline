@@ -21,7 +21,7 @@ interface EvidenceDrawerProps {
 }
 
 /** Split the seed-authored excerpt at the cited span. Returns null when the span
- *  cannot be located — the caller then renders the excerpt unhighlighted. */
+ *  cannot be located, the caller then renders the excerpt unhighlighted. */
 function splitExcerpt(excerpt: string, span: string) {
   const m = /^\[(\d+)-(\d+)\]$/.exec(span);
   if (!m) return null;
@@ -46,7 +46,7 @@ export function EvidenceDrawer({ finding, open, onClose }: EvidenceDrawerProps) 
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="max-w-2xl sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl sm:max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain">
         <DialogHeader>
           <div className="flex items-center gap-2">
             <VerdictBadge verdict={finding.verdict} />
@@ -138,7 +138,7 @@ export function EvidenceDrawer({ finding, open, onClose }: EvidenceDrawerProps) 
                       <span> …</span>
                     </div>
                     <p className="mt-2 text-[11px] text-muted italic">
-                      Span cited at offset {e.source_span} in {e.document_title}. Excerpt not available — only the cited span is shown. Underlined in brand oxblood.
+                      Span cited at offset {e.source_span} in {e.document_title}. Excerpt not available, only the cited span is shown. Underlined in brand oxblood.
                     </p>
                   </>
                 )}

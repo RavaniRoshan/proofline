@@ -67,7 +67,7 @@ export async function generateMetadata(props: {
   if (!page) notFound();
 
   return {
-    title: `${page.data.title} — Proofline Documentation`,
+    title: `${page.data.title}, Proofline Documentation`,
     description: page.data.description,
   };
 }

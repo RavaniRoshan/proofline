@@ -39,7 +39,7 @@ const Calendar3 = ({
           today: "!bg-transparent",
           day_button: "!ring-0 !ring-offset-0 focus:!ring-0 focus-visible:!ring-0",
         }}
-        className="!border-0 !bg-transparent transition-all !ring-0 !ring-offset-0 focus:!ring-0 focus:!ring-offset-0 focus-visible:!ring-0 focus-visible:!ring-offset-0 [&_*]:!ring-0 [&_*]:!ring-offset-0 [&_*]:focus:!ring-0 [&_*]:focus-visible:!ring-0 [&_.rdp-day_today]:!bg-transparent"
+        className="!border-0 !bg-transparent transition-colors transition-transform !ring-0 !ring-offset-0 focus:!ring-0 focus:!ring-offset-0 focus-visible:!ring-0 focus-visible:!ring-offset-0 [&_*]:!ring-0 [&_*]:!ring-offset-0 [&_*]:focus:!ring-0 [&_*]:focus-visible:!ring-0 [&_.rdp-day_today]:!bg-transparent"
       />
       {caption && (
         <p className="text-muted-foreground mt-3 text-center text-xs font-mono" role="region">

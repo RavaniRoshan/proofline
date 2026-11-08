@@ -87,7 +87,7 @@ export function Footer7({
               />
               <Button
                 type="submit"
-                className="text-white group flex h-12 shrink-0 cursor-pointer items-center gap-2 rounded-none bg-[#8B1E27] hover:bg-[#8B1E27]/90 px-5 font-semibold font-mono text-xs uppercase tracking-wider shadow-[inset_0_0_8px_0.5px_rgba(255,255,255,0.2)] transition-all"
+                className="text-white group flex h-12 shrink-0 cursor-pointer items-center gap-2 rounded-none bg-[#8B1E27] hover:bg-[#8B1E27]/90 px-5 font-semibold font-mono text-xs uppercase tracking-wider shadow-[inset_0_0_8px_0.5px_rgba(255,255,255,0.2)] transition-colors transition-shadow transition-transform"
               >
                 <span>{buttonText}</span>
                 {buttonIcon && (

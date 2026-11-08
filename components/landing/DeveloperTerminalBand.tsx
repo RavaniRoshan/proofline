@@ -87,7 +87,7 @@ jobs:
     installCmd: "npx vitest run tests/verdict.test.ts",
     code: `import { z } from "zod";
 
-// Models propose fact IDs only — never citations or byte spans
+// Models propose fact IDs only, never citations or byte spans
 export const ModelProposalSchema = z.object({
   relation: z.enum(["entails", "contradicts", "unrelated", "subjective"]),
   matched_fact_id: z.string().regex(/^F-\\d{3}$/).nullable(),
@@ -301,7 +301,7 @@ export function DeveloperTerminalBand() {
                   ~/your-pipeline
                 </span>
               </div>
-              <span className="text-[10px] uppercase tracking-wider text-accent-readable font-semibold">
+              <span className="text-[11px] uppercase tracking-wider text-accent-readable font-semibold">
                 STAGE 1–4
               </span>
             </div>
@@ -322,7 +322,7 @@ export function DeveloperTerminalBand() {
 
               {/* Prompt Box */}
               <div className="rounded-[4px] bg-white/[0.05] p-3 text-[12px] leading-relaxed text-white/85 border border-white/5">
-                <span className="text-white/40 mr-1.5">&gt;</span>
+                <span className="text-white/70 mr-1.5">&gt;</span>
                 Verify tomorrow’s call brief &amp; Q2 pricing draft against
                 seed/facts.json, then output a signed citation brief.
               </div>
@@ -330,11 +330,11 @@ export function DeveloperTerminalBand() {
               {/* Live Tool Execution Lines with Staged Pacing */}
               <div className="space-y-1.5 text-[11px] tracking-wide">
                 <div className="flex items-center gap-2 text-[#58C892] transition-opacity duration-fast">
-                  <span>✓</span>
+                  
                   <span>SEGMENTER_EXTRACT_CLAIMS (12)</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/70 transition-opacity duration-fast">
-                  <span className="text-accent-readable">✦</span>
+                  <span className="text-accent-readable">·</span>
                   <span>NORMALIZER_MATCH_F021 (0.4ms)</span>
                 </div>
               </div>
@@ -343,7 +343,7 @@ export function DeveloperTerminalBand() {
             {/* Bottom Command Bar with Interactive Run Button */}
             <div className="p-3 pt-0">
               <div className="flex items-center justify-between border border-white/10 bg-[#161614] px-3 py-2">
-                <span className="flex items-center gap-1.5 text-[11.5px] text-white/50 truncate">
+                <span className="flex items-center gap-1.5 text-[11.5px] text-white/70 truncate">
                   <Terminal size={12} className="text-accent-readable shrink-0" aria-hidden="true" />
                   <span>POST /api/verify</span>
                   <span
@@ -357,7 +357,7 @@ export function DeveloperTerminalBand() {
                   type="button"
                   onClick={runLiveVerify}
                   disabled={isRunningApi}
-                  className="inline-flex items-center gap-1.5 border border-white/20 bg-white/10 px-3 py-1 font-mono text-[10px] uppercase text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] hover:bg-white/20 hover:border-white/40 active:scale-[0.97] cursor-pointer shrink-0 rounded-full disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 border border-white/20 bg-white/10 px-3 py-1 font-mono text-[11px] uppercase text-white transition-colors transition-transform duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] hover:bg-white/20 hover:border-white/40 active:scale-[0.97] cursor-pointer shrink-0 rounded-full disabled:opacity-50"
                 >
                   {isRunningApi ? (
                     <>
@@ -391,7 +391,7 @@ export function DeveloperTerminalBand() {
                   <KeyRound size={13} />
                   <span>REGISTER</span>
                 </div>
-                <div className="flex items-center gap-1 font-mono text-[10px]">
+                <div className="flex items-center gap-1 font-mono text-[11px]">
                   <span className="inline-flex size-4 items-center justify-center rounded-[2px] bg-v-supported-bg text-v-supported-fg font-bold">
                     42
                   </span>
@@ -419,7 +419,7 @@ export function DeveloperTerminalBand() {
                   <BookOpen size={13} />
                   <span>RULES</span>
                 </div>
-                <span className="font-sans text-[12px] text-white/55">
+                <span className="font-sans text-[12px] text-white/75">
                   Proven steps
                 </span>
               </div>
@@ -474,7 +474,7 @@ export function DeveloperTerminalBand() {
                   <FileText size={13} />
                   <span>TRACE</span>
                 </div>
-                <span className="font-mono text-[12px] text-accent-readable tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
+                <span className="font-mono text-[12px] text-accent-readable tabular-nums transition-colors transition-transform duration-[var(--motion-duration-fast,180ms)]">
                   {liveLatencyMs ? `${liveLatencyMs}ms` : "2 recorded"}
                 </span>
               </div>
@@ -490,7 +490,7 @@ export function DeveloperTerminalBand() {
                   <span className="size-2.5 rounded-full bg-white/15" />
                   <span className="size-2.5 rounded-full bg-white/15" />
                 </div>
-                <span className="ml-1 inline-flex size-4 items-center justify-center rounded-[2px] bg-white font-mono text-[10px] font-bold text-ink">
+                <span className="ml-1 inline-flex size-4 items-center justify-center rounded-[2px] bg-white font-mono text-[11px] font-bold text-ink">
                   P
                 </span>
                 <span className="font-sans text-[13px] text-white/70">
@@ -531,7 +531,7 @@ export function DeveloperTerminalBand() {
             type="button"
             onClick={() => setPaused(!paused)}
             aria-label={paused ? "Resume terminal trace" : "Pause terminal trace"}
-            className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-[#1e1e1e] text-white/70 transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] hover:border-white/30 hover:text-white active:scale-95 cursor-pointer"
+            className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-[#1e1e1e] text-white/70 transition-colors transition-transform duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] hover:border-white/30 hover:text-white active:scale-95 cursor-pointer"
           >
             {paused ? <Play size={13} /> : <Pause size={13} />}
           </button>
@@ -564,7 +564,7 @@ export function DeveloperTerminalBand() {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setActiveStackTab(tab.id)}
-                  className={`border px-4 py-2 font-mono text-[13px] transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer rounded-full active:scale-[0.97] ${
+                  className={`border px-4 py-2 font-mono text-[13px] transition-colors transition-transform duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer rounded-full active:scale-[0.97] ${
                     isSelected
                       ? "border-white bg-white text-ink font-medium shadow-sm"
                       : "border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:text-white"
@@ -579,7 +579,7 @@ export function DeveloperTerminalBand() {
           {/* Install / CLI Command Bar */}
           <div className="mt-4 flex items-center justify-between rounded-t-[8px] border border-white/10 bg-[#161614] px-4 py-3 font-mono text-[13px]">
             <div className="flex items-center gap-2 overflow-hidden whitespace-nowrap text-ellipsis">
-              <span className="text-white/40 select-none">$</span>
+              <span className="text-white/70 select-none">$</span>
               <span className="text-accent-readable truncate">{currentStack.installCmd}</span>
             </div>
             <button
@@ -605,7 +605,7 @@ export function DeveloperTerminalBand() {
               type="button"
               onClick={handleCopyCode}
               aria-label="Copy code snippet"
-              className="absolute top-4 right-4 inline-flex items-center gap-1.5 border border-white/15 bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] text-white/70 hover:text-white transition-all duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] active:scale-95 cursor-pointer rounded-full"
+              className="absolute top-4 right-4 inline-flex items-center gap-1.5 border border-white/15 bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] text-white/70 hover:text-white transition-colors transition-transform duration-[var(--motion-duration-micro,120ms)] ease-[var(--ease-arrival)] active:scale-95 cursor-pointer rounded-full"
             >
               <span className="sr-only" role="status">
                 {copiedCode ? "Code snippet copied" : ""}

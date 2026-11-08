@@ -47,7 +47,7 @@ const BRIEF_TABS: BriefTab[] = [
     rows: [
       {
         status: "contradicted",
-        title: "Rejected ₹4,999/mo draft claim — superseded by v4 pricing sheet",
+        title: "Rejected ₹4,999/mo draft claim, superseded by v4 pricing sheet",
         owner: "Decision: Reject & Fix · Span [412..468]",
         badge: "CONTRADICTED",
       },
@@ -189,7 +189,7 @@ export function ProoflineHero() {
     >
       <style>{`
         #viewport {
-          --hero-sans: var(--font-figtree), 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+          --hero-sans: var(--font-plex-sans), system-ui, -apple-system, sans-serif;
 
           /* Weights */
           --fw-light    : 388;
@@ -239,7 +239,7 @@ export function ProoflineHero() {
           text-rendering: geometricPrecision;
         }
 
-        /* Floating Pill Navbar — Composio Precision with Dual Theme Support */
+        /* Floating Pill Navbar, Composio Precision with Dual Theme Support */
         /* Hero Copy Block */
         #viewport .pl-hero-copy {
           display: flex;
@@ -270,7 +270,7 @@ export function ProoflineHero() {
         #viewport .pl-hero-h1 {
           margin: 0;
           max-width: 19ch;
-          font-family: var(--hero-sans);
+          font-family: var(--font-plex-serif), Georgia, serif;
           font-size: clamp(34px, 4.5vw, 56px);
           font-weight: var(--fw-regular);
           font-variation-settings: "wght" 470;
@@ -318,7 +318,7 @@ export function ProoflineHero() {
           justify-content: center;
           gap: 8px;
           text-decoration: none;
-          transition: background-color var(--motion-duration-fast, 180ms) ease-out, transform var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1));
+          transition: background-color var(--motion-duration-fast, 180ms) ease-out, transform var(--motion-duration-fast, 180ms) var(--ease-arrival, cubic-bezier(0.16, 1, 0.3, 1));
           user-select: none;
           will-change: transform;
         }
@@ -365,7 +365,7 @@ export function ProoflineHero() {
           transition-duration: var(--motion-duration-press, 80ms);
         }
 
-        /* Stage Band + Mockup Card Container — Seamless Transition into Band 2 */
+        /* Stage Band + Mockup Card Container, Transition into Band 2 */
         #viewport .pl-stage-wrap {
           position: relative;
           margin-top: clamp(36px, 4.5vw, 52px);
@@ -827,7 +827,7 @@ export function ProoflineHero() {
 
 
         
-        /* High-Contrast Dark Mode Overrides — Guarantees 100% Text & CTA Visibility */
+        /* High-Contrast Dark Mode Overrides, Guarantees 100% Text & CTA Visibility */
         :where(.dark, html.dark) #viewport {
           background-color: var(--paper) !important;
           color: var(--ink) !important;
@@ -970,7 +970,7 @@ export function ProoflineHero() {
 
       {/* Framed inside the continuous 1240px border-x page rails so the hero flows directly into Band 2 */}
       <div className="relative z-10 mx-auto w-full max-w-[1240px] border-x border-ink/10 px-4 pt-6 pb-10 sm:px-6 md:px-10 md:pt-9 md:pb-14 overflow-hidden">
-        {/* 21st.dev Sunset Orb Background Shader — Contained strictly within the container side lines */}
+        {/* 21st.dev Sunset Orb Background Shader, Contained strictly within the container side lines */}
         <SunsetOrb
           className="absolute inset-0 h-full w-full pointer-events-none z-0"
           intensity="medium"

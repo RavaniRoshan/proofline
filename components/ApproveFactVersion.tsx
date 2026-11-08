@@ -45,7 +45,7 @@ export function ApproveFactVersion({
           <CheckCheck size={14} aria-hidden="true" />
           <span>
             <span className="font-mono font-semibold">{row.fact_id} v{approvedVersion}</span> approved
-            by brand-owner — v{row.version} superseded.
+            by brand-owner, v{row.version} superseded.
           </span>
           <Link
             href="/audit"
@@ -63,7 +63,7 @@ export function ApproveFactVersion({
       {!open ? (
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="max-w-xl text-xs text-muted">
-            Value changed? Approve the corrected value as a new version — this row becomes
+            Value changed? Approve the corrected value as a new version, this row becomes
             superseded and the change is logged in the audit log.
           </p>
           <button
@@ -82,7 +82,7 @@ export function ApproveFactVersion({
             <div>
               <label
                 htmlFor={`new-value-${row.fact_id}-v${row.version}`}
-                className="text-[10px] uppercase tracking-wide text-muted"
+                className="text-[11px] uppercase tracking-wide text-muted"
               >
                 New value{row.unit ? ` (${row.unit})` : ""}
               </label>
@@ -98,7 +98,7 @@ export function ApproveFactVersion({
             <div>
               <label
                 htmlFor={`new-display-${row.fact_id}-v${row.version}`}
-                className="text-[10px] uppercase tracking-wide text-muted"
+                className="text-[11px] uppercase tracking-wide text-muted"
               >
                 Display value
               </label>

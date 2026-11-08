@@ -11,7 +11,7 @@ export interface SunsetOrbProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Sunset Orb — Pure CSS & SVG shader gradient background
+ * Sunset Orb, Pure CSS & SVG shader gradient background
  * Origin: 21st.dev Horizon Glow style by Serafim (recipe 2389ca2f-5232-48d2-af54-00d58fb5d063)
  * Palette: #B7282E (Madder Red), #EB6101 (Vermilion), #FFF1CF (Eggshell)
  * Features: Multi-pass radial arch, soft horizon blur, film grain noise shader.

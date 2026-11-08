@@ -33,7 +33,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { AssetBadge } from "@/components/ui/web3-dashboard/components/web3/asset-badge";
+import { AssetBadge } from "@/components/ui/proofline-badge/asset-badge";
 
 const DECISION_ICON: Record<DecisionValue, LucideIcon> = {
   approve: Check,
@@ -45,26 +45,29 @@ function getDecisionTheme(decision: DecisionValue) {
   switch (decision) {
     case "approve":
       return {
-        badgeColor: "bg-[#1F5C43]",
-        textClass: "text-[#1F5C43] dark:text-emerald-400",
+        badgeBg: "bg-v-supported-bg",
+        badgeFg: "text-v-supported-fg",
+        textClass: "text-v-supported-fg",
         borderClass: "border-v-supported-border bg-v-supported-bg text-v-supported-fg",
-        accentBorder: "border-l-[#1F5C43]",
+        accentBorder: "border-l-v-supported-fg",
         symbol: "A",
       };
     case "reject":
       return {
-        badgeColor: "bg-[#8B1E27]",
-        textClass: "text-[#8B1E27] dark:text-[#D4847A]",
+        badgeBg: "bg-v-contradicted-bg",
+        badgeFg: "text-v-contradicted-fg",
+        textClass: "text-v-contradicted-fg",
         borderClass: "border-v-contradicted-border bg-v-contradicted-bg text-v-contradicted-fg",
-        accentBorder: "border-l-[#8B1E27]",
+        accentBorder: "border-l-v-contradicted-fg",
         symbol: "R",
       };
     case "needs_edit":
       return {
-        badgeColor: "bg-amber-600",
-        textClass: "text-amber-600 dark:text-amber-400",
+        badgeBg: "bg-v-stale-bg",
+        badgeFg: "text-v-stale-fg",
+        textClass: "text-v-stale-fg",
         borderClass: "border-v-stale-border bg-v-stale-bg text-v-stale-fg",
-        accentBorder: "border-l-amber-500",
+        accentBorder: "border-l-v-stale-fg",
         symbol: "E",
       };
   }
@@ -342,10 +345,10 @@ export function AuditLog() {
           <ScrollText size={32} aria-hidden="true" className="mx-auto text-muted-foreground/60" />
           <p className="mt-3 font-semibold text-foreground">Nothing logged in this session yet.</p>
           <p className="mx-auto mt-1 max-w-md text-xs text-muted-foreground">
-            Check a draft in the Preflight Checker and record a decision on a finding — every judgment you make
+            Check a draft in the Preflight Checker and record a decision on a finding, every judgment you make
             appears here stamped with timestamp, evidence span, and SHA-256 fingerprint.
           </p>
-          <Button asChild className="group mt-4 inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]">
+          <Button asChild className="group mt-4 inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]">
             <Link href="/check">
               <span>Go check a draft</span>
               <span className="flex size-6 items-center justify-center rounded-full bg-black/20 text-white">
@@ -385,7 +388,7 @@ export function AuditLog() {
                 Cryptographically verifiable record of human reviewer approvals and rejections
               </CardDescription>
             </div>
-            <Badge variant="outline" className="font-mono text-[10px]">
+            <Badge variant="outline" className="font-mono text-[11px]">
               {filteredEntries.length} Signed Entries
             </Badge>
           </CardHeader>
@@ -400,7 +403,7 @@ export function AuditLog() {
                 return (
                   <li
                     key={entry.id}
-                    className={`group rounded-lg border border-border bg-card p-4 transition-all duration-200 hover:border-foreground/30 hover:shadow-2xs border-l-4 ${theme.accentBorder}`}
+                    className={`group rounded-lg border border-border bg-card p-4 transition-colors transition-transform duration-200 hover:border-foreground/30 hover:shadow-2xs border-l-4 ${theme.accentBorder}`}
                   >
                     {/* Header Row */}
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2.5 text-xs text-muted-foreground">
@@ -408,13 +411,14 @@ export function AuditLog() {
                         {/* AssetBadge letter pill */}
                         <AssetBadge
                           symbol={theme.symbol}
-                          color={theme.badgeColor}
+                          verdictBg={theme.badgeBg}
+                          verdictFg={theme.badgeFg}
                           size="sm"
                         />
 
                         {/* Decision Pill */}
                         <span
-                          className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider ${theme.borderClass}`}
+                          className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[11px] font-semibold uppercase tracking-wider ${theme.borderClass}`}
                         >
                           <Icon size={10} aria-hidden="true" />
                           <span>{DECISION_LABEL[entry.decision]}</span>
@@ -425,13 +429,13 @@ export function AuditLog() {
 
                         {/* Fact ID Tag */}
                         {entry.fact_id && (
-                          <span className="rounded border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-foreground font-semibold">
+                          <span className="rounded border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-[11px] text-foreground font-semibold">
                             {entry.fact_id}
                           </span>
                         )}
 
                         {/* Digest Hash */}
-                        <span className="hidden sm:inline font-mono text-[10px] text-muted-foreground/70">
+                        <span className="hidden sm:inline font-mono text-[11px] text-muted-foreground/70">
                           hash:{shortHash}
                         </span>
                       </div>

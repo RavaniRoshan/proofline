@@ -205,7 +205,7 @@ export function StickyJobsBand() {
                   <div className="mt-4 pl-[27px]">
                     <Link
                       href={step.ctaHref}
-                      className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-4 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-all duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
+                      className="group inline-flex items-center gap-3 rounded-full border border-ink/20 dark:border-white/20 bg-paper/80 dark:bg-white/5 py-1.5 pr-2 pl-4 font-mono text-xs font-medium uppercase tracking-wider text-ink dark:text-white transition-colors transition-transform duration-200 hover:border-ink/40 dark:hover:border-white/40 hover:bg-panel dark:hover:bg-white/10 active:scale-[0.98]"
                     >
                       <span>{step.ctaLabel}</span>
                       <span className="flex size-6 items-center justify-center rounded-full bg-ink/5 dark:bg-white/10 text-ink dark:text-white">
@@ -232,7 +232,7 @@ export function StickyJobsBand() {
           <div className="relative z-10 mb-3 inline-flex items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-paper dark:bg-card px-4 py-2 text-[13.5px] font-medium text-ink dark:text-white shadow-sm">
             <span
               aria-hidden="true"
-              className="inline-flex size-4 items-center justify-center rounded-full bg-accent/15 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]"
+              className="inline-flex size-4 items-center justify-center rounded-full bg-accent/15 font-mono text-[11px] font-bold text-accent dark:text-accent-readable"
             >
               *
             </span>
@@ -241,7 +241,7 @@ export function StickyJobsBand() {
 
           {/* Floating Pill 2: Skill / Stage Loaded */}
           <div className="relative z-10 mb-4 inline-flex items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-paper dark:bg-card px-4 py-1.5 text-[13px] font-medium text-ink dark:text-white shadow-sm">
-            <span className="font-mono text-[12px] font-bold text-accent dark:text-[#E07A70]">
+            <span className="font-mono text-[12px] font-bold text-accent dark:text-accent-readable">
               [ ]
             </span>
             <span>{current.secondPillBadge}</span>
@@ -253,13 +253,13 @@ export function StickyJobsBand() {
               {/* Top File Path */}
               <div className="flex items-center justify-between gap-2 font-mono text-[12px] text-ink-soft dark:text-zinc-400">
                 <div className="flex items-center gap-2">
-                  <BookOpen size={14} className="text-accent dark:text-[#E07A70]" />
+                  <BookOpen size={14} className="text-accent dark:text-accent-readable" />
                   <span>{current.cardPath}</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSimulateFault(!simulateFault)}
-                  className="font-mono text-[10px] uppercase text-accent dark:text-[#E07A70] underline underline-offset-2 cursor-pointer"
+                  className="font-mono text-[11px] uppercase text-accent dark:text-accent-readable underline underline-offset-2 cursor-pointer"
                 >
                   {simulateFault ? "Reset Gate" : "Test Fault"}
                 </button>
@@ -298,7 +298,7 @@ export function StickyJobsBand() {
                       {row.badges.map((b) => (
                         <span
                           key={b.text}
-                          className={`inline-flex h-5 min-w-5 items-center justify-center rounded-[4px] px-1 font-mono text-[10px] font-bold ${b.bg} ${b.fg}`}
+                          className={`inline-flex h-5 min-w-5 items-center justify-center rounded-[4px] px-1 font-mono text-[11px] font-bold ${b.bg} ${b.fg}`}
                         >
                           {b.text}
                         </span>

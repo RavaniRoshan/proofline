@@ -122,13 +122,13 @@ export function ProoflineFooter() {
             top / 100% calc(var(--u) * 60) no-repeat,
             var(--c-bg);
           color: var(--c-text);
-          font-family: var(--font-sans), 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-family: var(--font-plex-sans), system-ui, sans-serif;
           overflow: hidden;
           user-select: none;
           -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Glow Plate + Seamless Crossfade Video Band */
+        /* Top Glow Plate + Crossfade Video Band */
         .plf-glow-stage {
           position: relative;
           width: 100%;
@@ -698,7 +698,7 @@ export function ProoflineFooter() {
             x="0"
             y="96"
             fill="url(#plfWordmarkGradH)"
-            fontFamily="var(--font-sans), 'Figtree', sans-serif"
+            fontFamily="var(--font-plex-sans), system-ui, sans-serif"
             fontSize="112"
             fontWeight="780"
             letterSpacing="-0.045em"
@@ -759,7 +759,7 @@ export function ProoflineFooter() {
                   y="462"
                   transform="rotate(-90 88 462)"
                   fill="url(#plfWordmarkGradV)"
-                  fontFamily="var(--font-sans), 'Figtree', sans-serif"
+                  fontFamily="var(--font-plex-sans), system-ui, sans-serif"
                   fontSize="98"
                   fontWeight="780"
                   letterSpacing="-0.045em"

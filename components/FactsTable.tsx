@@ -36,7 +36,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AssetBadge } from "@/components/ui/web3-dashboard/components/web3/asset-badge";
+import { AssetBadge } from "@/components/ui/proofline-badge/asset-badge";
 
 type Filter = "all" | "stale" | "conflicting";
 
@@ -51,10 +51,11 @@ function humanize(attribute: string): string {
 }
 
 function getPlanColor(productName: string): string {
-  if (productName.toLowerCase().includes("starter")) return "bg-[#8B1E27]";
-  if (productName.toLowerCase().includes("growth")) return "bg-[#1F5C43]";
-  if (productName.toLowerCase().includes("enterprise")) return "bg-[#3B5A6F]";
-  return "bg-slate-700";
+  const n = productName.toLowerCase();
+  if (n.includes("starter")) return "bg-v-contradicted-bg text-v-contradicted-fg";
+  if (n.includes("growth")) return "bg-v-supported-bg text-v-supported-fg";
+  if (n.includes("enterprise")) return "bg-v-conflicting-bg text-v-conflicting-fg";
+  return "bg-v-stale-bg text-v-stale-fg";
 }
 
 export function FactsTable({ reviewDate }: { reviewDate: string }) {
@@ -279,7 +280,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by ID, attribute, value, or plan..."
-              className="h-9 w-full rounded-md border border-border bg-background pl-9 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:border-[#8B1E27] dark:focus:border-[#D4847A] focus:outline-none transition-colors"
+              className="h-9 w-full rounded-md border border-border bg-background pl-9 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent transition-colors"
               aria-label="Search register facts"
             />
           </div>
@@ -303,7 +304,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                   <Icon size={13} aria-hidden="true" />
                   <span>{label}</span>
                   <span
-                    className={`ml-1 font-mono text-[10px] rounded-full px-1.5 py-0.5 ${
+                    className={`ml-1 font-mono text-[11px] rounded-full px-1.5 py-0.5 ${
                       active
                         ? "bg-white/20 text-white dark:bg-black/20 dark:text-slate-950"
                         : "bg-muted text-muted-foreground"
@@ -370,7 +371,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 Versioned claims enforced by Stage 1 deterministic rules and Stage 2 lexical retriever
               </CardDescription>
             </div>
-            <Badge variant="outline" className="font-mono text-[10px]">
+            <Badge variant="outline" className="font-mono text-[11px]">
               {filtered.length} Facts Ready
             </Badge>
           </CardHeader>
@@ -435,7 +436,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                             >
                               {f.fact_id}
                             </button>
-                            <span className="font-mono text-[10px] text-muted-foreground block">
+                            <span className="font-mono text-[11px] text-muted-foreground block">
                               v{f.version}
                             </span>
                           </div>
@@ -472,7 +473,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                       {/* Status */}
                       <td className="px-3 py-3">
                         <span
-                          className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide ${
+                          className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[11px] font-semibold uppercase tracking-wide ${
                             f.status === "approved"
                               ? "border-v-supported-border bg-v-supported-bg text-v-supported-fg"
                               : f.status === "superseded"
@@ -564,7 +565,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 <div className="flex items-start gap-2.5">
                   <FileText size={16} className="text-[#8B1E27] dark:text-[#D4847A] mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                    <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
                       Source Document
                     </p>
                     <p className="font-mono font-medium text-foreground mt-0.5">
@@ -579,7 +580,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 <div className="flex items-start gap-2.5">
                   <Calendar size={16} className="text-amber-500 mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                    <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
                       Validity Window
                     </p>
                     <p className="font-mono font-medium text-foreground mt-0.5">
@@ -596,7 +597,7 @@ export function FactsTable({ reviewDate }: { reviewDate: string }) {
                 <div className="flex items-start gap-2.5">
                   <UserCheck size={16} className="text-[#1F5C43] mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                    <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
                       Approval Authority
                     </p>
                     <p className="font-mono font-medium text-foreground mt-0.5">

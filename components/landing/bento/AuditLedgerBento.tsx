@@ -93,13 +93,13 @@ export function AuditLedgerBento() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border/60 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
               SOC 2 Compliance Ledger
             </span>
-            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <span className="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
               SHA-256 Merkle Chain
             </span>
-            <span className="rounded bg-v-supported-bg text-v-supported-fg border border-v-supported-border px-1.5 py-0.5 font-mono text-[10px] font-semibold">
+            <span className="rounded bg-v-supported-bg text-v-supported-fg border border-v-supported-border px-1.5 py-0.5 font-mono text-[11px] font-semibold">
               Zero Server Retention
             </span>
           </div>
@@ -111,7 +111,7 @@ export function AuditLedgerBento() {
         <button
           type="button"
           onClick={handleDownload}
-          className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold text-background transition-all hover:opacity-90 active:scale-[0.98] cursor-pointer self-start sm:self-auto shadow-xs"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold text-background transition-colors transition-transform hover:opacity-90 active:scale-[0.98] cursor-pointer self-start sm:self-auto shadow-xs"
         >
           {downloaded ? (
             <>
@@ -146,7 +146,7 @@ export function AuditLedgerBento() {
                 <div
                   key={entry.id}
                   onClick={() => setActiveEntryId(entry.id)}
-                  className={`group flex items-center justify-between gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                  className={`group flex items-center justify-between gap-3 p-3 rounded-lg border transition-colors transition-transform cursor-pointer ${
                     isSelected
                       ? "border-foreground/40 bg-muted/50 shadow-xs"
                       : "border-border/60 bg-card hover:border-border hover:bg-muted/20"
@@ -165,7 +165,7 @@ export function AuditLedgerBento() {
 
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] text-muted-foreground">
+                        <span className="font-mono text-[11px] text-muted-foreground">
                           {entry.id}
                         </span>
                         <span
@@ -193,7 +193,7 @@ export function AuditLedgerBento() {
                     <span className="text-foreground font-medium block">
                       {entry.reviewer}
                     </span>
-                    <span className="text-[10px] text-muted-foreground tabular-nums">
+                    <span className="text-[11px] text-muted-foreground tabular-nums">
                       {entry.timestamp}
                     </span>
                   </div>
@@ -217,7 +217,7 @@ export function AuditLedgerBento() {
 
             <div className="mt-3 space-y-3 font-mono text-xs">
               <div>
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Subject Document
                 </span>
                 <p className="font-sans text-xs font-bold text-foreground mt-0.5">
@@ -227,18 +227,18 @@ export function AuditLedgerBento() {
 
               <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/40">
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Signing Authority
                   </span>
                   <span className="text-foreground font-semibold">
                     {active.reviewer}
                   </span>
-                  <span className="text-[10px] text-muted-foreground block">
+                  <span className="text-[11px] text-muted-foreground block">
                     {active.reviewerRole}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-muted-foreground block">
+                  <span className="text-[11px] uppercase text-muted-foreground block">
                     Timestamp (UTC)
                   </span>
                   <span className="text-foreground">{active.timestamp}</span>
@@ -246,7 +246,7 @@ export function AuditLedgerBento() {
               </div>
 
               <div className="pt-1 border-t border-border/40">
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   SHA-256 Decision Hash
                 </span>
                 <span className="text-[11px] text-accent-brand dark:text-accent-readable font-mono break-all block mt-0.5">
@@ -255,7 +255,7 @@ export function AuditLedgerBento() {
               </div>
 
               <div className="pt-1 border-t border-border/40">
-                <span className="text-[10px] uppercase text-muted-foreground block">
+                <span className="text-[11px] uppercase text-muted-foreground block">
                   Data Retention Boundary
                 </span>
                 <p className="text-[11px] text-muted-foreground mt-0.5">

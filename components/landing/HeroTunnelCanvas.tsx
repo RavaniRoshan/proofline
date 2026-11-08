@@ -25,7 +25,7 @@ export function HeroTunnelCanvas() {
     let height = 0;
     let isRunning = false;
 
-    // Proofline spectral bar palette (no blue/neon — strictly Proofline tokens)
+    // Proofline spectral bar palette (no blue/neon, strictly Proofline tokens)
     const PALETTE = [
       { r: 110, g: 31, b: 38 },   // --oxide (#6E1F26)
       { r: 212, g: 132, b: 122 }, // --accent-readable (#D4847A)
@@ -262,7 +262,7 @@ export function MeshCardBackdrop({ className = "" }: { className?: string }) {
       aria-hidden="true"
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
     >
-      {/* Base surface — light warm paper / dark graphite */}
+      {/* Base surface, light warm paper / dark graphite */}
       <div className="absolute inset-0 bg-[#FAF9F6] dark:bg-[#111115]" />
       
       {/* Light mode diagonal silk ribbons */}

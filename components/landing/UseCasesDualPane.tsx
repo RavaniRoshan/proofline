@@ -98,7 +98,7 @@ const SCENARIOS: Scenario[] = [
     docTitle: "Security Architecture Whitepaper · DOC-004",
     spanRange: "chars 820–891",
     approvedValue: "Primary hosting region: ap-south-1 (Mumbai) · AES-256",
-    suggestedFix: "No edit required — citation attached to audit brief",
+    suggestedFix: "No edit required, citation attached to audit brief",
     logCount: "5 recorded",
   },
 ];
@@ -113,7 +113,14 @@ export function UseCasesDualPane() {
     const timer = setInterval(() => {
       setActiveIdx((prev) => (prev + 1) % SCENARIOS.length);
     }, 5200);
-    return () => clearInterval(timer);
+    const onVisibility = () => {
+      if (document.hidden) setPaused(true);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      clearInterval(timer);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, [paused]);
 
   const current = SCENARIOS[activeIdx];
@@ -188,7 +195,7 @@ export function UseCasesDualPane() {
             <div className="flex items-center gap-2">
               <span
                 aria-hidden="true"
-                className="inline-flex size-5 items-center justify-center rounded-full bg-accent/12 dark:bg-accent/20 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]"
+                className="inline-flex size-5 items-center justify-center rounded-full bg-accent/12 dark:bg-accent/20 font-mono text-[11px] font-bold text-accent dark:text-accent-readable"
               >
                 *
               </span>
@@ -206,7 +213,7 @@ export function UseCasesDualPane() {
                     setPaused(true);
                   }}
                   aria-label={`Select scenario ${sc.sourceLabel}`}
-                  className={`min-h-[32px] min-w-[32px] px-2.5 py-1 font-mono text-[11px] rounded-[4px] uppercase transition-all duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer inline-flex items-center justify-center active:scale-[0.97] ${
+                  className={`min-h-[32px] min-w-[32px] px-2.5 py-1 font-mono text-[11px] rounded-[4px] uppercase transition-colors transition-transform duration-[var(--motion-duration-fast,180ms)] ease-[var(--ease-arrival,cubic-bezier(0.16,1,0.3,1))] cursor-pointer inline-flex items-center justify-center active:scale-[0.97] ${
                     i === activeIdx
                       ? "bg-ink text-paper dark:bg-white dark:text-zinc-950 font-semibold shadow-xs"
                       : "bg-panel dark:bg-zinc-800 text-ink-soft dark:text-zinc-400 hover:text-ink dark:hover:text-white hover:bg-panel/80 dark:hover:bg-zinc-700"
@@ -237,7 +244,7 @@ export function UseCasesDualPane() {
                   style={{ animationDelay: `${sIdx * 35}ms` }}
                   className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-paper px-3 py-1 text-[12px] font-mono shadow-2xs scenario-step-enter"
                 >
-                  <span className="inline-flex size-4 items-center justify-center rounded-[4px] bg-accent/15 text-[10px] font-bold text-accent">
+                  <span className="inline-flex size-4 items-center justify-center rounded-[4px] bg-accent/15 text-[11px] font-bold text-accent">
                     {step.badge}
                   </span>
                   <span className="text-ink-faint">{step.module}</span>
@@ -286,7 +293,7 @@ export function UseCasesDualPane() {
                 <Search size={13} />
                 <span>RULES</span>
               </div>
-              <span className="font-mono text-[12px] font-medium text-accent transition-all duration-[var(--motion-duration-fast,180ms)]">
+              <span className="font-mono text-[12px] font-medium text-accent transition-colors transition-transform duration-[var(--motion-duration-fast,180ms)]">
                 {current.activeToolRight}
               </span>
             </div>
@@ -297,7 +304,7 @@ export function UseCasesDualPane() {
                 <KeyRound size={13} />
                 <span>REGISTER</span>
               </div>
-              <div className="flex items-center gap-1 font-mono text-[10px]">
+              <div className="flex items-center gap-1 font-mono text-[11px]">
                 <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-v-supported-bg text-v-supported-fg font-bold">
                   42
                 </span>
@@ -386,7 +393,7 @@ export function UseCasesDualPane() {
                 <FileText size={13} />
                 <span>LOG</span>
               </div>
-              <span className="font-mono text-[12px] font-semibold text-accent tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
+              <span className="font-mono text-[12px] font-semibold text-accent tabular-nums transition-colors transition-transform duration-[var(--motion-duration-fast,180ms)]">
                 {current.logCount}
               </span>
             </div>
@@ -405,14 +412,14 @@ export function UseCasesDualPane() {
                 <span className="size-2.5 rounded-full bg-ink/15 dark:bg-white/20" />
                 <span className="size-2.5 rounded-full bg-ink/15 dark:bg-white/20" />
               </div>
-              <span className="ml-1 inline-flex size-4 items-center justify-center rounded-[3px] border border-ink/30 dark:border-white/30 font-mono text-[10px] font-bold text-ink dark:text-white">
+              <span className="ml-1 inline-flex size-4 items-center justify-center rounded-[3px] border border-ink/30 dark:border-white/30 font-mono text-[11px] font-bold text-ink dark:text-white">
                 P
               </span>
               <span className="font-sans text-[13px] text-ink-soft dark:text-zinc-400">
                 Register · Verification Brief
               </span>
             </div>
-            <span className="font-mono text-[11px] text-ink-soft dark:text-zinc-400 tabular-nums transition-all duration-[var(--motion-duration-fast,180ms)]">
+            <span className="font-mono text-[11px] text-ink-soft dark:text-zinc-400 tabular-nums transition-colors transition-transform duration-[var(--motion-duration-fast,180ms)]">
               {current.factId}
             </span>
           </div>
@@ -454,7 +461,7 @@ export function UseCasesDualPane() {
 
               <div className="mt-4 space-y-2.5 border-t border-ink/10 dark:border-white/10 pt-3.5 text-[13px]">
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink-soft dark:text-zinc-400 block">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-ink-soft dark:text-zinc-400 block">
                     APPROVED REGISTER VALUE
                   </span>
                   <span className="font-medium text-ink dark:text-zinc-200">
@@ -462,10 +469,10 @@ export function UseCasesDualPane() {
                   </span>
                 </div>
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink-soft dark:text-zinc-400 block">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-ink-soft dark:text-zinc-400 block">
                     RECOMMENDED ACTION
                   </span>
-                  <span className="font-medium text-accent dark:text-[#E07A70]">
+                  <span className="font-medium text-accent dark:text-accent-readable">
                     {current.suggestedFix}
                   </span>
                 </div>
@@ -489,7 +496,7 @@ export function UseCasesDualPane() {
                       setPaused(true);
                       setDecisionMap((prev) => ({ ...prev, [current.id]: action }));
                     }}
-                    className={`border py-1.5 font-mono text-[11px] uppercase transition-all duration-[var(--motion-duration-micro,120ms)] cursor-pointer rounded-full active:scale-[0.97] ${
+                    className={`border py-1.5 font-mono text-[11px] uppercase transition-colors transition-transform duration-[var(--motion-duration-micro,120ms)] cursor-pointer rounded-full active:scale-[0.97] ${
                       recordedDecision === action
                         ? "border-ink bg-ink text-paper font-semibold shadow-2xs dark:border-white dark:bg-white dark:text-zinc-950"
                         : "border-ink/15 dark:border-white/15 bg-panel/60 dark:bg-zinc-800/60 text-ink dark:text-zinc-200 hover:bg-panel dark:hover:bg-zinc-800 hover:border-ink/30 dark:hover:border-white/30"
@@ -517,8 +524,9 @@ export function UseCasesDualPane() {
         <button
           type="button"
           onClick={() => setPaused(!paused)}
+          aria-pressed={paused}
           aria-label={paused ? "Play demo loop" : "Pause demo loop"}
-          className="inline-flex size-8 items-center justify-center rounded-full border border-ink/15 dark:border-white/15 bg-paper dark:bg-zinc-800 text-ink-soft dark:text-zinc-300 transition-all duration-[var(--motion-duration-micro,120ms)] hover:border-ink/30 dark:hover:border-white/30 hover:text-ink dark:hover:text-white active:scale-95 cursor-pointer shadow-2xs"
+          className="inline-flex size-8 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors duration-[var(--motion-duration-micro,120ms)] hover:border-ink/30 hover:text-ink active:scale-95 cursor-pointer shadow-2xs"
         >
           {paused ? <Play size={13} /> : <Pause size={13} />}
         </button>

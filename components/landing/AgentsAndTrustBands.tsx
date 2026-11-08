@@ -203,14 +203,14 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 1: "Your register, your rules" (07-band6-trust-security.png left)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+      <article className="flex flex-col justify-between overflow-hidden rounded-[18px] border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
         {/* Top Visual Area */}
         <div className="flex flex-col border-b border-ink/8 dark:border-white/10">
           {/* Silk Mesh Header with Floating Pill */}
           <div className="relative flex h-[126px] items-center justify-center overflow-hidden border-b border-ink/8 dark:border-white/10 px-4">
             <MeshCardBackdrop />
             <div className="relative z-10 inline-flex items-center gap-2.5 rounded-full border border-ink/10 dark:border-white/15 bg-paper dark:bg-card px-5 py-2.5 text-[13.5px] font-medium text-ink dark:text-white shadow-md">
-              <span className="inline-flex size-5 items-center justify-center rounded-full bg-accent/15 font-mono text-[11px] font-bold text-accent dark:text-[#E07A70]">
+              <span className="inline-flex size-5 items-center justify-center rounded-full bg-accent/15 font-mono text-[11px] font-bold text-accent dark:text-accent-readable">
                 P
               </span>
               <span>Connect Fact Register v4</span>
@@ -231,7 +231,7 @@ export function TrustSecurityCards() {
                   className="flex items-center justify-between py-3 text-[13px]"
                 >
                   <div className="flex items-center gap-2.5 text-ink dark:text-zinc-200">
-                    <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]">
+                    <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[11px] font-bold text-accent dark:text-accent-readable">
                       {row.badge}
                     </span>
                     <span className="truncate">{row.label}</span>
@@ -297,11 +297,11 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 2: "Hallucinated citations get blocked" (07-band6-trust-security.png center)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+      <article className="flex flex-col justify-between overflow-hidden rounded-[18px] border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
         {/* Top Visual Area: Skeleton Lines + Red Blocked Callout */}
         <div className="flex flex-1 flex-col justify-center border-b border-ink/8 dark:border-white/10 p-6">
           <div className="flex items-center gap-2 mb-3">
-            <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[10px] font-bold text-accent dark:text-[#E07A70]">
+            <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-accent/15 font-mono text-[11px] font-bold text-accent dark:text-accent-readable">
               M
             </span>
             <div className="h-2.5 w-24 rounded-full bg-ink/10 dark:bg-white/10" />
@@ -343,7 +343,7 @@ export function TrustSecurityCards() {
       {/* =====================================================================
           CARD 3: "Every decision on record" (07-band6-trust-security.png right)
           ===================================================================== */}
-      <article className="flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all">
+      <article className="flex flex-col justify-between overflow-hidden rounded-[18px] border border-ink/15 dark:border-white/12 bg-paper dark:bg-card shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-shadow transition-transform">
         {/* Top Visual Area: 4-Node Horizontal Timeline + Approved Action Card */}
         <div className="flex flex-1 flex-col justify-center border-b border-ink/8 dark:border-white/10 p-6">
           <div className="relative flex items-center justify-between px-2">
@@ -362,7 +362,7 @@ export function TrustSecurityCards() {
               },
               { icon: "P", time: "9:42", active: false, bg: "bg-ink text-paper dark:bg-white dark:text-zinc-950" },
               {
-                icon: "✓",
+                icon: "C",
                 time: "9:44",
                 active: true,
                 bg: "bg-v-supported-bg text-v-supported-fg",
@@ -380,7 +380,7 @@ export function TrustSecurityCards() {
                   }`}
                 >
                   <span
-                    className={`inline-flex size-5 items-center justify-center rounded-[4px] font-mono text-[10px] font-bold ${node.bg}`}
+                    className={`inline-flex size-5 items-center justify-center rounded-[4px] font-mono text-[11px] font-bold ${node.bg}`}
                   >
                     {node.icon}
                   </span>

@@ -37,7 +37,7 @@ const faqs = [
     id: 'item-6',
     question: 'Is manual connection required for supported wallets?',
     answer:
-      'No, supported wallets benefit from auto-discovery and seamless connection protocols, requiring only a one-time authorization signature.',
+      'No, supported wallets benefit from auto-discovery and direct connection protocols, requiring only a one-time authorization signature.',
   },
 ];
 

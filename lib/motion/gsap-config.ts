@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
  * - Jhey Tompkins (magnetic spring release)
  */
 export const GSAP_EASING = {
-  entrance: "power3.out",
+  entrance: "cubic-bezier(0.22, 1, 0.36, 1)",
   entranceSmooth: "expo.out",
   interactive: "back.out(1.2)",
   springSnap: "elastic.out(1, 0.4)",
@@ -22,9 +22,10 @@ export const GSAP_EASING = {
 export const GSAP_TIMING = {
   instant: 0.14,
   snappy: 0.22,
-  standard: 0.38,
-  deliberate: 0.55,
-  heroCurtain: 0.7,
+  standard: 0.35,
+  deliberate: 0.35,
+  heroCurtain: 0.35,
+  close: 0.24,
 } as const;
 
 /**

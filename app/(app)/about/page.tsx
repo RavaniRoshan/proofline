@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AssetBadge } from "@/components/ui/web3-dashboard/components/web3/asset-badge";
+import { AssetBadge } from "@/components/ui/proofline-badge/asset-badge";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -52,7 +52,7 @@ export default function AboutPage() {
           What Proofline is.
         </h1>
         <p className="max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-          Proofline checks marketing, pricing, and product draft copy against an owner-approved, versioned register of ground-truth facts. It returns one of six deterministic verdicts per candidate assertion — complete with source document title, exact character span, fact version, and active validity window.
+          Proofline checks marketing, pricing, and product draft copy against an owner-approved, versioned register of ground-truth facts. It returns one of six deterministic verdicts per candidate assertion, complete with source document title, exact character span, fact version, and active validity window.
         </p>
       </div>
 
@@ -204,7 +204,7 @@ export default function AboutPage() {
           <h2 className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Core System Invariants (LAW.md Specification)
           </h2>
-          <Badge variant="outline" className="font-mono text-[10px]">
+          <Badge variant="outline" className="font-mono text-[11px]">
             4 Invariants Enforced
           </Badge>
         </div>
@@ -213,7 +213,7 @@ export default function AboutPage() {
           {/* Invariant 1 */}
           <Card className="p-5 shadow-xs border border-border bg-card hover:border-foreground/30 transition-colors">
             <div className="flex items-center gap-3">
-              <AssetBadge symbol="1" color="bg-[#8B1E27]" size="sm" />
+              <AssetBadge symbol="1" verdictBg="bg-v-contradicted-bg" verdictFg="text-v-contradicted-fg" size="sm" />
               <div className="flex items-center gap-2">
                 <Zap size={15} className="text-[#8B1E27] dark:text-[#D4847A]" />
                 <span className="font-mono text-xs font-bold text-foreground">
@@ -229,7 +229,7 @@ export default function AboutPage() {
           {/* Invariant 2 */}
           <Card className="p-5 shadow-xs border border-border bg-card hover:border-foreground/30 transition-colors">
             <div className="flex items-center gap-3">
-              <AssetBadge symbol="2" color="bg-amber-600" size="sm" />
+              <AssetBadge symbol="2" verdictBg="bg-v-stale-bg" verdictFg="text-v-stale-fg" size="sm" />
               <div className="flex items-center gap-2">
                 <Lock size={15} className="text-amber-500" />
                 <span className="font-mono text-xs font-bold text-foreground">
@@ -245,7 +245,7 @@ export default function AboutPage() {
           {/* Invariant 3 */}
           <Card className="p-5 shadow-xs border border-border bg-card hover:border-foreground/30 transition-colors">
             <div className="flex items-center gap-3">
-              <AssetBadge symbol="3" color="bg-[#1F5C43]" size="sm" />
+              <AssetBadge symbol="3" verdictBg="bg-v-supported-bg" verdictFg="text-v-supported-fg" size="sm" />
               <div className="flex items-center gap-2">
                 <Search size={15} className="text-emerald-600 dark:text-emerald-400" />
                 <span className="font-mono text-xs font-bold text-foreground">
@@ -261,7 +261,7 @@ export default function AboutPage() {
           {/* Invariant 4 */}
           <Card className="p-5 shadow-xs border border-border bg-card hover:border-foreground/30 transition-colors">
             <div className="flex items-center gap-3">
-              <AssetBadge symbol="4" color="bg-purple-600" size="sm" />
+              <AssetBadge symbol="4" verdictBg="bg-v-conflicting-bg" verdictFg="text-v-conflicting-fg" size="sm" />
               <div className="flex items-center gap-2">
                 <AlertTriangle size={15} className="text-purple-500" />
                 <span className="font-mono text-xs font-bold text-foreground">
@@ -282,7 +282,7 @@ export default function AboutPage() {
       <div className="flex flex-wrap items-center gap-3">
         <Button
           asChild
-          className="group inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-3 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-xs transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+          className="group inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-3 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-xs transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
         >
           <Link href="/check">
             <ShieldCheck size={14} />
@@ -297,7 +297,7 @@ export default function AboutPage() {
           asChild
           variant="outline"
           data-testid="round1-pdf"
-          className="btn-proofline-tactile h-9 rounded-full px-4 gap-2 font-mono text-xs text-foreground border-border hover:bg-muted active:scale-[0.98] transition-all"
+          className="btn-proofline-tactile h-9 rounded-full px-4 gap-2 font-mono text-xs text-foreground border-border hover:bg-muted active:scale-[0.98] transition-colors transition-transform"
         >
           <a href={ROUND1_PDF} target="_blank" rel="noreferrer">
             <FileText size={14} className="text-[#8B1E27] dark:text-[#D4847A]" />
@@ -309,7 +309,7 @@ export default function AboutPage() {
         <Button
           asChild
           variant="outline"
-          className="btn-proofline-tactile h-9 rounded-full px-4 gap-2 font-mono text-xs text-foreground border-border hover:bg-muted active:scale-[0.98] transition-all"
+          className="btn-proofline-tactile h-9 rounded-full px-4 gap-2 font-mono text-xs text-foreground border-border hover:bg-muted active:scale-[0.98] transition-colors transition-transform"
         >
           <a href={REPO} target="_blank" rel="noreferrer">
             <Code size={14} />
@@ -329,19 +329,19 @@ export default function AboutPage() {
           </h2>
           <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
             <li className="flex items-start gap-2">
-              <span className="font-mono text-[#8B1E27] dark:text-[#D4847A] font-bold">✕</span>
-              <span>No file upload, OCR, or visual screenshot parsing — plain text only.</span>
+              <span className="font-mono text-accent dark:text-accent-readable font-bold">no</span>
+              <span>No file upload, OCR, or visual screenshot parsing, plain text only.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="font-mono text-[#8B1E27] dark:text-[#D4847A] font-bold">✕</span>
-              <span>No open-web browsing — only the owner-approved register is trusted.</span>
+              <span className="font-mono text-accent dark:text-accent-readable font-bold">no</span>
+              <span>No open-web browsing, only the owner-approved register is trusted.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="font-mono text-[#8B1E27] dark:text-[#D4847A] font-bold">✕</span>
+              <span className="font-mono text-accent dark:text-accent-readable font-bold">no</span>
               <span>No multi-tenant accounts, auth gates, or auto-publishing pipelines.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="font-mono text-[#8B1E27] dark:text-[#D4847A] font-bold">✕</span>
+              <span className="font-mono text-accent dark:text-accent-readable font-bold">no</span>
               <span>All demonstration facts belong to a fictional brand (Flowdesk).</span>
             </li>
           </ul>

@@ -34,7 +34,7 @@ export function Faq6({
       <div className="grid grid-cols-1 md:grid-cols-12 relative">
         <div className="md:col-span-4 lg:col-span-5 p-8 md:p-12 border-b border-dashed border-border md:border-b-0 md:border-r flex flex-col justify-start">
           {badge && (
-            <span className="text-accent dark:text-[#E07A70] mb-4 text-[11px] font-semibold uppercase tracking-wider font-mono">
+            <span className="text-accent dark:text-accent-readable mb-4 text-[11px] font-semibold uppercase tracking-wider font-mono">
               {badge}
             </span>
           )}

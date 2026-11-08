@@ -57,12 +57,12 @@ export default function Features4() {
     <div className="flex w-full flex-col items-center justify-center font-sans">
       {/* Centered Section Header */}
       <div className="mx-auto mb-16 md:mb-20 flex max-w-[720px] flex-col items-center text-center">
-        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ink/15 dark:border-white/15 bg-panel/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
           [05] CORE VERIFICATION MOSAIC
         </span>
         <h2 className="max-w-[22ch] text-balance font-serif text-[32px] md:text-[44px] font-normal tracking-[-0.04em] leading-[1.08] text-ink dark:text-white">
           Deterministic rules,{" "}
-          <span className="text-accent dark:text-[#E07A70]">provable truth</span>
+          <span className="text-accent dark:text-accent-readable">provable truth</span>
         </h2>
         <p className="mt-4 max-w-[54ch] text-[16px] md:text-[17px] tracking-[-0.02em] leading-[1.45] text-ink-soft dark:text-zinc-300 text-pretty">
           High-throughput TypeScript scalar rules, version-controlled ground truth registers, and a runtime Evidence Gate engineered to eliminate copy drift.
@@ -74,10 +74,10 @@ export default function Features4() {
         {/* ===================================================================
             CARD 1: Sub-Millisecond Preflight Telemetry
             =================================================================== */}
-        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-transform p-0 overflow-hidden">
           <CardContent className="flex h-full flex-col justify-between gap-6 p-6 md:p-7">
             <div>
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
                 01 · Preflight Engine
               </span>
               <h3 className="font-serif text-2xl font-normal tracking-tight text-ink dark:text-white mt-1">
@@ -92,7 +92,7 @@ export default function Features4() {
             <div className="flex flex-col justify-between rounded-2xl border border-ink/10 dark:border-white/10 bg-panel/70 dark:bg-zinc-900/60 p-5 shadow-xs">
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-ink-soft dark:text-zinc-400 flex items-center gap-1.5">
-                  <Zap className="size-3.5 text-accent dark:text-[#E07A70]" />
+                  <Zap className="size-3.5 text-accent dark:text-accent-readable" />
                   Scalar AST Fast-Path
                 </span>
                 <span className="text-[#1F5C43] dark:text-[#4ADE80] font-semibold">
@@ -122,7 +122,7 @@ export default function Features4() {
                 ].map((bar, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center gap-1">
                     <div
-                      className="telemetry-bar-fill w-full rounded-xs bg-[#8B1E27]/80 dark:bg-[#E07A70]/80 transition-colors hover:bg-[#8B1E27]"
+                      className="telemetry-bar-fill w-full rounded-xs bg-[#8B1E27]/80 dark:bg-accent-readable/80 transition-colors hover:bg-[#8B1E27]"
                       style={{ height: `${bar.h}%` }}
                     />
                   </div>
@@ -131,7 +131,7 @@ export default function Features4() {
 
               <div className="mt-4 grid grid-cols-2 gap-2 text-xs font-mono">
                 <div className="rounded-lg bg-paper dark:bg-zinc-800 p-2.5 border border-ink/5 dark:border-white/5">
-                  <span className="text-[10px] uppercase text-ink-soft dark:text-zinc-400 block">
+                  <span className="text-[11px] uppercase text-ink-soft dark:text-zinc-400 block">
                     Regex Rules
                   </span>
                   <span className="text-sm font-bold text-ink dark:text-white">
@@ -139,7 +139,7 @@ export default function Features4() {
                   </span>
                 </div>
                 <div className="rounded-lg bg-paper dark:bg-zinc-800 p-2.5 border border-ink/5 dark:border-white/5">
-                  <span className="text-[10px] uppercase text-ink-soft dark:text-zinc-400 block">
+                  <span className="text-[11px] uppercase text-ink-soft dark:text-zinc-400 block">
                     Precision
                   </span>
                   <span className="text-sm font-bold text-[#1F5C43] dark:text-[#4ADE80]">
@@ -154,10 +154,10 @@ export default function Features4() {
         {/* ===================================================================
             CARD 2: Owner-Approved Fact Register (42 Seed Facts)
             =================================================================== */}
-        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-transform p-0 overflow-hidden">
           <CardContent className="flex h-full flex-col justify-between gap-6 p-6 md:p-7">
             <div>
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
                 02 · Ground Truth
               </span>
               <h3 className="font-serif text-2xl font-normal tracking-tight text-ink dark:text-white mt-1">
@@ -225,10 +225,10 @@ export default function Features4() {
         {/* ===================================================================
             CARD 3: 5-State Mathematical Verdict Lattice
             =================================================================== */}
-        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-all p-0 overflow-hidden">
+        <Card className="bg-paper dark:bg-card flex h-full flex-col rounded-[28px] border border-ink/15 dark:border-white/12 shadow-[0_4px_24px_-4px_rgba(26,26,24,0.06),0_1px_3px_rgba(26,26,24,0.04)] hover:shadow-[0_12px_36px_-6px_rgba(26,26,24,0.1)] transition-colors transition-transform p-0 overflow-hidden">
           <CardContent className="flex h-full flex-col justify-between gap-6 p-6 md:p-7">
             <div>
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-[#E07A70]">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent dark:text-accent-readable">
                 03 · Formal Taxonomy
               </span>
               <h3 className="font-serif text-2xl font-normal tracking-tight text-ink dark:text-white mt-1">
@@ -246,7 +246,7 @@ export default function Features4() {
                   <ShieldCheck className="size-3.5 text-[#1F5C43]" />
                   lib/verdict.ts
                 </span>
-                <span className="rounded bg-accent/10 px-1.5 py-0.5 text-[10px] font-bold text-accent dark:text-[#E07A70]">
+                <span className="rounded bg-accent/10 px-1.5 py-0.5 text-[11px] font-bold text-accent dark:text-accent-readable">
                   5 Verdicts
                 </span>
               </div>
@@ -255,7 +255,7 @@ export default function Features4() {
               <div className="mt-3 space-y-2 text-xs font-mono">
                 {[
                   { name: "SUPPORTED", pct: 64, color: "bg-[#1F5C43]", fg: "text-[#1F5C43] dark:text-[#4ADE80]" },
-                  { name: "CONTRADICTED", pct: 18, color: "bg-[#8B1E27]", fg: "text-[#8B1E27] dark:text-[#E07A70]" },
+                  { name: "CONTRADICTED", pct: 18, color: "bg-[#8B1E27]", fg: "text-[#8B1E27] dark:text-accent-readable" },
                   { name: "STALE", pct: 11, color: "bg-[#B8860B]", fg: "text-[#B8860B] dark:text-[#FBBF24]" },
                   { name: "CONFLICTING", pct: 4, color: "bg-zinc-500", fg: "text-zinc-500" },
                   { name: "UNVERIFIABLE", pct: 3, color: "bg-zinc-400", fg: "text-zinc-400" },

@@ -575,7 +575,7 @@ export function Header() {
 
           <Link
             href="/check"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#8B1E27] py-1 pr-1.5 pl-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-colors transition-transform duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]"
           >
             <span>Check a Draft</span>
             <span className="flex size-5 items-center justify-center rounded-full bg-black/20 text-white">
@@ -662,7 +662,7 @@ function ListItem({
         >
           <div className="flex gap-3 items-center">
             {icon && (
-              <div className="border border-border rounded-md p-1.5 icon-container bg-background/50 text-foreground transition-all duration-200 group-hover:bg-foreground group-hover:text-background group-hover:scale-105 shrink-0">
+              <div className="border border-border rounded-md p-1.5 icon-container bg-background/50 text-foreground transition-colors transition-transform duration-200 group-hover:bg-foreground group-hover:text-background group-hover:scale-105 shrink-0">
                 {icon}
               </div>
             )}

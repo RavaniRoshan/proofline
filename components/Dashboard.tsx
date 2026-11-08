@@ -1,26 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  BadgeCheck,
-  TrendingUp,
-  Zap,
-  XCircle,
-  Calendar,
-  Info,
-  ArrowUpRight,
   FileText,
   ShieldCheck,
-  ChevronRight,
+  Zap,
+  Clock,
+  Scale,
+  Layers,
   ArrowRight,
+  ChevronRight,
 } from "lucide-react";
 import type { RegisterStats } from "@/lib/register";
-import { DECISION_LABEL, type DecisionValue } from "@/lib/local";
+import { DECISION_LABEL } from "@/lib/local";
 import { useProoflineState } from "@/lib/use-proofline";
-import type { Verdict } from "@/lib/types";
-import { format } from "date-fns";
-import type { DateRange } from "react-day-picker";
 import {
   Card,
   CardHeader,
@@ -31,14 +25,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-// High-agency Web3-inspired design components customized with Proofline tokens
-import { StatGrid } from "@/components/ui/web3-dashboard/components/web3/stat-card";
-import { PortfolioPanel } from "@/components/ui/web3-dashboard/components/web3/portfolio-panel";
-import { MarketsPanel } from "@/components/ui/web3-dashboard/components/web3/markets-panel";
-import { AssetTableCard } from "@/components/ui/web3-dashboard/components/web3/asset-table-card";
-import { DashboardTopbar } from "@/components/ui/web3-dashboard/components/web3/topbar";
-import { netWorthAssets, borrowedAssets } from "@/components/ui/web3-dashboard/data";
 import { DeterministicRoutingBento } from "@/components/landing/bento/DeterministicRoutingBento";
 import { RegisterLineageBento } from "@/components/landing/bento/RegisterLineageBento";
 import { EvidenceGateInspectorBento } from "@/components/landing/bento/EvidenceGateInspectorBento";
@@ -57,10 +43,6 @@ export function Dashboard({
   model: number;
 }) {
   const state = useProoflineState();
-  const [dateRange, setDateRange] = useState<DateRange | undefined>({
-    from: new Date(2026, 3, 1),
-    to: new Date(2026, 10, 7),
-  });
   const [activeEngineTab, setActiveEngineTab] = useState<
     "deterministic" | "lineage" | "gate" | "api" | "audit"
   >("deterministic");
@@ -69,30 +51,43 @@ export function Dashboard({
 
   const totalUserDecisions = state.audit.length;
 
-  const windowLabel = dateRange?.from
-    ? dateRange.to
-      ? `${format(dateRange.from, "yyyy-MM-dd")} → ${format(dateRange.to, "yyyy-MM-dd")}`
-      : `${format(dateRange.from, "yyyy-MM-dd")} → Active`
-    : `${reviewDate} → Active`;
+  const verdictDistribution = useMemo(() => {
+    const byVerdict: Record<string, number> = {};
+    for (const entry of state.audit) {
+      const v = entry.verdict ?? "UNVERIFIED";
+      byVerdict[v] = (byVerdict[v] ?? 0) + 1;
+    }
+    return byVerdict;
+  }, [state.audit]);
+
+  const decisionCounts = useMemo(() => {
+    const counts = { approve: 0, reject: 0, needs_edit: 0 };
+    for (const entry of state.audit) {
+      if (entry.decision === "approve") counts.approve++;
+      else if (entry.decision === "reject") counts.reject++;
+      else counts.needs_edit++;
+    }
+    return counts;
+  }, [state.audit]);
+
+  const pct = (n: number, total: number) => (total > 0 ? (n / total) * 100 : 0);
 
   return (
     <div className="space-y-5">
       {/* =========================================================================
-          1. TOP ENTERPRISE STATUS RIBBON (Fingerprint / Linear Style)
+          1. TOP STATUS RIBBON
           ========================================================================= */}
       <Card className="p-3.5 sm:p-4 shadow-xs border border-border">
         <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            {/* Status Indicator */}
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-[#1F5C43] animate-pulse" />
+              <span className="size-2 rounded-full bg-v-supported-fg" />
               <span className="font-semibold text-foreground">Status:</span>
-              <span className="rounded-full bg-v-supported-bg px-2 py-0.5 font-mono text-[11px] font-semibold text-v-supported-fg border border-v-supported-border">
-                Aligned · 42 Facts
+              <span className="rounded-full bg-v-supported-bg px-2 py-0.5 font-mono text-[11px] font-semibold text-v-supported-fg border border-v-supported-fg/30">
+                Aligned · {stats.approvedCurrent} Facts
               </span>
             </div>
 
-            {/* Scope / Workspace */}
             <div className="hidden sm:flex items-center gap-1.5">
               <span className="text-muted-foreground">Scope:</span>
               <span className="font-medium text-foreground">
@@ -100,13 +95,11 @@ export function Dashboard({
               </span>
             </div>
 
-            {/* Active Window */}
             <div className="hidden md:flex items-center gap-1.5">
               <span className="text-muted-foreground">Active Window:</span>
-              <span className="font-mono text-foreground">{windowLabel}</span>
+              <span className="font-mono text-foreground">{reviewDate} → Active</span>
             </div>
 
-            {/* Health */}
             <div className="flex items-center gap-1.5">
               <span className="text-muted-foreground">Health:</span>
               <Badge variant="outline" className="font-mono text-[11px] font-semibold">
@@ -115,7 +108,7 @@ export function Dashboard({
             </div>
           </div>
 
-          <Button asChild variant="ghost" size="sm" className="h-7 gap-1 font-mono text-xs text-accent-brand dark:text-accent-readable">
+          <Button asChild variant="ghost" size="sm" className="h-7 gap-1 font-mono text-xs text-accent">
             <Link href="/facts">
               <span>Browse Full Register</span>
               <ChevronRight size={13} />
@@ -125,59 +118,215 @@ export function Dashboard({
       </Card>
 
       {/* =========================================================================
-          2. DASHBOARD TOPBAR WITH SCOPE SELECTOR, SEARCH & CALENDAR WINDOW
+          2. REAL REGISTER TELEMETRY (no demo financials)
           ========================================================================= */}
-      <DashboardTopbar dateRange={dateRange} onDateRangeChange={setDateRange} />
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" aria-label="Register telemetry">
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Approved Facts
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-v-supported-bg text-v-supported-fg">
+              <Layers size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono tabular-nums">
+              {stats.approvedCurrent}
+            </span>
+            <span className="font-mono text-xs font-semibold text-v-supported-fg">
+              in-window
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {stats.factIds} unique IDs across {stats.products.length} products
+          </p>
+        </Card>
 
-      {/* =========================================================================
-          3. STAT GRID (4 Tone-Badged High-Density KPI Cards)
-          ========================================================================= */}
-      <StatGrid />
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Deterministic Ratio
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-accent/10 text-accent">
+              <Zap size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono tabular-nums">
+              {rulesPct}%
+            </span>
+            <span className="font-mono text-xs text-muted-foreground">
+              Stage 1 fast-path
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {deterministic} rule checks · {model} bounded-model checks
+          </p>
+        </Card>
 
-      {/* =========================================================================
-          4. PERFORMANCE & RULE EFFICACY SECTION (PortfolioPanel + MarketsPanel)
-          ========================================================================= */}
-      <section className="grid gap-4 xl:grid-cols-4">
-        <PortfolioPanel />
-        <MarketsPanel />
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Stale Facts
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-v-stale-bg text-v-stale-fg">
+              <Clock size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono tabular-nums">
+              {stats.stale}
+            </span>
+            <span className="font-mono text-xs text-muted-foreground">
+              out of validity
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Superseded or past valid_until at {reviewDate}
+          </p>
+        </Card>
+
+        <Card className="p-4 sm:p-5 shadow-xs border border-border bg-card">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Conflicts
+            </span>
+            <span className="flex size-7 items-center justify-center rounded-md bg-v-conflicting-bg text-v-conflicting-fg">
+              <Scale size={15} />
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-mono tabular-nums">
+              {stats.conflictingGroups}
+            </span>
+            <span className="font-mono text-xs text-muted-foreground">
+              groups
+            </span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {stats.conflictingRows} rows across {stats.conflictingGroups} attributes
+          </p>
+        </Card>
       </section>
 
       {/* =========================================================================
-          5. ASSET TABLES & CONTRADICTION LOG (AssetTableCard Primitives)
+          3. SESSION VERDICT DISTRIBUTION (real local audit data, chart + table)
           ========================================================================= */}
-      <section className="grid gap-4 xl:grid-cols-2">
-        <AssetTableCard
-          title="Ground Truth Fact Attributes"
-          assets={netWorthAssets}
-          action="Inspect Register"
-          valueLabel="True Value"
-        />
-        <AssetTableCard
-          title="Active Contradiction Log"
-          assets={borrowedAssets}
-          action="Verify in Preflight Checker"
-          valueLabel="Severity"
-          external
-        />
-      </section>
+      <Card className="shadow-xs border border-border">
+        <CardHeader className="border-b border-border/60 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Session Verdict Distribution
+              </CardTitle>
+              <CardDescription className="text-[11px] mt-0.5">
+                Reviewer decisions recorded in this browser session, real counts, never demo data
+              </CardDescription>
+            </div>
+            <Badge variant="outline" className="font-mono text-[11px]">
+              {totalUserDecisions} Decisions
+            </Badge>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-4">
+          {totalUserDecisions === 0 ? (
+            <div className="rounded-lg border border-dashed border-border/80 p-5 text-center">
+              <FileText size={22} className="mx-auto text-muted-foreground/60" />
+              <p className="mt-2 text-xs font-semibold text-foreground">No local session data yet</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">
+                Run a check in the Preflight Checker to populate verdict and decision counts.
+              </p>
+              <Button asChild size="sm" className="group mt-4 inline-flex items-center gap-2.5 rounded-full bg-accent py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-xs transition-colors transition-transform duration-200 hover:bg-accent/90 active:scale-[0.98]">
+                <Link href="/check">
+                  <span>Open Preflight Checker</span>
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-black/20 transition-transform group-hover:translate-x-0.5">
+                    <ArrowRight className="h-3 w-3 text-white" />
+                  </span>
+                </Link>
+              </Button>
+            </div>
+          ) : (
+            <>
+              <div className="flex flex-col gap-2.5" role="img" aria-label={`Verdict distribution of ${totalUserDecisions} decisions`}>
+                {Object.entries(verdictDistribution).map(([verdict, count]) => {
+                  const v = verdict.toLowerCase();
+                  const barClass =
+                    verdict === "SUPPORTED"
+                      ? "bg-v-supported-fg"
+                      : verdict === "CONTRADICTED"
+                        ? "bg-v-contradicted-fg"
+                        : verdict === "STALE"
+                          ? "bg-v-stale-fg"
+                          : verdict === "CONFLICTING"
+                            ? "bg-v-conflicting-fg"
+                            : "bg-v-unverified-fg";
+                  return (
+                    <div key={verdict} className="flex items-center gap-3 text-xs">
+                      <span className="w-28 shrink-0 font-mono text-[11px] font-semibold uppercase text-foreground">
+                        {v.replace("_", " ")}
+                      </span>
+                      <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
+                        <div
+                          className={`h-full ${barClass}`}
+                          style={{ width: `${pct(count, totalUserDecisions)}%` }}
+                        />
+                      </div>
+                      <span className="w-10 shrink-0 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
+                        {count}
+                      </span>
+                    </div>
+                  );
+                })}
+                <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-muted-foreground">
+                  <span>Approve {decisionCounts.approve}</span>
+                  <span>·</span>
+                  <span>Reject {decisionCounts.reject}</span>
+                  <span>·</span>
+                  <span>Needs edit {decisionCounts.needs_edit}</span>
+                </div>
+              </div>
+              <table className="sr-only">
+                <caption>Verdicts recorded this session</caption>
+                <tbody>
+                  {Object.entries(verdictDistribution).map(([verdict, count]) => (
+                    <tr key={verdict}>
+                      <th>{verdict}</th>
+                      <td>{count}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+        </CardContent>
+        <CardFooter className="pt-2 border-t border-border/60">
+          <Button asChild variant="ghost" size="sm" className="w-full justify-between text-xs text-accent font-mono">
+            <Link href="/audit">
+              <span>Inspect Full Decision Journal &amp; Signatures</span>
+              <ArrowRight size={13} />
+            </Link>
+          </Button>
+        </CardFooter>
+      </Card>
 
       {/* =========================================================================
-          6. INTERACTIVE ENGINE TOPOLOGY & ARCHITECTURAL INSPECTORS
+          4. INTERACTIVE ENGINE TOPOLOGY & ARCHITECTURAL INSPECTORS
           ========================================================================= */}
       <Card className="shadow-xs border border-border overflow-hidden">
         <CardHeader className="border-b border-border/60 pb-3">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-brand dark:text-accent-readable">
-                  [LIVE ENGINE INSPECTORS]
+                <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+                  Engine Inspectors
                 </span>
                 <span className="text-muted-foreground/40">·</span>
                 <span className="font-mono text-xs text-muted-foreground">
                   Interactive Architectural Pipeline
                 </span>
               </div>
-              <CardTitle className="text-lg font-bold tracking-tight text-foreground mt-1">
+              <CardTitle className="text-lg font-semibold tracking-tight text-foreground mt-1 font-serif">
                 Deterministic Routing, Proof Gates &amp; Audit Trail
               </CardTitle>
               <CardDescription className="text-xs mt-0.5">
@@ -185,68 +334,36 @@ export function Dashboard({
               </CardDescription>
             </div>
 
-            {/* Tab switchers */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-muted/40 rounded-full border border-border text-xs font-mono">
-              <button
-                type="button"
-                onClick={() => setActiveEngineTab("deterministic")}
-                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
-                  activeEngineTab === "deterministic"
-                    ? "bg-foreground text-background font-semibold shadow-xs"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                TS Router (78%)
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveEngineTab("lineage")}
-                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
-                  activeEngineTab === "lineage"
-                    ? "bg-foreground text-background font-semibold shadow-xs"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                F-021 Lineage
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveEngineTab("gate")}
-                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
-                  activeEngineTab === "gate"
-                    ? "bg-foreground text-background font-semibold shadow-xs"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Evidence Gate
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveEngineTab("api")}
-                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
-                  activeEngineTab === "api"
-                    ? "bg-foreground text-background font-semibold shadow-xs"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                API Playground
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveEngineTab("audit")}
-                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
-                  activeEngineTab === "audit"
-                    ? "bg-foreground text-background font-semibold shadow-xs"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                SOC 2 Ledger
-              </button>
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-muted/40 rounded-full border border-border text-xs font-mono" role="tablist" aria-label="Engine inspectors">
+              {(
+                [
+                  ["deterministic", "TS Router (78%)"],
+                  ["lineage", "F-021 Lineage"],
+                  ["gate", "Evidence Gate"],
+                  ["api", "API Playground"],
+                  ["audit", "SOC 2 Ledger"],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeEngineTab === id}
+                  onClick={() => setActiveEngineTab(id)}
+                  className={`px-3 py-1 rounded-full transition-colors transition-transform cursor-pointer ${
+                    activeEngineTab === id
+                      ? "bg-foreground text-background font-semibold shadow-xs"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
           </div>
         </CardHeader>
 
-        <CardContent className="p-4 sm:p-6 bg-muted/10">
+        <CardContent className="p-4 sm:p-6 bg-muted/10" role="tabpanel">
           {activeEngineTab === "deterministic" && (
             <div className="animate-in fade-in duration-200">
               <DeterministicRoutingBento />
@@ -276,7 +393,7 @@ export function Dashboard({
       </Card>
 
       {/* =========================================================================
-          7. LIVE SESSION AUDIT TRAIL (Local Browser State with SHA-256 Hashes)
+          5. LIVE SESSION AUDIT TRAIL (Local Browser State with SHA-256 Hashes)
           ========================================================================= */}
       <Card className="shadow-xs border border-border">
         <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/60">
@@ -288,7 +405,7 @@ export function Dashboard({
               Live human reviewer decisions recorded in this browser session
             </CardDescription>
           </div>
-          <Badge variant="outline" className="font-mono text-[10px]">
+          <Badge variant="outline" className="font-mono text-[11px]">
             {totalUserDecisions} Actions Logged
           </Badge>
         </CardHeader>
@@ -303,7 +420,7 @@ export function Dashboard({
               <p className="mt-1 text-[11px] text-muted-foreground">
                 Verify a draft in the Preflight Checker to record decisions with SHA-256 signatures.
               </p>
-              <Button asChild size="sm" className="group mt-4 inline-flex items-center gap-2.5 rounded-full bg-[#8B1E27] py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-xs transition-all duration-200 hover:bg-[#8B1E27]/90 active:scale-[0.98]">
+              <Button asChild size="sm" className="group mt-4 inline-flex items-center gap-2.5 rounded-full bg-accent py-2 pr-2.5 pl-5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-xs transition-colors transition-transform duration-200 hover:bg-accent/90 active:scale-[0.98]">
                 <Link href="/check">
                   <span>Open Preflight Checker</span>
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:translate-x-0.5">
@@ -320,11 +437,11 @@ export function Dashboard({
                   className="rounded-md border border-border/60 p-2.5 bg-card/60 text-xs"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] text-muted-foreground">
+                    <span className="font-mono text-[11px] text-muted-foreground">
                       {entry.id}
                     </span>
                     <span
-                      className={`rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold uppercase ${
+                      className={`rounded px-1.5 py-0.5 font-mono text-[11px] font-semibold uppercase ${
                         entry.decision === "approve"
                           ? "bg-v-supported-bg text-v-supported-fg"
                           : entry.decision === "reject"
@@ -338,7 +455,7 @@ export function Dashboard({
                   <p className="mt-1.5 font-medium text-foreground truncate">
                     {entry.claim || (entry.verdict ? entry.verdict.replace("_", " ") : "Draft Claim")}
                   </p>
-                  <p className="mt-1 text-[10px] text-muted-foreground font-mono">
+                  <p className="mt-1 text-[11px] text-muted-foreground font-mono tabular-nums">
                     {new Date(entry.at).toLocaleTimeString()}
                   </p>
                 </div>
@@ -348,7 +465,7 @@ export function Dashboard({
         </CardContent>
 
         <CardFooter className="pt-2 border-t border-border/60">
-          <Button asChild variant="ghost" size="sm" className="w-full justify-between text-xs text-accent-brand dark:text-accent-readable font-mono">
+          <Button asChild variant="ghost" size="sm" className="w-full justify-between text-xs text-accent font-mono">
             <Link href="/audit">
               <span>Inspect Full Decision Journal &amp; Signatures</span>
               <ArrowRight size={13} />

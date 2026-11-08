@@ -25,7 +25,7 @@ export default function CheckPage() {
           Check your draft against what your register approves.
         </h1>
         <p className="max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-          Every finding cites the approved fact, version and validity window behind it — or says honestly that it cannot judge. 78% of assertions resolve deterministically at 0ms latency.
+          Every finding cites the approved fact, version and validity window behind it, or says honestly that it cannot judge. 78% of assertions resolve deterministically at 0ms latency.
         </p>
       </div>
       <Suspense fallback={<div className="h-64 rounded-xl border border-border bg-panel/30 animate-pulse" />}>

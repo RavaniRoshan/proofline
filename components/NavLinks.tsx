@@ -56,7 +56,7 @@ export function NavLinks() {
             <span>{label}</span>
             {badge && (
               <span
-                className={`ml-0.5 inline-flex h-4 items-center rounded px-1 font-mono text-[10px] font-bold ${
+                className={`ml-0.5 inline-flex h-4 items-center rounded px-1 font-mono text-[11px] font-bold ${
                   active
                     ? "bg-accent-brand/10 text-accent-brand dark:bg-accent-readable/15 dark:text-accent-readable"
                     : "bg-muted/30 text-muted-foreground group-hover:text-foreground"

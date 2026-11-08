@@ -31,7 +31,7 @@ export function StageWallpaperBackdrop() {
           alt=""
           loading="eager"
           decoding="async"
-          className="h-full w-full object-cover object-center transition-all duration-300 opacity-90 dark:opacity-35 dark:brightness-[0.70] dark:contrast-[1.2] dark:saturate-[0.85]"
+          className="h-full w-full object-cover object-center transition-colors transition-transform duration-300 opacity-90 dark:opacity-35 dark:brightness-[0.70] dark:contrast-[1.2] dark:saturate-[0.85]"
           style={{
             maskImage:
               "radial-gradient(ellipse 95% 90% at 50% 50%, black 55%, transparent 100%)",

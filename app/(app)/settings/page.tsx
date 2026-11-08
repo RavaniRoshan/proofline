@@ -87,15 +87,17 @@ export default function SettingsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Simulated Review Date */}
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
+              <label htmlFor="settings-review-date" className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
                 Simulated Review Date
               </label>
               <div className="flex items-center gap-2">
                 <input
+                  id="settings-review-date"
+                  name="review-date"
                   type="date"
                   value={reviewDate}
                   onChange={(e) => setReviewDate(e.target.value)}
-                  className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs font-mono text-foreground focus:outline-none focus:ring-1 focus:ring-foreground"
+                  className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs font-mono text-foreground focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent"
                 />
               </div>
               <p className="text-[11px] text-muted-foreground">
@@ -105,13 +107,15 @@ export default function SettingsPage() {
 
             {/* Designated Reviewer Role */}
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
+              <label htmlFor="settings-reviewer-role" className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
                 Designated Reviewer Role
               </label>
               <select
+                id="settings-reviewer-role"
+                name="reviewer-role"
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
-                className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-foreground cursor-pointer"
+                className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs text-foreground focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent cursor-pointer"
               >
                 <option value="Compliance Lead">Sarah Chen (Compliance Lead)</option>
                 <option value="Legal Counsel">Alex Mercer (Legal Counsel)</option>
@@ -129,7 +133,7 @@ export default function SettingsPage() {
               <span className="font-semibold text-foreground">Current Active Scope:</span>
               <span className="text-muted-foreground">Flowdesk Inc. (B-flowdesk · Starter, Growth, Pro, Enterprise)</span>
             </div>
-            <Badge variant="outline" className="font-mono text-[10px]">
+            <Badge variant="outline" className="font-mono text-[11px]">
               42 Seed Facts Active
             </Badge>
           </div>
@@ -170,13 +174,16 @@ export default function SettingsPage() {
             </div>
             <button
               type="button"
+              role="switch"
+              aria-checked={strictGate}
+              aria-label="Strict 6-Field Evidence Gate"
               onClick={() => setStrictGate(!strictGate)}
-              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
-                strictGate ? "bg-[#1F5C43]" : "bg-muted"
+              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-arrival focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                strictGate ? "bg-v-supported-fg" : "bg-muted"
               }`}
             >
               <span
-                className={`pointer-events-none inline-block size-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out ${
+                className={`pointer-events-none inline-block size-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-arrival ${
                   strictGate ? "translate-x-4" : "translate-x-0"
                 }`}
               />
@@ -200,13 +207,16 @@ export default function SettingsPage() {
             </div>
             <button
               type="button"
+              role="switch"
+              aria-checked={fastPath}
+              aria-label="Stage 1 TypeScript AST Normalizer"
               onClick={() => setFastPath(!fastPath)}
-              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
-                fastPath ? "bg-[#1F5C43]" : "bg-muted"
+              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-arrival focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                fastPath ? "bg-v-supported-fg" : "bg-muted"
               }`}
             >
               <span
-                className={`pointer-events-none inline-block size-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out ${
+                className={`pointer-events-none inline-block size-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-arrival ${
                   fastPath ? "translate-x-4" : "translate-x-0"
                 }`}
               />
@@ -234,15 +244,15 @@ export default function SettingsPage() {
         <CardContent className="pt-4 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
             <div className="rounded-lg border border-border/60 bg-muted/20 p-3">
-              <span className="text-[10px] uppercase text-muted-foreground block">Storage Key</span>
+              <span className="text-[11px] uppercase text-muted-foreground block">Storage Key</span>
               <span className="font-bold text-foreground mt-0.5 block truncate">proofline.v1</span>
             </div>
             <div className="rounded-lg border border-border/60 bg-muted/20 p-3">
-              <span className="text-[10px] uppercase text-muted-foreground block">Server Prose</span>
+              <span className="text-[11px] uppercase text-muted-foreground block">Server Prose</span>
               <span className="font-bold text-[#1F5C43] mt-0.5 block">0 Bytes Transmitted</span>
             </div>
             <div className="rounded-lg border border-border/60 bg-muted/20 p-3">
-              <span className="text-[10px] uppercase text-muted-foreground block">Merkle Chain</span>
+              <span className="text-[11px] uppercase text-muted-foreground block">Merkle Chain</span>
               <span className="font-bold text-foreground mt-0.5 block">SHA-256 Valid</span>
             </div>
           </div>
@@ -262,7 +272,7 @@ export default function SettingsPage() {
               size="sm"
               onClick={handleReset}
               disabled={resetting}
-              className="gap-1.5 font-mono text-xs rounded-full px-4 border-border hover:border-[#8B1E27]/40 hover:text-[#8B1E27] shrink-0 active:scale-[0.98] transition-all"
+              className="gap-1.5 font-mono text-xs rounded-full px-4 border-border hover:border-[#8B1E27]/40 hover:text-[#8B1E27] shrink-0 active:scale-[0.98] transition-colors transition-transform"
             >
               <RotateCcw size={13} className={resetting ? "animate-spin" : ""} />
               <span>{resetting ? "Resetting…" : "Reset Session Demo"}</span>
@@ -275,7 +285,7 @@ export default function SettingsPage() {
             type="button"
             size="sm"
             onClick={handleSave}
-            className="font-mono text-xs gap-1.5 rounded-full px-5 bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-all cursor-pointer shadow-xs"
+            className="font-mono text-xs gap-1.5 rounded-full px-5 bg-[#8B1E27] text-white hover:bg-[#8B1E27]/90 active:scale-[0.98] transition-colors transition-transform cursor-pointer shadow-xs"
           >
             {saved ? (
               <>

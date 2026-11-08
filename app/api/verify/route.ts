@@ -20,7 +20,7 @@ const RequestSchema = z.object({
 
 /**
  * Overrides are spliced into the shared register in place, so checks must not
- * overlap — one request sees a stable register at a time. Single-tenant demo:
+ * overlap, one request sees a stable register at a time. Single-tenant demo:
  * serialising requests is the whole fix.
  */
 let verifyQueue: Promise<unknown> = Promise.resolve();

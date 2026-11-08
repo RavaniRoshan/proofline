@@ -109,7 +109,7 @@ export function VerdictCard({ type }: { type: VerdictType }) {
 
   return (
     <article
-      className={`rounded-[16px] border border-line-strong bg-card p-6 flex flex-col justify-between transition-all duration-150 hover:shadow-sm ${meta.borderClass}`}
+      className={`rounded-[16px] border border-line-strong bg-card p-6 flex flex-col justify-between transition-colors transition-transform duration-150 hover:shadow-sm ${meta.borderClass}`}
     >
       <div>
         {/* Top Row: Verdict Badge + Unboxed Tabular Metadata */}
@@ -131,7 +131,7 @@ export function VerdictCard({ type }: { type: VerdictType }) {
           {meta.summary}
         </p>
 
-        {/* Specimen Box (No thick left border — clean archival table layout) */}
+        {/* Specimen Box (No thick left border, clean archival table layout) */}
         <div className="rounded-[8px] bg-panel/70 border border-line p-3.5 space-y-2.5 my-2">
           <div>
             <div className="flex items-center justify-between text-[11px] font-mono text-muted">

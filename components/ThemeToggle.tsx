@@ -29,7 +29,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button
       type="button"
       onClick={toggleTheme}
-      className={`group relative inline-flex items-center justify-center size-9 sm:size-10 rounded-full border transition-all duration-200 cursor-pointer ${
+      className={`group relative inline-flex items-center justify-center size-9 sm:size-10 rounded-full border transition-colors transition-transform duration-200 cursor-pointer ${
         isDark
           ? "border-line bg-panel text-zinc-300 hover:text-white hover:bg-panel-elevated hover:border-line-strong"
           : "border-line bg-paper text-zinc-700 hover:text-black hover:bg-panel hover:border-line-strong"
