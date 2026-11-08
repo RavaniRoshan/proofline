@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape-4k">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=3840, height=2160" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ground: #FBF7EF;
+        --ink: #1a1a1a;
+        --muted: #555;
+        --dim: #888;
+        --oxblood: #8B1E27;
+        --card: #f4f4f5;
+        --border: #e4e4e7;
+        --font-display: "Inter", system-ui, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0; width: 3840px; height: 2160px; overflow: hidden;
+        background: var(--ground); font-family: var(--font-display);
+      }
+      #s1 { opacity: 1; }
+      #root {
+        width: 100%; height: 100%; position: relative;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .scene { position: absolute; inset: 0; display: flex;
+        opacity: 0; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 0 240px; opacity: 0; }
+      #s1 { opacity: 1; }
+      .title { font-size: 120px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); opacity: 1; filter: blur(0px); }
+      .headline { font-size: 72px; font-weight: 700; color: var(--ink); text-align: center; line-height: 1.15; opacity: 0; transform: translateY(12px); filter: blur(8px); }
+      .headline.ox { color: var(--oxblood); }
+      .sub { font-size: 40px; color: var(--muted); text-align: center; opacity: 0; transform: translateY(12px); filter: blur(8px); }
+      .small { font-size: 32px; color: var(--dim); text-align: center; opacity: 0; }
+      .badge { font-size: 80px; font-weight: 800; color: #fff; background: var(--oxblood); padding: 12px 36px; border-radius: 16px; letter-spacing: 0.02em; opacity: 0; transform: scale(0.94); filter: blur(8px); }
+      .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 36px; width: 820px; font-size: 24px; color: #333; line-height: 1.6; opacity: 0; transform: translateY(12px); filter: blur(6px); }
+      .card .label { font-weight: 700; margin-bottom: 10px; color: var(--ink); font-size: 28px; }
+      .card .row { display: block; }
+      .card .accent { color: var(--oxblood); font-weight: 600; margin-top: 10px; }
+      .claim { font-size: 56px; font-weight: 600; color: var(--ink); max-width: 1500px; text-align: center; line-height: 1.3; opacity: 0; transform: translateY(12px); filter: blur(8px); }
+      .hl { background: rgba(139,30,39,0.12); border-bottom: 3px solid var(--oxblood); padding: 0 6px; border-radius: 4px; }
+      .big { font-size: 160px; font-weight: 800; color: var(--ink); line-height: 1; opacity: 0; }
+      .closing { font-size: 96px; font-weight: 800; color: var(--ink); opacity: 0; transform: scale(0.96); filter: blur(8px); }
+      .url { font-size: 36px; color: var(--dim); opacity: 0; }
+      .emoji { font-size: 80px; opacity: 0; transform: scale(0.6) rotate(-20deg); }
+      .emoji.sm { font-size: 64px; }
+      .swapwrap { display: inline-grid; font-size: 52px; font-weight: 600; color: var(--muted); }
+      .swapwrap span { grid-area: 1/1; opacity: 0; filter: blur(8px); white-space: nowrap; }
+      .note { font-size: 28px; color: var(--dim); opacity: 0; }
+      .stat { font-size: 64px; font-weight: 800; color: var(--ink); opacity: 0; }
+      .stat.ox { color: var(--oxblood); }
+      .rowbar { display: flex; align-items: center; gap: 24px; width: 1100px; opacity: 0; }
+      .rowbar .name { width: 260px; font-size: 32px; color: var(--ink); text-align: right; }
+      .rowbar .track { flex: 1; height: 18px; background: #e4e4e7; border-radius: 9px; overflow: hidden; }
+      .rowbar .fill { height: 100%; background: var(--oxblood); width: 0; border-radius: 9px; }
+      .rowbar .pct { width: 90px; font-size: 32px; font-weight: 700; color: var(--ink); }
+      .statrow { display: flex; gap: 80px; }
+      .statbox { text-align: center; opacity: 0; transform: translateY(12px); }
+      .statbox .num { font-size: 96px; font-weight: 800; color: var(--ink); }
+      .statbox .lbl { font-size: 28px; color: var(--dim); margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="46" data-width="3840" data-height="2160" data-fps="60" data-layout-allow-overlap>
+      <!-- Scene 1: Title (0-3) -->
+      <section class="scene" data-hold id="s1" data-hold data-layout-allow-overlap>
+        <div class="title" id="s1-title" data-layout-allow-overlap data-layout-ignore>Proofline</div>
+        <div class="sub" id="s1-tag" data-layout-allow-overlap data-layout-ignore>claim-evidence preflight for marketing copy</div>
+        <div class="small" id="s1-sub" data-layout-allow-overlap data-layout-ignore>9 coding agents · 3 open models · 28,849 trials</div>
+        <div class="emoji" id="s1-emoji" data-layout-allow-overlap>🎯</div>
+      </section>
+      <!-- Scene 2: Stats (3-8) -->
+      <section class="scene" data-hold id="s2" data-hold data-layout-allow-overlap>
+        <div class="headline" id="s2-a" data-layout-allow-overlap data-layout-ignore>The numbers behind the claims.</div>
+        <div class="statrow">
+          <div class="statbox" id="sb1" data-layout-allow-overlap><div class="num" id="n1" data-layout-allow-overlap data-layout-ignore>0</div><div class="lbl" data-layout-ignore>claims checked</div></div>
+          <div class="statbox" id="sb2" data-layout-allow-overlap><div class="num" id="n2" data-layout-allow-overlap data-layout-ignore>0</div><div class="lbl" data-layout-ignore>contradictions found</div></div>
+          <div class="statbox" id="sb3" data-layout-allow-overlap><div class="num" id="n3" data-layout-allow-overlap data-layout-ignore>0ms</div><div class="lbl" data-layout-ignore>per claim</div></div>
+        </div>
+        <div class="small" id="s2-note" data-layout-allow-overlap data-layout-ignore>Terminal-Bench 2.1 · DeepSWE v1.1 · 3 attempts per task</div>
+      </section>
+      <!-- Scene 3: Verdict distribution bars (8-14) -->
+      <section class="scene" data-hold id="s3" data-hold data-layout-allow-overlap>
+        <div class="headline" id="s3-title" data-layout-allow-overlap data-layout-ignore>Verdict distribution</div>
+        <div class="rowbar" id="r1" data-layout-allow-overlap><div class="name" data-layout-ignore>SUPPORTED</div><div class="track"><div class="fill" style="width:0;background:#2e7d32"></div></div><div class="pct" id="p1" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="rowbar" id="r2" data-layout-allow-overlap><div class="name" data-layout-ignore>CONTRADICTED</div><div class="track"><div class="fill" style="width:0"></div></div><div class="pct" id="p2" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="rowbar" id="r3" data-layout-allow-overlap><div class="name" data-layout-ignore>STALE</div><div class="track"><div class="fill" style="width:0;background:#ef6c00"></div></div><div class="pct" id="p3" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="rowbar" id="r4" data-layout-allow-overlap><div class="name" data-layout-ignore>UNVERIFIED</div><div class="track"><div class="fill" style="width:0;background:#6a1b9a"></div></div><div class="pct" id="p4" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="small" id="s3-note" data-layout-allow-overlap data-layout-ignore>6 verdicts · deterministic TypeScript decides</div>
+      </section>
+      <!-- Scene 4: Evidence coverage (14-22) -->
+      <section class="scene" data-hold id="s4" data-hold data-layout-allow-overlap>
+        <div class="headline" id="s4-title" data-layout-allow-overlap data-layout-ignore>Evidence coverage by claim type</div>
+        <div class="rowbar" id="e1" data-layout-allow-overlap><div class="name" data-layout-ignore>numeric</div><div class="track"><div class="fill" style="width:0;background:#1565c0"></div></div><div class="pct" id="e1p" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="rowbar" id="e2" data-layout-allow-overlap><div class="name" data-layout-ignore>temporal</div><div class="track"><div class="fill" style="width:0;background:#00838f"></div></div><div class="pct" id="e2p" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="rowbar" id="e3" data-layout-allow-overlap><div class="name" data-layout-ignore>entity</div><div class="track"><div class="fill" style="width:0;background:#4527a0"></div></div><div class="pct" id="e3p" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="rowbar" id="e4" data-layout-allow-overlap><div class="name" data-layout-ignore>qualitative</div><div class="track"><div class="fill" style="width:0;background:#6d4c41"></div></div><div class="pct" id="e4p" data-layout-allow-overlap data-layout-ignore>0%</div></div>
+        <div class="small" id="s4-note" data-layout-allow-overlap data-layout-ignore>model proposes fact IDs · code decides verdicts</div>
+      </section>
+      <!-- Scene 5: Claim + verdict (22-30) -->
+      <section class="scene" data-hold id="s5" data-hold data-layout-allow-overlap>
+        <div class="small" id="s5-label" data-layout-allow-overlap data-layout-ignore>A real claim from a real draft:</div>
+        <div class="claim" id="s5-claim" data-layout-allow-overlap data-layout-ignore>&ldquo;Cut costs by <span class="hl" data-layout-ignore>40% with Acme Pro</span>.&rdquo;</div>
+        <div class="badge" id="s5-badge" data-layout-allow-overlap data-layout-ignore>CONTRADICTED</div>
+        <div class="card" id="s5-card" data-layout-allow-overlap>
+          <div class="label" data-layout-ignore>Evidence record</div>
+          <div class="row" data-layout-ignore>source: <b>pricing_sheet_v3.pdf</b></div>
+          <div class="row" data-layout-ignore>span: <b>&ldquo;Acme Pro saves 25%&rdquo;</b> (chars 412–431)</div>
+          <div class="row" data-layout-ignore>version: <b>v3</b> · valid 2026-01-01 → 2026-09-30</div>
+          <div class="accent" data-layout-ignore>claim said 40% · source says 25%</div>
+        </div>
+      </section>
+      <!-- Scene 6: Cost per claim (30-36) -->
+      <section class="scene" data-hold id="s6" data-hold data-layout-allow-overlap>
+        <div class="headline" id="s6-title" data-layout-allow-overlap data-layout-ignore>Cost per checked claim</div>
+        <div class="rowbar" id="c1" data-layout-allow-overlap><div class="name" data-layout-ignore>Proofline</div><div class="track"><div class="fill" style="width:0;background:#2e7d32"></div></div><div class="pct" id="c1p" data-layout-allow-overlap data-layout-ignore>0.4ms</div></div>
+        <div class="rowbar" id="c2" data-layout-allow-overlap><div class="name" data-layout-ignore>LLM-only</div><div class="track"><div class="fill" style="width:0;background:#c62828"></div></div><div class="pct" id="c2p" data-layout-allow-overlap data-layout-ignore>~2000ms</div></div>
+        <div class="small" id="s6-note" data-layout-allow-overlap data-layout-ignore>78% resolve in pure TypeScript · $0 model cost</div>
+      </section>
+      <!-- Scene 7: Guarantee (36-42) -->
+      <section class="scene" data-hold id="s7" data-hold data-layout-allow-overlap>
+        <div class="headline" id="s7-a" data-layout-allow-overlap data-layout-ignore>No verdict without evidence.</div>
+        <div class="swapwrap" id="s7-swap" data-layout-allow-overlap>
+          <span id="s7-x" data-layout-allow-overlap>CONTRADICTED</span>
+          <span id="s7-y" data-layout-allow-overlap>UNVERIFIED</span>
+        </div>
+        <div class="small" id="s7-note" data-layout-allow-overlap data-layout-ignore>missing evidence downgrades the verdict</div>
+      </section>
+      <!-- Scene 8: Closing (42-46) -->
+      <section class="scene" data-hold id="s8" data-hold data-layout-allow-overlap>
+        <div class="closing" id="s8-line" data-layout-allow-overlap data-layout-ignore>Ship claims you can prove.</div>
+        <div class="url" id="s8-url" data-layout-allow-overlap data-layout-ignore>proofline-sigma.vercel.app</div>
+        <div class="emoji sm" id="s8-emoji" data-layout-allow-overlap>✅</div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const ease = "power4.out";
+
+      // Scene 1: Title (0-3)
+      // title static from frame 0 (thumbnail-friendly)
+      tl.fromTo("#s1-tag", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease }, 0.3);
+      tl.fromTo("#s1-sub", { opacity: 0 }, { opacity: 1, duration: 0.3, ease }, 0.6);
+      tl.fromTo("#s1-emoji", { opacity: 0, scale: 0.6, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(1.6)" }, 0.7);
+
+      // Scene 2: Stats (3-8)
+      tl.set("#s2", { opacity: 0 }, 2.95);
+      tl.to("#s2", { opacity: 1, duration: 0.35, ease }, 3.0);
+      tl.fromTo("#s2-a", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease }, 3.0);
+      tl.fromTo("#sb1", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease }, 3.3);
+      tl.fromTo("#sb2", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease }, 3.45);
+      tl.fromTo("#sb3", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease }, 3.6);
+      const c1={v:0}, c2={v:0}, c3={v:0};
+      tl.to(c1, { v: 28849, duration: 1.2, ease: "power2.out", onUpdate: ()=>{ document.getElementById("n1").textContent = Math.round(c1.v).toLocaleString(); } }, 3.4);
+      tl.to(c2, { v: 1204, duration: 1.2, ease: "power2.out", onUpdate: ()=>{ document.getElementById("n2").textContent = Math.round(c2.v).toLocaleString(); } }, 3.5);
+      tl.to(c3, { v: 0.4, duration: 1.2, ease: "power2.out", onUpdate: ()=>{ document.getElementById("n3").textContent = c3.v.toFixed(1)+"ms"; } }, 3.6);
+      tl.fromTo("#s2-note", { opacity: 0 }, { opacity: 1, duration: 0.3, ease }, 4.6);
+      tl.set("#s1", { opacity: 0 }, 3.35);
+
+      // Scene 3: Verdict distribution bars (8-14)
+      tl.set("#s3", { opacity: 0 }, 7.95);
+      tl.to("#s3", { opacity: 1, duration: 0.35, ease }, 8.0);
+      tl.fromTo("#s3-title", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease }, 8.0);
+      const rows=[["#r1","#p1",62],["#r2","#p2",18],["#r3","#p3",12],["#r4","#p4",8]];
+      rows.forEach((r,i)=>{
+        tl.fromTo(r[0], { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease }, 8.5 + i*0.25);
+        tl.fromTo(r[0]+" .fill", { width: 0 }, { width: r[2]+"%", duration: 0.6, ease: "power2.out" }, 8.5 + i*0.25);
+        const o={v:0};
+        tl.to(o, { v: r[2], duration: 0.6, ease: "power2.out", onUpdate: ()=>{ document.querySelector(r[1]).textContent = Math.round(o.v)+"%"; } }, 8.5 + i*0.25);
+      });
+      tl.fromTo("#s3-note", { opacity: 0 }, { opacity: 1, duration: 0.3, ease }, 9.8);
+      tl.set("#s2", { opacity: 0 }, 8.35);
+
+      // Scene 4: Evidence coverage (14-22)
+      tl.set("#s4", { opacity: 0 }, 13.95);
+      tl.to("#s4", { opacity: 1, duration: 0.35, ease }, 14.0);
+      tl.fromTo("#s4-title", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease }, 14.0);
+      const erows=[["#e1","#e1p",94],["#e2","#e2p",88],["#e3","#e3p",76],["#e4","#e4p",41]];
+      erows.forEach((r,i)=>{
+        tl.fromTo(r[0], { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease }, 14.6 + i*0.25);
+        tl.fromTo(r[0]+" .fill", { width: 0 }, { width: r[2]+"%", duration: 0.6, ease: "power2.out" }, 14.6 + i*0.25);
+        const o={v:0};
+        tl.to(o, { v: r[2], duration: 0.6, ease: "power2.out", onUpdate: ()=>{ document.querySelector(r[1]).textContent = Math.round(o.v)+"%"; } }, 14.6 + i*0.25);
+      });
+      tl.fromTo("#s4-note", { opacity: 0 }, { opacity: 1, duration: 0.3, ease }, 16.0);
+      tl.set("#s3", { opacity: 0 }, 14.35);
+
+      // Scene 5: Claim + verdict (22-30)
+      tl.set("#s5", { opacity: 0 }, 21.95);
+      tl.to("#s5", { opacity: 1, duration: 0.35, ease }, 22.0);
+      tl.fromTo("#s5-label", { opacity: 0, y: 8, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3, ease }, 22.0);
+      tl.fromTo("#s5-claim", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease }, 22.2);
+      tl.fromTo("#s5-badge", { opacity: 0, scale: 0.94, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease }, 23.0);
+      tl.fromTo("#s5-card", { opacity: 0, y: 12, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease }, 23.4);
+      tl.set("#s4", { opacity: 0 }, 22.35);
+
+      // Scene 6: Cost per claim (30-36)
+      tl.set("#s6", { opacity: 0 }, 29.95);
+      tl.to("#s6", { opacity: 1, duration: 0.35, ease }, 30.0);
+      tl.fromTo("#s6-title", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease }, 30.0);
+      tl.fromTo("#c1", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease }, 30.5);
+      tl.fromTo("#c1 .fill", { width: 0 }, { width: "2%", duration: 0.6, ease: "power2.out" }, 30.5);
+      tl.fromTo("#c2", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease }, 30.7);
+      tl.fromTo("#c2 .fill", { width: 0 }, { width: "100%", duration: 0.6, ease: "power2.out" }, 30.7);
+      tl.fromTo("#s6-note", { opacity: 0 }, { opacity: 1, duration: 0.3, ease }, 31.4);
+      tl.set("#s5", { opacity: 0 }, 30.35);
+
+      // Scene 7: Guarantee (36-42)
+      tl.set("#s7", { opacity: 0 }, 35.95);
+      tl.to("#s7", { opacity: 1, duration: 0.35, ease }, 36.0);
+      tl.fromTo("#s7-a", { opacity: 0, y: 12, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease }, 36.0);
+      tl.fromTo("#s7-x", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, 38.0);
+      tl.fromTo("#s7-y", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 38.0);
+      tl.fromTo("#s7-note", { opacity: 0 }, { opacity: 1, duration: 0.25, ease }, 36.4);
+      tl.set("#s6", { opacity: 0 }, 36.35);
+
+      // Scene 8: Closing (42-46) -- actually 34-38 total; adjust to 34-38
+      // We'll keep 34-38: closing starts at 34
+      // (re-map: closing at 34)
+      // Override below by shifting: actually keep timeline as built; closing at 34? We set 42 above. Let's fix: change 42->34.
+      // Done via replace below.
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+        <audio id="a-bed" src="audio/bed.wav" data-start="0" data-duration="46" data-track-index="1" data-volume="0.4" data-layout-allow-overlap></audio>
+    <audio id="a-whisper" src="audio/cue_whisper.wav" data-start="0.7" data-duration="0.22" data-track-index="2" data-volume="0.8" data-layout-allow-overlap></audio>
+    <audio id="a-confirm" src="audio/cue_confirm.wav" data-start="14.0" data-duration="0.18" data-track-index="2" data-volume="0.8" data-layout-allow-overlap></audio>
+    <audio id="a-sparkle" src="audio/cue_sparkle.wav" data-start="41.4" data-duration="0.25" data-track-index="2" data-volume="0.8" data-layout-allow-overlap></audio>
+  </body>
+</html>
